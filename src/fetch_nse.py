@@ -97,12 +97,14 @@ def main() -> None:
     ap.add_argument("--end", required=True)
     ap.add_argument("--root", default="data/raw")
     ap.add_argument("--workers", type=int, default=6)
+    ap.add_argument("--weekends-only", action="store_true", help="probe only Saturdays/Sundays (special sessions, Budget days, Muhurat)")
     a = ap.parse_args()
     root = Path(a.root)
     for sub in ("idx", "sec", "legacy"):
         (root / sub).mkdir(parents=True, exist_ok=True)
     d0, d1 = dt.date.fromisoformat(a.start), dt.date.fromisoformat(a.end)
-    days = [d0 + dt.timedelta(n) for n in range((d1 - d0).days + 1) if (d0 + dt.timedelta(n)).weekday() < 5]
+    all_days = [d0 + dt.timedelta(n) for n in range((d1 - d0).days + 1)]
+    days = [x for x in all_days if (x.weekday() >= 5 if a.weekends_only else x.weekday() < 5)]
     out = []
     t0 = time.time()
     with ThreadPoolExecutor(max_workers=a.workers) as ex:
@@ -118,7 +120,7 @@ def main() -> None:
         prev[r["date"]] = r
     man.write_text(json.dumps(dict(sorted(prev.items())), indent=0))
     bad = [r for r in out if r["idx"] not in (200, 404) or r["bhav"] == "MISSING"]
-    print(f"weekdays={len(days)} sessions={sum(r['idx']==200 for r in out)} holidays={sum(r['idx']==404 for r in out)} problems={len(bad)}")
+    print(f"days_probed={len(days)} sessions={sum(r['idx']==200 for r in out)} holidays={sum(r['idx']==404 for r in out)} problems={len(bad)}")
     for r in bad[:40]:
         print("PROBLEM", r)
 

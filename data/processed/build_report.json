@@ -1,0 +1,139 @@
+{
+ "sessions_in_manifest": 2400,
+ "sessions_with_bhavcopy": 2400,
+ "missing_bhavcopy": [],
+ "bse_rows": 2387,
+ "short_sessions_dropped": [
+  "2017-07-10",
+  "2017-10-19",
+  "2018-11-07",
+  "2019-10-27",
+  "2020-11-14",
+  "2021-11-04",
+  "2022-10-24",
+  "2023-11-12",
+  "2024-03-02",
+  "2024-05-18",
+  "2024-11-01",
+  "2025-10-21"
+ ],
+ "weekend_sessions_kept": [
+  "2020-02-01",
+  "2024-01-20",
+  "2025-02-01",
+  "2026-02-01"
+ ],
+ "bse_first": "2017-02-06",
+ "bse_last": "2026-10-12",
+ "rebase_events": [
+  {
+   "date": "2017-07-11",
+   "nse_prev": 1085.1,
+   "prev_close_kept": 1066.9,
+   "nse_prev_vs_kept_close": 1.0170587684,
+   "ca_factor": 1.0,
+   "close": 1097.05,
+   "weekend": false
+  },
+  {
+   "date": "2017-10-23",
+   "nse_prev": 972.65,
+   "prev_close_kept": 965.1,
+   "nse_prev_vs_kept_close": 1.0078230235,
+   "ca_factor": 1.0,
+   "close": 968.9,
+   "weekend": false
+  },
+  {
+   "date": "2018-11-09",
+   "nse_prev": 619.6,
+   "prev_close_kept": 607.2,
+   "nse_prev_vs_kept_close": 1.0204216074,
+   "ca_factor": 1.0,
+   "close": 625.7,
+   "weekend": false
+  },
+  {
+   "date": "2019-10-29",
+   "nse_prev": 550.65,
+   "prev_close_kept": 542.4,
+   "nse_prev_vs_kept_close": 1.015210177,
+   "ca_factor": 1.0,
+   "close": 552.9,
+   "weekend": false
+  },
+  {
+   "date": "2020-11-17",
+   "nse_prev": 523.65,
+   "prev_close_kept": 507.1,
+   "nse_prev_vs_kept_close": 1.0326365608,
+   "ca_factor": 1.0,
+   "close": 532.7,
+   "weekend": false
+  },
+  {
+   "date": "2021-11-08",
+   "nse_prev": 1382.3,
+   "prev_close_kept": 1352.2,
+   "nse_prev_vs_kept_close": 1.0222600207,
+   "ca_factor": 1.0,
+   "close": 1399.8,
+   "weekend": false
+  },
+  {
+   "date": "2022-10-25",
+   "nse_prev": 589.65,
+   "prev_close_kept": 583.2,
+   "nse_prev_vs_kept_close": 1.0110596708,
+   "ca_factor": 1.0,
+   "close": 611.15,
+   "weekend": false
+  },
+  {
+   "date": "2023-11-13",
+   "nse_prev": 2126.05,
+   "prev_close_kept": 2010.75,
+   "nse_prev_vs_kept_close": 1.0573417879,
+   "ca_factor": 1.0,
+   "close": 2321.9,
+   "weekend": false
+  },
+  {
+   "date": "2024-03-04",
+   "nse_prev": 2352.45,
+   "prev_close_kept": 2336.45,
+   "nse_prev_vs_kept_close": 1.0068479959,
+   "ca_factor": 1.0,
+   "close": 2319.55,
+   "weekend": false
+  },
+  {
+   "date": "2024-05-21",
+   "nse_prev": 2794.25,
+   "prev_close_kept": 2783.0,
+   "nse_prev_vs_kept_close": 1.0040424003,
+   "ca_factor": 1.0,
+   "close": 2726.3,
+   "weekend": false
+  },
+  {
+   "date": "2025-10-23",
+   "nse_prev": 2487.8,
+   "prev_close_kept": 2494.1,
+   "nse_prev_vs_kept_close": 0.9974740387,
+   "ca_factor": 1.0,
+   "close": 2487.5,
+   "weekend": false
+  }
+ ],
+ "series_values_for_bse": [
+  "EQ"
+ ],
+ "index_first": "2017-02-03",
+ "index_last": "2026-10-12",
+ "index_cols_with_gaps": {
+  "capmkts_close": 1884,
+  "midcap100_close": 285,
+  "smallcap100_close": 285
+ }
+}

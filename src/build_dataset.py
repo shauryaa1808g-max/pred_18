@@ -22,6 +22,7 @@ import pandas as pd
 
 RAW = Path("data/raw")
 OUT = Path("data/processed")
+SHORT_RATIO = 0.35
 PEERS = ["BSE", "CDSL", "MCX", "ANGELONE", "NUVAMA", "KFINTECH", "CAMS", "IEX", "MOTILALOFS", "ANANDRATHI", "IIFLSEC", "GEOJITFSL", "NSDL", "5PAISA"]
 INDICES = {
     "nifty 50": "nifty50", "nifty 500": "nifty500", "nifty midcap 100": "midcap100", "nifty smallcap 100": "smallcap100",
@@ -71,6 +72,7 @@ def read_idx(p: Path) -> pd.DataFrame:
         "high": pd.to_numeric(d["High Index Value"], errors="coerce"),
         "low": pd.to_numeric(d["Low Index Value"], errors="coerce"),
         "close": pd.to_numeric(d["Closing Index Value"], errors="coerce"),
+        "volume": pd.to_numeric(d["Volume"], errors="coerce"),
     })
     return out
 
@@ -113,24 +115,46 @@ def main() -> None:
     peers = pd.concat(peer_rows, ignore_index=True).sort_values(["symbol", "date"])
     bse = peers[peers["symbol"] == "BSE"].drop(columns="symbol").set_index("date").sort_index()
     idx = pd.concat(idx_rows, ignore_index=True)
-    idx_wide = idx.pivot_table(index="date", columns="name", values=["open", "high", "low", "close"])
+    idx_wide = idx.pivot_table(index="date", columns="name", values=["open", "high", "low", "close", "volume"])
     idx_wide.columns = [f"{n}_{f}" for f, n in idx_wide.columns]
     br = pd.DataFrame(breadth_rows).set_index("date").sort_index()
 
-    # corporate-action / re-basing detection on BSE
-    bse["prev_close_session"] = bse["close"].shift(1)
-    bse["rebase_ratio"] = bse["prev"] / bse["prev_close_session"]
-    ca = bse[(bse["rebase_ratio"] - 1).abs() > 0.0005][["prev", "prev_close_session", "rebase_ratio", "close"]]
+    # --- session-quality flag: short special sessions (Muhurat, DR-drill Saturdays) have a tiny Nifty-50 share volume
+    nv = idx_wide["nifty50_volume"].reindex(bse.index)
+    med20 = nv.rolling(20, min_periods=10).median().shift(1)
+    bse["nifty_vol_ratio"] = nv / med20
+    bse["short_session"] = (bse["nifty_vol_ratio"] < SHORT_RATIO)
+    bse["weekend"] = bse.index.dayofweek >= 5
+
+    # --- corporate actions: NSE's PREV_CLOSE is NOT re-based on bonus/split ex-dates in these archive files, so the
+    # adjustment is applied here from a verified list (data/corp_actions_verified.csv) and returns use our own previous close.
+    ca_list = pd.read_csv("data/corp_actions_verified.csv", parse_dates=["ex_date"])
+    reg = bse[~bse["short_session"]].copy()
+    reg["prev_close_kept"] = reg["close"].shift(1)
+    fac = pd.Series(1.0, index=reg.index)
+    for _, r in ca_list.iterrows():
+        if r["ex_date"] in fac.index:
+            fac.loc[r["ex_date"]] = r["factor"]
+    reg["ca_factor"] = fac
+    reg["prev_adj"] = reg["prev_close_kept"] / fac
+    reg["nse_prev"] = reg["prev"]
+    reg["nse_prev_vs_kept_close"] = reg["nse_prev"] / reg["prev_close_kept"]
+    reg = reg.drop(columns=["prev"]).rename(columns={"prev_adj": "prev"})
+    reg = reg.iloc[1:]  # first retained row has no previous kept close
+    ca = reg[(reg["nse_prev_vs_kept_close"] - 1).abs() > 0.0005][["nse_prev", "prev_close_kept", "nse_prev_vs_kept_close", "ca_factor", "close", "weekend"]]
+    bse_all = bse
+    bse = reg
 
     peers.to_csv(OUT / "peers_daily.csv", index=False)
     bse.to_csv(OUT / "bse_daily.csv")
+    bse_all.to_csv(OUT / "bse_all_sessions_with_flags.csv")
     idx_wide.to_csv(OUT / "index_daily.csv")
     br.to_csv(OUT / "breadth_daily.csv")
     ca.to_csv(OUT / "corp_actions.csv")
     rep = {
         "sessions_in_manifest": len(sessions), "sessions_with_bhavcopy": len(sessions) - len(missing_bhav), "missing_bhavcopy": missing_bhav,
-        "bse_rows": int(len(bse)), "bse_first": str(bse.index.min().date()), "bse_last": str(bse.index.max().date()),
-        "bse_sessions_missing_vs_index_calendar": sorted(set(pd.to_datetime(sessions).strftime("%Y-%m-%d")) - set(bse.index.strftime("%Y-%m-%d"))),
+        "bse_rows": int(len(bse)), "short_sessions_dropped": [str(x.date()) for x in bse_all.index[bse_all["short_session"].fillna(False)]],
+        "weekend_sessions_kept": [str(x.date()) for x in bse.index[bse["weekend"]]], "bse_first": str(bse.index.min().date()), "bse_last": str(bse.index.max().date()),
         "rebase_events": json.loads(ca.reset_index().assign(date=lambda x: x["date"].dt.strftime("%Y-%m-%d")).to_json(orient="records")),
         "series_values_for_bse": sorted(peers[peers["symbol"] == "BSE"]["series"].unique().tolist()),
         "index_first": str(idx_wide.index.min().date()), "index_last": str(idx_wide.index.max().date()),

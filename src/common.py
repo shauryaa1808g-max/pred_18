@@ -15,9 +15,10 @@ EPS = 1e-8
 def load_bse(path: Path | None = None) -> pd.DataFrame:
     d = pd.read_csv(path or PROC / "bse_daily.csv", parse_dates=["date"]).set_index("date").sort_index()
     d = d[~d.index.duplicated(keep="last")]
-    # drop listing day: its 'prev' is the IPO issue price, not a traded close
-    d = d.iloc[1:].copy()
-    ok = (d[["prev", "open", "high", "low", "close"]] > 0).all(axis=1) & (d["high"] >= d["low"])
+    # build_dataset.py already drops the listing day (its NSE 'prev' is the IPO issue price) and applies corporate-action
+    # factors, so 'prev' here is our own split/bonus-adjusted previous kept close.
+    d = d.copy()
+    ok = (d[["prev", "open", "high", "low", "close"]] > 0).all(axis=1) & (d["high"] >= d["low"]) & (d["high"] >= d[["open", "close"]].max(axis=1) - 1e-9) & (d["low"] <= d[["open", "close"]].min(axis=1) + 1e-9)
     if not ok.all():
         raise ValueError(f"bad OHLC rows: {d.index[~ok].tolist()[:10]}")
     return d
