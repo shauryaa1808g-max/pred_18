@@ -24,7 +24,7 @@ SELECT = {"R": "S6", "G": "S4", "I": "S6"}
 
 
 def sha(path: str) -> str:
-    return hashlib.sha256(Path(path).read_bytes()).hexdigest()[:16]
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
 def live_sigma(x: np.ndarray, v: np.ndarray, model: str) -> np.ndarray:
@@ -56,6 +56,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--provisional", default=None, help="open,high,low,close,volume for 2026-10-13 if the official file is not yet published")
     ap.add_argument("--out", default="results/forecast_record_2026-10-14.json")
+    ap.add_argument("--cutoff-ist", default=None, help="information cutoff timestamp, e.g. 2026-10-13T16:30:00+05:30")
     a = ap.parse_args()
     d = load_bse()
     provisional = False
@@ -74,8 +75,8 @@ def main():
     v = {"R": t["v"].values, "G": np.clip(t["G"].values ** 2, EPS, None), "I": t["gk"].values}
     out: dict = {"stock": "BSE Ltd", "ticker": "NSE:BSE", "isin": "INE118H01025", "currency": "INR", "exchange_tz": "Asia/Kolkata",
                  "target_session": TARGET_SESSION, "data_last_session": str(d.index[-1].date()), "n_sessions": n,
-                 "reference_price_P0": P0, "reference_price_status": "PROVISIONAL (Google Finance/stockanalysis 15:30 IST)" if provisional else "OFFICIAL NSE close (sec_bhavdata_full)",
-                 "generated_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "selected_models": SELECT | {"rho": "HAR"}, "location_model": "L0 (no model passed its pre-registered gate)"}
+                 "reference_price_P0": P0, "reference_price_status": "PROVISIONAL (Google Finance/stockanalysis 15:30 IST)" if provisional else "OFFICIAL NSE close of 2026-10-13 from BhavCopy_NSE_CM_0_0_0_20261013_F_0000.csv.zip (published ~16:34 IST); equals Google Finance / stockanalysis / Yahoo prints",
+                 "information_cutoff_ist": a.cutoff_ist, "generated_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "selected_models": SELECT | {"rho": "HAR"}, "location_model": "L0 (no model passed its pre-registered gate)"}
     # ---- scale forecasts for all candidates (transparency) and quantiles for the selected one
     sig_table = {}
     for tgt in ("R", "G", "I"):
@@ -130,7 +131,7 @@ def main():
         "P(|R|<0.5%)": float((np.abs(sRn * zc) < 0.005).mean()), "P(|R|<1%)": float((np.abs(sRn * zc) < 0.01).mean()),
         "P(R>+2%)": float((sRn * zc > 0.02).mean()), "P(R<-2%)": float((sRn * zc < -0.02).mean()),
         "P(R>+4%)": float((sRn * zc > 0.04).mean()), "P(R<-4%)": float((sRn * zc < -0.04).mean()),
-        "note": "probabilities are model-based on the trailing 500 standardised residuals; 90% interval coverage was validated (Final-window Kupiec p=0.27), the tail/centre masses are not separately validated",
+        "note": "probabilities are model-based on the trailing 500 standardised residuals. Interval coverage was TESTED, not proven: selected R model, Final window n=317, 90% coverage 0.918 (Kupiec p=0.27, but power to reject 0.88 is only ~22%); Dev+Val 90% coverage 0.8815 (Kupiec p=0.017); 50% intervals ran narrow in Final (0.464). Tail and centre masses are not separately validated.",
     }
     base_rates = {}
     R = t["R"]
@@ -148,9 +149,10 @@ def main():
     # ---- provenance
     try:
         out["code_commit"] = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+        out["code_tree_dirty"] = bool(subprocess.check_output(["git", "status", "--porcelain", "src", "tests", "data/processed", "data/corp_actions_verified.csv"], text=True).strip())
     except Exception:  # noqa: BLE001
         out["code_commit"] = "unknown"
-    out["data_sha256_16"] = {p: sha(p) for p in ("data/processed/bse_daily.csv", "data/processed/index_daily.csv", "data/corp_actions_verified.csv")}
+    out["data_sha256"] = {p: sha(p) for p in ("data/processed/bse_daily.csv", "data/processed/index_daily.csv", "data/corp_actions_verified.csv")}
     out["last_bar"] = {k: float(d[k].iloc[-1]) for k in ("open", "high", "low", "close", "vol")}
     Path(a.out).write_text(json.dumps(out, indent=1))
     print(json.dumps({k: out[k] for k in ("reference_price_P0", "reference_price_status", "sigma_forecasts_by_model")}, indent=1))

@@ -59,15 +59,19 @@ def main():
     out["vwap_proxy_last_day"] = float((d["turnover_cr"].iloc[-1] * 1e7) / d["vol"].iloc[-1]) if np.isfinite(d["turnover_cr"].iloc[-1]) else None
     # relative strength vs Nifty / capital-markets index / peers
     ix = load_index().reindex(d.index)
+    last_ix = ix["nifty50_close"].last_valid_index()           # index file for the newest session is published later (~23:20 IST)
+    out["index_stats_asof"] = str(last_ix.date())
+    ix = ix.loc[:last_ix]
     ir = index_returns(ix)
+    adj_ix = adj.loc[:last_ix]; R = t["R"].loc[:last_ix]
     for name, col in (("nifty50", "nifty50_close"), ("capmkts", "capmkts_close"), ("finserv", "finserv_close")):
         s = ix[col]
         for n in (5, 20, 60):
             if s.iloc[-1 - n:].notna().all():
-                out[f"rs_{n}d_vs_{name}_pct"] = float(100 * ((px / adj.iloc[-1 - n]) / (s.iloc[-1] / s.iloc[-1 - n]) - 1))
+                out[f"rs_{n}d_vs_{name}_pct"] = float(100 * ((adj_ix.iloc[-1] / adj_ix.iloc[-1 - n]) / (s.iloc[-1] / s.iloc[-1 - n]) - 1))
     nr = ir["r_nifty50"]
     for n in (60, 120, 250):
-        x, y = nr.iloc[-n:], R.iloc[-n:]
+        x, y = nr.iloc[-n:], R.loc[:last_ix].iloc[-n:]
         m = x.notna() & y.notna()
         out[f"beta_nifty_{n}d"] = float(np.cov(x[m], y[m])[0, 1] / x[m].var()); out[f"corr_nifty_{n}d"] = float(np.corrcoef(x[m], y[m])[0, 1])
     pe = pd.read_csv("data/processed/peers_daily.csv", parse_dates=["date"])

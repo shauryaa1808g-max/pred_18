@@ -45,6 +45,7 @@ def holm(p: dict[str, float]) -> dict[str, float]:
 
 
 def eval_target(name: str, fc: pd.DataFrame, bench: str, v_proxy: pd.Series | None, mask_fn, label: str) -> list[dict]:
+    # v_proxy: realised variance proxy aligned to dates -> adds QLIKE (secondary metric of PREREGISTRATION s4); None for the range target
     rows = []
     piv_q = {m: g.set_index("date")[QCOLS] for m, g in fc.groupby("model")}
     y_all = fc[fc.model == bench].set_index("date")["y"]
@@ -56,6 +57,7 @@ def eval_target(name: str, fc: pd.DataFrame, bench: str, v_proxy: pd.Series | No
     pl = {m: M.pinball(y, q.loc[dates].values[msk]) for m, q in piv_q.items()}
     pvals = {}
     stats_ = {}
+    qls = {}
     for m, q in piv_q.items():
         qq = q.loc[dates].values[msk]
         row = {"target": name, "period": label, "model": m, "n": int(msk.sum()), "pinball_x1e4": 1e4 * pl[m].mean()}
@@ -63,9 +65,14 @@ def eval_target(name: str, fc: pd.DataFrame, bench: str, v_proxy: pd.Series | No
             c, hit = M.coverage(y, qq, lev)
             row[f"cov{int(lev*100)}"] = c
             row[f"kupiec{int(lev*100)}"] = M.kupiec(hit, lev)
-            if lev == 0.9:
-                row["christ90"] = M.christoffersen_ind(hit)
+            row[f"christ{int(lev*100)}"] = M.christoffersen_ind(hit)
             row[f"width{int(lev*100)}"] = float(np.mean(qq[:, list(GRID).index(M.CENTRAL[lev][1])] - qq[:, list(GRID).index(M.CENTRAL[lev][0])]))
+        if v_proxy is not None and "sigma" in fc.columns:
+            sg = fc[fc.model == m].set_index("date")["sigma"].loc[dates].values[msk]
+            vp = v_proxy.reindex(dates).values[msk]
+            ql = M.qlike(sg ** 2, vp)
+            row["qlike_mean"] = float(np.mean(ql))
+            qls[m] = ql
         if m != bench:
             dm, t, p = M.diebold_mariano(pl[m], pl[bench])
             row["dm_mean_gain_vs_bench_x1e4"] = 1e4 * dm
@@ -77,6 +84,9 @@ def eval_target(name: str, fc: pd.DataFrame, bench: str, v_proxy: pd.Series | No
     hp = holm(pvals)
     for r in rows:
         r["dm_p_holm"] = hp.get(r["model"], np.nan)
+        if r["model"] in qls and bench in qls and r["model"] != bench:
+            dmq, tq, pq = M.diebold_mariano(qls[r["model"]], qls[bench])
+            r["qlike_dm_p_better_than_bench"] = pq
     return rows
 
 
@@ -91,9 +101,10 @@ def main():
     hi_vol = rv > rv.expanding(120).median().shift(1)
     for name in ("R", "G", "I"):
         fc = pd.read_csv(RES / f"forecasts_{name}.csv", parse_dates=["date"])
+        proxy = {"R": t["v"], "G": t["G"].pow(2).clip(lower=1e-8), "I": t["gk"]}[name]
         sets = {k: v for k, v in PERIODS.items() if a.periods == "all" or k == "dev"}
         for lab, (lo, hi) in sets.items():
-            allrows += eval_target(name, fc, "S0", None, lambda ix, lo=lo, hi=hi: slice_dates(ix, lo, hi), lab)
+            allrows += eval_target(name, fc, "S0", proxy, lambda ix, lo=lo, hi=hi: slice_dates(ix, lo, hi), lab)
         if a.periods == "all" and name == "R":
             for lab, (lo, hi) in REGIMES.items():
                 allrows += eval_target(name, fc, "S0", None, lambda ix, lo=lo, hi=hi: slice_dates(ix, lo, hi), f"regime:{lab}")

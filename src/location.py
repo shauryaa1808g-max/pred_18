@@ -51,8 +51,8 @@ def feature_frame(d: pd.DataFrame, t: pd.DataFrame, ix: pd.DataFrame, br: pd.Dat
     F["i1"] = t["I"].shift(1) / s
     F["g1"] = t["G"].shift(1) / s
     F["nifty1"] = nifty.shift(1) / nifty.rolling(60).std().shift(1)
-    F["capmkts1"] = (cap.shift(1) / cap.rolling(60).std().shift(1)).fillna(0.0)
-    # rolling beta on data dated <= t-2 (strictly before the lagged residual's own day)
+    F["capmkts1"] = cap.shift(1) / cap.rolling(60).std().shift(1)       # NaN where the index does not exist yet (audit finding F5); walk() uses it only when >= 250 training rows exist
+    # rolling beta on data dated <= t-1 (includes the lagged day itself; audit finding F6: no look-ahead, slightly in-sample)
     cov = R.rolling(120).cov(nifty).shift(1)
     var = nifty.rolling(120).var().shift(1)
     beta = (cov / var).clip(-1, 4)
@@ -63,10 +63,13 @@ def feature_frame(d: pd.DataFrame, t: pd.DataFrame, ix: pd.DataFrame, br: pd.Dat
     lt = np.log(d["turnover_cr"].clip(lower=EPS))
     F["turn_z"] = ((lt - lt.rolling(60).mean()) / lt.rolling(60).std()).shift(1)
     F["adv1"] = br["adv_share"].reindex(d.index).shift(1) - 0.5
-    F["rsi14"] = rsi(d["close"]).shift(1) - 50
-    ma20, ma50 = d["close"].rolling(20).mean(), d["close"].rolling(50).mean()
-    F["dist20"] = np.log(d["close"] / ma20).shift(1) / (s * np.sqrt(20))
-    F["dist50"] = np.log(d["close"] / ma50).shift(1) / (s * np.sqrt(50))
+    # bonus-adjusted close (audit finding F4): divide by the product of corporate-action factors occurring strictly after each session
+    f_ca = d["ca_factor"].fillna(1.0).values if "ca_factor" in d else np.ones(len(d))
+    adjc = pd.Series(d["close"].values / np.concatenate([np.cumprod(f_ca[::-1])[::-1][1:], [1.0]]), index=d.index)
+    F["rsi14"] = rsi(adjc).shift(1) - 50
+    ma20, ma50 = adjc.rolling(20).mean(), adjc.rolling(50).mean()
+    F["dist20"] = np.log(adjc / ma20).shift(1) / (s * np.sqrt(20))
+    F["dist50"] = np.log(adjc / ma50).shift(1) / (s * np.sqrt(50))
     dow = pd.Series(d.index.dayofweek, index=d.index)
     for k in range(1, 5):
         F[f"dow{k}"] = (dow == k).astype(float)
@@ -81,13 +84,16 @@ def walk(F: pd.DataFrame, y_std: np.ndarray, y_dir: np.ndarray, cols: list[str],
     X_all = F[cols].values
     out = np.full(n, np.nan)
     for b0 in range(P.MIN_HIST, n, P.REFIT):
-        tr = np.arange(0, b0)
-        ok = np.isfinite(X_all[tr]).all(axis=1) & np.isfinite(y_std[tr])
-        tr = tr[ok]
-        mu, sd = X_all[tr].mean(0), X_all[tr].std(0) + 1e-12
-        Z = (X_all[tr] - mu) / sd
+        tr_all = np.arange(0, b0)
+        # a feature is used only if >= 250 finite training rows exist (protocol: "when available"); audit findings F5/B6
+        active = [j for j in range(X_all.shape[1]) if np.isfinite(X_all[tr_all, j]).sum() >= 250]
+        Xa = X_all[:, active]
+        ok = np.isfinite(Xa[tr_all]).all(axis=1) & np.isfinite(y_std[tr_all])
+        tr = tr_all[ok]
+        mu, sd = Xa[tr].mean(0), np.maximum(Xa[tr].std(0), 1e-6)
+        Z = (Xa[tr] - mu) / sd
         blk = np.arange(b0, min(b0 + P.REFIT, n))
-        Zb = np.nan_to_num((X_all[blk] - mu) / sd, nan=0.0)
+        Zb = np.nan_to_num((Xa[blk] - mu) / sd, nan=0.0)
         if kind == "ridge":
             yt = np.clip(y_std[tr], -5, 5)
             ym = yt.mean()

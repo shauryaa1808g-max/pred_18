@@ -1,8 +1,8 @@
 {
- "sessions_in_manifest": 2400,
- "sessions_with_bhavcopy": 2400,
+ "sessions_in_manifest": 2401,
+ "sessions_with_bhavcopy": 2401,
  "missing_bhavcopy": [],
- "bse_rows": 2387,
+ "bse_rows": 2388,
  "short_sessions_dropped": [
   "2017-07-10",
   "2017-10-19",
@@ -24,7 +24,7 @@
   "2026-02-01"
  ],
  "bse_first": "2017-02-06",
- "bse_last": "2026-10-12",
+ "bse_last": "2026-10-13",
  "rebase_events": [
   {
    "date": "2017-07-11",

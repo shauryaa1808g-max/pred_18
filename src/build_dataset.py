@@ -61,6 +61,21 @@ def read_legacy(p: Path) -> pd.DataFrame:
     return d[["symbol", "series", "prev", "open", "high", "low", "last", "close", "vol", "turnover_cr", "trades", "deliv_qty", "deliv_pct"]]
 
 
+def read_udiff(p: Path) -> pd.DataFrame:
+    z = zipfile.ZipFile(p)
+    d = pd.read_csv(z.open(z.namelist()[0]))
+    d = d.rename(columns={"TckrSymb": "symbol", "SctySrs": "series", "PrvsClsgPric": "prev", "OpnPric": "open", "HghPric": "high", "LwPric": "low",
+                          "LastPric": "last", "ClsPric": "close", "TtlTradgVol": "vol", "TtlNbOfTxsExctd": "trades"})
+    d["symbol"] = d["symbol"].astype(str).str.strip()
+    d["series"] = d["series"].astype(str).str.strip()
+    d["turnover_cr"] = pd.to_numeric(d["TtlTrfVal"], errors="coerce") / 1e7
+    for c in NUM:
+        d[c] = pd.to_numeric(d[c], errors="coerce")
+    d["deliv_qty"] = np.nan
+    d["deliv_pct"] = np.nan
+    return d[["symbol", "series", "prev", "open", "high", "low", "last", "close", "vol", "turnover_cr", "trades", "deliv_qty", "deliv_pct"]]
+
+
 def read_idx(p: Path) -> pd.DataFrame:
     d = pd.read_csv(p, na_values=["-", " -"])
     d.columns = [c.strip() for c in d.columns]
@@ -80,23 +95,28 @@ def read_idx(p: Path) -> pd.DataFrame:
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     manifest = json.loads((RAW / "manifest.json").read_text())
-    sessions = [d for d, r in manifest.items() if r["idx"] == 200]
+    udiff_days = sorted(p.stem for p in (RAW / "udiff").glob("*.zip")) if (RAW / "udiff").exists() else []
+    sessions = sorted({d for d, r in manifest.items() if r["idx"] == 200} | {f"{k[:4]}-{k[4:6]}-{k[6:]}" for k in udiff_days})
     bse_rows, peer_rows, breadth_rows, idx_rows = [], [], [], []
     missing_bhav = []
     for ds in sessions:
         key = ds.replace("-", "")
         date = pd.Timestamp(ds)
-        sec, leg = RAW / "sec" / f"{key}.csv", RAW / "legacy" / f"{key}.zip"
+        sec, leg, udf = RAW / "sec" / f"{key}.csv", RAW / "legacy" / f"{key}.zip", RAW / "udiff" / f"{key}.zip"
         if sec.exists():
             day, src = read_sec(sec), "sec"
+        elif udf.exists():
+            day, src = read_udiff(udf), "udiff"
         elif leg.exists():
             day, src = read_legacy(leg), "legacy"
         else:
             missing_bhav.append(ds)
             day = None
-        ix = read_idx(RAW / "idx" / f"{key}.csv")
-        ix["date"] = date
-        idx_rows.append(ix)
+        idx_file = RAW / "idx" / f"{key}.csv"
+        if idx_file.exists():                      # index files are published later (~23:20 IST) than the bhavcopy; a session may exist without them
+            ix = read_idx(idx_file)
+            ix["date"] = date
+            idx_rows.append(ix)
         if day is None:
             continue
         eq = day[day["series"].isin(["EQ", "BE", "BZ", "BL"])].copy()
