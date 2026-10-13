@@ -10,13 +10,28 @@ from common import GRID, load_bse, targets
 rec = json.loads(Path(sys.argv[1]).read_text())
 d = load_bse(); t = targets(d)
 day = pd.Timestamp(rec["target_session"])
-if day not in d.index:
-    raise SystemExit(f"{day.date()} not in processed data yet (rerun fetch + build_dataset)")
-P0 = rec["reference_price_P0"]; r = d.loc[day]
+force_udiff = "--force-udiff" in sys.argv
+if day in d.index and not force_udiff:
+    r = d.loc[day]
+else:
+    # fall back to the official NSE CM UDiFF bhavcopy for the target date (published ~16:34 IST); needs no raw history
+    import requests
+    from build_dataset import read_udiff
+    from fetch_nse import CA, UA
+    zp = Path("data/raw/udiff") / f"{day:%Y%m%d}.zip"
+    if not zp.exists():
+        zp.parent.mkdir(parents=True, exist_ok=True)
+        resp = requests.get(f"https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_{day:%Y%m%d}_F_0000.csv.zip", headers={"User-Agent": UA}, timeout=60, verify=CA)
+        if resp.status_code != 200 or resp.content[:2] != b"PK":
+            raise SystemExit(f"official file for {day.date()} not available yet (HTTP {resp.status_code}); NSE publishes it about 16:34 IST on the session day")
+        zp.write_bytes(resp.content)
+    u = read_udiff(zp)
+    r = u[(u["symbol"] == "BSE") & (u["series"] == "EQ")].iloc[0]
+P0 = rec["reference_price_P0"]
 real = {"G": float(np.log(r["open"] / P0)), "I": float(np.log(r["close"] / r["open"])), "R": float(np.log(r["close"] / P0)),
         "Hp": float(np.log(r["high"] / P0)), "Lp": float(np.log(r["low"] / P0)), "rho": float(np.log(r["high"] / r["low"]))}
 score = {"record": sys.argv[1], "target_session": rec["target_session"], "P0_in_record": P0, "P0_status": rec["reference_price_status"],
-         "realised": {"open": r["open"], "high": r["high"], "low": r["low"], "close": r["close"], "volume": r["vol"]}, "realised_log": real, "targets": {}}
+         "realised": {"open": float(r["open"]), "high": float(r["high"]), "low": float(r["low"]), "close": float(r["close"]), "volume": float(r["vol"])}, "realised_log": real, "targets": {}}
 def pin(y, q): return float(np.mean(np.maximum(GRID * (y - q), (GRID - 1) * (y - q))))
 for tg in ("G", "I", "R"):
     q = np.array([rec["log_return_quantiles"][tg][f"q{g:g}"] for g in GRID]); y = real[tg]

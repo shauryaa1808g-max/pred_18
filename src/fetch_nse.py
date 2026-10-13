@@ -22,7 +22,8 @@ import requests
 
 BASE = "https://nsearchives.nseindia.com"
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
-CA = os.environ.get("REQUESTS_CA_BUNDLE") or "/root/.ccr/ca-bundle.crt"
+_ca = os.environ.get("REQUESTS_CA_BUNDLE") or "/root/.ccr/ca-bundle.crt"   # cloud-container proxy bundle; on a normal machine fall back to the system trust store
+CA = _ca if os.path.exists(_ca) else True
 SEC_BHAV_FIRST = dt.date(2019, 10, 1)  # earliest date probed with sec_bhavdata_full available; earlier dates fall back to legacy
 
 
