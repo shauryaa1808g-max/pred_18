@@ -27,6 +27,10 @@ def boot_ci(x: np.ndarray, stat=np.median, n: int = 4000, seed: int = 0) -> tupl
 
 def event_metrics(d, t, ir, days: list[pd.Timestamp], label: str) -> pd.DataFrame:
     idx = d.index
+    # bonus-adjusted close: divide by the product of corporate-action factors that occur strictly AFTER each session
+    f = d["ca_factor"].fillna(1.0).values
+    suffix = np.concatenate([np.cumprod(f[::-1])[::-1][1:], [1.0]])
+    adj = pd.Series(d["close"].values / suffix, index=idx)
     R = t["R"]
     nifty = ir["r_nifty50"]
     cap = ir["r_capmkts"] if "r_capmkts" in ir else pd.Series(np.nan, index=idx)
@@ -48,15 +52,15 @@ def event_metrics(d, t, ir, days: list[pd.Timestamp], label: str) -> pd.DataFram
         m = np.isfinite(xs) & np.isfinite(ys)
         beta = np.cov(xs[m], ys[m])[0, 1] / np.var(xs[m], ddof=1) if m.sum() > 60 else np.nan
         r0 = R.iloc[i]
-        pre_close = d["prev"].iloc[i]
+        pre_close = adj.iloc[i - 1] if i > 0 else np.nan
         rec = None
         for k in range(1, 61):
             if i + k >= len(idx):
                 break
-            if d["close"].iloc[i + k] >= pre_close:
+            if adj.iloc[i + k] >= pre_close:
                 rec = k
                 break
-        fwd = lambda k: float(np.log(d["close"].iloc[i + k] / d["close"].iloc[i])) if i + k < len(idx) else np.nan  # noqa: E731
+        fwd = lambda k: float(np.log(adj.iloc[i + k] / adj.iloc[i])) if i + k < len(idx) else np.nan  # noqa: E731
         rows.append({
             "set": label, "date": day.date(), "R": r0, "nifty_R": nifty.iloc[i],
             "excess_vs_nifty": r0 - nifty.iloc[i], "excess_beta_adj": r0 - beta * nifty.iloc[i] if np.isfinite(beta) else np.nan,
