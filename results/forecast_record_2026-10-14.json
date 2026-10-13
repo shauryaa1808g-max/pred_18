@@ -10,7 +10,7 @@
  "reference_price_P0": 3375.4,
  "reference_price_status": "OFFICIAL NSE close of 2026-10-13 from BhavCopy_NSE_CM_0_0_0_20261013_F_0000.csv.zip (published ~16:34 IST); equals Google Finance / stockanalysis / Yahoo prints",
  "information_cutoff_ist": "2026-10-13T16:55:00+05:30",
- "generated_utc": "2026-10-13T11:22:30+00:00",
+ "generated_utc": "2026-10-13T15:40:25+00:00",
  "selected_models": {
   "R": "S6",
   "G": "S4",
@@ -243,8 +243,8 @@
   "implied_daily_sigma": 0.02427667955600187,
   "model_sigma_R": 0.024784572662724557
  },
- "code_commit": "b636691de4eeb69ab8f14d79742b7d6f1a3f6476",
- "code_tree_dirty": true,
+ "code_commit": "38f1a74292ab1d659243bf27a9949d1acd59f693",
+ "code_tree_dirty": false,
  "data_sha256": {
   "data/processed/bse_daily.csv": "e7939803bac1621419c3fc9d65df7829921a561ccb8d4d9e0f6b6196135eb627",
   "data/processed/index_daily.csv": "8d85dd7b805d1bd8fc1ab95462d1da1090ebbf91f8c59b1b0ad3d77d43ce00cd",

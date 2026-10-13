@@ -97,7 +97,7 @@ Data QA performed **[C]**: 49/49 recent sessions match stockanalysis exactly on 
 
 **Support / resistance zones [C], descriptive and untested as predictors.** *Resistance:* 3,400–3,405 (13-Oct high 3,403.2, set in the 14:15–14:30 spike), 3,474 (swing high 7-Sep), 3,540–3,670 (3-Aug high 3,671). *Support:* 3,290–3,330 (13-Oct low 3,290.2; volume node 3,272–3,329, 11.6% of the last 120 sessions' volume), 3,159–3,216 (largest node, 12.1%), 3,000–3,131 (1-Oct and 2-Sep lows). *Evidence:* swing pivots (±5 sessions) and volume-by-price over 120 sessions. Several indicators (MAs, RSI, ATR) derive from the same price series and are **not** independent confirmations.
 
-**Options and positioning [C].** ATM implied vol 38.5% annualised on 12-Oct (33rd percentile of its 461-day history; 20-day mean 36.6%) → 2.43%/day; 20-day realised/implied ≈ 0.99. Skew is flat (5%-OTM put 39.8% vs call 38.7%). Put/call OI ratio 0.68 for the 27-Oct series; largest OI at the 3,500 call and 3,000 put. Next stock-F&O expiry 27-Oct; Sensex weekly 15-Oct. **[U]** short interest, order book and bid-ask spread are unavailable; no hidden buying, manipulation or dealer positioning is inferred.
+**Options and positioning [C].** ATM implied vol 38.5% annualised on 12-Oct (33rd percentile of its 461-day history; 20-day mean 36.6%) → 2.43%/day; 20-day realised/implied ≈ 0.99. Skew is flat (5%-OTM put 39.8% vs call 38.7%). Put/call OI ratio 0.68 for the 27-Oct series; largest OI at the 3,500 call and 3,000 put. Next stock-F&O expiry 27-Oct; Sensex weekly 15-Oct. *Post-cutoff check (not an input):* the 13-Oct options file, published after the cutoff, gives ATM IV 38.6% (2.43%/day), unchanged. **[U]** short interest, order book and bid-ask spread are unavailable; no hidden buying, manipulation or dealer positioning is inferred.
 
 **Intraday structure ([C], 36 validated post-CAS sessions, descriptive).** Volume is U-shaped: first hour 26.7%, the 15:00–15:15 bar alone ≈ 9% (the last continuous bar before the closing auction). The day's **high or low is set in the first hour on 86% of sessions**, and a median 77% of the day's range exists by 10:15. First-hour direction did **not** predict the rest of the day (r = −0.11, p = 0.53, n = 36). Close above bar-VWAP on 44% of days. On 13-Oct the stock was quiet until 14:15, then printed a 1.08m-share bar (14:15–14:30, high ₹3,400.9) and closed in the upper quarter of its range (Nifty +1.6% per a single Yahoo feed).
 
@@ -233,7 +233,7 @@ Pending SEBI text (timing and content); unseen overnight news (Asia open after t
 | Field | Value |
 |---|---|
 | Stock | BSE Ltd, NSE:BSE (INE118H01025), INR |
-| Cutoff / generated | 2026-10-13 16:55 IST / see JSON `generated_utc` |
+| Cutoff / generated | Information cutoff 2026-10-13 16:55 IST. First generated 16:55 IST (commit 126ffc5); regenerated 21:10 IST on the *same* pre-cutoff data so that it names a clean commit (**38f1a74**, tree clean) — numerically identical |
 | Reference price | ₹3,375.40 (official NSE close 13-Oct-2026) |
 | Target session | Wed 2026-10-14 |
 | Method | pre-registered FHS quantiles; σ: S6 (R, I), S4 (G), HAR (range); L0 location; bootstrap high/low |
