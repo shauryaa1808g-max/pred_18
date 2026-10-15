@@ -1,6 +1,8 @@
 """Chart: historical prices (solid) vs the CONDITIONAL forecast distribution for the next session (shaded, separated).  No future path is drawn.
 
-Usage: python3 src/plot_forecast.py results/forecast_record_2026-10-14.json results/forecast_chart.png
+Usage: python3 src/plot_forecast.py results/forecast_record_2026-10-14_v2.json results/forecast_chart_v2.png [results/forecast_score_2026-10-14_v2.json]
+
+The optional third argument overlays the REALISED 14-Oct candle (black outline) AFTER the fact; it is never an input to the forecast.
 """
 import json
 import sys
@@ -16,6 +18,8 @@ from common import load_bse
 
 rec = json.load(open(sys.argv[1]))
 outp = sys.argv[2]
+score = json.load(open(sys.argv[3])) if len(sys.argv) > 3 else None
+ver = rec.get("forecast_record_version", "1.0")
 P0 = rec["reference_price_P0"]
 d = load_bse()
 f = d["ca_factor"].fillna(1.0).values
@@ -41,6 +45,11 @@ for lab, lo, hi, a in bands:
     ax1.add_patch(plt.Rectangle((xf - 0.9, lo), 1.8, hi - lo, color=cols["fc"], alpha=a, lw=0, hatch="///" if lab == "95%" else None))
     ax1.text(xf + 1.0, hi, f"{lab}: {lo:,.0f}-{hi:,.0f}", fontsize=8, va="center", color="#6b4410")
 ax1.hlines(P0, xf - 1.2, xf + 1.2, color=cols["fc"], lw=2)
+if score:
+    rl = score["realised"]
+    ax1.vlines(xf + 0.0, rl["low"], rl["high"], color="black", lw=1.6, zorder=6)
+    ax1.add_patch(plt.Rectangle((xf - 0.25, min(rl["open"], rl["close"])), 0.5, abs(rl["close"] - rl["open"]) or 0.5, facecolor="white", edgecolor="black", lw=1.6, zorder=7))
+    ax1.annotate(f"realised (scored after the fact)\nO {rl['open']:,.1f}  H {rl['high']:,.1f}\nL {rl['low']:,.1f}  C {rl['close']:,.1f}", (xf + 0.3, rl["close"]), xytext=(xf + 2.2, rl["close"] - 55), fontsize=7.5, color="black", arrowprops=dict(arrowstyle="-", color="black", lw=0.6))
 ax1.errorbar([xf - 1.5], [hl["Hp"]["q0.5"]], yerr=[[hl["Hp"]["q0.5"] - hl["Hp"]["q0.05"]], [hl["Hp"]["q0.95"] - hl["Hp"]["q0.5"]]], fmt="v", color=cols["up"], capsize=3, ms=5)
 ax1.errorbar([xf - 1.5], [hl["Lp"]["q0.5"]], yerr=[[hl["Lp"]["q0.5"] - hl["Lp"]["q0.05"]], [hl["Lp"]["q0.95"] - hl["Lp"]["q0.5"]]], fmt="^", color=cols["dn"], capsize=3, ms=5)
 ax1.text(xf - 1.5, hl["Hp"]["q0.95"] + 8, "day high\n(median, 90%)", fontsize=7, ha="center", color=cols["up"])
@@ -48,7 +57,7 @@ ax1.text(xf - 1.5, hl["Lp"]["q0.05"] - 22, "day low\n(median, 90%)", fontsize=7,
 ax1.set_xlim(-1, xf + 8.5)
 ax1.set_xticks(list(x[::10]) + [xf]); ax1.set_xticklabels([hist.index[i].strftime("%d-%b") for i in x[::10]] + ["14-Oct\n(forecast)"], fontsize=8)
 ax1.set_ylabel("Rs (bonus-adjusted)")
-ax1.set_title("BSE Ltd (NSE:BSE) — history (solid candles) vs CONDITIONAL distribution of the 14-Oct-2026 close (shaded; not a path)", fontsize=11, loc="left")
+ax1.set_title(f"BSE Ltd (NSE:BSE) — history (solid candles) vs CONDITIONAL distribution of the 14-Oct-2026 close (shaded; not a path) — record v{ver}", fontsize=11, loc="left")
 ax1.text(0.01, 0.02, f"Reference P0 = Rs {P0:,.2f} (official NSE close 13-Oct). Shaded boxes: model-based central intervals of the close. Directional skill NOT demonstrated; centre = unchanged.", transform=ax1.transAxes, fontsize=8, color=cols["grey"])
 ax1.grid(alpha=0.2)
 
@@ -73,6 +82,11 @@ ax2.axvline(pos - 1, color=cols["grey"], ls="--", lw=1)
 for lab, lo, hi, a in bands:
     ax2.add_patch(plt.Rectangle((x0, lo), w, hi - lo, color=cols["fc"], alpha=a, lw=0))
 ax2.hlines(P0, x0, x0 + w, color=cols["fc"], lw=2)
+if score:
+    rl = score["realised"]
+    ax2.plot([x0 + w / 2], [rl["close"]], marker="D", color="black", ms=7, zorder=6)
+    ax2.plot([x0 + w / 2] * 2, [rl["low"], rl["high"]], color="black", lw=1.2, zorder=5)
+    ax2.text(x0 + w / 2 - 1.0, rl["close"], f"realised close {rl['close']:,.1f}", fontsize=7.5, va="center", ha="right")
 ax2.text(x0 + w / 2, q["R"]["q0.025"] - 14, "14-Oct session: unconditional CLOSE bands (50/80/90/95%); the intraday PATH is not forecast", ha="center", fontsize=8, color="#6b4410")
 sc = rec["scenarios"]
 # draw the three scenario bars side by side
