@@ -32,6 +32,8 @@
 .bd .tip { position: absolute; pointer-events: none; z-index: 5; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; max-width: 16rem; line-height: 1.45; }
 .bd .tip b { font-weight: 600; }
 .bd .tip .d { color: var(--cds-text-secondary); }
+.bd .tip .g { color: var(--color-ok); font-weight: 600; }
+.bd .gdot { display: inline-block; width: 0.7rem; height: 0.7rem; border-radius: 50%; background: var(--color-ok); vertical-align: middle; margin-right: 0.35rem; }
 .bd .legend { display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
 .bd .legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
 .bd .sw { width: 0.9rem; height: 0.6rem; border-radius: 2px; display: inline-block; }
@@ -118,8 +120,9 @@
   <section class="card" id="live" aria-labelledby="h-live">
     <div><h2 id="h-live">Live close estimate: how it behaved on Thu 15 Oct</h2><p class="note">At each time the live version takes the current price and says where the official close will land, using how far price usually moves from that time to the close. Line is the 90% range, box the 50% range, dot the price at that time, dashed line the final close. It tightens through the day, but the 50% range is too narrow in the morning, and a late spike can still break it. Run it any time with python3 src/live_nowcast.py.</p></div>
     <div class="chart" id="bd-replay" data-source="nowcast_replay"></div>
+    <p class="cap"><span class="gdot"></span>Green dot = my pinpoint estimate of the close at that time (the price then). Hover a time for the numbers.</p>
     <p class="cap">Final close used: ₹<span data-source="nowcast_replay" data-row="0" data-field="final_close" data-fmt="f1">—</span>. Source: <span data-source="nowcast_replay" data-row="0" data-field="final_source" data-fmt="raw">—</span>. Rows marked "no" ended outside the range.</p>
-    <div class="tw"><table id="bd-rtab" data-source="nowcast_replay" data-row-key="asof"><thead><tr><th data-field="asof">As of (IST)</th><th data-field="price_then" class="r">Price then</th><th data-field="close_90_lo" class="r">90% low</th><th data-field="close_90_hi" class="r">90% high</th><th data-field="typical_miss_rs" class="r">Typical miss</th><th data-field="inside_90">Inside 90%</th><th data-field="error_rs" class="r">Close minus price then</th></tr></thead><tbody></tbody></table></div>
+    <div class="tw"><table id="bd-rtab" data-source="nowcast_replay" data-row-key="asof"><thead><tr><th data-field="asof">As of (IST)</th><th data-field="price_then" class="r">My pinpoint estimate of the close</th><th data-field="close_90_lo" class="r">90% low</th><th data-field="close_90_hi" class="r">90% high</th><th data-field="typical_miss_rs" class="r">Typical miss</th><th data-field="inside_90">Inside 90%</th><th data-field="error_rs" class="r">Final close minus my estimate</th></tr></thead><tbody></tbody></table></div>
   </section>
 
   <section class="card" id="board" aria-labelledby="h-board">
@@ -442,10 +445,11 @@
       const out = r.inside_90 !== 'yes', col = out ? 'var(--color-bad)' : accent(), x = X(i), bw = Math.min(26, step * 0.5);
       svg.append('line').attr('x1', x).attr('x2', x).attr('y1', y(r.close_90_hi)).attr('y2', y(r.close_90_lo)).attr('stroke', col).attr('stroke-width', 2).attr('stroke-linecap', 'round');
       svg.append('rect').attr('x', x - bw / 2).attr('width', bw).attr('y', y(r.close_50_hi)).attr('height', y(r.close_50_lo) - y(r.close_50_hi)).attr('rx', 3).attr('fill', col).attr('fill-opacity', 0.35);
-      svg.append('circle').attr('cx', x).attr('cy', y(r.price_then)).attr('r', 3.5).attr('fill', 'var(--color-fg)');
+      svg.append('circle').attr('cx', x).attr('cy', y(r.price_then)).attr('r', 5).attr('fill', 'var(--color-ok)').attr('stroke', 'var(--color-bg)').attr('stroke-width', 1.5);
+      if (W >= 560) svg.append('text').attr('x', x + bw / 2 + 4).attr('y', y(r.price_then) + 4).attr('text-anchor', 'start').attr('style', 'fill: var(--color-ok); font-size: 10px; font-weight: 600').text(f1(r.price_then));
       svg.append('text').attr('x', x).attr('y', H - 12).attr('text-anchor', 'middle').text(r.asof);
       svg.append('rect').attr('x', x - step / 2).attr('y', m.t).attr('width', step).attr('height', H - m.t - m.b).attr('fill', 'transparent')
-        .on('mousemove', ev => tip.show(box([line('d', 'As of ' + r.asof + ' IST'), line('', f1(r.price_then), 'Price then'), line('', f0(r.close_50_lo) + ' to ' + f0(r.close_50_hi), '50%'), line('', f0(r.close_90_lo) + ' to ' + f0(r.close_90_hi), '90%'), line('', f1(r.final_close), 'Final close'), line('d', out ? 'Outside the 90% range' : 'Inside the 90% range')]), ev))
+        .on('mousemove', ev => tip.show(box([line('d', 'As of ' + r.asof + ' IST'), line('g', '₹' + f1(r.price_then), 'My pinpoint estimate of the close:'), line('', f0(r.close_50_lo) + ' to ' + f0(r.close_50_hi), '50% range'), line('', f0(r.close_90_lo) + ' to ' + f0(r.close_90_hi), '90% range'), line('', '₹' + f1(r.final_close), 'Final close'), line('', (r.error_rs >= 0 ? '+' : '') + f1(r.error_rs) + ' rupees', 'Estimate was off by'), line('d', out ? 'Final close fell outside the 90% range' : 'Final close fell inside the 90% range')]), ev))
         .on('mouseleave', () => tip.hide());
     });
   }
