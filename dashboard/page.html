@@ -86,7 +86,7 @@
       <span class="chip">v2 · late update · committed after the session</span>
       <span class="chip">Upload was Yahoo data, not TradingView</span>
     </div>
-    <nav class="nav" aria-label="Sections"><a href="#forecast">Forecast</a><a href="#live">Live close</a><a href="#board">Scoreboard</a><a href="#scoring">Scoring</a><a href="#behaviour">Behaviour</a><a href="#checks">Verification</a><a href="#limits">Limits</a></nav>
+    <nav class="nav" aria-label="Sections"><a href="#forecast">Forecast</a><a href="#open">Opening price</a><a href="#live">Live close</a><a href="#board">Scoreboard</a><a href="#scoring">Scoring</a><a href="#behaviour">Behaviour</a><a href="#checks">Verification</a><a href="#limits">Limits</a></nav>
   </header>
 
   <section class="tiles" id="forecast" aria-label="Headline figures">
@@ -116,6 +116,16 @@
       <div class="scen" id="bd-scen"></div>
     </section>
   </div>
+
+  <section class="card" id="open" aria-labelledby="h-open">
+    <div><h2 id="h-open">Opening price from NSE's pre-open auction</h2><p class="note">Between 09:00 and 09:08 NSE collects orders and sets the opening price in a call auction; from 09:08 it is final and becomes the official open at 09:15. Reading it is not a forecast, it is the opening price itself, available about seven minutes early. It says nothing by itself about whether the day goes up or down. Run python3 src/preopen.py at 09:09, or ask me.</p></div>
+    <div class="tiles">
+      <div class="tile"><span class="lab">Pre-open price, read <span data-source="preopen" data-row="0" data-field="read_at_ist" data-fmt="raw">—</span> IST on <span data-source="preopen" data-row="0" data-field="date" data-fmt="raw">—</span></span><span class="big num">₹<span data-source="preopen" data-row="0" data-field="preopen_price" data-fmt="f1">—</span></span><span class="sub">Previous close ₹<span data-source="preopen" data-row="0" data-field="previous_close" data-fmt="f1">—</span></span></div>
+      <div class="tile"><span class="lab">Official open</span><span class="big num">₹<span data-source="preopen" data-row="0" data-field="official_open" data-fmt="f1">—</span></span><span class="sub">Official bhavcopy, same session</span></div>
+      <div class="tile"><span class="lab">Official open minus pre-open price</span><span class="big num">₹<span data-source="preopen" data-row="0" data-field="miss_rs" data-fmt="f1">—</span></span><span class="sub">One session so far; the scoreboard keeps adding to this</span></div>
+      <div class="tile"><span class="lab">Orders waiting at 09:09</span><span class="big num"><span data-source="preopen" data-row="0" data-field="buy_qty" data-fmt="int">—</span> buy</span><span class="sub"><span data-source="preopen" data-row="0" data-field="sell_qty" data-fmt="int">—</span> sell (shares). Whether this order imbalance means anything is untested; logging started 15 Oct.</span></div>
+    </div>
+  </section>
 
   <section class="card" id="live" aria-labelledby="h-live">
     <div><h2 id="h-live">Live close estimate: how it behaved on Thu 15 Oct</h2><p class="note">At each time the live version takes the current price and says where the official close will land, using how far price usually moves from that time to the close. Line is the 90% range, box the 50% range, dot the price at that time, dashed line the final close. It tightens through the day, but the 50% range is too narrow in the morning, and a late spike can still break it. Run it any time with python3 src/live_nowcast.py.</p></div>
@@ -191,7 +201,7 @@
   const $ = (s, r) => (r || document).querySelector(s);
   const A = fn => v => fn(v).replace(/\u2212/g, '-');
   const f0 = A(d3.format(',.0f')), f1 = A(d3.format(',.1f')), f2 = A(d3.format(',.2f')), f3 = A(d3.format('.3f')), pc1 = A(d3.format('.1%')), sg2 = A(d3.format('+.2f'));
-  const FM = { f0, f1, f2, f3, s2: v => sg2(v) + '%', p2: v => f2(v) + '%', pc: pc1, raw: v => String(v) };
+  const FM = { int: A(d3.format(',')), f0, f1, f2, f3, s2: v => sg2(v) + '%', p2: v => f2(v) + '%', pc: pc1, raw: v => String(v) };
   const parseD = d3.utcParse('%Y-%m-%d'), fmtDay = d3.utcFormat('%-d %b'), fmtDayL = d3.utcFormat('%a %-d %b %Y');
   const state = { showReal: true, status: 'all', q: '', sortKey: null, sortDir: 1 };
   const rows = id => { const x = dash.data(id); return x.status === 'ok' ? x.data : null; };

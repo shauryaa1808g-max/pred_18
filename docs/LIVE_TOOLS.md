@@ -13,3 +13,11 @@ Both tools are exploratory aids. They do not claim to predict direction or make 
 * `score` — after the official NSE bhavcopy (~16:34 IST): outcomes, running totals, and comparison with "unchanged".
 * `report` — running totals in plain words. 30 sessions cannot separate 55% from 50% (that takes several hundred): use it to catch gross failures and build evidence. `issue` refuses weekends, stale data (a missing weekday: pass `--force-gap` only for a known holiday) and anything after 09:00 IST on the target day (`--late` records a late entry). Independent review: research/live_verify_scoreboard.md.
 * `src/official_bars.py` downloads missing official bars into `data/processed/bse_daily_extra.csv`. It assumes no corporate action: check `data/corp_actions_verified.csv` across any ex-date.
+
+## Opening price from NSE's pre-open auction (`src/preopen.py`)
+* `python3 src/preopen.py` reads NSE's pre-open call-auction data for BSE: the indicative opening price (IEP), orders waiting to buy and sell, and the book near the price. The IEP can still change from 09:00 to 09:08; from 09:08 it is final and NSE uses it as the official open. Snapshots are saved to `results/preopen/`.
+* On 15 Oct the 09:09 pre-open price was Rs 3,342.0 and the official open was Rs 3,342.0 (miss Rs 0.0; one session, but the mechanism is that the auction sets the open). The endpoint is an unofficial public API and may change; it needs the cookie warm-up the script does.
+* This gives the open to within a tick from about 09:08-09:09. It is not a forecast, and it says nothing by itself about the direction of the rest of the day.
+
+## Intraday study at 10:15 (`src/intraday_study.py`, exploratory)
+Two years of hourly bars (486 sessions; 336 walk-forward observations). Nothing known at 10:15 (first-hour return, gap, Nifty and peers' first hour, BSE minus Nifty, all together) improved the estimate of the close beyond 'price stays': out-of-sample R2 -0.2% to -4.8%, typical miss about Rs 40 either way. Trade rules at 10:15 that looked good in the first 60% of the sample (follow the first-hour move: +0.8% per trade, t 3.3) were about zero in the last 40%. Hourly volume is unavailable (zero on most sessions).

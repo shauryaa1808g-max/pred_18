@@ -152,3 +152,17 @@ summ = {"kind": "summary", "scored_sessions": n, "open_miss_rs": _m("open_miss_r
 days = [] if not n else [{"kind": "day", "date": r["date"], "open": r["open"], "close": r["close"], "open_miss_rs": round(r["open_miss_rs"], 1), "close_miss_rs": round(r["close_miss_rs"], 1), "close_inside_90": "yes" if r["close_in90"] else "no",
                            "lean": r["lean_close"], "lean_hit": "yes" if r["lean_hit"] is True or str(r["lean_hit"]) == "True" else "no", "pt1_net_pct": None if pd.isna(r["PT1_net_pct"]) else round(float(r["PT1_net_pct"]), 2), "pt2_net_pct": None if pd.isna(r["PT2_net_pct"]) else round(float(r["PT2_net_pct"]), 2)} for _, r in S.iterrows()]
 dump("scoreboard", [summ] + days)
+
+
+# --- NSE pre-open price vs the official open (one row per session with a saved pre-open snapshot)
+import glob as _g, json as _j
+rows = []
+for f in sorted(_g.glob("results/preopen/BSE_*.jsonl")):
+    snaps = [_j.loads(l) for l in _P(f).read_text().splitlines() if l.strip()]
+    fin = [z for z in snaps if z["pre"]["lastUpdateTime"][-8:] >= "09:08:00"]
+    if not fin: continue
+    z = fin[-1]; day = pd.to_datetime(z["pre"]["lastUpdateTime"][:11]).strftime("%Y-%m-%d")
+    off = float(e.loc[day, "open"]) if extra.exists() and pd.Timestamp(day) in e.index else None
+    rows.append({"date": day, "preopen_price": float(z["pre"]["IEP"]), "previous_close": float(z["pre"]["prevClose"]), "buy_qty": int(z["pre"]["totalBuyQuantity"]), "sell_qty": int(z["pre"]["totalSellQuantity"]),
+                 "read_at_ist": z["pre"]["lastUpdateTime"][-8:], "official_open": off, "miss_rs": None if off is None else round(off - float(z["pre"]["IEP"]), 2)})
+dump("preopen", rows if rows else [{"date": "none yet", "preopen_price": None, "previous_close": None, "buy_qty": None, "sell_qty": None, "read_at_ist": None, "official_open": None, "miss_rs": None}])

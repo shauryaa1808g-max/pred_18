@@ -154,6 +154,12 @@ def score(day: pd.Timestamp) -> dict:
         if side != "none":
             pnl = 100 * ((1 if side == "long" else -1) * (cl / op - 1) - COST)      # simple return: a short earns -(close/open - 1)
         res[k.split("_")[0] + "_net_pct"] = None if np.isnan(pnl) else float(pnl); res[k.split("_")[0] + "_side"] = side
+    pf = Path(f"results/preopen/BSE_{day.date()}.jsonl")                  # NSE pre-open price read at ~09:09 (src/preopen.py): the official open is set by it
+    if pf.exists():
+        snaps = [json.loads(l) for l in pf.read_text().splitlines() if l.strip()]
+        fin = [z for z in snaps if z["pre"]["lastUpdateTime"][-8:] >= "09:08:00"]
+        if fin:
+            res["preopen_price"] = float(fin[-1]["pre"]["IEP"]); res["preopen_miss_rs"] = op - res["preopen_price"]
     OUT.mkdir(parents=True, exist_ok=True); (OUT / f"{day.date()}.json").write_text(json.dumps(res, indent=1))
     old = pd.read_csv(CSV) if CSV.exists() else pd.DataFrame()
     old = old[old.date != res["date"]] if len(old) else old
@@ -169,6 +175,8 @@ def report() -> None:
     print(f"SCOREBOARD  ({n} scored session{'s' if n != 1 else ''}: {s.date.iloc[0]} to {s.date.iloc[-1]})")
     print(f"  open : typical miss Rs {mae(s.open_miss_rs):.1f} (same as 'unchanged', since the centre is the previous close);  inside my 50% band {100*s.open_in50.mean():.0f}%, 90% band {100*s.open_in90.mean():.0f}%")
     print(f"  close: typical miss Rs {mae(s.close_miss_rs):.1f} (same as 'unchanged');  inside my 50% band {100*s.close_in50.mean():.0f}%, 90% band {100*s.close_in90.mean():.0f}%")
+    if "preopen_miss_rs" in s and s.preopen_miss_rs.notna().any():
+        print(f"  NSE pre-open price vs official open: average miss Rs {mae(s.preopen_miss_rs.dropna()):.1f} over {int(s.preopen_miss_rs.notna().sum())} sessions")
     h = s.lean_hit.dropna().astype(bool)
     if len(h):
         ci = stats.binomtest(int(h.sum()), len(h)).proportion_ci(method="exact")

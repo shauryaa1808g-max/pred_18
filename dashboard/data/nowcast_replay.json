@@ -12,7 +12,7 @@
 "inside_90": "yes",
 "error_rs": 72.9,
 "session": "2026-10-15",
-"final_source": "Yahoo last print 15:28 IST (unofficial; NSE official file due about 16:34 IST)"
+"final_source": "NSE official bhavcopy 2026-10-15"
 },
 {
 "asof": "10:30",
@@ -27,7 +27,7 @@
 "inside_90": "yes",
 "error_rs": 56.0,
 "session": "2026-10-15",
-"final_source": "Yahoo last print 15:28 IST (unofficial; NSE official file due about 16:34 IST)"
+"final_source": "NSE official bhavcopy 2026-10-15"
 },
 {
 "asof": "11:30",
@@ -42,7 +42,7 @@
 "inside_90": "yes",
 "error_rs": 63.4,
 "session": "2026-10-15",
-"final_source": "Yahoo last print 15:28 IST (unofficial; NSE official file due about 16:34 IST)"
+"final_source": "NSE official bhavcopy 2026-10-15"
 },
 {
 "asof": "12:30",
@@ -57,7 +57,7 @@
 "inside_90": "no",
 "error_rs": 84.0,
 "session": "2026-10-15",
-"final_source": "Yahoo last print 15:28 IST (unofficial; NSE official file due about 16:34 IST)"
+"final_source": "NSE official bhavcopy 2026-10-15"
 },
 {
 "asof": "13:15",
@@ -72,7 +72,7 @@
 "inside_90": "no",
 "error_rs": 79.1,
 "session": "2026-10-15",
-"final_source": "Yahoo last print 15:28 IST (unofficial; NSE official file due about 16:34 IST)"
+"final_source": "NSE official bhavcopy 2026-10-15"
 },
 {
 "asof": "13:45",
@@ -87,7 +87,7 @@
 "inside_90": "yes",
 "error_rs": 49.2,
 "session": "2026-10-15",
-"final_source": "Yahoo last print 15:28 IST (unofficial; NSE official file due about 16:34 IST)"
+"final_source": "NSE official bhavcopy 2026-10-15"
 },
 {
 "asof": "14:04",
@@ -102,7 +102,7 @@
 "inside_90": "yes",
 "error_rs": -3.1,
 "session": "2026-10-15",
-"final_source": "Yahoo last print 15:28 IST (unofficial; NSE official file due about 16:34 IST)"
+"final_source": "NSE official bhavcopy 2026-10-15"
 },
 {
 "asof": "14:30",
@@ -117,7 +117,7 @@
 "inside_90": "yes",
 "error_rs": -4.7,
 "session": "2026-10-15",
-"final_source": "Yahoo last print 15:28 IST (unofficial; NSE official file due about 16:34 IST)"
+"final_source": "NSE official bhavcopy 2026-10-15"
 },
 {
 "asof": "15:00",
@@ -132,6 +132,6 @@
 "inside_90": "yes",
 "error_rs": -9.0,
 "session": "2026-10-15",
-"final_source": "Yahoo last print 15:28 IST (unofficial; NSE official file due about 16:34 IST)"
+"final_source": "NSE official bhavcopy 2026-10-15"
 }
 ]
