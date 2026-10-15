@@ -158,6 +158,8 @@ Anything dated before the open: (a) **SEBI circular** adopting pure last-30-min 
 | v2 | `results/forecast_record_2026-10-14_v2.json` | dfb99f1 (14-Oct 21:00 IST) | 13-Oct 22:00 | **Late, rule-restricted update.** Information set restricted by rule, not by clock; the lead looked at no 14-Oct data before committing it (DEVIATIONS #25). Not an independently timestamped pre-session forecast |
 | Scores | `results/forecast_score_2026-10-14[_v2].json` | after the record commits | — | produced by `src/score_forecast.py` from the official UDiFF bhavcopy |
 
+Dashboard: published page "BSE Prediction Dashboard" (https://claude.ai/artifact/WuwXq8SByvriKhejq5SoLC; private until shared); source `dashboard/page.html`, data `dashboard/data/*.json` built by `src/build_dashboard_data.py`.
+
 Charts: `results/forecast_chart_v2_forecast_only.png` (as of the record) and `results/forecast_chart_v2.png` (realised candle overlaid after scoring, in black). History is drawn as solid candles; the forecast is a shaded, conditional distribution with 50/80/90/95% bands and median high/low markers — **no future path is drawn**.
 
 ---

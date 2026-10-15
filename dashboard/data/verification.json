@@ -1,0 +1,50 @@
+[
+{
+"workstream": "Market linkages",
+"severity": "minor",
+"confirmed": 11,
+"partial": 2,
+"refuted": 2,
+"headline": "S&P to gap/close, beta, lead-lag confirmed; own-lag and peer 'validated' labels downgraded; VWAP-mechanism sentence refuted"
+},
+{
+"workstream": "Fundamentals",
+"severity": "minor",
+"confirmed": 4,
+"partial": 3,
+"refuted": 1,
+"headline": "Numbers match primary sources; 'predates the Reuters report' is an inference; news contradiction resolved in its favour"
+},
+{
+"workstream": "News and catalysts",
+"severity": "major",
+"confirmed": 4,
+"partial": 3,
+"refuted": 1,
+"headline": "'0 filings / no Q2 intimation' refuted (Q2 board is 4 Nov); cutoff claim only partly true; 5 Oct attribution unproven"
+},
+{
+"workstream": "Momentum, gaps, volume",
+"severity": "minor",
+"confirmed": 9,
+"partial": 2,
+"refuted": 1,
+"headline": "Point estimates exact; VWAP mechanism refuted; era decline and momentum decay not statistically established"
+},
+{
+"workstream": "Intraday structure",
+"severity": "major",
+"confirmed": 16,
+"partial": 3,
+"refuted": 1,
+"headline": "'Validated' prior-low persistence refuted (drift artefact); threshold computed over 37 sessions incl. zeros; 10-Sep exclusion rule too blunt"
+},
+{
+"workstream": "Events and breaks",
+"severity": "minor",
+"confirmed": 9,
+"partial": 5,
+"refuted": 0,
+"headline": "15 of 27 events outcome-dated, premium falls to about 1.1-1.3; catalyst sigma multipliers untested; centre unchanged"
+}
+]

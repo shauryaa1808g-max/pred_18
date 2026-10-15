@@ -1,0 +1,406 @@
+<style>
+.bd { display: flex; flex-direction: column; gap: var(--cds-gap-lg); font-family: var(--font-anthropic-sans); color: var(--color-fg); max-width: 1200px; margin-inline: auto; }
+.bd * { box-sizing: border-box; }
+.bd h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 2rem; line-height: 1.12; margin: 0; text-wrap: balance; }
+.bd h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.bd p { margin: 0; }
+.bd .muted { color: var(--color-fg-muted); }
+.bd .cap { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.bd .num { font-variant-numeric: tabular-nums; }
+.bd .head { display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+.bd .take { font-size: var(--cds-font-size-body); line-height: 1.5; max-width: 62rem; text-wrap: pretty; }
+.bd .chips { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); }
+.bd .chip { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.15rem 0.6rem; border-radius: 999px; border: 1px solid var(--color-border-line); font-size: var(--cds-font-size-caption); background: var(--color-panel); color: var(--color-fg); white-space: nowrap; }
+.bd .chip.strong { border-color: var(--color-fg); }
+.bd .nav { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); }
+.bd .nav a { color: var(--color-fg-muted); text-decoration: none; border-bottom: 1px solid var(--color-border-line); }
+.bd .nav a:hover { color: var(--color-fg); border-color: var(--color-fg); }
+.bd .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12.5rem), 1fr)); gap: var(--cds-gap-md); }
+.bd .tile, .bd .card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; }
+.bd .tile { display: flex; flex-direction: column; gap: 0.25rem; min-height: 8.2rem; }
+.bd .tile .lab { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.bd .tile .big { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 1.85rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.bd .tile .sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+.bd .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: var(--cds-gap-md); }
+.bd .card { display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+.bd .card .note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); max-width: 60rem; }
+.bd .chart { position: relative; min-height: 20rem; }
+.bd .chart.short { min-height: 15rem; }
+.bd .chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.bd .chart text { fill: var(--color-fg-muted); font-size: 11px; font-family: var(--font-anthropic-sans); }
+.bd .chart text.strong { fill: var(--color-fg); }
+.bd .tip { position: absolute; pointer-events: none; z-index: 5; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; max-width: 16rem; line-height: 1.45; }
+.bd .tip b { font-weight: 600; }
+.bd .tip .d { color: var(--cds-text-secondary); }
+.bd .legend { display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.bd .legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.bd .sw { width: 0.9rem; height: 0.6rem; border-radius: 2px; display: inline-block; }
+.bd .toggle { display: inline-flex; align-items: center; gap: 0.45rem; font-size: var(--cds-font-size-caption); cursor: pointer; user-select: none; }
+.bd .toolbar { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm) var(--cds-gap-md); align-items: center; justify-content: space-between; }
+.bd .scen { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: var(--cds-gap-md); }
+.bd .sc { border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md); display: flex; flex-direction: column; gap: 0.4rem; background: var(--color-bg); }
+.bd .sc.real { border-color: var(--color-fg); box-shadow: inset 0 0 0 1px var(--color-fg); }
+.bd .sc .nm { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; font-weight: 500; }
+.bd .sc .pr { font-family: var(--font-anthropic-serif); font-size: 1.7rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.bd .track { height: 0.5rem; border-radius: 999px; background: var(--cds-chart-grid); overflow: hidden; }
+.bd .track i { display: block; height: 100%; border-radius: 999px; }
+.bd .badge { font-size: var(--cds-font-size-caption); border: 1px solid var(--color-fg); border-radius: 999px; padding: 0 0.5rem; white-space: nowrap; }
+.bd .tw { overflow: auto; max-width: 100%; }
+.bd .tw.tall { max-height: 30rem; }
+.bd table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.bd th, .bd td { text-align: left; padding: 0.5rem 0.65rem; border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+.bd th { position: sticky; top: 0; background: var(--color-panel); font-weight: 500; color: var(--color-fg-muted); white-space: nowrap; z-index: 1; }
+.bd th.s { cursor: pointer; }
+.bd th.s:hover { color: var(--color-fg); }
+.bd td.r, .bd th.r { text-align: right; }
+.bd td.w { min-width: 14rem; }
+.bd .st { display: inline-block; padding: 0.05rem 0.5rem; border-radius: 999px; border: 1px solid var(--color-border-line); white-space: nowrap; }
+.bd .st.v { border-color: var(--color-ok); color: var(--color-ok); }
+.bd .st.n { color: var(--color-fg-muted); }
+.bd .st.maj { border-color: var(--color-bad); color: var(--color-bad); }
+.bd .st.min { color: var(--color-fg-muted); }
+.bd .sbar { display: inline-flex; height: 0.5rem; width: 6rem; border-radius: 999px; overflow: hidden; background: var(--cds-chart-grid); vertical-align: middle; }
+.bd .sbar i { display: block; height: 100%; }
+.bd .filters { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); align-items: center; }
+.bd .filters button, .bd .filters input { font: inherit; font-size: var(--cds-font-size-caption); border: 1px solid var(--color-border-line); background: var(--color-bg); color: var(--color-fg); border-radius: 999px; padding: 0.2rem 0.7rem; }
+.bd .filters button[aria-pressed=true] { border-color: var(--color-fg); }
+.bd .filters input { border-radius: var(--cds-radius); min-width: 12rem; }
+.bd ul.lst { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.35rem; font-size: var(--cds-font-size-body); line-height: 1.45; }
+.bd .foot { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.5; max-width: 62rem; }
+.bd [data-dash-source-state=empty] { color: transparent; }
+.bd [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+.bd button:focus-visible, .bd input:focus-visible, .bd a:focus-visible, .bd th.s:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+@media (max-width: 520px) { .bd h1 { font-size: 1.55rem; } .bd .tile .big { font-size: 1.55rem; } .bd .chart { min-height: 17rem; } }
+</style>
+
+<div class="bd" id="bd">
+  <header class="head" id="top">
+    <div class="cap">BSE Ltd · NSE: BSE · session of Wed 14 Oct 2026 · prices in ₹</div>
+    <h1>Range forecast only: no directional edge found</h1>
+    <p class="take">Median close <b class="num">₹<span data-source="summary" data-where="record=v2" data-field="close_median" data-fmt="f1">—</span></b>, 90% interval <b class="num">₹<span data-source="summary" data-where="record=v2" data-field="close_p05" data-fmt="f0">—</span> to ₹<span data-source="summary" data-where="record=v2" data-field="close_p95" data-fmt="f0">—</span></b>. The session closed at <b class="num">₹<span data-source="realised" data-row="0" data-field="close" data-fmt="f1">—</span></b> (<span class="num" data-source="realised" data-row="0" data-field="r_pct" data-fmt="s2">—</span>), inside the 50% band. One session says nothing about skill.</p>
+    <div class="chips">
+      <span class="chip strong">Verdict: volatility and range only</span>
+      <span class="chip">v1 · forecast of record · committed before the session</span>
+      <span class="chip">v2 · late update · committed after the session</span>
+      <span class="chip">Upload was Yahoo data, not TradingView</span>
+    </div>
+    <nav class="nav" aria-label="Sections"><a href="#forecast">Forecast</a><a href="#scoring">Scoring</a><a href="#behaviour">Behaviour</a><a href="#checks">Verification</a><a href="#limits">Limits</a></nav>
+  </header>
+
+  <section class="tiles" id="forecast" aria-label="Headline figures">
+    <div class="tile"><span class="lab">Reference price P0</span><span class="big num">₹<span data-source="summary" data-where="record=v2" data-field="p0" data-fmt="f2">—</span></span><span class="sub">Official NSE close, 13 Oct</span></div>
+    <div class="tile"><span class="lab">Median close, v2</span><span class="big num">₹<span data-source="summary" data-where="record=v2" data-field="close_median" data-fmt="f1">—</span></span><span class="sub">v1: ₹<span data-source="summary" data-where="record=v1" data-field="close_median" data-fmt="f1">—</span> · almost identical</span></div>
+    <div class="tile"><span class="lab">90% close interval, v2</span><span class="big num"><span data-source="summary" data-where="record=v2" data-field="close_p05" data-fmt="f0">—</span>–<span data-source="summary" data-where="record=v2" data-field="close_p95" data-fmt="f0">—</span></span><span class="sub">50%: <span data-source="summary" data-where="record=v2" data-field="close_p25" data-fmt="f0">—</span>–<span data-source="summary" data-where="record=v2" data-field="close_p75" data-fmt="f0">—</span></span></div>
+    <div class="tile"><span class="lab">Close volatility, one session</span><span class="big num"><span data-source="summary" data-where="record=v2" data-field="sigma_r_pct" data-fmt="p2">—</span></span><span class="sub">Median day range <span data-source="summary" data-where="record=v2" data-field="range_median_pct" data-fmt="p2">—</span> of price</span></div>
+    <div class="tile"><span class="lab">Realised close, 14 Oct</span><span class="big num">₹<span data-source="realised" data-row="0" data-field="close" data-fmt="f1">—</span></span><span class="sub"><span data-source="realised" data-row="0" data-field="r_pct" data-fmt="s2">—</span> · <span data-source="realised" data-row="0" data-field="abs_r_over_sigma" data-fmt="f2">—</span> sigma · base scenario</span></div>
+  </section>
+
+  <section class="card" aria-labelledby="h-fan">
+    <div class="toolbar">
+      <div><h2 id="h-fan">History and the conditional close distribution</h2><p class="note">Solid candles are history (bonus-adjusted). The shaded column is the model's distribution of the next close, not a path. Dashed outlines are v1.</p></div>
+      <label class="toggle" for="bd-real"><input type="checkbox" id="bd-real" checked> Show the realised 14 Oct candle</label>
+    </div>
+    <div class="chart" id="bd-fan" data-source="daily_bars quantiles realised summary"></div>
+    <div class="legend"><span><i class="sw" style="background:none;border:1.5px solid var(--color-fg-muted)"></i>Up day (hollow)</span><span><i class="sw" style="background:var(--color-fg-muted)"></i>Down day (filled)</span><span><i class="sw" id="bd-swacc"></i>Forecast bands 50 / 80 / 90 / 95%</span><span>Markers left of the column: median day high and low with 90% whiskers</span></div>
+  </section>
+
+  <div class="grid2">
+    <section class="card" aria-labelledby="h-lad">
+      <div><h2 id="h-lad">Open, close, high and low</h2><p class="note">Each row: 90% interval (line), 50% interval (bar), median (tick). Diamond is the realised value.</p></div>
+      <div class="chart short" id="bd-ladder" data-source="quantiles realised"></div>
+    </section>
+    <section class="card" aria-labelledby="h-sc">
+      <div><h2 id="h-sc">Conditional scenarios</h2><p class="note">Model close distribution split at ±1.5% (my choice, not separately calibrated). The intraday path is not forecast.</p></div>
+      <div class="scen" id="bd-scen"></div>
+    </section>
+  </div>
+
+  <section class="card" id="scoring" aria-labelledby="h-score">
+    <div><h2 id="h-score">Scoring against the official 14 Oct session</h2><p class="note">Pinball loss ×10⁴, lower is better. v2 was committed after the session closed, so v1 is the pre-session forecast; the two differ by noise on one draw.</p></div>
+    <div class="tw"><table id="bd-score" data-source="scorecard" data-row-key="target"><thead><tr><th data-field="target">Target</th><th data-field="realised_log_pct" class="r">Realised (log %)</th><th data-field="inside_50">Inside 50%</th><th data-field="inside_90">Inside 90%</th><th data-field="v1_pinball_e4" class="r">v1 pinball</th><th data-field="v2_pinball_e4" class="r">v2 pinball</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="card" id="behaviour" aria-labelledby="h-beh">
+    <div><h2 id="h-beh">Behavioural profile</h2><p class="note">What each pattern is, how much data stands behind it and whether it survived out-of-sample testing. Association only; no intent is inferred. Transcribed from the report's profile table.</p></div>
+    <div class="filters" role="group" aria-label="Filter by status" id="bd-filters"></div>
+    <div class="tw tall"><table id="bd-beh" data-source="behaviour" data-row-key="pattern"><thead><tr><th data-field="pattern">Pattern</th><th data-field="result">Result</th><th data-field="sample">Sample</th><th data-field="status">Status</th><th data-field="caveat">Exceptions and limits</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="card" id="checks" aria-labelledby="h-ver">
+    <div><h2 id="h-ver">Independent verification of each workstream</h2><p class="note">A second agent re-derived each workstream's key numbers without using its code. Bars show confirmed, partly confirmed and refuted checks.</p></div>
+    <div class="tw"><table id="bd-ver" data-source="verification" data-row-key="workstream"><thead><tr><th data-field="workstream">Workstream</th><th data-field="severity">Severity</th><th>Checks (confirmed / partly / refuted)</th><th data-field="headline">Main finding</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <div class="grid2" id="limits">
+    <section class="card" aria-labelledby="h-chg">
+      <h2 id="h-chg">What would change the forecast</h2>
+      <ul class="lst">
+        <li>A SEBI circular on derivative settlement and the closing-auction price. Last-30-minute VWAP favours the bullish scenario; keeping or blending the auction price favours the bearish one. Its timing is unknown and the model does not score it.</li>
+        <li>A pre-open price outside the model's 5–95% opening band. Then condition on the open.</li>
+        <li>A large overnight move in US or Asian markets. The validated link to the gap is real but small and unstable.</li>
+        <li>Any tax, fee, margin or expiry change for exchanges, or a holiday or trading halt notice.</li>
+        <li>A directional rule that passes a chronological test in the closing-auction era would reverse the verdict.</li>
+      </ul>
+    </section>
+    <section class="card" aria-labelledby="h-lim">
+      <h2 id="h-lim">Known limits</h2>
+      <ul class="lst">
+        <li>No TradingView chart, indicator or screenshot was inspected. The supplied workbook is Yahoo Finance API data.</li>
+        <li>v2 was written after the session opened. Its information set is limited by rule, not by the clock.</li>
+        <li>No order book, flow, short-interest or GIFT Nifty data. Few sessions exist since the closing auction began.</li>
+        <li>The cause of the 13 Oct afternoon volume spike and of the 14 Oct decline was not established.</li>
+        <li>No separate red-team pass was run on the integrated report.</li>
+      </ul>
+    </section>
+  </div>
+
+  <section class="card" aria-labelledby="h-rec">
+    <div><h2 id="h-rec">Records and provenance</h2><p class="note">Files are in the repository on branch claude/dreamy-albattani-k94wba. Full write-up: FORECAST_REPORT_V2.md.</p></div>
+    <div class="tw"><table id="bd-rec" data-source="records" data-row-key="record"><thead><tr><th data-field="record">Record</th><th data-field="role">Role</th><th data-field="file">File</th><th data-field="commit">Commit</th><th data-field="committed_ist">Committed (IST)</th><th data-field="cutoff_ist">Cutoff (IST)</th><th data-field="status">Status</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <p class="foot">Model-based and uncertain. Intervals come from a pre-registered walk-forward volatility model; centre = unchanged price plus one validated overnight adjustment. Not investment advice.</p>
+</div>
+
+<script>
+(function () {
+  const $ = (s, r) => (r || document).querySelector(s);
+  const A = fn => v => fn(v).replace(/\u2212/g, '-');
+  const f0 = A(d3.format(',.0f')), f1 = A(d3.format(',.1f')), f2 = A(d3.format(',.2f')), f3 = A(d3.format('.3f')), pc1 = A(d3.format('.1%')), sg2 = A(d3.format('+.2f'));
+  const FM = { f0, f1, f2, f3, s2: v => sg2(v) + '%', p2: v => f2(v) + '%', pc: pc1, raw: v => String(v) };
+  const parseD = d3.utcParse('%Y-%m-%d'), fmtDay = d3.utcFormat('%-d %b'), fmtDayL = d3.utcFormat('%a %-d %b %Y');
+  const state = { showReal: true, status: 'all', q: '', sortKey: null, sortDir: 1 };
+  const rows = id => { const x = dash.data(id); return x.status === 'ok' ? x.data : null; };
+  const pick = (list, where) => list && list.find(r => Object.entries(where).every(([k, v]) => String(r[k]) === String(v)));
+  const accent = () => dash.colors[0];
+
+  // --- fill every marked value
+  function fillMarks() {
+    document.querySelectorAll('#bd [data-fmt][data-source][data-field]').forEach(el => {
+      const list = rows(el.dataset.source);
+      let r = null;
+      if (list) r = el.dataset.where ? pick(list, Object.fromEntries(new URLSearchParams(el.dataset.where))) : list[+el.dataset.row || 0];
+      const v = r ? r[el.dataset.field] : null;
+      el.textContent = v == null ? '—' : FM[el.dataset.fmt](v);
+    });
+  }
+
+  // --- tooltip
+  function tipFor(host) {
+    let t = host.querySelector('.tip');
+    if (!t) { t = document.createElement('div'); t.className = 'tip'; t.hidden = true; host.appendChild(t); }
+    return {
+      show(html, ev) {
+        t.replaceChildren(); t.appendChild(html); t.hidden = false;
+        const hb = host.getBoundingClientRect();
+        let x = ev.clientX - hb.left + 12, y = ev.clientY - hb.top + 12;
+        const w = t.offsetWidth, h = t.offsetHeight;
+        if (x + w > host.clientWidth) x = Math.max(0, ev.clientX - hb.left - w - 12);
+        if (y + h > host.clientHeight) y = Math.max(0, ev.clientY - hb.top - h - 12);
+        t.style.left = x + 'px'; t.style.top = y + 'px';
+      },
+      hide() { t.hidden = true; }
+    };
+  }
+  const line = (cls, text, strong) => { const d = document.createElement('div'); if (cls) d.className = cls; if (strong) { const b = document.createElement('b'); b.textContent = strong; d.appendChild(b); d.appendChild(document.createTextNode(' ')); } d.appendChild(document.createTextNode(text)); return d; };
+  const box = lines => { const f = document.createElement('div'); lines.forEach(l => f.appendChild(l)); return f; };
+
+  // --- fan chart
+  function drawFan() {
+    const host = $('#bd-fan');
+    const bars = rows('daily_bars'), qs = rows('quantiles'), rl = rows('realised'), sm = rows('summary');
+    host.querySelectorAll('svg').forEach(n => n.remove());
+    if (!bars || !qs || !sm) { host.classList.add('dash-skeleton'); return; }
+    host.classList.remove('dash-skeleton');
+    const W = Math.max(300, host.clientWidth), H = W < 560 ? 300 : 380;
+    const m = { l: 50, r: W < 560 ? 18 : 24, t: 20, b: 30 };
+    const hist = bars.slice(-70).map(r => ({ ...r, dt: parseD(r.date) }));
+    const n = hist.length, gap = 3, fanSlots = 6;
+    const step = (W - m.l - m.r) / (n + gap + fanSlots);
+    const X = i => m.l + (i + 0.5) * step;
+    const fx = X(n + gap + fanSlots / 2 - 1), bw = step * 4;
+    const Q = (rec, meas, p) => pick(qs, { record: rec, measure: meas, q: p }).price;
+    const real = rl && rl[0], showR = state.showReal && real;
+    const p0 = pick(sm, { record: 'v2' }).p0;
+    const lo = Math.min(d3.min(hist, d => d.low), Q('v2', 'low', 0.025), showR ? real.low : Infinity);
+    const hi = Math.max(d3.max(hist, d => d.high), Q('v2', 'high', 0.975), Q('v2', 'close', 0.975));
+    const y = d3.scaleLinear().domain([lo - 15, hi + 15]).nice().range([H - m.b, m.t]);
+    const svg = d3.select(host).insert('svg', ':first-child').attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%').attr('role', 'img').attr('aria-label', 'Daily candles with the forecast distribution for the next close');
+    // grid and y axis
+    y.ticks(6).forEach(tv => {
+      svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(tv)).attr('y2', y(tv)).attr('stroke', 'var(--cds-chart-grid)').attr('stroke-width', 1);
+      svg.append('text').attr('x', m.l - 8).attr('y', y(tv) + 4).attr('text-anchor', 'end').text(f0(tv));
+    });
+    // x labels: about one per 12 sessions
+    hist.forEach((d, i) => { if ((n - 1 - i) % 14 === 0 && i > 2) svg.append('text').attr('x', X(i)).attr('y', H - 10).attr('text-anchor', 'middle').text(fmtDay(d.dt)); });
+    svg.append('text').attr('x', fx).attr('y', H - 10).attr('text-anchor', 'middle').attr('class', 'strong').text('14 Oct');
+    // cutoff divider
+    const dx = X(n - 1) + step * 1.5;
+    svg.append('line').attr('x1', dx).attr('x2', dx).attr('y1', m.t - 6).attr('y2', H - m.b).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '4 4');
+    svg.append('text').attr('x', dx - 6).attr('y', m.t + 2).attr('text-anchor', 'end').text('history');
+    svg.append('text').attr('x', dx + 6).attr('y', m.t + 2).text('forecast (conditional)');
+    // candles
+    const tip = tipFor(host);
+    const up = d => d.close >= d.open;
+    const g = svg.append('g');
+    hist.forEach((d, i) => {
+      const x = X(i), w = Math.max(2, step * 0.62);
+      g.append('line').attr('x1', x).attr('x2', x).attr('y1', y(d.high)).attr('y2', y(d.low)).attr('stroke', 'var(--color-fg-muted)').attr('stroke-width', 1);
+      g.append('rect').attr('x', x - w / 2).attr('y', y(Math.max(d.open, d.close))).attr('width', w).attr('height', Math.max(1, Math.abs(y(d.open) - y(d.close))))
+        .attr('fill', up(d) ? 'var(--color-bg)' : 'var(--color-fg-muted)').attr('stroke', 'var(--color-fg-muted)').attr('stroke-width', 1);
+      g.append('rect').attr('x', x - step / 2).attr('y', m.t).attr('width', step).attr('height', H - m.t - m.b).attr('fill', 'transparent')
+        .on('mousemove', ev => tip.show(box([line('d', fmtDayL(d.dt)), line('', f1(d.open) + ' / ' + f1(d.high) + ' / ' + f1(d.low) + ' / ' + f1(d.close), 'O H L C'), line('d', d3.format(',')(d.volume) + ' shares')]), ev))
+        .on('mouseleave', () => tip.hide());
+    });
+    // reference line from last close to the fan
+    svg.append('line').attr('x1', X(n - 1)).attr('x2', fx + bw / 2).attr('y1', y(p0)).attr('y2', y(p0)).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '2 3');
+    // v2 bands
+    const bands = [[0.025, 0.975, 0.12, '95%'], [0.05, 0.95, 0.16, '90%'], [0.1, 0.9, 0.24, '80%'], [0.25, 0.75, 0.38, '50%']];
+    bands.forEach(([a, b, op, lab]) => {
+      svg.append('rect').attr('x', fx - bw / 2).attr('width', bw).attr('y', y(Q('v2', 'close', b))).attr('height', y(Q('v2', 'close', a)) - y(Q('v2', 'close', b))).attr('fill', accent()).attr('fill-opacity', op);
+      svg.append('text').attr('x', fx).attr('y', y(Q('v2', 'close', b)) + 11).attr('text-anchor', 'middle').attr('style', 'font-size:9px').text(lab);
+    });
+    // v1 outlines
+    [[0.05, 0.95], [0.25, 0.75]].forEach(([a, b]) => svg.append('rect').attr('x', fx - bw / 2 - 1.5).attr('width', bw + 3).attr('y', y(Q('v1', 'close', b))).attr('height', y(Q('v1', 'close', a)) - y(Q('v1', 'close', b))).attr('fill', 'none').attr('stroke', 'var(--color-fg-muted)').attr('stroke-dasharray', '3 3'));
+    svg.append('line').attr('x1', fx - bw / 2).attr('x2', fx + bw / 2).attr('y1', y(Q('v2', 'close', 0.5))).attr('y2', y(Q('v2', 'close', 0.5))).attr('stroke', accent()).attr('stroke-width', 2.2);
+    // median high / low markers with 90% whiskers
+    const mx = fx - bw / 2 - step * 1.4;
+    [['high', 'high'], ['low', 'low']].forEach(([meas, lab]) => {
+      svg.append('line').attr('x1', mx).attr('x2', mx).attr('y1', y(Q('v2', meas, 0.95))).attr('y2', y(Q('v2', meas, 0.05))).attr('stroke', accent()).attr('stroke-width', 1.5);
+      svg.append('circle').attr('cx', mx).attr('cy', y(Q('v2', meas, 0.5))).attr('r', 3.5).attr('fill', accent());
+      svg.append('text').attr('x', mx).attr('y', meas === 'high' ? y(Q('v2', meas, 0.95)) - 6 : y(Q('v2', meas, 0.05)) + 14).attr('text-anchor', 'middle').attr('style', 'font-size:9px').text('day ' + lab);
+    });
+    // realised candle
+    if (showR) {
+      const w = step * 1.5;
+      svg.append('line').attr('x1', fx).attr('x2', fx).attr('y1', y(real.high)).attr('y2', y(real.low)).attr('stroke', 'var(--color-fg)').attr('stroke-width', 1.8);
+      svg.append('rect').attr('x', fx - w / 2).attr('y', y(Math.max(real.open, real.close))).attr('width', w).attr('height', Math.max(1.5, Math.abs(y(real.open) - y(real.close)))).attr('fill', 'var(--color-bg)').attr('stroke', 'var(--color-fg)').attr('stroke-width', 1.8);
+      svg.append('text').attr('x', fx + bw / 2 + 5).attr('y', y(real.close) + 4).attr('class', 'strong').attr('style', 'font-size:10px').text(f1(real.close));
+    }
+    // fan hover
+    svg.append('rect').attr('x', mx - step).attr('y', m.t).attr('width', fx + bw / 2 - mx + step).attr('height', H - m.t - m.b).attr('fill', 'transparent')
+      .on('mousemove', ev => {
+        const L = [line('d', 'Next close, v2'), ...[[0.25, 0.75, '50%'], [0.1, 0.9, '80%'], [0.05, 0.95, '90%'], [0.025, 0.975, '95%']].map(([a, b, t]) => line('', f0(Q('v2', 'close', a)) + ' to ' + f0(Q('v2', 'close', b)), t)), line('', f1(Q('v2', 'close', 0.5)), 'Median')];
+        if (showR) L.push(line('', f1(real.close), 'Realised'));
+        tip.show(box(L), ev);
+      }).on('mouseleave', () => tip.hide());
+  }
+
+  // --- ladder chart
+  function drawLadder() {
+    const host = $('#bd-ladder');
+    const qs = rows('quantiles'), rl = rows('realised');
+    host.querySelectorAll('svg').forEach(n => n.remove());
+    if (!qs) { host.classList.add('dash-skeleton'); return; }
+    host.classList.remove('dash-skeleton');
+    const W = Math.max(280, host.clientWidth), rowH = 54, H = 4 * rowH + 34;
+    const m = { l: 62, r: W < 420 ? 82 : 104, t: 8, b: 26 };
+    const Q = (meas, p) => pick(qs, { record: 'v2', measure: meas, q: p }).price;
+    const meas = [['open', 'Open'], ['close', 'Close'], ['high', 'Day high'], ['low', 'Day low']];
+    const real = rl && rl[0], showR = state.showReal && real;
+    const rv = { open: real && real.open, close: real && real.close, high: real && real.high, low: real && real.low };
+    const lo = d3.min(meas, ([k]) => Math.min(Q(k, 0.05), showR ? rv[k] : Infinity)), hi = d3.max(meas, ([k]) => Math.max(Q(k, 0.95), showR ? rv[k] : -Infinity));
+    const x = d3.scaleLinear().domain([lo - 12, hi + 12]).nice().range([m.l, W - m.r]);
+    const svg = d3.select(host).insert('svg', ':first-child').attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%').attr('role', 'img').attr('aria-label', 'Forecast intervals for open, close, day high and day low');
+    x.ticks(W < 420 ? 4 : 6).forEach(tv => {
+      svg.append('line').attr('x1', x(tv)).attr('x2', x(tv)).attr('y1', m.t).attr('y2', H - m.b).attr('stroke', 'var(--cds-chart-grid)');
+      svg.append('text').attr('x', x(tv)).attr('y', H - 8).attr('text-anchor', 'middle').text(f0(tv));
+    });
+    const p0 = pick(rows('summary') || [], { record: 'v2' });
+    if (p0) { svg.append('line').attr('x1', x(p0.p0)).attr('x2', x(p0.p0)).attr('y1', m.t).attr('y2', H - m.b).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '3 3'); }
+    const tip = tipFor(host);
+    meas.forEach(([k, lab], i) => {
+      const cy = m.t + i * rowH + rowH / 2 - 4;
+      svg.append('text').attr('x', m.l - 8).attr('y', cy + 4).attr('text-anchor', 'end').attr('class', 'strong').text(lab);
+      svg.append('line').attr('x1', x(Q(k, 0.05))).attr('x2', x(Q(k, 0.95))).attr('y1', cy).attr('y2', cy).attr('stroke', accent()).attr('stroke-width', 2).attr('stroke-linecap', 'round');
+      svg.append('rect').attr('x', x(Q(k, 0.25))).attr('width', x(Q(k, 0.75)) - x(Q(k, 0.25))).attr('y', cy - 8).attr('height', 16).attr('rx', 4).attr('fill', accent()).attr('fill-opacity', 0.45);
+      svg.append('line').attr('x1', x(Q(k, 0.5))).attr('x2', x(Q(k, 0.5))).attr('y1', cy - 10).attr('y2', cy + 10).attr('stroke', accent()).attr('stroke-width', 2.5);
+      if (showR) { const dxp = x(rv[k]); svg.append('path').attr('d', `M${dxp},${cy - 8}L${dxp + 7},${cy}L${dxp},${cy + 8}L${dxp - 7},${cy}Z`).attr('fill', 'var(--color-fg)').attr('stroke', 'var(--color-bg)').attr('stroke-width', 1.2); }
+      svg.append('text').attr('x', W - m.r + 8).attr('y', cy + 4).attr('style', 'font-size:11px').text(f0(Q(k, 0.05)) + '–' + f0(Q(k, 0.95)));
+      svg.append('rect').attr('x', 0).attr('y', cy - rowH / 2 + 4).attr('width', W).attr('height', rowH - 4).attr('fill', 'transparent')
+        .on('mousemove', ev => { const L = [line('d', lab + ', v2'), line('', f0(Q(k, 0.25)) + ' to ' + f0(Q(k, 0.75)), '50%'), line('', f0(Q(k, 0.05)) + ' to ' + f0(Q(k, 0.95)), '90%'), line('', f1(Q(k, 0.5)), 'Median')]; if (showR) L.push(line('', f1(rv[k]), 'Realised')); tip.show(box(L), ev); })
+        .on('mouseleave', () => tip.hide());
+    });
+    svg.append('text').attr('x', x(p0 ? p0.p0 : lo)).attr('y', m.t + 8).attr('text-anchor', 'middle').attr('style', 'font-size:9px').text('P0');
+  }
+
+  // --- scenarios
+  function drawScen() {
+    const host = $('#bd-scen'), sc = rows('scenarios'), rl = rows('realised');
+    host.replaceChildren();
+    if (!sc) { const d = document.createElement('div'); d.className = 'dash-skeleton'; d.style.minHeight = '10rem'; host.appendChild(d); return; }
+    const real = rl && rl[0];
+    [['bearish', 'Bearish'], ['base', 'Base'], ['bullish', 'Bullish']].forEach(([key, name]) => {
+      const r2 = pick(sc, { record: 'v2', scenario: key }), r1 = pick(sc, { record: 'v1', scenario: key });
+      if (!r2) return;
+      const card = document.createElement('div'); card.className = 'sc' + (state.showReal && real && real.scenario === key ? ' real' : '');
+      const nm = document.createElement('div'); nm.className = 'nm'; const a = document.createElement('span'); a.textContent = name; nm.appendChild(a);
+      if (state.showReal && real && real.scenario === key) { const b = document.createElement('span'); b.className = 'badge'; b.textContent = 'realised'; nm.appendChild(b); }
+      card.appendChild(nm);
+      const pr = document.createElement('div'); pr.className = 'pr';
+      const sp = document.createElement('span'); sp.dataset.source = 'scenarios'; sp.dataset.where = 'record=v2&scenario=' + key; sp.dataset.field = 'probability'; sp.textContent = pc1(r2.probability); pr.appendChild(sp);
+      const sm = document.createElement('span'); sm.className = 'cap'; sm.textContent = '  v1 '; const sp1 = document.createElement('span'); sp1.dataset.source = 'scenarios'; sp1.dataset.where = 'record=v1&scenario=' + key; sp1.dataset.field = 'probability'; sp1.textContent = pc1(r1.probability); sm.appendChild(sp1); pr.appendChild(sm);
+      card.appendChild(pr);
+      const tr = document.createElement('div'); tr.className = 'track'; const fill = document.createElement('i'); fill.style.width = (r2.probability * 100) + '%'; fill.style.background = accent(); tr.appendChild(fill); card.appendChild(tr);
+      const df = document.createElement('div'); df.className = 'cap num'; df.textContent = r2.definition; card.appendChild(df);
+      const cl = document.createElement('div'); cl.className = 'cap num'; cl.append('Close p10 / p50 / p90: '); [['close_p10'], ['close_p50'], ['close_p90']].forEach(([f], i) => { if (i) cl.append(' · '); const s = document.createElement('span'); s.dataset.source = 'scenarios'; s.dataset.where = 'record=v2&scenario=' + key; s.dataset.field = f; s.textContent = f0(r2[f]); cl.appendChild(s); });
+      card.appendChild(cl);
+      const fv = document.createElement('div'); fv.className = 'cap'; fv.textContent = 'Favoured by: ' + r2.favoured_by; card.appendChild(fv);
+      host.appendChild(card);
+    });
+  }
+
+  // --- generic table writer
+  function fillBody(tbl, id, cols, opts) {
+    const body = tbl.querySelector('tbody'); body.replaceChildren();
+    const list = rows(id);
+    if (!list) { const tr = document.createElement('tr'); const td = document.createElement('td'); td.colSpan = cols.length; td.className = 'cap'; td.textContent = dash.data(id).status === 'error' ? 'Failed to load' : ''; tr.appendChild(td); body.appendChild(tr); return; }
+    let data = list.slice();
+    if (opts && opts.filter) data = data.filter(opts.filter);
+    if (opts && opts.sortKey) data.sort((a, b) => (a[opts.sortKey] > b[opts.sortKey] ? 1 : a[opts.sortKey] < b[opts.sortKey] ? -1 : 0) * opts.sortDir);
+    data.forEach(r => {
+      const tr = document.createElement('tr');
+      cols.forEach(c => {
+        const td = document.createElement('td'); if (c.cls) td.className = c.cls;
+        if (c.render) c.render(td, r); else td.textContent = c.fmt ? c.fmt(r[c.field]) : String(r[c.field]);
+        tr.appendChild(td);
+      });
+      body.appendChild(tr);
+    });
+  }
+  const statusChip = (td, r) => { const s = document.createElement('span'); s.className = 'st ' + (r.status === 'validated_out_of_sample' ? 'v' : 'n'); s.textContent = r.status; td.appendChild(s); };
+
+  function drawScore() {
+    fillBody($('#bd-score'), 'scorecard', [
+      { field: 'target' }, { field: 'realised_log_pct', cls: 'r num', fmt: f3 }, { field: 'inside_50' }, { field: 'inside_90' },
+      { field: 'v1_pinball_e4', cls: 'r num', fmt: f2 }, { field: 'v2_pinball_e4', cls: 'r num', fmt: f2 }]);
+  }
+  function drawBeh() {
+    const list = rows('behaviour');
+    const fbox = $('#bd-filters');
+    if (list && !fbox.dataset.built) {
+      fbox.dataset.built = '1';
+      const opts = [['all', 'All'], ['validated_out_of_sample', 'Validated'], ['descriptive', 'Descriptive'], ['not_found', 'Not found']];
+      opts.forEach(([k, lab]) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = lab; b.dataset.k = k; b.setAttribute('aria-pressed', k === 'all' ? 'true' : 'false'); b.addEventListener('click', () => { state.status = k; fbox.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.k === k))); drawBeh(); }); fbox.appendChild(b); });
+      const inp = document.createElement('input'); inp.type = 'search'; inp.id = 'bd-search'; inp.placeholder = 'Search patterns'; inp.setAttribute('aria-label', 'Search patterns'); inp.addEventListener('input', () => { state.q = inp.value.toLowerCase(); drawBeh(); }); fbox.appendChild(inp);
+      const th = document.querySelectorAll('#bd-beh th'); th.forEach(h => { h.classList.add('s'); h.tabIndex = 0; const go = () => { const k = h.dataset.field; state.sortDir = state.sortKey === k ? -state.sortDir : 1; state.sortKey = k; h.setAttribute('aria-sort', state.sortDir === 1 ? 'ascending' : 'descending'); drawBeh(); }; h.addEventListener('click', go); h.addEventListener('keydown', e => { if (e.key === 'Enter') go(); }); });
+    }
+    fillBody($('#bd-beh'), 'behaviour', [
+      { field: 'pattern', cls: 'w' }, { field: 'result', cls: 'w' }, { field: 'sample' }, { field: 'status', render: statusChip }, { field: 'caveat', cls: 'w' }],
+      { filter: r => (state.status === 'all' || r.status === state.status) && (!state.q || (r.pattern + ' ' + r.result + ' ' + r.caveat).toLowerCase().includes(state.q)), sortKey: state.sortKey, sortDir: state.sortDir });
+  }
+  function drawVer() {
+    fillBody($('#bd-ver'), 'verification', [
+      { field: 'workstream' },
+      { field: 'severity', render: (td, r) => { const s = document.createElement('span'); s.className = 'st ' + (r.severity === 'major' ? 'maj' : 'min'); s.textContent = r.severity; td.appendChild(s); } },
+      { field: 'confirmed', render: (td, r) => { const tot = r.confirmed + r.partial + r.refuted; const b = document.createElement('span'); b.className = 'sbar'; b.setAttribute('role', 'img'); b.setAttribute('aria-label', r.confirmed + ' confirmed, ' + r.partial + ' partly, ' + r.refuted + ' refuted'); [[r.confirmed, 'var(--color-ok)'], [r.partial, 'var(--cds-chart-muted)'], [r.refuted, 'var(--color-bad)']].forEach(([v, c]) => { const i = document.createElement('i'); i.style.width = (100 * v / tot) + '%'; i.style.background = c; b.appendChild(i); }); td.appendChild(b); td.append(' ' + r.confirmed + ' / ' + r.partial + ' / ' + r.refuted); } },
+      { field: 'headline', cls: 'w' }]);
+  }
+  function drawRec() {
+    fillBody($('#bd-rec'), 'records', [{ field: 'record' }, { field: 'role' }, { field: 'file', cls: 'w' }, { field: 'commit' }, { field: 'committed_ist' }, { field: 'cutoff_ist' }, { field: 'status', cls: 'w' }]);
+  }
+
+  $('#bd-real').addEventListener('change', e => { state.showReal = e.target.checked; drawFan(); drawLadder(); drawScen(); fillMarks(); });
+  dash.onData(() => { const sw = $('#bd-swacc'); if (sw) sw.style.background = accent(); fillMarks(); drawFan(); drawLadder(); drawScen(); drawScore(); drawBeh(); drawVer(); drawRec(); });
+})();
+</script>
