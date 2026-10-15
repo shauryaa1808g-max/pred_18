@@ -1,0 +1,2 @@
+date,series,open,high,low,last,close,vol,turnover_cr,trades,src,short_session,weekend,prev_close_kept,ca_factor,prev,nse_prev,nse_prev_vs_kept_close
+2026-10-14,EQ,3375.4,3408.3,3320.0,3338.0,3338.0,3001424,1008.7816804700001,146819,udiff,False,False,3375.4,1.0,3375.4,3375.4,1.0
