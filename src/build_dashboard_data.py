@@ -121,3 +121,34 @@ dump("records", [
  {"record": "v2", "role": "Late update", "file": "results/forecast_record_2026-10-14_v2.json", "commit": "dfb99f1", "committed_ist": "2026-10-14 21:00", "cutoff_ist": "2026-10-13 22:00", "status": "Committed after the session; information set limited by rule, not by clock"},
  {"record": "score", "role": "Scoring", "file": "results/forecast_score_2026-10-14[_v2].json", "commit": "3603234", "committed_ist": "after both records", "cutoff_ist": "n/a", "status": "Official NSE bhavcopy, 14 Oct"},
 ])
+
+# --- live close replay (results/nowcast_replay_latest.csv from `python3 src/live_nowcast.py --replay`) vs the final close of that session
+from pathlib import Path as _P
+rp = pd.read_csv("results/nowcast_replay_latest.csv")
+extra = _P("data/processed/bse_daily_extra.csv")
+FINAL, SRC = 3428.0, "Yahoo last print 15:28 IST (unofficial; NSE official file due about 16:34 IST)"
+if extra.exists():
+    e = pd.read_csv(extra, index_col=0, parse_dates=True)
+    if pd.Timestamp("2026-10-15") in e.index:
+        FINAL, SRC = float(e.loc["2026-10-15", "close"]), "NSE official bhavcopy 2026-10-15"
+rows = []
+for _, r in rp.iterrows():
+    rows.append({"asof": r["asof"], "price_then": round(float(r["price_then"]), 1), "close_50_lo": round(float(r["close_50_lo"]), 1), "close_50_hi": round(float(r["close_50_hi"]), 1),
+                 "close_90_lo": round(float(r["close_90_lo"]), 1), "close_90_hi": round(float(r["close_90_hi"]), 1), "typical_miss_rs": round(float(r["typical_miss_rs"]), 1),
+                 "final_close": FINAL, "inside_50": "yes" if r["close_50_lo"] <= FINAL <= r["close_50_hi"] else "no", "inside_90": "yes" if r["close_90_lo"] <= FINAL <= r["close_90_hi"] else "no",
+                 "error_rs": round(FINAL - float(r["price_then"]), 1), "session": "2026-10-15", "final_source": SRC})
+dump("nowcast_replay", rows)
+
+# --- scoreboard (summary row first, then one row per scored day)
+sb = _P("results/scoreboard/scoreboard.csv")
+S = pd.read_csv(sb) if sb.exists() else pd.DataFrame()
+n = len(S)
+def _m(c): return round(float(np.mean(np.abs(S[c]))), 1) if n else None
+h = S["lean_hit"].dropna().astype(bool) if n else pd.Series(dtype=bool)
+summ = {"kind": "summary", "scored_sessions": n, "open_miss_rs": _m("open_miss_rs"), "open_miss_unchanged_rs": _m("open_miss_unchanged_rs"), "close_miss_rs": _m("close_miss_rs"), "close_miss_unchanged_rs": _m("close_miss_unchanged_rs"),
+        "lean_right": int(h.sum()) if n else 0, "lean_n": int(len(h)), "pt1_trades": int(S["PT1_net_pct"].notna().sum()) if n else 0, "pt1_avg_net_pct": round(float(S["PT1_net_pct"].mean()), 3) if n and S["PT1_net_pct"].notna().any() else None,
+        "pt2_trades": int(S["PT2_net_pct"].notna().sum()) if n else 0, "pt2_avg_net_pct": round(float(S["PT2_net_pct"].mean()), 3) if n and S["PT2_net_pct"].notna().any() else None,
+        "note": "First entry is issued about 08:35 IST on Fri 16 Oct, before the open, and committed before 09:15; it is scored after the official file at about 16:34 IST." if not n else "Running totals over all scored sessions."}
+days = [] if not n else [{"kind": "day", "date": r["date"], "open": r["open"], "close": r["close"], "open_miss_rs": round(r["open_miss_rs"], 1), "close_miss_rs": round(r["close_miss_rs"], 1), "close_inside_90": "yes" if r["close_in90"] else "no",
+                           "lean": r["lean_close"], "lean_hit": "yes" if r["lean_hit"] is True or str(r["lean_hit"]) == "True" else "no", "pt1_net_pct": None if pd.isna(r["PT1_net_pct"]) else round(float(r["PT1_net_pct"]), 2), "pt2_net_pct": None if pd.isna(r["PT2_net_pct"]) else round(float(r["PT2_net_pct"]), 2)} for _, r in S.iterrows()]
+dump("scoreboard", [summ] + days)

@@ -84,7 +84,7 @@
       <span class="chip">v2 · late update · committed after the session</span>
       <span class="chip">Upload was Yahoo data, not TradingView</span>
     </div>
-    <nav class="nav" aria-label="Sections"><a href="#forecast">Forecast</a><a href="#scoring">Scoring</a><a href="#behaviour">Behaviour</a><a href="#checks">Verification</a><a href="#limits">Limits</a></nav>
+    <nav class="nav" aria-label="Sections"><a href="#forecast">Forecast</a><a href="#live">Live close</a><a href="#board">Scoreboard</a><a href="#scoring">Scoring</a><a href="#behaviour">Behaviour</a><a href="#checks">Verification</a><a href="#limits">Limits</a></nav>
   </header>
 
   <section class="tiles" id="forecast" aria-label="Headline figures">
@@ -114,6 +114,27 @@
       <div class="scen" id="bd-scen"></div>
     </section>
   </div>
+
+  <section class="card" id="live" aria-labelledby="h-live">
+    <div><h2 id="h-live">Live close estimate: how it behaved on Thu 15 Oct</h2><p class="note">At each time the live version takes the current price and says where the official close will land, using how far price usually moves from that time to the close. Line is the 90% range, box the 50% range, dot the price at that time, dashed line the final close. It tightens through the day, and a late spike can still break it. Run it any time with python3 src/live_nowcast.py.</p></div>
+    <div class="chart" id="bd-replay" data-source="nowcast_replay"></div>
+    <p class="cap">Final close used: ₹<span data-source="nowcast_replay" data-row="0" data-field="final_close" data-fmt="f1">—</span>. Source: <span data-source="nowcast_replay" data-row="0" data-field="final_source" data-fmt="raw">—</span>. Rows marked "no" ended outside the range.</p>
+    <div class="tw"><table id="bd-rtab" data-source="nowcast_replay" data-row-key="asof"><thead><tr><th data-field="asof">As of (IST)</th><th data-field="price_then" class="r">Price then</th><th data-field="close_90_lo" class="r">90% low</th><th data-field="close_90_hi" class="r">90% high</th><th data-field="typical_miss_rs" class="r">Typical miss</th><th data-field="inside_90">Inside 90%</th><th data-field="error_rs" class="r">Close minus price then</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="card" id="board" aria-labelledby="h-board">
+    <div><h2 id="h-board">Scoreboard (paper only)</h2><p class="note">Each morning before the open I commit a forecast of the open and close plus a direction lean and two paper-trade rules (fixed in advance). After the close it is scored against the official numbers and compared with the dumb rule "unchanged". Wait for 30 or more sessions before reading anything into it.</p></div>
+    <div class="tiles" id="bd-bt">
+      <div class="tile"><span class="lab">Sessions scored</span><span class="big num"><span data-source="scoreboard" data-where="kind=summary" data-field="scored_sessions" data-fmt="raw">—</span></span><span class="sub">Paper trades: <span data-source="scoreboard" data-where="kind=summary" data-field="pt1_trades" data-fmt="raw">—</span> (every day), <span data-source="scoreboard" data-where="kind=summary" data-field="pt2_trades" data-fmt="raw">—</span> (strongest)</span></div>
+      <div class="tile"><span class="lab">Open: my typical miss</span><span class="big num">₹<span data-source="scoreboard" data-where="kind=summary" data-field="open_miss_rs" data-fmt="f1">—</span></span><span class="sub">"Unchanged" misses by ₹<span data-source="scoreboard" data-where="kind=summary" data-field="open_miss_unchanged_rs" data-fmt="f1">—</span></span></div>
+      <div class="tile"><span class="lab">Close: my typical miss</span><span class="big num">₹<span data-source="scoreboard" data-where="kind=summary" data-field="close_miss_rs" data-fmt="f1">—</span></span><span class="sub">"Unchanged" misses by ₹<span data-source="scoreboard" data-where="kind=summary" data-field="close_miss_unchanged_rs" data-fmt="f1">—</span></span></div>
+      <div class="tile"><span class="lab">Direction lean right</span><span class="big num"><span data-source="scoreboard" data-where="kind=summary" data-field="lean_right" data-fmt="raw">—</span> of <span data-source="scoreboard" data-where="kind=summary" data-field="lean_n" data-fmt="raw">—</span></span><span class="sub">A coin flip gets half</span></div>
+      <div class="tile"><span class="lab">Paper trade, average per trade</span><span class="big num"><span data-source="scoreboard" data-where="kind=summary" data-field="pt1_avg_net_pct" data-fmt="s2">—</span></span><span class="sub">Strongest 20% only: <span data-source="scoreboard" data-where="kind=summary" data-field="pt2_avg_net_pct" data-fmt="s2">—</span>, after 0.10% cost</span></div>
+    </div>
+    <p class="note"><span data-source="scoreboard" data-where="kind=summary" data-field="note" data-fmt="raw">—</span></p>
+    <div class="tw"><table id="bd-btab" data-source="scoreboard" data-row-key="date"><thead><tr><th data-field="date">Session</th><th data-field="open" class="r">Open</th><th data-field="close" class="r">Close</th><th data-field="open_miss_rs" class="r">Open miss</th><th data-field="close_miss_rs" class="r">Close miss</th><th data-field="close_inside_90">Inside 90%</th><th data-field="lean">Lean</th><th data-field="lean_hit">Right</th><th data-field="pt1_net_pct" class="r">Paper, every day</th><th data-field="pt2_net_pct" class="r">Paper, strongest</th></tr></thead><tbody></tbody></table></div>
+    <p class="cap" id="bd-bempty">No sessions scored yet. The first entry is issued before the open on Fri 16 Oct.</p>
+  </section>
 
   <section class="card" id="scoring" aria-labelledby="h-score">
     <div><h2 id="h-score">Scoring against the official 14 Oct session</h2><p class="note">Pinball loss ×10⁴, lower is better. v2 was committed after the session closed, so v1 is the pre-session forecast; the two differ by noise on one draw.</p></div>
@@ -400,7 +421,45 @@
     fillBody($('#bd-rec'), 'records', [{ field: 'record' }, { field: 'role' }, { field: 'file', cls: 'w' }, { field: 'commit' }, { field: 'committed_ist' }, { field: 'cutoff_ist' }, { field: 'status', cls: 'w' }]);
   }
 
+
+  // --- live close replay
+  function drawReplay() {
+    const host = $('#bd-replay'), rp = rows('nowcast_replay');
+    host.querySelectorAll('svg').forEach(n => n.remove());
+    if (!rp) { host.classList.add('dash-skeleton'); return; }
+    host.classList.remove('dash-skeleton');
+    const W = Math.max(300, host.clientWidth), H = W < 560 ? 280 : 330, m = { l: 52, r: 16, t: 18, b: 34 };
+    const fin = rp[0].final_close;
+    const lo = Math.min(d3.min(rp, r => r.close_90_lo), fin) - 12, hi = Math.max(d3.max(rp, r => r.close_90_hi), fin) + 12;
+    const y = d3.scaleLinear().domain([lo, hi]).nice().range([H - m.b, m.t]);
+    const step = (W - m.l - m.r) / rp.length, X = i => m.l + (i + 0.5) * step;
+    const svg = d3.select(host).insert('svg', ':first-child').attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%').attr('role', 'img').attr('aria-label', 'Live close ranges at nine times of day against the final close');
+    y.ticks(6).forEach(tv => { svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(tv)).attr('y2', y(tv)).attr('stroke', 'var(--cds-chart-grid)'); svg.append('text').attr('x', m.l - 8).attr('y', y(tv) + 4).attr('text-anchor', 'end').text(f0(tv)); });
+    svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(fin)).attr('y2', y(fin)).attr('stroke', 'var(--color-fg)').attr('stroke-width', 1.4).attr('stroke-dasharray', '5 4');
+    svg.append('text').attr('x', W - m.r).attr('y', y(fin) - 6).attr('text-anchor', 'end').attr('class', 'strong').text('final close ' + f1(fin));
+    const tip = tipFor(host);
+    rp.forEach((r, i) => {
+      const out = r.inside_90 !== 'yes', col = out ? 'var(--color-bad)' : accent(), x = X(i), bw = Math.min(26, step * 0.5);
+      svg.append('line').attr('x1', x).attr('x2', x).attr('y1', y(r.close_90_hi)).attr('y2', y(r.close_90_lo)).attr('stroke', col).attr('stroke-width', 2).attr('stroke-linecap', 'round');
+      svg.append('rect').attr('x', x - bw / 2).attr('width', bw).attr('y', y(r.close_50_hi)).attr('height', y(r.close_50_lo) - y(r.close_50_hi)).attr('rx', 3).attr('fill', col).attr('fill-opacity', 0.35);
+      svg.append('circle').attr('cx', x).attr('cy', y(r.price_then)).attr('r', 3.5).attr('fill', 'var(--color-fg)');
+      svg.append('text').attr('x', x).attr('y', H - 12).attr('text-anchor', 'middle').text(r.asof);
+      svg.append('rect').attr('x', x - step / 2).attr('y', m.t).attr('width', step).attr('height', H - m.t - m.b).attr('fill', 'transparent')
+        .on('mousemove', ev => tip.show(box([line('d', 'As of ' + r.asof + ' IST'), line('', f1(r.price_then), 'Price then'), line('', f0(r.close_50_lo) + ' to ' + f0(r.close_50_hi), '50%'), line('', f0(r.close_90_lo) + ' to ' + f0(r.close_90_hi), '90%'), line('', f1(r.final_close), 'Final close'), line('d', out ? 'Outside the 90% range' : 'Inside the 90% range')]), ev))
+        .on('mouseleave', () => tip.hide());
+    });
+  }
+  function drawRTab() {
+    fillBody($('#bd-rtab'), 'nowcast_replay', [{ field: 'asof' }, { field: 'price_then', cls: 'r num', fmt: f1 }, { field: 'close_90_lo', cls: 'r num', fmt: f1 }, { field: 'close_90_hi', cls: 'r num', fmt: f1 }, { field: 'typical_miss_rs', cls: 'r num', fmt: f1 }, { field: 'inside_90' }, { field: 'error_rs', cls: 'r num', fmt: f1 }]);
+  }
+  function drawBoard() {
+    const days = x => x.kind === 'day', list = rows('scoreboard');
+    fillBody($('#bd-btab'), 'scoreboard', [{ field: 'date' }, { field: 'open', cls: 'r num', fmt: f1 }, { field: 'close', cls: 'r num', fmt: f1 }, { field: 'open_miss_rs', cls: 'r num', fmt: f1 }, { field: 'close_miss_rs', cls: 'r num', fmt: f1 }, { field: 'close_inside_90' }, { field: 'lean' }, { field: 'lean_hit' },
+      { field: 'pt1_net_pct', cls: 'r num', fmt: v => v == null ? 'no trade' : f2(v) + '%' }, { field: 'pt2_net_pct', cls: 'r num', fmt: v => v == null ? 'no trade' : f2(v) + '%' }], { filter: days });
+    const none = !list || !list.some(days); $('#bd-bempty').hidden = !none; $('#bd-btab').closest('.tw').hidden = none;
+  }
+
   $('#bd-real').addEventListener('change', e => { state.showReal = e.target.checked; drawFan(); drawLadder(); drawScen(); fillMarks(); });
-  dash.onData(() => { const sw = $('#bd-swacc'); if (sw) sw.style.background = accent(); fillMarks(); drawFan(); drawLadder(); drawScen(); drawScore(); drawBeh(); drawVer(); drawRec(); });
+  dash.onData(() => { const sw = $('#bd-swacc'); if (sw) sw.style.background = accent(); fillMarks(); drawFan(); drawLadder(); drawScen(); drawReplay(); drawRTab(); drawBoard(); drawScore(); drawBeh(); drawVer(); drawRec(); });
 })();
 </script>
