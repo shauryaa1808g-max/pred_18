@@ -1,0 +1,58 @@
+{
+ "selftest_all_passed": true,
+ "sigR_for_16oct_pct": 2.260051487361747,
+ "tercile_cut_low_mid_pct": 1.7156826565117163,
+ "tercile_cut_mid_high_pct": 2.8566639218836967,
+ "regime_for_16oct": "mid",
+ "sigma_R_last_used_pct": 2.232051700867741,
+ "hourly_audit": {
+  "dates_in_file": 492,
+  "not_in_daily": [
+   "2025-10-21"
+  ],
+  "not_7_bars": [
+   "2025-09-16",
+   "2026-04-20",
+   "2026-07-17",
+   "2026-08-14",
+   "2026-08-18",
+   "2026-08-24",
+   "2026-09-03",
+   "2026-09-17",
+   "2026-09-22",
+   "2026-09-29",
+   "2026-10-08",
+   "2026-10-09"
+  ],
+  "sessions_used": 479
+ },
+ "cut_low_mid_pct_expanding": 1.7156826565117163,
+ "cut_mid_high_pct_expanding": 2.8566639218836967,
+ "regime_for_16oct_expanding": "mid",
+ "cut_low_mid_pct_trailing500": 2.443214417419666,
+ "cut_mid_high_pct_trailing500": 3.2168224080724785,
+ "regime_for_16oct_trailing500": "low",
+ "share_sessions_by_regime_expanding_all": {
+  "low": 0.052002080083203325,
+  "mid": 0.32293291731669266,
+  "high": 0.625065002600104
+ },
+ "share_sessions_by_regime_trailing500_all": {
+  "low": 0.30213208528341134,
+  "mid": 0.26521060842433697,
+  "high": 0.4326573062922517
+ },
+ "n_by_regime_final_expanding": {
+  "low": 3,
+  "mid": 261,
+  "high": 56
+ },
+ "n_by_regime_final_trailing500": {
+  "low": 263,
+  "mid": 57,
+  "high": 0
+ },
+ "predictions_file_sha256": "6b97a92d6fc4cf4d0d729c16ab444d88b6b09a303d2a6231b81a7b0f757dd04b",
+ "daily_sessions": 2390,
+ "hourly_sessions_used": 479
+}

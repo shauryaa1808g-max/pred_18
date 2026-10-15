@@ -1,0 +1,8 @@
+check,value,n
+"max relative difference, my S6 sigma vs stored",8.215650382226158e-15,1887
+"Hp: stored-sigma bootstrap, Final to 2026-10-12: coverage 90%",0.9022082018927445,317
+"Hp: stored-sigma bootstrap, Final to 2026-10-12: coverage 50%",0.4668769716088328,317
+"Hp: stored-sigma bootstrap, Final to 2026-10-12: pinball x1e4",31.24011037736116,317
+"Lp: stored-sigma bootstrap, Final to 2026-10-12: coverage 90%",0.886435331230284,317
+"Lp: stored-sigma bootstrap, Final to 2026-10-12: coverage 50%",0.49842271293375395,317
+"Lp: stored-sigma bootstrap, Final to 2026-10-12: pinball x1e4",36.76733995178516,317

@@ -1,0 +1,5 @@
+{
+ "c_live": 1.025,
+ "elapsed_s": 61.63531517982483,
+ "note": "checked leave-one-session-out on 39 sessions (8 checkpoints each, strongly dependent): 'half the time at or below/above' held 54% (high) / 57% (low) of the time and 'nine times in ten' held 88% / 88% (effective sample about 39 sessions, so +-8 points on the first and +-5 on the second from sampling alone; per-checkpoint table in research/hl/B_liveintraday.md)"
+}

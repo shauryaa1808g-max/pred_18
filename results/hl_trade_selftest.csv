@@ -1,0 +1,9 @@
+check,passed,detail
+ewma_equals_project_S1,True,0.0
+earlier_sessions_bit_identical_when_session_t_changed,True,0
+later_sessions_change_positive_control_(variants),True,10
+sigma_and_level_inputs_of_session_t_unchanged_by_its_own_HLC,True,0
+stored_model_P0_equals_daily_prev,True,0.0
+placebo_zero_drift_LOG_gross_mean_within_4se_of_zero,True,"[('R1_k1.0', np.float64(0.0314), np.float64(0.0235), 12486, np.float64(0.0657)), ('R2_k1.0', np.float64(-0.0285), np.float64(0.0235), 12444, np.float64(-0.0629)), ('R5_z1.0', np.float64(0.0448), np.float64(0.0282), 10125, np.float64(0.0448)), ('R3_z1.5', np.float64(-0.0083), np.float64(0.0813), 1281, np.float64(-0.0083)), ('R4a', np.float64(-0.0114), np.float64(0.0206), 9649, np.float64(-0.0114)), ('R4b', np.float64(-0.0072), np.float64(0.0198), 7533, np.float64(-0.0072)), ('R7_emp_q25', np.float64(0.0281), np.float64(0.0249), 12333, np.float64(0.0664)), ('R8_emp_q75', np.float64(-0.0314), np.float64(0.0251), 12243, np.float64(-0.0702))]"
+bracket_conservative_vs_optimistic_straddle_zero (info),True,"conservative [-0.133, -0.154], optimistic [0.344, 0.319] (% gross per session, long, short)"
+sim_vs_real_median_daily_range_pct (info),True,real 3.06 sim 3.29; mean real 3.67 sim 3.89

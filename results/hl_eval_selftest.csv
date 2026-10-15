@@ -1,0 +1,37 @@
+test,phase,variant,session,identical_up_to_and_including_session,changes_afterwards,overall
+"outcome (H, L, C) of one session changed",pre,P_EMP250,2026-08-19,True,True,PASSED
+"outcome (H, L, C) of one session changed",pre,P_EMP500,2026-08-19,True,True,PASSED
+"outcome (H, L, C) of one session changed",pre,P_S0,2026-08-19,True,True,PASSED
+"outcome (H, L, C) of one session changed",pre,P_S1,2026-08-19,True,True,PASSED
+"outcome (H, L, C) of one session changed",pre,P_S4,2026-08-19,True,True,PASSED
+"outcome (H, L, C) of one session changed",pre,P_S6,2026-08-19,True,True,PASSED
+"outcome (H, L, C) of one session changed",pre,P_RNG,2026-08-19,True,True,PASSED
+"outcome (H, L, C) of one session changed",pre,P_GK,2026-08-19,True,True,PASSED
+"outcome (H, L, C) of one session changed",post,W_EMP250,2026-08-19,True,True,PASSED
+"outcome (H, L, C) of one session changed",post,W_EMP500,2026-08-19,True,True,PASSED
+"outcome (H, L, C) of one session changed",post,W_I6,2026-08-19,True,True,PASSED
+"outcome (H, L, C) of one session changed",post,W_I6w,2026-08-19,True,True,PASSED
+"outcome (H, L, C) of one session changed",post,W_HAR,2026-08-19,True,True,PASSED
+"outcome (H, L, C) of one session changed",post,W_HARz,2026-08-19,True,True,PASSED
+"outcome (H, L, C) of one session changed",post,W_SIZE,2026-08-19,True,True,PASSED
+"outcome (H, L, C) of one session changed",post,W_SIGN,2026-08-19,True,True,PASSED
+"outcome (H, L, C) of one session changed",post,W_SZSG,2026-08-19,True,True,PASSED
+"outcome (H, L, C) of one session changed",post,W_PRE,2026-08-19,True,True,PASSED
+only the open of one session changed,pre,P_EMP250,2026-08-19,True,,PASSED
+only the open of one session changed,pre,P_EMP500,2026-08-19,True,,PASSED
+only the open of one session changed,pre,P_S0,2026-08-19,True,,PASSED
+only the open of one session changed,pre,P_S1,2026-08-19,True,,PASSED
+only the open of one session changed,pre,P_S4,2026-08-19,True,,PASSED
+only the open of one session changed,pre,P_S6,2026-08-19,True,,PASSED
+only the open of one session changed,pre,P_RNG,2026-08-19,True,,PASSED
+only the open of one session changed,pre,P_GK,2026-08-19,True,,PASSED
+only the open of one session changed,post,W_EMP250,2026-08-19,True,,PASSED
+only the open of one session changed,post,W_EMP500,2026-08-19,True,,PASSED
+only the open of one session changed,post,W_I6,2026-08-19,True,,PASSED
+only the open of one session changed,post,W_I6w,2026-08-19,True,,PASSED
+only the open of one session changed,post,W_HAR,2026-08-19,True,,PASSED
+only the open of one session changed,post,W_HARz,2026-08-19,False,,PASSED
+only the open of one session changed,post,W_SIZE,2026-08-19,False,,PASSED
+only the open of one session changed,post,W_SIGN,2026-08-19,False,,PASSED
+only the open of one session changed,post,W_SZSG,2026-08-19,False,,PASSED
+only the open of one session changed,post,W_PRE,2026-08-19,False,,PASSED
