@@ -23,5 +23,5 @@ def report(lab, p, a):
 pR = wf(['sp', 'pI', 'pR'], 'R'); report('Close-to-close R from evening-before information', pR, df.R.loc[pR.index])
 pO = wf(['sp', 'pI', 'pR'], 'G'); report('Opening gap G from evening-before information', pO, df.G.loc[pO.index])
 pI = wf(['G', 'sp', 'pI', 'pR'], 'I'); aI = df.I.loc[pI.index]; report('Open-to-close I given the actual open', pI, aI)
-net = np.exp(np.sign(pI) * aI) - 1 - COST
+net = np.sign(pI) * (np.exp(aI) - 1) - COST              # simple return: a short earns -(close/open - 1)
 print(f"Trade open->close in the predicted direction, every day: mean net {100*net.mean():+.3f}% per trade, win {100*(net>0).mean():.0f}%, t={net.mean()/(net.std()/np.sqrt(len(net))):+.1f}; last 250: {100*net.iloc[-250:].mean():+.3f}%")

@@ -54,6 +54,8 @@ def ensure_bars(verbose: bool = True) -> pd.DataFrame:
         if r.empty:
             continue
         r = r.iloc[0]
+        if abs(float(r["prev"]) / prev_close - 1) > 0.002:
+            raise RuntimeError(f"{day.date()}: NSE previous close {r['prev']} differs from our last close {prev_close} by more than 0.2%: a missing session or a corporate action (bonus/split/dividend). Check data/corp_actions_verified.csv and the NSE files before using bars after this date.")
         rows.append(pd.Series({"series": "EQ", "open": r["open"], "high": r["high"], "low": r["low"], "last": r["last"], "close": r["close"], "vol": r["vol"], "turnover_cr": r["turnover_cr"], "trades": r["trades"],
                                "src": "udiff", "short_session": False, "weekend": False, "prev_close_kept": prev_close, "ca_factor": 1.0, "prev": prev_close, "nse_prev": r["prev"], "nse_prev_vs_kept_close": r["prev"] / prev_close}, name=day))
         prev_close = float(r["close"])

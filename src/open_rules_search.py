@@ -27,7 +27,7 @@ for c in [c for c in F.columns if c != 'I']:
     x = F[c]; z = x / x.expanding(250).std().shift(1)          # past-only scale
     for mode, sgn in (('follow', 1), ('fade', -1)):
         m = (z.abs() > 1)
-        r = (sgn * np.sign(z[m]) * F['I'][m]); net = np.exp(r) - 1 - COST
+        side = sgn * np.sign(z[m]); net = side * (np.exp(F['I'][m]) - 1) - COST   # simple return (a short earns -(close/open - 1))
         for per, sl in (('Dev', slice(None, '2024-06-30')), ('ValFinal', slice('2024-07-01', None))):
             n = net.loc[sl]
             rows.append({'feature': c, 'mode': mode, 'period': per, 'trades': len(n), 'mean_net_pct': 100 * n.mean(), 'win_pct': 100 * (n > 0).mean(), 't': n.mean() / (n.std(ddof=1) / np.sqrt(len(n))) if len(n) > 2 else np.nan})

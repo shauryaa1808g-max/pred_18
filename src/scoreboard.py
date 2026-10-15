@@ -6,11 +6,13 @@
 
 What an entry holds (all decided before the open, from past data only):
   * open and close distributions (same pre-registered volatility models as the main forecast; centre = previous official close, no drift claimed)
-  * a direction LEAN for the close and for open->close from last night's S&P 500 move plus BSE's own last two days (expanding walk-forward OLS; the check in src/direction_check.py found
-    about 55% right on 8 years, unstable by year, roughly zero after costs) -- a lean, not a prediction
+  * a direction LEAN for the close and for open->close from last night's S&P 500 move plus BSE's own last session (expanding walk-forward OLS; src/direction_check.py found the close lean
+    about 55% right on 8 years, unstable by year; the open->close lean is 56.6% vs 55.8% for 'always short', and its paper trade earns about zero after costs) -- a lean, not a prediction
   * two PAPER-TRADE rules fixed now, nothing else will be added: PT1 = trade open->close in the lean's direction every day; PT2 = same, only when the lean is in its strongest 20%.
     Round-trip cost 0.10% is charged.  Paper only: no real money is implied.
-The scoreboard compares everything with the dumb benchmark 'unchanged' (open = close = previous close).
+The centre of both distributions is the previous official close, so 'my miss' and the 'unchanged' miss are the same number.  The bands are unconditional: after a big S&P move
+(below -1%) the open band is too narrow (in-sample the 50% open band covered only 29% of such days).  30 sessions cannot separate 55% from 50% (that needs several hundred);
+use the scoreboard to catch gross failures and to accumulate evidence, not to declare success.
 """
 from __future__ import annotations
 
@@ -47,6 +49,9 @@ def sp_returns() -> pd.Series:
         r = json.loads(out.stdout)["chart"]["result"][0]
         y = pd.Series(r["indicators"]["quote"][0]["close"], index=pd.to_datetime(r["timestamp"], unit="s", utc=True).tz_convert("America/New_York").tz_localize(None).normalize()).dropna()
         y = y[~y.index.duplicated(keep="last")]
+        ny = dt.datetime.now(dt.timezone.utc).astimezone(__import__('zoneinfo').ZoneInfo('America/New_York'))
+        if len(y) and y.index[-1].date() == ny.date() and (ny.hour * 60 + ny.minute) < 16 * 60 + 30:
+            y = y.iloc[:-1]                                    # the US session of today is still in progress: never use a partial bar
         s = pd.concat([s, y[y.index > s.index[-1]]])
     except Exception as e:                                             # noqa: BLE001
         print("WARNING: could not extend the S&P series from Yahoo:", e)
@@ -69,8 +74,25 @@ def lean_models(d: pd.DataFrame, spr: pd.Series) -> dict:
     return {"df": df, "coef_I": fit("I", len(df)), "coef_R": fit("R", len(df)), "thr80_abs_I": float(np.quantile(np.abs(wf_I), 0.8)), "last_I": float(t["I"].iloc[-1]), "last_R": float(t["R"].iloc[-1])}
 
 
-def issue(target: pd.Timestamp, dry: bool = False) -> dict:
+def next_session(now: dt.datetime) -> pd.Timestamp:
+    d = pd.Timestamp(now.date())
+    if now.hour * 60 + now.minute >= 9 * 60 + 15:
+        d += pd.Timedelta(days=1)
+    while d.dayofweek >= 5:
+        d += pd.Timedelta(days=1)
+    return d
+
+
+def issue(target: pd.Timestamp, dry: bool = False, late: bool = False, force_gap: bool = False) -> dict:
+    now = dt.datetime.now(IST)
+    if target.dayofweek >= 5:
+        raise SystemExit(f"{target.date()} is a weekend; pass a trading day")
+    if not late and not dry and now >= dt.datetime.combine(target.date(), dt.time(9, 0), tzinfo=IST):
+        raise SystemExit(f"it is {now:%H:%M} IST on or after the pre-open of {target.date()}: an entry made now is not a pre-open entry (pass --late to record it as late)")
     ensure_bars(); d = load_bse_ext()
+    missing = [x for x in pd.bdate_range(d.index[-1] + pd.Timedelta(days=1), target - pd.Timedelta(days=1))]
+    if missing and not force_gap:
+        raise SystemExit(f"no official bar for weekday(s) {[str(x.date()) for x in missing]} between the last bar and the target: a holiday (then pass --force-gap) or a missing file (then fix the data first)")
     if d.index[-1] >= target:
         raise SystemExit(f"data already contains {target.date()}; issue entries before the session")
     t = targets(d); n = len(d); P0 = float(d["close"].iloc[-1])
@@ -87,9 +109,12 @@ def issue(target: pd.Timestamp, dry: bool = False) -> dict:
              "open": q["G"], "close": q["R"], "unchanged_benchmark": P0,
              "lean": {"us_session_used": str(sp_date.date()), "sp500_return_pct": 100 * sp_now, "pred_close_to_close_pct": 100 * pred_R, "pred_open_to_close_pct": 100 * pred_I,
                       "direction_close": "up" if pred_R > 0 else "down", "direction_open_to_close": "up" if pred_I > 0 else "down", "strongest_20pct_threshold_abs_pct": 100 * lm["thr80_abs_I"],
-                      "statement": "a lean, not a prediction: about 55% right on 8 years, unstable by year, about zero profit after costs"},
+                      "statement": "a lean, not a prediction: close direction about 55% right on 8 years (unstable by year); the open-to-close paper trade earns about zero after costs",
+                      "band_note": "bands are unconditional: after a big S&P move the open band is too narrow"},
              "paper_trades": {"PT1_every_day": {"side": "long" if pred_I > 0 else "short", "enter": "official open", "exit": "official close", "round_trip_cost_pct": 100 * COST},
                               "PT2_strongest_20pct_only": {"side": ("long" if pred_I > 0 else "short") if pt2_on else "none", "enter": "official open", "exit": "official close", "round_trip_cost_pct": 100 * COST}},
+             "late_entry": bool(late or (now >= dt.datetime.combine(target.date(), dt.time(9, 0), tzinfo=IST))), "force_gap": force_gap,
+             "data_sha256": {f: __import__('hashlib').sha256(Path(f).read_bytes()).hexdigest() for f in ("data/processed/bse_daily.csv", "data/processed/bse_daily_extra.csv") if Path(f).exists()},
              "code_commit": git("rev-parse", "HEAD"), "code_tree_dirty": bool(git("status", "--porcelain", "--untracked-files=no"))}
     if dry:
         print(words(entry)); print("\n(dry run: nothing written)"); return entry
@@ -127,7 +152,7 @@ def score(day: pd.Timestamp) -> dict:
     for k in ("PT1_every_day", "PT2_strongest_20pct_only"):
         side = e["paper_trades"][k]["side"]; pnl = np.nan
         if side != "none":
-            ret = np.log(cl / op) * (1 if side == "long" else -1); pnl = 100 * (np.exp(ret) - 1 - COST)
+            pnl = 100 * ((1 if side == "long" else -1) * (cl / op - 1) - COST)      # simple return: a short earns -(close/open - 1)
         res[k.split("_")[0] + "_net_pct"] = None if np.isnan(pnl) else float(pnl); res[k.split("_")[0] + "_side"] = side
     OUT.mkdir(parents=True, exist_ok=True); (OUT / f"{day.date()}.json").write_text(json.dumps(res, indent=1))
     old = pd.read_csv(CSV) if CSV.exists() else pd.DataFrame()
@@ -142,12 +167,12 @@ def report() -> None:
     s = pd.read_csv(CSV); n = len(s)
     mae = lambda a: float(np.mean(np.abs(a)))                          # noqa: E731
     print(f"SCOREBOARD  ({n} scored session{'s' if n != 1 else ''}: {s.date.iloc[0]} to {s.date.iloc[-1]})")
-    print(f"  open : my typical miss Rs {mae(s.open_miss_rs):.1f}  vs 'unchanged' Rs {mae(s.open_miss_unchanged_rs):.1f};  inside my 50% band {100*s.open_in50.mean():.0f}%, 90% band {100*s.open_in90.mean():.0f}%")
-    print(f"  close: my typical miss Rs {mae(s.close_miss_rs):.1f}  vs 'unchanged' Rs {mae(s.close_miss_unchanged_rs):.1f};  inside my 50% band {100*s.close_in50.mean():.0f}%, 90% band {100*s.close_in90.mean():.0f}%")
+    print(f"  open : typical miss Rs {mae(s.open_miss_rs):.1f} (same as 'unchanged', since the centre is the previous close);  inside my 50% band {100*s.open_in50.mean():.0f}%, 90% band {100*s.open_in90.mean():.0f}%")
+    print(f"  close: typical miss Rs {mae(s.close_miss_rs):.1f} (same as 'unchanged');  inside my 50% band {100*s.close_in50.mean():.0f}%, 90% band {100*s.close_in90.mean():.0f}%")
     h = s.lean_hit.dropna().astype(bool)
     if len(h):
-        lo, hi = stats.beta.ppf([0.025, 0.975], [h.sum() + 1e-9, h.sum() + 1], [len(h) - h.sum() + 1, len(h) - h.sum() + 1e-9]) if 0 < h.sum() < len(h) else (np.nan, np.nan)
-        print(f"  direction lean right {int(h.sum())} of {len(h)} ({100*h.mean():.0f}%; 95% range about {100*lo:.0f}-{100*hi:.0f}%; a coin flip is 50%; wait for 30+ sessions before reading anything into it)")
+        ci = stats.binomtest(int(h.sum()), len(h)).proportion_ci(method="exact")
+        print(f"  direction lean right {int(h.sum())} of {len(h)} ({100*h.mean():.0f}%; 95% range {100*ci.low:.0f}-{100*ci.high:.0f}%; a coin flip is 50%; 30 sessions cannot separate 55% from 50%: that takes several hundred)")
     for k, lab in (("PT1", "PT1 every day"), ("PT2", "PT2 strongest 20%")):
         v = s[k + "_net_pct"].dropna()
         if len(v):
@@ -156,9 +181,9 @@ def report() -> None:
 
 
 if __name__ == "__main__":
-    ap = argparse.ArgumentParser(); ap.add_argument("cmd", choices=["issue", "score", "report"]); ap.add_argument("--date", default=None); ap.add_argument("--dry", action="store_true"); a = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("cmd", choices=["issue", "score", "report"]); ap.add_argument("--date", default=None); ap.add_argument("--dry", action="store_true"); ap.add_argument("--late", action="store_true"); ap.add_argument("--force-gap", action="store_true"); a = ap.parse_args()
     if a.cmd == "report":
         report()
     else:
-        day = pd.Timestamp(a.date) if a.date else pd.Timestamp(dt.datetime.now(IST).date()) + pd.Timedelta(days=1 if a.cmd == "issue" else 0)
-        issue(day, a.dry) if a.cmd == "issue" else (score(day), report())
+        day = pd.Timestamp(a.date) if a.date else (next_session(dt.datetime.now(IST)) if a.cmd == "issue" else pd.Timestamp(dt.datetime.now(IST).date()))
+        issue(day, a.dry, a.late, a.force_gap) if a.cmd == "issue" else (score(day), report())
