@@ -221,12 +221,16 @@ def words(o: dict) -> str:
         L.append("WARNING: this date is a weekend; the forecast is for the next trading session after the data.")
     if o["missing_weekdays_between_data_and_date"]:
         L.append(f"WARNING: no official bar for {o['missing_weekdays_between_data_and_date']} between the data and this date: a holiday, or the data are stale; the forecast is for the NEXT session after the data.")
-    def side(blk):
+    def side(blk, post=False):
         out = []
         for k, nm in (("high", "HIGH"), ("low", "LOW ")):
             b, q = blk[k], blk[k]["price_quantiles"]
             miss = f"  Typical miss about Rs {b['typical_miss_rs']:,.0f} (half the time within Rs {b['half_the_time_within_rs']:,.0f}), measured out of sample on the last {b['miss_measured_on_sessions']} sessions." if "typical_miss_rs" in b else ""
-            out.append(f"  {nm}: best single guess Rs {q['q50']:,.0f}.{miss}\n        Half the time between Rs {q['q25']:,.0f} and {q['q75']:,.0f} (band Rs {b['band_width_rs']['50%']:,.0f} wide); nine times in ten between Rs {q['q5']:,.0f} and {q['q95']:,.0f} (band Rs {b['band_width_rs']['90%']:,.0f} wide).")
+            if post and k == "high":     # HO has an atom at zero (the open is the high on ~4% of days): the q5-q95 band covers 95% in Final, so it is not a '9 in 10' band
+                wide = f"19 days in 20 the high is at or below Rs {q['q95']:,.0f} (on about 1 day in 25 the open itself is the high)."
+            else:
+                wide = f"nine times in ten between Rs {q['q5']:,.0f} and {q['q95']:,.0f} (band Rs {b['band_width_rs']['90%']:,.0f} wide)."
+            out.append(f"  {nm}: best single guess Rs {q['q50']:,.0f}.{miss}\n        Half the time between Rs {q['q25']:,.0f} and {q['q75']:,.0f} (band Rs {b['band_width_rs']['50%']:,.0f} wide); " + wide)
             c = b.get("cas_slice_tail_shares")
             if c and max(c["below_q5"], c["above_q95"]) > 0.10:
                 out.append(f"        Caution (small sample, suggestive): since the closing auction began ({c['n']} sessions) the actual {nm.strip().lower()} fell below this band's 5% level on {100*c['below_q5']:.0f}% and above its 95% level on {100*c['above_q95']:.0f}% of days (5% each expected).")
@@ -236,7 +240,7 @@ def words(o: dict) -> str:
     L.append("  Chance the high reaches +1% / +2% above the previous close: " + f"{100*tp['high >= P0+1%']:.0f}% / {100*tp['high >= P0+2%']:.0f}%; the low reaches -1% / -2% below it: {100*tp['low <= P0-1%']:.0f}% / {100*tp['low <= P0-2%']:.0f}%.")
     if "post_open" in o:
         po = o["post_open"]
-        L.append(f"AFTER THE OPEN (official open Rs {po['open']:,.1f}, gap {po['gap_pct']:+.2f}% vs the previous close; the high is at least the open and the low at most the open):\n" + side(po))
+        L.append(f"AFTER THE OPEN (official open Rs {po['open']:,.1f}, gap {po['gap_pct']:+.2f}% vs the previous close; the high is at least the open and the low at most the open):\n" + side(po, post=True))
         tp = po["touch_prob"]
         L.append("  Chance the high gets +1% / +2% above the open: " + f"{100*tp['high >= open+1%']:.0f}% / {100*tp['high >= open+2%']:.0f}%; the low gets -1% / -2% below it: {100*tp['low <= open-1%']:.0f}% / {100*tp['low <= open-2%']:.0f}%.")
     L.append("Honest limits: ranges, not a direction call; the gap size and direction did not improve the after-open bands in tests (they only set the level); the targets are the NSE official high/low (Yahoo / chart extremes differ by a few rupees); see research/hl/A_dayahead.md.")
