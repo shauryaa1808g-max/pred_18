@@ -1191,6 +1191,60 @@ def finalize_adoption():
     print("adopted by the full rule:", a[a.adopted][["variant", "target"]].values.tolist() or "none")
 
 
+# ----------------------------------------------------------------------------------------------- timestamp spot check of the feature panel
+def spotcheck(n_sessions=60, seed=5) -> pd.DataFrame:
+    """Recompute a sample of feature values for random sessions straight from the input tables with a separate, plain implementation of the timestamp rules (previous BSE session for NSE tables; last US observation
+    dated strictly before the IST date, one more observation back for Brent / dollar index / US 10y; calendar rules) and compare with the feature panel the models use -> results/hl2_spotcheck.csv."""
+    tb = load_tables(last=LAST_OFFICIAL)
+    ctx = make_context(tb)
+    F, S = ctx["F"], ctx["dates"]
+    bars, ix, br, iv = tb["bars"], tb["idx"], tb["br"], tb["iv"]
+    rng = np.random.default_rng(seed)
+    sess = list(S[rng.choice(np.arange(START, len(S)), n_sessions, replace=False)]) + [pd.Timestamp(x) for x in ("2026-10-12", "2026-10-15", "2025-05-23", "2022-03-21")]
+    rows = []
+
+    def us_obs(s, t, extra, kind, max_age):
+        s2 = s[s.index < t]
+        if len(s2) < 3 + extra:
+            return np.nan
+        cur, prv, dte = s2.iloc[-1 - extra], s2.iloc[-2 - extra], s2.index[-1 - extra]
+        if (t - dte).days > max_age:
+            return np.nan
+        return {"lvl": np.log(cur), "abs": abs(np.log(cur / prv)), "ret": np.log(cur / prv), "abschg": abs(cur - prv)}[kind]
+
+    for t in sess:
+        i = S.get_loc(t); tp = S[i - 1]
+        h, l = bars["high"].values, bars["low"].values
+        lt = np.log(bars["turnover_cr"].values.astype(float))
+        z = (lt[i - 1] - lt[i - 60:i].mean()) / lt[i - 60:i].std(ddof=1) if i >= 60 else np.nan
+        last2 = (pd.Timestamp(t) + pd.offsets.MonthBegin(1))
+        month_end = float(np.busday_count(t.date() + pd.Timedelta(days=1), last2.date()) <= 1)
+        exp = {
+            "lnvix": np.log(ix.loc[tp, "vix_close"]) if tp in ix.index else np.nan,
+            "nifty_lnrange": np.log(np.log(ix.loc[tp, "nifty50_high"] / ix.loc[tp, "nifty50_low"])) if tp in ix.index else np.nan,
+            "bank_lnrange": np.log(np.log(ix.loc[tp, "bank_high"] / ix.loc[tp, "bank_low"])) if tp in ix.index else np.nan,
+            "br_absadv": abs(br.loc[tp, "adv_share"] - 0.5) if tp in br.index else np.nan,
+            "lnrange_y": np.log(np.log(h[i - 1] / l[i - 1])),
+            "absgap_y": abs(np.log(bars["open"].iloc[i - 1] / bars["prev"].iloc[i - 1])),
+            "turn_z60": z,
+            "abs_sp": us_obs(tb["us"]["sp"], t, 0, "abs", STALE), "sp_ret": us_obs(tb["us"]["sp"], t, 0, "ret", STALE), "lnvixus": us_obs(tb["us"]["vixus"], t, 0, "lvl", STALE),
+            "abs_usdinr": us_obs(tb["us"]["usdinr"], t, 0, "abs", STALE),
+            "abs_brent": us_obs(tb["us"]["brent"], t, 1, "abs", STALE_LAG), "abs_dxy": us_obs(tb["us"]["dxy"], t, 1, "abs", STALE_LAG), "abs_us10y": us_obs(tb["us"]["us10y"], t, 1, "abschg", STALE_LAG),
+            "fri": float(t.dayofweek == 4), "tue": float(t.dayofweek == 1), "month_end": month_end,
+            "post_hol": float((t - tp).days >= 4),
+            "lniv": np.log(iv.loc[tp, "iv_atm"]) if (tp in iv.index) else np.nan,
+            "exp_day": (float(t in tb["expiries"]) if t >= EXP_START else np.nan),
+        }
+        for f, e in exp.items():
+            v = F.loc[t, f]
+            ok = (np.isnan(v) and np.isnan(e)) or (np.isfinite(v) and np.isfinite(e) and abs(v - e) <= 1e-9 * max(1.0, abs(e)))
+            rows.append(dict(feature=f, session=str(t.date()), panel=float(v), recomputed=float(e) if np.isfinite(e) else np.nan, match=bool(ok)))
+    df = pd.DataFrame(rows)
+    df.to_csv(OUT / "hl2_spotcheck.csv", index=False)
+    print(df.groupby("feature").match.agg(["count", "sum"]).T.to_string()); print(f"spot check: {int(df.match.sum())} of {len(df)} feature values match")
+    return df
+
+
 # ----------------------------------------------------------------------------------------------- report tables (markdown, printed from the result files)
 def _verdict(r):
     if not r.family_member:
@@ -1232,7 +1286,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--date"); ap.add_argument("--open", type=float, default=None); ap.add_argument("--variant", default=None); ap.add_argument("--json", action="store_true"); ap.add_argument("--save", action="store_true")
     ap.add_argument("--refresh-fill", action="store_true"); ap.add_argument("--fill-cache", default=None)
-    ap.add_argument("--baseline-check", action="store_true"); ap.add_argument("--tables", action="store_true"); ap.add_argument("--eval", action="store_true"); ap.add_argument("--leakage", action="store_true"); ap.add_argument("--jobs", type=int, default=4)
+    ap.add_argument("--baseline-check", action="store_true"); ap.add_argument("--tables", action="store_true"); ap.add_argument("--spotcheck", action="store_true"); ap.add_argument("--eval", action="store_true"); ap.add_argument("--leakage", action="store_true"); ap.add_argument("--jobs", type=int, default=4)
     a = ap.parse_args()
     if a.refresh_fill:
         return refresh_fill(cache=a.fill_cache)
@@ -1240,6 +1294,8 @@ def main():
         return baseline_check()
     if a.tables:
         return tables()
+    if a.spotcheck:
+        return spotcheck()
     if a.eval:
         return evaluate(n_jobs=a.jobs)
     if a.leakage:
