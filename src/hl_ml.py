@@ -6,6 +6,7 @@ Targets (identical to the baseline):  pre-open  Hp = ln(H/P0), Lp = ln(L/P0)   |
 Two ways a model is tied to the baseline (report 0.3):  A (direct):  y/sigma_t ~ f(x_t) ;  B (offset):  (y - q_base_t(tau))/sigma_t ~ f_tau(x_t), f = 0 is the baseline.
 
 Usage (repo root; python3 src/hl_ml.py ...):
+  --baseline-check                  rebuild the project baseline on the sessions before 16 Oct 2026 and compare with the stored results/hl_eval_*.csv (writes results/hl3_baseline_repro.csv)
   --validate-solver                 check the own L1 quantile-regression solver against scikit-learn / HiGHS
   --eval [--workers N]              full walk-forward evaluation of all variants (hours; cached in the scratch folder), writes results/hl3_*.csv/json
   --leak                            leakage test of every variant at 6 sessions (junk from the target session onward)
@@ -107,17 +108,27 @@ def _breadth_row(eq: pd.DataFrame, date) -> dict:
             "n_ge_5pct_up": int((r >= .05).sum()), "n_ge_5pct_dn": int((r <= -.05).sum())}
 
 
-def load_inputs() -> dict:
-    """All raw inputs as plain frames.  Breadth and peers are extended past their file end from the raw NSE bhavcopy zips (data/raw/udiff, read only)."""
+STUDY_ASOF = "2026-10-16"                         # EXCLUSIVE data cap of the study: the session of 16 Oct 2026 is the forecast target; nothing dated on or after it is read by any study run
+
+
+def load_inputs(as_of=None) -> dict:
+    """All raw inputs as plain frames, every series cut to dates STRICTLY BEFORE `as_of` (default STUDY_ASOF = 2026-10-16: the repository now also holds the 16 Oct bar, which no study may use).
+    Breadth and peers are extended past their file end from the raw NSE bhavcopy zips (data/raw/udiff, read only)."""
     _root()
-    d = H.load_ohlc()
+    cap = pd.Timestamp(STUDY_ASOF if as_of is None else as_of)
+    d = H.load_ohlc(cap)
     ix = pd.read_csv("data/processed/index_daily.csv", parse_dates=["date"]).set_index("date").sort_index()
+    ix = ix[ix.index < cap]
     br = pd.read_csv("data/processed/breadth_daily.csv", parse_dates=["date"]).set_index("date").sort_index()
+    br = br[br.index < cap]
     pe = pd.read_csv("data/processed/peers_daily.csv", parse_dates=["date"])
     pe = pe.drop_duplicates(["symbol", "date"], keep="last")
+    pe = pe[pe["date"] < cap]
     add_b, add_p = [], []
     for z in sorted(Path("data/raw/udiff").glob("*.zip")):
         ds = pd.Timestamp(f"{z.stem[:4]}-{z.stem[4:6]}-{z.stem[6:]}")
+        if ds >= cap:
+            continue
         need_b, need_p = ds > br.index.max(), ds > pe["date"].max()
         if not (need_b or need_p):
             continue
@@ -136,8 +147,10 @@ def load_inputs() -> dict:
     mac = {}
     for nm in ("SP500", "VIXCLS", "DEXINUS", "DCOILBRENTEU", "DTWEXBGS", "DGS10"):
         x = pd.read_csv(f"data/raw/macro/{nm}.csv", na_values=[".", ""], parse_dates=["observation_date"]).dropna()
+        x = x[x["observation_date"] < cap]
         mac[nm] = x.set_index("observation_date").iloc[:, 0].astype(float).sort_index()
     iv = pd.read_csv("data/processed/bse_iv_daily.csv", parse_dates=["date", "expiry"]).set_index("date").sort_index()
+    iv = iv[iv.index < cap]
     ex = set()
     for f in sorted(Path("data/raw/fo_bse").glob("*.csv")):
         z = pd.read_csv(f, usecols=["TckrSymb", "XpryDt"])
@@ -1336,7 +1349,7 @@ def ml_forecast(date, open_price=None, workers: int = 4, inp: dict | None = None
     global _CTX
     _root()
     date = pd.Timestamp(date)
-    inp = load_inputs() if inp is None else inp
+    inp = load_inputs(as_of=date) if inp is None else inp
     inp = dict(inp)
     inp["d"] = inp["d"][inp["d"].index < date]
     n = len(inp["d"])
@@ -1390,6 +1403,99 @@ def ml_forecast(date, open_price=None, workers: int = 4, inp: dict | None = None
     return out
 
 
+
+# ----------------------------------------------------------------------------------------------- baseline reproduction (must pass before any variant is read)
+def baseline_repro() -> pd.DataFrame:
+    """Rebuild the project's baseline (hl_model.build on the sessions before STUDY_ASOF) and (a) compare its window metrics with the stored results/hl_eval_{pre,post}open.csv (variants P_S6 / W_I6),
+    (b) compare its quantiles with the baseline paths used in this study (Ctx), (c) print the numbers the lead quotes: Final pinball and the typical rupee miss at Rs 3,428."""
+    _root()
+    inp = load_inputs()
+    d = inp["d"]
+    Qp, Qo, _ = H.build(d)
+    t = targets(d)
+    idx = np.arange(START, len(d))
+    dts = d.index[idx]
+    Yp, Yq = t[["Hp", "Lp"]].values[idx], t[["HO", "LO"]].values[idx]
+    hl = d[["high", "low"]].values[idx]
+    rows = []
+    for nm, Q, Y, ref, tn, f, vn in (("P_S6", Qp["P_S6"], Yp, d["prev"].values[idx], ["H", "L"], "hl_eval_preopen.csv", "P_S6"), ("W_I6", Qo["W_I6"], Yq, d["open"].values[idx], ["HO", "LO"], "hl_eval_postopen.csv", "W_I6")):
+        mine = pd.DataFrame(H.score_rows(nm, Q, Y, ref, hl, dts, tn))
+        st = pd.read_csv(OUT / f)
+        st = st[st.variant == vn]
+        mg = mine.merge(st, on=["target", "window"], suffixes=("", "_stored"))
+        for r in mg.itertuples():
+            rows.append(dict(variant=nm, target=r.target, window=r.window, n=r.n, n_stored=r.n_stored, pinball_x1e4=r.pinball_x1e4, pinball_x1e4_stored=r.pinball_x1e4_stored, mae_rs_at_3428=r.mae_med_rs_at_now,
+                             mae_rs_stored=r.mae_med_rs_at_now_stored, medae_rs_at_3428=r.medae_med_rs_at_now, medae_rs_stored=r.medae_med_rs_at_now_stored, cov50=r.cov50, cov50_stored=r.cov50_stored, cov90=r.cov90,
+                             cov90_stored=r.cov90_stored, max_abs_diff_all=max(abs(r.pinball_x1e4 - r.pinball_x1e4_stored), abs(r.mae_med_rs_at_now - r.mae_med_rs_at_now_stored), abs(r.cov50 - r.cov50_stored), abs(r.cov90 - r.cov90_stored))))
+    out = pd.DataFrame(rows)
+    ctx = Ctx(inp)
+    dq = max(float(np.nanmax(np.abs(ctx.ph["pre"]["BQ"][START:] - Qp["P_S6"]))), float(np.nanmax(np.abs(ctx.ph["post"]["BQ"][START:] - Qo["W_I6"]))))
+    out["max_abs_diff_quantiles_ctx_vs_hl_model_build"] = dq
+    out.to_csv(OUT / "hl3_baseline_repro.csv", index=False)
+    pd.set_option("display.width", 220)
+    fin = out[out.window == "final"]
+    print(fin[["variant", "target", "n", "pinball_x1e4", "pinball_x1e4_stored", "mae_rs_at_3428", "mae_rs_stored", "medae_rs_at_3428", "cov50", "cov90", "max_abs_diff_all"]].round(4).to_string(index=False))
+    print(f"max |difference| over all {len(out)} rows to the stored tables: {out.max_abs_diff_all.max():.3e};  quantiles of this study's baseline paths vs hl_model.build: {dq:.3e}")
+    return out
+
+
+# ----------------------------------------------------------------------------------------------- run record (counts, hashes) and plain-words output
+PREFIXED_SHA256 = "aa026b73e5473d3b56e449b7da09743a8b695d44db790c0b01b8b0a242ed0bdc"      # research/hl/E_quantile.md as committed in git commit 2072844 (2026-10-16 08:00:49 UTC), before any variant was run
+PREFIXED_COMMIT = "2072844b709c34bfa5f51f055c235a31a54dddb0"
+
+
+def write_meta() -> dict:
+    """results/hl3_meta.json: sample sizes, feature and configuration counts, family size, hashes of code, pre-fixed text and input files, library versions."""
+    import platform
+    import sklearn
+    import scipy
+    _root()
+    inp = load_inputs()
+    ctx = Ctx(inp)
+    dts = ctx.dates[START:]
+    win = {w: int(window_mask(dts, w).sum()) for w in WINDOWS}
+    feats = {ph: {g: sum(1 for c in ctx.ph[ph]["cols"] if ctx.ph[ph]["grp"][c] == g) for g in sorted(set(ctx.ph[ph]["grp"].values()))} for ph in ("pre", "post")}
+    n_pre = sum(v for g, v in feats["pre"].items() if g not in ("IV", "US1"))
+    n_post = sum(v for g, v in feats["post"].items() if g not in ("IV", "US1"))
+    n_qr = sum(1 for v in VARIANTS.values() if v[1] == "qr")
+    n_gbm = sum(1 for v in VARIANTS.values() if v[1] in ("gbm", "cqr_gbm"))
+    n_stack = sum(1 for v in VARIANTS.values() if v[1] == "stack")
+    cfg = dict(qr_variants=n_qr, qr_configs_each=1 + len(LAMS), gbm_variants=n_gbm, gbm_configs_each=1 + len(GBM_CFGS), forest_configs=1, stack_variants=n_stack, stack_weights_each=len(STACK_W), stack_candidates_v16=len(STACK_POOL))
+    per_target = n_qr * (1 + len(LAMS)) + n_gbm * (1 + len(GBM_CFGS)) + 1 + n_stack * len(STACK_W) + len(STACK_POOL)
+    files = ["data/processed/bse_daily.csv", "data/processed/bse_daily_extra.csv", "data/processed/index_daily.csv", "data/processed/breadth_daily.csv", "data/processed/peers_daily.csv", "data/processed/bse_iv_daily.csv"] \
+        + [f"data/raw/macro/{n}.csv" for n in ("SP500", "VIXCLS", "DEXINUS", "DCOILBRENTEU", "DTWEXBGS", "DGS10")]
+    meta = dict(study_asof_exclusive=STUDY_ASOF, n_sessions_used=int(ctx.N), first_session=str(ctx.dates[0].date()), last_session_used=str(ctx.dates[-1].date()), n_evaluation_sessions=int(len(dts)), first_evaluation_session=str(dts[0].date()),
+                n_blocks=n_blocks(ctx), windows_n=win, features_by_group=feats, features_pre_open_menu=n_pre, features_post_open_menu=n_post, features_distinct_columns_searched=len(set(ctx.ph["post"]["cols"])),
+                variants=len(VARIANTS), targets=4, family_size_pairs=len(VARIANTS) * 4, config_counts=cfg, effective_configurations_per_target_per_refit=per_target,
+                nested_cv=dict(folds=list(FOLDS), embargo_sessions=EMBARGO, lambda_grid=list(LAMS), gbm_depth=list(GBM_DEPTH), gbm_trees=list(GBM_TREES), gbm_lr=GBM_LR, gbm_min_leaf=GBM_LEAF, gbm_search_every_blocks=GBM_EVERY),
+                code_sha256=_sha(Path(__file__)), prefixed_text_sha256=PREFIXED_SHA256, prefixed_text_commit=PREFIXED_COMMIT,
+                input_file_sha256={f: _sha(Path(f)) for f in files if Path(f).exists()}, note_inputs="the repository bar files now also hold the 16 Oct 2026 row; load_inputs() cuts every series to dates before 2026-10-16 so no study number uses it",
+                versions=dict(python=platform.python_version(), numpy=np.__version__, pandas=pd.__version__, scipy=scipy.__version__, sklearn=sklearn.__version__))
+    (OUT / "hl3_meta.json").write_text(json.dumps(meta, indent=1, default=_json_default))
+    print(json.dumps({k: meta[k] for k in ("n_sessions_used", "n_evaluation_sessions", "windows_n", "features_pre_open_menu", "features_post_open_menu", "features_distinct_columns_searched", "family_size_pairs", "effective_configurations_per_target_per_refit")}, indent=1))
+    return meta
+
+
+def words_ml(o: dict) -> str:
+    """Plain-words print of ml_forecast output (the baseline is the recommended pin-point unless the adoption table says otherwise)."""
+    day = pd.Timestamp(o["date"]).strftime("%a %d %b %Y")
+    L = [f"BSE Ltd (NSE: BSE), session of {day}.  Reference: official close Rs {o['p0']:,.1f} of {o['data_through']}.  Flexible-model forecast (research/hl/E_quantile.md): NOT adopted unless marked ADOPTED below; the baseline is shown first."]
+    for phase, title in (("pre_open", "BEFORE THE OPEN"), ("post_open", "AFTER THE OPEN")):
+        if phase not in o:
+            continue
+        hdr = title + (f" (official open Rs {o['open']:,.1f}, gap {o['gap_pct']:+.2f}%)" if phase == "post_open" else "")
+        L.append(hdr)
+        for which, blk in (("baseline", o["base"][phase]), ("flexible", o[phase])):
+            for k, nm in (("high", "HIGH"), ("low", "LOW ")):
+                b = blk[k]
+                q = b["price_quantiles"]
+                ad = " ADOPTED" if b.get("adopted_by_prefixed_rule") else ""
+                miss = f"; typical miss Rs {b['typical_miss_rs']:,.0f} (last {b['miss_measured_on_sessions']} sessions)" if "typical_miss_rs" in b else ""
+                L.append(f"  {which:8s} {nm} [{b['variant']}{ad}]: median Rs {q['q50']:,.0f}; half the time Rs {q['q25']:,.0f} to {q['q75']:,.0f}; 90% band Rs {q['q5']:,.0f} to {q['q95']:,.0f}{miss}")
+    if o.get("inputs_missing_today_treated_as_no_information"):
+        L.append("  inputs not available today (treated as 'no information'): " + ", ".join(o["inputs_missing_today_treated_as_no_information"]))
+    return "\n".join(L)
+
 # ----------------------------------------------------------------------------------------------- command line
 def _sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -1397,6 +1503,8 @@ def _sha(path: Path) -> str:
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--baseline-check", action="store_true")
+    ap.add_argument("--meta", action="store_true")
     ap.add_argument("--validate-solver", action="store_true")
     ap.add_argument("--eval", action="store_true")
     ap.add_argument("--leak", action="store_true")
@@ -1409,6 +1517,10 @@ def main():
     a = ap.parse_args()
     _root()
     import pickle
+    if a.baseline_check:
+        baseline_repro()
+    if a.meta:
+        write_meta()
     if a.validate_solver:
         df = validate_solver()
         df.to_csv(OUT / "hl3_solver_validation.csv", index=False)
@@ -1445,7 +1557,7 @@ def main():
     if a.date:
         f = ml_forecast(a.date, a.open, workers=a.workers)
         txt = json.dumps(f, indent=1, default=_json_default)
-        print(txt[:6000])
+        print(words_ml(f))
         if a.save:
             (OUT / f"hl3_{a.date}.json").write_text(txt)
 

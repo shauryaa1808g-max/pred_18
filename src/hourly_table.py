@@ -173,10 +173,10 @@ def score_logged(df_all: pd.DataFrame, now_ts) -> int:
         if z["mode"] != "live" or not nh or (z["date"], z["asof"]) in done:
             continue
         a = pd.Timestamp(f"{z['date']} {nh['window_start']}", tz=IST); b = pd.Timestamp(f"{z['date']} {nh['window_end']}", tz=IST)
-        if now_ts < b:
+        if now_ts < b + pd.Timedelta(minutes=1):
             continue
         w = df_all[(df_all.t >= a) & (df_all.t < b)]
-        if w.empty or w.t.max() < b - pd.Timedelta(minutes=5) or w.t.min() > a + pd.Timedelta(minutes=5):      # Yahoo has no bar for a minute without trades: judge completeness by coverage of the window's ends, not by a count
+        if w.empty or w.t.min() > a + pd.Timedelta(minutes=5):      # Yahoo has no bar for a minute without trades: a fetch after the window ended plus coverage of its start is the completeness test
             continue
         act = (float(w.high.max()), float(w.low.min()), len(w))
         ch, cl = compare(nh, act, "high"), compare(nh, act, "low")

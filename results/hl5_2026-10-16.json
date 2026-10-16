@@ -5,11 +5,13 @@
  "n_sessions": 2390,
  "missing_weekdays_between_data_and_date": [],
  "is_weekend": false,
- "data_sha256": {
+ "data_sha256_files_on_disk": {
   "data/processed/bse_daily.csv": "e7939803bac1621419c3fc9d65df7829921a561ccb8d4d9e0f6b6196135eb627",
-  "data/processed/bse_daily_extra.csv": "a88a932c485d675780a3d18ea9132016484ada7f857421356bf2e21ae90be1b8",
+  "data/processed/bse_daily_extra.csv": "c6a5cb439b27a02ae81f4533542856534c5150329527f208a547b09914285b2a",
   "data/processed/index_daily.csv": "8d85dd7b805d1bd8fc1ab95462d1da1090ebbf91f8c59b1b0ad3d77d43ce00cd"
  },
+ "bars_used_sha256": "53c6203cfdea0174bf37262e988dc3a1b7d6f659b504bc1cc53ad835f25d26b8",
+ "bars_used_note": "sha256 of the official bars the forecast actually used (sessions strictly before the target date); the file hashes above cover whole files, which can later gain rows dated on or after the target date",
  "display_variant": "B_k80",
  "sigma_R_pct": 2.4347764244296783,
  "model_pre": "analogue forecast, space B (14 BSE-own features, shrunk Mahalanobis), 80 nearest past sessions (equal weight, sessions t-5..t-1 excluded), standardised (Hp, Lp) x today's S6 sigma",
@@ -752,6 +754,19 @@
        -5.61,
        0.72
       ]
+     },
+     "all_compared_sessions": {
+      "n": 1885,
+      "median_high_pct": 1.59,
+      "median_low_pct": -1.14,
+      "p5_p95_high_pct": [
+       -0.18,
+       6.8
+      ],
+      "p5_p95_low_pct": [
+       -5.37,
+       0.73
+      ]
      }
     }
    },
@@ -903,6 +918,19 @@
       "range_low_pct": [
        -4.73,
        0.0
+      ]
+     },
+     "all_compared_sessions": {
+      "n": 1885,
+      "median_high_pct": 1.59,
+      "median_low_pct": -1.14,
+      "p5_p95_high_pct": [
+       -0.18,
+       6.8
+      ],
+      "p5_p95_low_pct": [
+       -5.37,
+       0.73
       ]
      }
     }
@@ -1064,6 +1092,19 @@
       "range_low_pct": [
        -2.16,
        0.85
+      ]
+     },
+     "all_compared_sessions": {
+      "n": 1885,
+      "median_high_pct": 1.59,
+      "median_low_pct": -1.14,
+      "p5_p95_high_pct": [
+       -0.18,
+       6.8
+      ],
+      "p5_p95_low_pct": [
+       -5.37,
+       0.73
       ]
      }
     }
@@ -1245,6 +1286,19 @@
       "range_low_pct": [
        -4.32,
        1.0
+      ]
+     },
+     "all_compared_sessions": {
+      "n": 1885,
+      "median_high_pct": 1.59,
+      "median_low_pct": -1.14,
+      "p5_p95_high_pct": [
+       -0.18,
+       6.8
+      ],
+      "p5_p95_low_pct": [
+       -5.37,
+       0.73
       ]
      }
     }
@@ -1431,6 +1485,19 @@
        -4.15,
        2.59
       ]
+     },
+     "all_compared_sessions": {
+      "n": 1885,
+      "median_high_pct": 1.59,
+      "median_low_pct": -1.14,
+      "p5_p95_high_pct": [
+       -0.18,
+       6.8
+      ],
+      "p5_p95_low_pct": [
+       -5.37,
+       0.73
+      ]
      }
     }
    }
@@ -1579,6 +1646,19 @@
       "range_low_pct": [
        -6.54,
        0.0
+      ]
+     },
+     "all_compared_sessions": {
+      "n": 1885,
+      "median_high_pct": 1.3,
+      "median_low_pct": -1.32,
+      "p5_p95_high_pct": [
+       0.0,
+       5.79
+      ],
+      "p5_p95_low_pct": [
+       -5.28,
+       -0.03
       ]
      }
     }
@@ -1736,6 +1816,19 @@
       "range_low_pct": [
        -5.28,
        -0.08
+      ]
+     },
+     "all_compared_sessions": {
+      "n": 1885,
+      "median_high_pct": 1.3,
+      "median_low_pct": -1.32,
+      "p5_p95_high_pct": [
+       0.0,
+       5.79
+      ],
+      "p5_p95_low_pct": [
+       -5.28,
+       -0.03
       ]
      }
     }
@@ -1902,6 +1995,19 @@
       "range_low_pct": [
        -3.57,
        -0.08
+      ]
+     },
+     "all_compared_sessions": {
+      "n": 1885,
+      "median_high_pct": 1.3,
+      "median_low_pct": -1.32,
+      "p5_p95_high_pct": [
+       0.0,
+       5.79
+      ],
+      "p5_p95_low_pct": [
+       -5.28,
+       -0.03
       ]
      }
     }
@@ -2088,6 +2194,19 @@
       "range_low_pct": [
        -5.17,
        -0.08
+      ]
+     },
+     "all_compared_sessions": {
+      "n": 1885,
+      "median_high_pct": 1.3,
+      "median_low_pct": -1.32,
+      "p5_p95_high_pct": [
+       0.0,
+       5.79
+      ],
+      "p5_p95_low_pct": [
+       -5.28,
+       -0.03
       ]
      }
     }
@@ -2279,14 +2398,27 @@
        -5.17,
        -0.08
       ]
+     },
+     "all_compared_sessions": {
+      "n": 1885,
+      "median_high_pct": 1.3,
+      "median_low_pct": -1.32,
+      "p5_p95_high_pct": [
+       0.0,
+       5.79
+      ],
+      "p5_p95_low_pct": [
+       -5.28,
+       -0.03
+      ]
      }
     }
    }
   }
  },
  "reading": {
-  "pre_open": "The 5 most similar past sessions (space B, 13 features, 1885 past sessions compared) ended with a high of -0.16% to +3.94% (median +1.11%) and a low of -2.16% to +0.85% (median -0.83%) of the previous close; the 10 most similar: median high +1.29%, median low -0.58%. The 80-nearest forecast (scaled to today's sigma) has a median high +1.79% and low -0.79%; the project baseline says +1.37% / -1.11%. Five days are a very small sample: their range is about as wide as the whole spread of past days, and in the walk-forward test the median of the 5 nearest was a worse guess than the baseline median (research/hl/G_analogue.md).",
-  "post_open": "The 5 most similar past sessions (space B, 18 features, 1885 past sessions compared) ended with a high of +0.90% to +3.59% (median +2.99%) and a low of -3.57% to -0.08% (median -0.76%) of the open; the 10 most similar: median high +1.68%, median low -0.98%. The 80-nearest forecast (scaled to today's sigma) has a median high +0.96% and low -1.11%; the project baseline says +1.12% / -1.16%. Five days are a very small sample: their range is about as wide as the whole spread of past days, and in the walk-forward test the median of the 5 nearest was a worse guess than the baseline median (research/hl/G_analogue.md)."
+  "pre_open": "The 5 most similar past sessions (space B, 13 features, 1885 past sessions compared) ended with a high of -0.16% to +3.94% (median +1.11%) and a low of -2.16% to +0.85% (median -0.83%) of the previous close; the 10 most similar: median high +1.29%, median low -0.58%. For scale, all 1885 past sessions compared: median high +1.59% (middle 90%: -0.18% to +6.80%), median low -1.14% (middle 90%: -5.37% to +0.73%). The 80-nearest forecast (scaled to today's sigma) has a median high +1.79% and low -0.79%; the project baseline says +1.37% / -1.11%. In the walk-forward test (Final window, n=320) the median of the 5 nearest days missed the real H by Rs 46.2 and the L by Rs 51.9 on average, against Rs 42.7 / 47.7 for the baseline median: five days are too few to read a number from.",
+  "post_open": "The 5 most similar past sessions (space B, 18 features, 1885 past sessions compared) ended with a high of +0.90% to +3.59% (median +2.99%) and a low of -3.57% to -0.08% (median -0.76%) of the open; the 10 most similar: median high +1.68%, median low -0.98%. For scale, all 1885 past sessions compared: median high +1.30% (middle 90%: +0.00% to +5.79%), median low -1.32% (middle 90%: -5.28% to -0.03%). The 80-nearest forecast (scaled to today's sigma) has a median high +0.96% and low -1.11%; the project baseline says +1.12% / -1.16%. In the walk-forward test (Final window, n=320) the median of the 5 nearest days missed the real HO by Rs 40.5 and the LO by Rs 41.9 on average, against Rs 34.8 / 37.4 for the baseline median: five days are too few to read a number from."
  },
  "adoption_status": "see results/hl5_adoption.csv: the baseline stays the headline unless a variant is adopted by the pre-fixed rule"
 }

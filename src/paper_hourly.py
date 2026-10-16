@@ -31,7 +31,7 @@ def run_rules(P: float, hs: np.ndarray, ls: np.ndarray, c_end: float, Hs: float,
     """one window of 4 bars (highs hs, lows ls, close of the last bar c_end) -> net return per rule (None = no trade)."""
     out = {}
     out["R-A"] = (c_end / Ls - 1 - COST) if (ls < Ls).any() else None
-    out["R-B"] = (Hs / c_end - 1 - COST) if (hs > Hs).any() else None
+    out["R-B"] = ((Hs - c_end) / Hs - COST) if (hs > Hs).any() else None
     for rule, long in (("R-C", True), ("R-D", False)):
         stop, tgt = (Ls, Hs) if long else (Hs, Ls)
         res = None
@@ -39,11 +39,11 @@ def run_rules(P: float, hs: np.ndarray, ls: np.ndarray, c_end: float, Hs: float,
             hit_stop = (l < stop) if long else (h > stop)
             hit_tgt = (h > tgt) if long else (l < tgt)
             if hit_stop:
-                res = (stop / P - 1) if long else (P / stop - 1); break         # stop first if both inside one bar
+                res = (stop / P - 1) if long else ((P - stop) / P); break         # stop first if both inside one bar
             if hit_tgt:
-                res = (tgt / P - 1) if long else (P / tgt - 1); break
+                res = (tgt / P - 1) if long else ((P - tgt) / P); break
         if res is None:
-            res = (c_end / P - 1) if long else (P / c_end - 1)
+            res = (c_end / P - 1) if long else ((P - c_end) / P)
         out[rule] = res - COST
     out["R-E"] = c_end / P - 1 - COST
     return out
@@ -80,12 +80,15 @@ def placebo(S: list[dict], reps: int = 400, seed: int = 11) -> pd.DataFrame:
     for k in CKS:
         sig = float(np.sqrt(ev[k:k + 4].sum()))
         for rep in range(reps):
-            steps = rng.normal(0, 1, (4, 15)) * np.sqrt(ev[k:k + 4] / 15)[:, None]       # 1-minute increments in 4 bars
-            path = np.cumsum(steps, axis=1)
-            base = np.r_[0.0, np.cumsum(path[:-1, -1])]            # level at the start of each bar = sum of the earlier bars' increments
-            lvl = np.exp(path + base[:, None])                                            # price / P at each minute close
-            prev = np.r_[1.0, lvl[:-1, -1]]
-            hs = np.maximum(lvl.max(axis=1), prev); ls = np.minimum(lvl.min(axis=1), prev)
+            sd = np.sqrt(ev[k:k + 4] / 15)[:, None]
+            steps = rng.normal(0, 1, (4, 15)) * sd                                       # 1-minute increments in 4 bars
+            x1 = np.cumsum(steps.reshape(-1))                                             # log level at each minute close (start = 0)
+            x0 = np.r_[0.0, x1[:-1]]
+            var = np.repeat(sd[:, 0] ** 2, 15)
+            ub, vb = rng.uniform(size=60), rng.uniform(size=60)
+            mx = (x0 + x1 + np.sqrt((x1 - x0) ** 2 - 2 * var * np.log(ub))) / 2           # exact maximum / minimum of a Brownian bridge between the two minute closes
+            mn = (x0 + x1 - np.sqrt((x1 - x0) ** 2 - 2 * var * np.log(vb))) / 2
+            hs = np.exp(mx.reshape(4, 15).max(axis=1)); ls = np.exp(mn.reshape(4, 15).min(axis=1)); lvl = np.exp(x1.reshape(4, 15))
             r = run_rules(1.0, hs, ls, lvl[-1, -1], np.exp(qh * sig), np.exp(ql * sig))
             for rule, v in r.items():
                 rows.append({"k": k, "rule": rule, "net": v, "rep": rep})
@@ -105,7 +108,7 @@ def summarise(bt: pd.DataFrame, pl: pd.DataFrame) -> pd.DataFrame:
         pm, pse = p.net.mean(), p.net.std(ddof=1) / np.sqrt(len(p))
         z_vs_placebo = (g.net.mean() - pm) / np.sqrt(per.std(ddof=1) ** 2 / len(per) + pse ** 2) if len(per) > 2 else np.nan
         out.append({"rule": rule, "what": NAMES[rule], "windows": int(n_all), "trades": len(g), "fill_rate": round(len(g) / n_all, 3), "mean_net_pct": round(100 * g.net.mean(), 3), "median_net_pct": round(100 * g.net.median(), 3),
-                    "win_rate": round(float((g.net > 0).mean()), 3), "t_session_clustered": round(float(t), 2), "first_half_mean_pct": round(100 * h1.mean(), 3), "second_half_mean_pct": round(100 * h2.mean(), 3),
+                    "win_rate": round(float((g.net > 0).mean()), 3), "session_avg_net_pct": round(100 * float(per.mean()), 3), "t_session_avg": round(float(t), 2), "first_half_mean_pct": round(100 * h1.mean(), 3), "second_half_mean_pct": round(100 * h2.mean(), 3),
                     "placebo_mean_pct": round(100 * pm, 3), "placebo_fill_rate": round(len(p) / (pl.rule == rule).sum(), 3), "z_vs_placebo": round(float(z_vs_placebo), 2),
                     "better_than_nothing": bool(g.net.mean() > 0 and t > 2 and h1.mean() > 0 and h2.mean() > 0 and z_vs_placebo > 2)})
     return pd.DataFrame(out)
@@ -151,25 +154,29 @@ def settle(bars_1m: pd.DataFrame, now, orders: str = ORDERS, ledger: str = LEDGE
         if o["id"] in done:
             continue
         a = pd.Timestamp(f"{o['date']} {o['window_start']}", tz=LN.IST); b = pd.Timestamp(f"{o['date']} {o['window_end']}", tz=LN.IST)
-        if now < b:
+        if now < b + pd.Timedelta(minutes=1):
             continue
         w = bars_1m[(bars_1m.t >= a) & (bars_1m.t < b)].sort_values("t")
-        if w.empty or w.t.max() < b - pd.Timedelta(minutes=5) or w.t.min() > a + pd.Timedelta(minutes=5):    # Yahoo has no bar for a minute without trades: judge completeness by coverage of the window's ends
-            continue                                                                                    # incomplete data: do not settle on a guess
+        if w.empty or w.t.min() > a + pd.Timedelta(minutes=5):                                          # no data for the start of the hour: do not settle on a guess
+            continue
+        wt = w[w.volume > 0]                                                                            # zero-volume rows are quote snapshots, not trades: exit on the last traded minute
+        if wt.empty:
+            continue
+        w = wt
         P, Hs, Ls, end = o["P"], o["H_star"], o["L_star"], float(w.close.iloc[-1])
         hs, ls = w.high.values, w.low.values
         r = None; how = ""
         if o["rule"] == "R-A":
             r = (end / Ls - 1) if (ls < Ls).any() else None; how = "filled" if r is not None else "no fill"
         elif o["rule"] == "R-B":
-            r = (Hs / end - 1) if (hs > Hs).any() else None; how = "filled" if r is not None else "no fill"
+            r = ((Hs - end) / Hs) if (hs > Hs).any() else None; how = "filled" if r is not None else "no fill"
         elif o["rule"] in ("R-C", "R-D"):
-            long = o["rule"] == "R-C"; stop, tgt = (Ls, Hs) if long else (Hs, Ls); how = "hour end"; r = (end / P - 1) if long else (P / end - 1)
+            long = o["rule"] == "R-C"; stop, tgt = (Ls, Hs) if long else (Hs, Ls); how = "hour end"; r = (end / P - 1) if long else ((P - end) / P)
             for h, l in zip(hs, ls):
                 if (l < stop) if long else (h > stop):
-                    r = (stop / P - 1) if long else (P / stop - 1); how = "stop"; break
+                    r = (stop / P - 1) if long else ((P - stop) / P); how = "stop"; break
                 if (h > tgt) if long else (l < tgt):
-                    r = (tgt / P - 1) if long else (P / tgt - 1); how = "target"; break
+                    r = (tgt / P - 1) if long else ((P - tgt) / P); how = "target"; break
         else:
             r = end / P - 1; how = "hour end"
         out.append({"id": o["id"], "date": o["date"], "window": f"{o['window_start']}-{o['window_end']}", "rule": o["rule"], "P": P, "H_star": Hs, "L_star": Ls, "exit_close": round(end, 1), "how": how,
@@ -194,8 +201,12 @@ def report() -> None:
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--backtest", action="store_true"); ap.add_argument("--report", action="store_true")
+    ap.add_argument("--backtest", action="store_true"); ap.add_argument("--report", action="store_true"); ap.add_argument("--settle", action="store_true", help="settle every finished order on the cached 1-minute bars")
     a = ap.parse_args()
+    if a.settle:
+        import hourly_table as _HT
+        df_all, _ = _HT.LH.get_bars(save=True)
+        print(f"settled {settle(df_all, pd.Timestamp.now(tz=LN.IST))} orders"); report(); raise SystemExit
     if a.report:
         report(); raise SystemExit
     if a.backtest:

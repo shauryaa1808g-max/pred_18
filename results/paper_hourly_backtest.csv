@@ -1,6 +1,6 @@
-rule,what,windows,trades,fill_rate,mean_net_pct,median_net_pct,win_rate,t_session_clustered,first_half_mean_pct,second_half_mean_pct,placebo_mean_pct,placebo_fill_rate,z_vs_placebo,better_than_nothing
-R-A,buy the dip (limit at predicted low),195,93,0.477,-0.131,-0.1,0.344,-1.47,-0.176,-0.098,-0.159,0.54,0.44,False
-R-B,sell the pop (limit short at predicted high),195,104,0.533,-0.118,-0.01,0.49,-2.07,-0.159,-0.09,-0.154,0.572,0.44,False
-R-C,"long, target = predicted high, stop = predicted low",195,195,1.0,-0.103,-0.023,0.497,-4.92,-0.108,-0.098,-0.102,1.0,-0.04,False
-R-D,"short, target = predicted low, stop = predicted high",195,195,1.0,-0.109,-0.24,0.436,-5.39,-0.091,-0.125,-0.1,1.0,-0.41,False
-R-E,"control: buy now, sell at hour end",195,195,1.0,-0.104,-0.143,0.374,-2.29,-0.121,-0.087,-0.099,1.0,-0.09,False
+rule,what,windows,trades,fill_rate,mean_net_pct,median_net_pct,win_rate,session_avg_net_pct,t_session_avg,first_half_mean_pct,second_half_mean_pct,placebo_mean_pct,placebo_fill_rate,z_vs_placebo,better_than_nothing
+R-A,buy the dip (limit at predicted low),200,95,0.475,-0.13,-0.1,0.337,-0.086,-1.5,-0.163,-0.101,-0.119,0.61,-0.19,False
+R-B,sell the pop (limit short at predicted high),200,107,0.535,-0.124,-0.019,0.477,-0.173,-2.17,-0.132,-0.119,-0.099,0.628,-0.32,False
+R-C,"long, target = predicted high, stop = predicted low",200,200,1.0,-0.101,-0.005,0.5,-0.101,-4.95,-0.112,-0.09,-0.115,1.0,0.67,False
+R-D,"short, target = predicted low, stop = predicted high",200,200,1.0,-0.111,-0.245,0.435,-0.111,-5.63,-0.088,-0.133,-0.103,1.0,-0.39,False
+R-E,"control: buy now, sell at hour end",200,200,1.0,-0.099,-0.142,0.38,-0.099,-2.25,-0.133,-0.066,-0.114,1.0,0.31,False

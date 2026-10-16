@@ -12,6 +12,7 @@ Usage (repo root; python3 src/hl_analog.py ...), no network access:
   --adopt           apply the pre-fixed adoption rule (needs --eval and --leak first) -> results/hl5_adoption.csv
   --live            the 16 Oct 2026 result as of the 15 Oct close and the official open Rs 3,450.0 -> results/hl5_2026-10-16.json (+ results/hl5_2026-10-16_analogues.csv)
   --tables          markdown tables for the report, from the result files
+  --selfcheck       independent loop re-computation of features, analogue quantiles and blend weights vs the vectorised code -> results/hl5_selfchecks.csv   (about 2 min)
   --check           consistency of analog_forecast() with the walk-forward rows and of the baseline with hl_model.hl_forecast (needs --eval and --live first) -> results/hl5_live_checks.csv
   --date YYYY-MM-DD [--open P] [--p0 P] [--json]     plain words (or JSON) for any date; only sessions BEFORE --date are used
 Importable: analog_forecast(date, open_price=None, p0=None, d=None) -> dict   (same keys as hl_model.hl_forecast, plus 'analogues' and 'variants').
@@ -35,6 +36,7 @@ import metrics as M            # noqa: E402
 from common import EPS, GRID, load_breadth, load_index, targets   # noqa: E402
 
 OUT = Path("results")
+STUDY_END = "2026-10-16"      # every study run (--eval, --leak, --check) uses sessions STRICTLY BEFORE this date (history through the 15 Oct 2026 close): the 16 Oct session was in progress when the study was run, and later data refreshes must not change the results
 START, REFIT, P_NOW = HM.START, 20, HM.P_NOW
 POOL_FIRST, EXCL, MIN_FIT, MIN_POOL = 500, 5, 60, 30       # first session with a baseline sigma; sessions t-5..t-1 excluded; minimum rows to fit a metric / to form a pool
 KS, KER_K = (40, 80, 160), 80                                # k grid and the kernel bandwidth neighbour
@@ -296,7 +298,7 @@ def run_space(phase, space, X, U, scale, idx, blocks, keep=()):
             info["k5"][i] = sc * np.median(U[pidx[order[:5]]], axis=0)
             age = t - pidx; info["age80"][i], info["rec500_80"][i], info["rec500_pool"][i] = float(np.median(age[order[:80]])), float((age[order[:80]] <= 500).mean()), float((age <= 500).mean())
             if t in keep:
-                info["neigh"][t] = dict(idx=pidx[order[:50]], idx160=pidx[order[:160]], d2=d2[order[:50]], h2=h2, n_pool=len(pidx), d2_all=d2, used=used, cols=[ALL_COLS[c] for c in cols])
+                info["neigh"][t] = dict(idx=pidx[order[:50]], idx160=pidx[order[:160]], d2=d2[order[:50]], h2=h2, n_pool=len(pidx), d2_all=d2, pool=pidx, used=used, cols=[ALL_COLS[c] for c in cols])
     return outs, info
 
 
@@ -620,6 +622,10 @@ def _analogues(res, phase, space, t, d, N_SHOW=10) -> dict:
     hk, lk = ("high_pct_of_prev_close", "low_pct_of_prev_close") if phase == "pre" else ("high_pct_of_open", "low_pct_of_open")
     summ = {f"top{k}": {"median_high_pct": round(float(np.median([r[hk] for r in rows[:k]])), 2), "median_low_pct": round(float(np.median([r[lk] for r in rows[:k]])), 2),
                         "range_high_pct": [min(r[hk] for r in rows[:k]), max(r[hk] for r in rows[:k])], "range_low_pct": [min(r[lk] for r in rows[:k]), max(r[lk] for r in rows[:k])]} for k in (5, 10)}
+    cH, cL = ("Hp", "Lp") if phase == "pre" else ("HO", "LO")                                  # the same quantities over ALL compared past sessions (no matching), as % of the reference, for scale
+    allH, allL = 100 * (np.exp(tg[cH].values[nb["pool"]]) - 1), 100 * (np.exp(tg[cL].values[nb["pool"]]) - 1)
+    summ["all_compared_sessions"] = {"n": int(len(nb["pool"])), "median_high_pct": round(float(np.median(allH)), 2), "median_low_pct": round(float(np.median(allL)), 2),
+                                     "p5_p95_high_pct": [round(float(np.percentile(allH, 5)), 2), round(float(np.percentile(allH, 95)), 2)], "p5_p95_low_pct": [round(float(np.percentile(allL, 5)), 2), round(float(np.percentile(allL, 95)), 2)]}
     return dict(space=space, phase=phase, n_pool=int(nb["n_pool"]), features_used=[c for c, u in zip(nb["cols"], nb["used"]) if u], features_dropped=[c for c, u in zip(nb["cols"], nb["used"]) if not u], sessions=rows, summary=summ)
 
 
@@ -637,7 +643,8 @@ def analog_forecast(date, open_price=None, p0=None, d=None, bundle=None, verbose
     sm = pd.read_csv(OUT / "hl5_eval_summary.csv") if (OUT / "hl5_eval_summary.csv").exists() else pd.DataFrame(columns=["phase", "variant", "target", "window"])
     row = lambda ph, v, tg: (lambda x: x.iloc[0] if len(x) else None)(sm[(sm.phase == ph) & (sm.variant == v) & (sm.target == tg) & (sm.window == "final")])     # noqa: E731
     out = {"date": str(date.date()), "p0": P0, "data_through": str(dd.index[-1].date()), "n_sessions": n, "missing_weekdays_between_data_and_date": missing, "is_weekend": bool(date.dayofweek >= 5),
-           "data_sha256": {f: hashlib.sha256(Path(f).read_bytes()).hexdigest() for f in ("data/processed/bse_daily.csv", str(HM.EXTRA), "data/processed/index_daily.csv") if Path(f).exists()},
+           "data_sha256_files_on_disk": {f: hashlib.sha256(Path(f).read_bytes()).hexdigest() for f in ("data/processed/bse_daily.csv", str(HM.EXTRA), "data/processed/index_daily.csv") if Path(f).exists()},
+           "bars_used_sha256": hashlib.sha256(dd.to_csv().encode()).hexdigest(), "bars_used_note": "sha256 of the official bars the forecast actually used (sessions strictly before the target date); the file hashes above cover whole files, which can later gain rows dated on or after the target date",
            "display_variant": vid, "sigma_R_pct": 100 * float(res["sig_next"]), "model_pre": f"analogue forecast, space {DISPLAY_SPACE} (14 BSE-own features, shrunk Mahalanobis), {DISPLAY_EST[1:]} nearest past sessions (equal weight, sessions t-5..t-1 excluded), standardised (Hp, Lp) x today's S6 sigma",
            "features_dropped_for_this_session": {sp: res["info"]["pre"][sp]["n_dropped"].get(n, []) for sp in SPACES}}
     ref, tgn = P0, ("H", "L")
@@ -675,15 +682,21 @@ def analog_forecast(date, open_price=None, p0=None, d=None, bundle=None, verbose
         out["open_vs_yesterday"] = {"open_above_yesterdays_high": bool(res["X"][n, CI["obeyond"]] > 0), "open_below_yesterdays_low": bool(res["X"][n, CI["obeyond"]] < 0), "yesterdays_high": float(dd["high"].iloc[-1]), "yesterdays_low": float(dd["low"].iloc[-1])}
     out["variants"], out["analogues"] = var, ana
     rd = {}
+    s2f = OUT / "hl5_secondary_5nearest_point.csv"; s2 = pd.read_csv(s2f) if s2f.exists() else None
     for ph, key, unit in (("pre_open", "pre", "previous close"), ("post_open", "post", "open")):
         if ph not in ana:
             continue
         a = ana[ph][DISPLAY_SPACE]; hk, lk = ("high_pct_of_prev_close", "low_pct_of_prev_close") if key == "pre" else ("high_pct_of_open", "low_pct_of_open")
-        r5, r10 = a["sessions"][:5], a["sessions"][:10]; q = out[ph]
+        r5 = a["sessions"][:5]; q = out[ph]; al = a["summary"]["all_compared_sessions"]
+        nf = ""
+        if s2 is not None:
+            f5 = s2[(s2.phase == key) & (s2.window == "final")].set_index("target"); tn = ("H", "L") if key == "pre" else ("HO", "LO")
+            nf = (f" In the walk-forward test (Final window, n={int(f5.n.iloc[0])}) the median of the 5 nearest days missed the real {tn[0]} by Rs {f5.loc[tn[0], 'mae_median_of_5_nearest_rs']:.1f} and the {tn[1]} by Rs {f5.loc[tn[1], 'mae_median_of_5_nearest_rs']:.1f} "
+                  f"on average, against Rs {f5.loc[tn[0], 'mae_baseline_median_rs']:.1f} / {f5.loc[tn[1], 'mae_baseline_median_rs']:.1f} for the baseline median: five days are too few to read a number from.")
         rd[ph] = (f"The 5 most similar past sessions (space {DISPLAY_SPACE}, {len(a['features_used'])} features, {a['n_pool']} past sessions compared) ended with a high of {min(r[hk] for r in r5):+.2f}% to {max(r[hk] for r in r5):+.2f}% (median {a['summary']['top5']['median_high_pct']:+.2f}%) "
                   f"and a low of {min(r[lk] for r in r5):+.2f}% to {max(r[lk] for r in r5):+.2f}% (median {a['summary']['top5']['median_low_pct']:+.2f}%) of the {unit}; the 10 most similar: median high {a['summary']['top10']['median_high_pct']:+.2f}%, median low {a['summary']['top10']['median_low_pct']:+.2f}%. "
-                  f"The 80-nearest forecast (scaled to today's sigma) has a median high {q['high']['pct_of_reference']['q50']:+.2f}% and low {q['low']['pct_of_reference']['q50']:+.2f}%; the project baseline says {var['baseline'][ph]['high']['pct_of_reference']['q50']:+.2f}% / {var['baseline'][ph]['low']['pct_of_reference']['q50']:+.2f}%. "
-                  f"Five days are a very small sample: their range is about as wide as the whole spread of past days, and in the walk-forward test the median of the 5 nearest was a worse guess than the baseline median (research/hl/G_analogue.md).")
+                  f"For scale, all {al['n']} past sessions compared: median high {al['median_high_pct']:+.2f}% (middle 90%: {al['p5_p95_high_pct'][0]:+.2f}% to {al['p5_p95_high_pct'][1]:+.2f}%), median low {al['median_low_pct']:+.2f}% (middle 90%: {al['p5_p95_low_pct'][0]:+.2f}% to {al['p5_p95_low_pct'][1]:+.2f}%). "
+                  f"The 80-nearest forecast (scaled to today's sigma) has a median high {q['high']['pct_of_reference']['q50']:+.2f}% and low {q['low']['pct_of_reference']['q50']:+.2f}%; the project baseline says {var['baseline'][ph]['high']['pct_of_reference']['q50']:+.2f}% / {var['baseline'][ph]['low']['pct_of_reference']['q50']:+.2f}%.{nf}")
     out["reading"] = rd
     out["_res"] = res
     return out
@@ -704,14 +717,15 @@ def words(o: dict) -> str:
     L.append(blk("PRE-OPEN, analogues alone (80 most similar past sessions):", v["analogue_alone"], "pre_open"))
     L.append(blk("PRE-OPEN, baseline (project model):", v["baseline"], "pre_open"))
     a = o["analogues"]["pre_open"][DISPLAY_SPACE]
-    L.append(f"The 5 most similar past days (space {DISPLAY_SPACE}, pool {a['n_pool']}): median high {a['summary']['top5']['median_high_pct']:+.2f}% / low {a['summary']['top5']['median_low_pct']:+.2f}% of the previous close.  The {a['summary']['top10']['median_high_pct']:+.2f}% / {a['summary']['top10']['median_low_pct']:+.2f}% is the median of the 10.")
+    L.append(f"The 5 most similar past days (space {DISPLAY_SPACE}, {len(a['features_used'])} features, pool {a['n_pool']}): median high {a['summary']['top5']['median_high_pct']:+.2f}% / low {a['summary']['top5']['median_low_pct']:+.2f}% of the previous close.  The {a['summary']['top10']['median_high_pct']:+.2f}% / {a['summary']['top10']['median_low_pct']:+.2f}% is the median of the 10; "
+             f"for scale, all {a['summary']['all_compared_sessions']['n']} past days: {a['summary']['all_compared_sessions']['median_high_pct']:+.2f}% / {a['summary']['all_compared_sessions']['median_low_pct']:+.2f}%." + (f"  Features not available today: {', '.join(a['features_dropped'])}." if a['features_dropped'] else ""))
     for r in a["sessions"][:5]:
         L.append(f"    #{r['rank']} {r['date']}  distance {r['distance']:.2f}  high {r['high_pct_of_prev_close']:+.2f}%  low {r['low_pct_of_prev_close']:+.2f}%")
     if "post_open" in o:
         L.append(f"AFTER THE OPEN (official open Rs {o['open']:,.1f}, gap {o['gap_pct']:+.2f}%):")
         L.append(blk("  analogues alone:", v["analogue_alone"], "post_open")); L.append(blk("  baseline:", v["baseline"], "post_open"))
         a = o["analogues"]["post_open"][DISPLAY_SPACE]
-        L.append(f"  The 5 most similar past opens: median high {a['summary']['top5']['median_high_pct']:+.2f}% / low {a['summary']['top5']['median_low_pct']:+.2f}% of the open.")
+        L.append(f"  The 5 most similar past opens: median high {a['summary']['top5']['median_high_pct']:+.2f}% / low {a['summary']['top5']['median_low_pct']:+.2f}% of the open (for scale, all {a['summary']['all_compared_sessions']['n']} past days: {a['summary']['all_compared_sessions']['median_high_pct']:+.2f}% / {a['summary']['all_compared_sessions']['median_low_pct']:+.2f}%).")
     L.append("Honest limits: see research/hl/G_analogue.md (the pre-fixed adoption rule decides whether any of this replaces the baseline).")
     return "\n".join(L)
 
@@ -753,7 +767,7 @@ def feature_table_csv(res: dict) -> pd.DataFrame:
 
 def do_eval():
     OUT.mkdir(exist_ok=True); t0 = time.time()
-    b = load_bundle(); d = b["d"]
+    b = load_bundle(before=STUDY_END); d = b["d"]
     print("pipeline (walk-forward, all variants) ...", flush=True)
     res = pipeline(b); res["dates_all"] = d.index
     summ, wts, dmt, s1, s2, s3, Qall, ex = eval_tables(res, d)
@@ -791,7 +805,7 @@ def do_eval():
 
 
 def do_leak():
-    t0 = time.time(); b = load_bundle(); d = b["d"]; res = pipeline(b, verbose=False)
+    t0 = time.time(); b = load_bundle(before=STUDY_END); d = b["d"]; res = pipeline(b, verbose=False)
     sessions = [900, 1100, 1500, 1800, 2100, 2250, 2330, len(d) - 1]
     lk = leak_test(res, b, sessions); lk.to_csv(OUT / "hl5_leakage.csv", index=False)
     print("LEAKAGE TEST", lk.overall.iloc[0], f"({time.time() - t0:.0f}s)"); return lk
@@ -809,7 +823,7 @@ def do_check():
     """Consistency of the production function with the walk-forward evaluation: (1) analog_forecast for replayed dates against results/hl5_predictions.csv (differences come only from the fresh S6 fit at the target session and from the blend weight being refitted at the target rather than at the 20-session block start);
     (2) the baseline inside the 16 Oct result against hl_model.hl_forecast."""
     pr = pd.read_csv(OUT / "hl5_predictions.csv", parse_dates=["date"]).set_index("date"); rows = []
-    d0 = HM.load_ohlc()
+    d0 = HM.load_ohlc(STUDY_END)
     for day in ("2025-12-01", "2026-09-01", "2026-10-14", "2026-10-15", str(d0.index[2350].date())):          # session 2350 (19 Aug 2026) is the first session of a 20-session block: live and walk-forward fits coincide there
         r = pr.loc[day]; o = analog_forecast(day, float(r["open"]), verbose=False); o.pop("_res")
         for nm, key in (("analogue_alone", "B_k80_a"), ("blend_with_baseline", "B_k80_b")):
@@ -828,6 +842,169 @@ def do_check():
     print(out.groupby(["check", "date", "variant"]).abs_diff_rs.agg(["max", "median"]).round(3).to_string()); return out
 
 
+# ----------------------------------------------------------------------------------------------- self-checks (independent re-computation with plain loops)
+def _lag_obs(s: pd.Series, D: pd.Timestamp, lag: int):
+    """Last observation dated on or before D - lag days; NaN when the file ends before D - lag (never a stale fill)."""
+    s = s.dropna()
+    if D > s.index[-1] + pd.Timedelta(days=lag):
+        return np.nan
+    s = s[s.index <= D - pd.Timedelta(days=lag)]
+    return float(s.iloc[-1]) if len(s) else np.nan
+
+
+def do_selfcheck():
+    """Separately typed, loop-based re-computation of (A) the features, (B) the analogue quantiles of every space and estimator, (C) the blend weights, plus (D) the live-row-vs-walk-forward-row comparison and (E) feature availability.
+    Writes results/hl5_selfchecks.csv.  A mismatch would be a bug in the vectorised code."""
+    t0 = time.time(); b = load_bundle(before=STUDY_END); d = b["d"]; t = targets(d); res = pipeline(b, verbose=False)
+    X, sig, sigI, n, dates = res["X"], res["sig"], res["sigI"], len(d), d.index
+    R, G, gkv = t["R"].values, t["G"].values, t["gk"].values
+    rows = []
+
+    def add(check, n_, bad, maxd, note=""):
+        rows.append(dict(check=check, n_compared=int(n_), n_mismatch=int(bad), max_abs_diff=float(maxd), note=note))
+        print(f"  {check}: compared {n_}, mismatches {bad}, max abs diff {maxd:.2e}  {note}", flush=True)
+
+    # (A) features, plain loops, for 8 sessions
+    rho = np.log(d["high"].values / d["low"].values); cl = np.log(d["close"].values / d["low"].values) / rho
+    c = np.cumsum(R); cp = np.r_[0.0, c[:-1]]; h = cp + t["Hp"].values; l = cp + t["Lp"].values
+    lsplit = np.cumsum(np.log(d["ca_factor"].fillna(1.0).values)); lvol = np.log(np.clip(d["vol"].values, 1, None)) - lsplit
+    lturn = np.log(np.clip(d["turnover_cr"].values, EPS, None)); dl = d["deliv_pct"].values.astype(float)
+
+    def z60(a, j, mp=60):
+        w = a[j - 59:j + 1]; w = w[np.isfinite(w)]
+        return (a[j] - w.mean()) / w.std(ddof=1) if (len(w) >= mp and np.isfinite(a[j])) else np.nan
+
+    chk = dict(n=0, bad=0, mx=0.0, notes=[])
+
+    def cmp(name, s_, mine, got):
+        chk["n"] += 1
+        if not (np.isfinite(mine) and np.isfinite(got)):
+            if np.isfinite(mine) != np.isfinite(got):
+                chk["bad"] += 1; chk["notes"].append(f"{name}@{s_}: independent {mine} vs code {got}")
+            return
+        e = abs(mine - got); chk["mx"] = max(chk["mx"], e)
+        if e > 1e-9 * max(1.0, abs(mine)):
+            chk["bad"] += 1; chk["notes"].append(f"{name}@{s_}: independent {mine:.6g} vs code {got:.6g}")
+
+    ix, br = b["ix"], b["br"]
+    for s_ in (520, 700, 755, 1200, 1800, 2300, 2388, 2389):
+        j, sg, D = s_ - 1, sig[s_], dates[s_]
+        stk = 0.0
+        for k in range(0, j + 1):
+            sgn = np.sign(R[k]); stk = (stk + sgn) if (k > 0 and sgn != 0 and sgn == np.sign(stk)) else sgn
+        w = dl[j - 59:j + 1]; w = w[np.isfinite(w)]
+        exp = dict(rng1=np.log(rho[j]) - np.log(sg), cloc=cl[j], gap1=abs(G[j]) / sg, r5=R[j - 4:j + 1].sum() / (sg * np.sqrt(5)), r20=R[j - 19:j + 1].sum() / (sg * np.sqrt(20)),
+                   lnsig_rel=np.log(sg / np.sqrt(np.mean(R[j - 249:j + 1] ** 2))), pk5=0.5 * np.log(np.mean(rho[j - 4:j + 1] ** 2 / (4 * np.log(2)))) - np.log(sg), gk20=0.5 * np.log(np.mean(gkv[j - 19:j + 1])) - np.log(sg),
+                   volz=z60(lvol, j), turnz=z60(lturn, j), dhi=(c[j] - h[j - 249:j + 1].max()) / (sg * np.sqrt(20)), dlo=(c[j] - l[j - 249:j + 1].min()) / (sg * np.sqrt(20)), streak=float(np.clip(stk, -6, 6)),
+                   delz=((dl[j] - w.mean()) / w.std(ddof=1)) if (len(w) >= 40 and np.isfinite(dl[j])) else np.nan)
+        for k, v in exp.items():
+            cmp(k, s_, v, X[s_, CI[k]])
+        for k, nm in enumerate(("dow_mon", "dow_tue", "dow_wed", "dow_thu")):
+            cmp(nm, s_, float(D.dayofweek == k), X[s_, CI[nm]])
+        bd = pd.bdate_range(D.replace(day=1), D + pd.offsets.MonthEnd(0)); cmp("mend", s_, float(D >= bd[-2]), X[s_, CI["mend"]])
+        for nm, col, hcol, lcol in (("nifty", "nifty50_close", "nifty50_high", "nifty50_low"), ("bank", "bank_close", "bank_high", "bank_low")):       # index rows dated <= date j only; NaN when the row of date j is absent
+            ixp = ix[ix.index <= dates[j]]; ok = len(ixp) > 61 and ixp.index[-1] == dates[j]
+            if ok:
+                r_ = np.diff(np.log(ixp[col].values)); sd60 = r_[-60:].std(ddof=1)
+                cmp(f"{nm}_r1", s_, r_[-1] / sd60, X[s_, CI[f"{nm}_r1"]]); cmp(f"{nm}_rng1", s_, np.log(ixp[hcol].iloc[-1] / ixp[lcol].iloc[-1]) / sd60, X[s_, CI[f"{nm}_rng1"]])
+                if nm == "nifty":
+                    vx = np.log(ixp["vix_close"].values); cmp("vix_ln", s_, vx[-1], X[s_, CI["vix_ln"]]); cmp("vix_d1", s_, vx[-1] - vx[-2], X[s_, CI["vix_d1"]])
+                    cmp("vix_rv", s_, vx[-1] - np.log(100 * np.sqrt(252) * r_[-20:].std(ddof=1)), X[s_, CI["vix_rv"]])
+            else:
+                for nm2 in (f"{nm}_r1", f"{nm}_rng1") + (("vix_ln", "vix_d1", "vix_rv") if nm == "nifty" else ()):
+                    cmp(nm2, s_, np.nan, X[s_, CI[nm2]])
+        brp = br[br.index <= dates[j]]
+        if brp.index[-1] == dates[j]:
+            cmp("adv", s_, brp["adv_share"].iloc[-1], X[s_, CI["adv"]]); cmp("tailbal", s_, (brp["n_ge_5pct_up"].iloc[-1] - brp["n_ge_5pct_dn"].iloc[-1]) / brp["n_liquid"].iloc[-1], X[s_, CI["tailbal"]])
+        else:
+            cmp("adv", s_, np.nan, X[s_, CI["adv"]]); cmp("tailbal", s_, np.nan, X[s_, CI["tailbal"]])
+        m = b["macro"]["SP500"].dropna(); lg = np.log(m).diff().dropna(); v_ = _lag_obs(lg / lg.rolling(60).std(), D, 2)
+        cmp("sp_r1", s_, v_, X[s_, CI["sp_r1"]])
+        cmp("usvix_ln", s_, _lag_obs(np.log(b["macro"]["VIX"].dropna()), D, 2), X[s_, CI["usvix_ln"]])
+        cmp("us10y_d5", s_, _lag_obs(b["macro"]["US10Y"].dropna().diff(5), D, 6), X[s_, CI["us10y_d5"]])
+        for nm, key, lag in (("brent_r5", "BRENT", 8), ("dxy_r5", "DXY", 12), ("inr_r5", "INR", 12)):
+            cmp(nm, s_, _lag_obs(np.log(b["macro"][key].dropna()).diff(5), D, lag), X[s_, CI[nm]])
+        o_ = cp[s_] + G[s_]; hh, ll = h[j], l[j]
+        cmp("gz", s_, G[s_] / sg, X[s_, CI["gz"]]); cmp("agz", s_, abs(G[s_]) / sg, X[s_, CI["agz"]]); cmp("obeyond", s_, 1.0 if o_ > hh else (-1.0 if o_ < ll else 0.0), X[s_, CI["obeyond"]])
+        cmp("orel", s_, np.clip((o_ - ll) / (hh - ll), -1, 2), X[s_, CI["orel"]])
+    add("A features: loop re-computation vs feature_table (8 sessions: 520, 700, 755, 1200, 1800, 2300, 2388, 2389)", chk["n"], chk["bad"], chk["mx"],
+        "not re-computed here: peers_r1, peers_rng1, mktturn_z, lnsI_rel (covered by the leakage and truncation tests only)" + ((" | " + "; ".join(chk["notes"][:6])) if chk["notes"] else ""))
+
+    # (B) analogue quantiles, loop version, for random sessions
+    Vp, Vq = t[["Hp", "Lp"]].values, t[["HO", "LO"]].values
+    rng = np.random.default_rng(1); sess = sorted(int(x) for x in rng.choice(np.arange(800, n - 3), 8, replace=False)) + [n - 1]
+    for phase, V, sg_ in (("pre", Vp, sig), ("post", Vq, sigI)):
+        U = V / sg_[:n, None]
+        for space in ("V", "A", "B", "C", "L"):
+            cols = [CI[x] for x in space_cols(phase, space)]; Xs = X[:, cols]; p = len(cols); maxd = 0.0; nc = 0
+            for tt in sess:
+                b0 = START + REFIT * ((tt - START) // REFIT)
+                fin = np.isfinite(Xs).all(1) & np.isfinite(U).all(1)
+                okf = fin & (np.arange(len(X)) >= POOL_FIRST) & (np.arange(len(X)) < b0)
+                mu, sd = Xs[okf].mean(0), Xs[okf].std(0, ddof=1); Z = np.clip((Xs - mu) / sd, -ZCLIP, ZCLIP)
+                u_ = np.isfinite(Xs[tt]); pool = [q for q in range(POOL_FIRST, tt - EXCL) if np.isfinite(Xs[q][u_]).all() and np.isfinite(U[q]).all()]
+                if space == "L":
+                    Zf, Y = Z[okf], U[okf]; Y = (Y - Y.mean(0)) / Y.std(0, ddof=1); m_ = len(Zf)
+                    if m_ < RIDGE_MIN_ROWS:
+                        wr = np.ones(p)
+                    else:
+                        cut = int(0.7 * m_); best = (np.inf, None)
+                        for lam in RIDGE:
+                            Bm = np.linalg.solve(Zf[:cut].T @ Zf[:cut] + lam * np.eye(p), Zf[:cut].T @ Y[:cut]); sse = ((Y[cut:] - Zf[cut:] @ Bm) ** 2).sum()
+                            if sse < best[0]:
+                                best = (sse, lam)
+                        Bm = np.linalg.solve(Zf.T @ Zf + best[1] * np.eye(p), Zf.T @ Y); wr = np.sqrt((Bm ** 2).sum(1))
+                    wn = wr / np.sqrt(np.mean(wr ** 2)); d2 = np.array([float(np.sum(wn[u_] ** 2 * (Z[tt][u_] - Z[q][u_]) ** 2)) for q in pool])
+                else:
+                    S = 0.7 * (np.corrcoef(Z[okf].T) if p > 1 else np.ones((1, 1))) + 0.3 * np.eye(p); Si = np.linalg.inv(S[np.ix_(u_, u_)])
+                    d2 = np.array([float((Z[tt][u_] - Z[q][u_]) @ Si @ (Z[tt][u_] - Z[q][u_])) for q in pool])
+                pool = np.array(pool); o = np.argsort(d2, kind="stable"); i = tt - START
+                for kk, e in ((40, "k40"), (80, "k80"), (160, "k160")):
+                    mine = np.quantile(sg_[tt] * U[pool[o[:kk]]], GRID, axis=0).T
+                    maxd = max(maxd, float(np.abs(mine - res["Q"][phase][f"{space}_{e}_a"][i]).max())); nc += 1
+                h2 = d2[o[79]]; w = np.exp(-0.5 * d2 / h2); kq = np.empty((2, 9))
+                for j in range(2):
+                    v_ = sg_[tt] * U[pool, j]; oo = np.argsort(v_, kind="stable"); ww = w[oo]; cw = np.cumsum(ww); kq[j] = np.interp(GRID, (cw - 0.5 * ww) / cw[-1], v_[oo])
+                maxd = max(maxd, float(np.abs(kq - res["Q"][phase][f"{space}_ker_a"][i]).max())); nc += 1
+            add(f"B analogue quantiles {phase} space {space}: loop version vs run_space (k40, k80, k160, kernel; sessions {sess})", nc, int(maxd > 1e-9), maxd, "max abs diff in log units over all 9 quantiles x 2 targets")
+    # (C) blend weights
+    for phase in ("pre", "post"):
+        Qb, Y_ = res["base"][phase], res["Y"][phase]; bad = 0; nc = 0
+        for v in ("B_k80_b", "C_ker_b", "L_k160_b", "V_k40_b", "A_k80_b"):
+            Qa = res["Q"][phase][v[:-1] + "a"]
+            for e in res["starts"][30:70:8]:
+                for j in range(2):
+                    lo = max(0, e - W_WIN); best = min(WGRID, key=lambda w: np.nanmean(M.pinball(Y_[lo:e, j], (1 - w) * Qb[lo:e, j] + w * Qa[lo:e, j])))
+                    nc += 1; bad += int(abs(best - res["W"][phase][v][e, j]) > 1e-12)
+        add(f"C blend weight {phase}: independent argmin over the trailing {W_WIN} scored sessions vs code", nc, bad, float(bad > 0))
+    # (D) live row vs walk-forward row (truncated bundle: nothing from the target session on)
+    mxrel, worst, ndiff = 0.0, "", 0
+    for s_ in (900, 1800, 2380, 2388):
+        bb = load_bundle(before=dates[s_]); assert len(bb["d"]) == s_
+        r = pipeline(bb, live_date=dates[s_], live_open=float(d["open"].iloc[s_]), upto=760, verbose=False); Xl, Xw = r["X"][s_], X[s_]
+        for cname in ALL_COLS:
+            a_, b_ = Xl[CI[cname]], Xw[CI[cname]]
+            if np.isnan(a_) and np.isnan(b_):
+                continue
+            rel = abs(a_ - b_) / max(abs(b_), 1e-9) if np.isfinite(a_) and np.isfinite(b_) else np.inf
+            if rel > 1e-9:
+                ndiff += 1
+                if rel > mxrel:
+                    mxrel, worst = rel, f"{cname}@{dates[s_].date()}"
+    add("D features of the live row (bundle cut before the target date) vs the walk-forward row, sessions 900, 1800, 2380, 2388", 4 * len(ALL_COLS), ndiff, mxrel,
+        f"columns that differ are only those that depend on the S6 sigma (re-fitted at the target in the live call, at the 20-session block start in the walk-forward); largest relative difference {mxrel:.4f} at {worst}")
+    # (E) availability of the feature vectors in the Final window
+    fin_idx = np.array([i for i in range(START, n) if dates[i] >= pd.Timestamp("2025-07-01")])
+    for phase in ("pre", "post"):
+        for space in SPACES:
+            cols = [CI[x] for x in space_cols(phase, space)]; part = ~np.isfinite(X[fin_idx][:, cols]).all(1)
+            miss = sorted({space_cols(phase, space)[k] for k in np.nonzero(~np.isfinite(X[fin_idx][:, cols]).all(0))[0]})
+            add(f"E availability {phase} space {space}: Final-window sessions with an incomplete feature vector", len(fin_idx), int(part.sum()), float(part.mean()), "features ever missing in the Final window: " + (", ".join(miss) or "none"))
+    pd.DataFrame(rows).to_csv(OUT / "hl5_selfchecks.csv", index=False)
+    print(f"SELFCHECK done in {time.time() - t0:.0f}s; independent-recomputation mismatches (checks A, B, C; D is an expected sigma-refit difference, E is availability):", int(sum(r["n_mismatch"] for r in rows if r["check"][0] in "ABC")))
+    return rows
+
+
 # ----------------------------------------------------------------------------------------------- report tables (markdown) from the result files
 def _md(df: pd.DataFrame, fmt: dict | None = None) -> str:
     fmt = fmt or {}
@@ -838,6 +1015,28 @@ def _md(df: pd.DataFrame, fmt: dict | None = None) -> str:
         return str(v)
     head = "| " + " | ".join(cols) + " |\n|" + "|".join("---" for _ in cols) + "|\n"
     return head + "\n".join("| " + " | ".join(cell(c, v) for c, v in zip(cols, row)) + " |" for row in df.itertuples(index=False))
+
+
+def headline(S: pd.DataFrame, D: pd.DataFrame, A: pd.DataFrame) -> pd.DataFrame:
+    """Headline numbers quoted in the report, written to results/hl5_headline.csv (long format: key, phase, target, variant, value, note)."""
+    rows = []; add = lambda key, ph, tg, v, val, note="": rows.append(dict(key=key, phase=ph, target=tg, variant=v, value=val, note=note))        # noqa: E731
+    fin = D[D.window == "final"].copy(); fam = int(fin.family_size.iloc[0]); zh = float(stats.norm.isf(0.05 / fam / 2))
+    fin["se_pts"] = np.abs(fin.gain_pct / fin.dm_t.replace(0, np.nan))
+    add("family_size_variant_target_pairs", "", "", "", fam); add("holm_two_sided_critical_z_smallest_p", "", "", "", zh, "norm.isf(0.05 / family / 2)")
+    for ph, tgs, bn in (("pre", ("H", "L"), "P_S6"), ("post", ("HO", "LO"), "W_I6")):
+        for tg in tgs:
+            f = fin[(fin.phase == ph) & (fin.target == tg)]; a = A[(A.phase == ph) & (A.target == tg)]; bs = S[(S.window == "final") & (S.phase == ph) & (S.variant == bn) & (S.target == tg)].iloc[0]
+            add("baseline_pinball_x1e4_final", ph, tg, bn, bs.pinball_x1e4); add("baseline_miss_rs_final", ph, tg, bn, bs.mae_med_rs_at_now); add("baseline_cov50_final", ph, tg, bn, bs.cov50); add("baseline_cov90_final", ph, tg, bn, bs.cov90)
+            add("n_variants", ph, tg, "", len(f)); add("n_gain_positive_final", ph, tg, "", int((f.gain_pct > 0).sum())); add("n_gain_ge_2pct_final", ph, tg, "", int((f.gain_pct >= 2).sum()))
+            add("n_worse_with_holm_lt_0.05", ph, tg, "", int(((f.gain_pct < 0) & (f.holm_two_sided < 0.05)).sum()))
+            bst = f.sort_values("gain_pct", ascending=False).iloc[0]; add("best_gain_pct_final", ph, tg, bst.variant, bst.gain_pct, f"Holm p {bst.holm_two_sided:.3f}; raw p {bst.p_two_sided:.3f}")
+            add("median_se_of_gain_pts", ph, tg, "", float(f.se_pts.median())); add("min_detectable_gain_pct_at_holm_level", ph, tg, "", zh * float(f.se_pts.median()), "critical z x median s.e.; gains smaller than this cannot reach Holm significance")
+            ms = S[(S.window == "final") & (S.phase == ph) & (S.target == tg) & S.variant.isin(f.variant)]
+            add("miss_rs_final_min_over_variants", ph, tg, ms.loc[ms.mae_med_rs_at_now.idxmin(), "variant"], ms.mae_med_rs_at_now.min()); add("miss_rs_final_max_over_variants", ph, tg, ms.loc[ms.mae_med_rs_at_now.idxmax(), "variant"], ms.mae_med_rs_at_now.max())
+            for v in ("B_k80_a", "B_k80_b", "V_k80_a", "V_k80_b", "POOL_a", "RAND80_a", "RAND80_b"):
+                r = f[f.variant == v].iloc[0]; m = S[(S.window == "final") & (S.phase == ph) & (S.variant == v) & (S.target == tg)].iloc[0]
+                add("gain_pct_final", ph, tg, v, r.gain_pct, (f"95% interval {r.gain_pct - 1.96 * r.se_pts:+.2f} to {r.gain_pct + 1.96 * r.se_pts:+.2f}; Holm p {r.holm_two_sided:.3f}" if np.isfinite(r.se_pts) else "forecast identical to the baseline in the Final window (blend weight 0 throughout)")); add("miss_rs_final", ph, tg, v, m.mae_med_rs_at_now)
+    return pd.DataFrame(rows)
 
 
 def report_tables() -> dict:
@@ -882,6 +1081,7 @@ def report_tables() -> dict:
     T["s2"] = _md(pd.read_csv(OUT / "hl5_secondary_5nearest_point.csv"), {"mae_median_of_5_nearest_rs": "{:.1f}", "se_rs": "{:.1f}", "mae_baseline_median_rs": "{:.1f}", "ratio": "{:.3f}"})
     T["s3"] = _md(pd.read_csv(OUT / "hl5_secondary_ridge_r2.csv"), {"oos_r2_vs_training_mean": "{:+.4f}"})
     ag = pd.read_csv(OUT / "hl5_posthoc_neighbour_age.csv"); T["age"] = _md(ag[ag.window == "final"].drop(columns="window"), {"median_age_sessions_of_80_nearest": "{:.0f}", "share_of_80_nearest_from_last_500_sessions": "{:.3f}", "share_of_all_eligible_from_last_500_sessions": "{:.3f}"})
+    T["headline_rows"] = headline(S, D, A)
     by = pd.read_csv(OUT / "hl5_posthoc_byyear.csv"); by = by[by.tag.str.startswith("display") | (by.variant == "POOL_a")]
     rb = by.assign(cell=lambda x: x.gain_pct.map("{:+.2f}".format)).pivot_table(index=["phase", "target", "variant"], columns="year", values="cell", aggfunc="first").reset_index()
     T["byyear"] = _md(rb)
@@ -889,7 +1089,7 @@ def report_tables() -> dict:
 
 
 def do_tables():
-    T = report_tables()
+    T = report_tables(); T.pop("headline_rows").to_csv(OUT / "hl5_headline.csv", index=False)
     for k, v in T.items():
         print(f"\n##### {k}\n{v}")
 
@@ -909,7 +1109,7 @@ def do_live(date="2026-10-16", open_price=3450.0):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--eval", action="store_true"); ap.add_argument("--leak", action="store_true"); ap.add_argument("--adopt", action="store_true"); ap.add_argument("--live", action="store_true"); ap.add_argument("--check", action="store_true"); ap.add_argument("--tables", action="store_true")
+    ap.add_argument("--eval", action="store_true"); ap.add_argument("--leak", action="store_true"); ap.add_argument("--adopt", action="store_true"); ap.add_argument("--live", action="store_true"); ap.add_argument("--check", action="store_true"); ap.add_argument("--tables", action="store_true"); ap.add_argument("--selfcheck", action="store_true")
     ap.add_argument("--date"); ap.add_argument("--open", type=float, default=None); ap.add_argument("--p0", type=float, default=None); ap.add_argument("--json", action="store_true")
     a = ap.parse_args()
     if a.eval:
@@ -924,6 +1124,8 @@ def main():
         return do_check()
     if a.tables:
         return do_tables()
+    if a.selfcheck:
+        return do_selfcheck()
     if not a.date:
         ap.error("--date YYYY-MM-DD (or --eval / --leak / --adopt / --live)")
     o = analog_forecast(a.date, a.open, a.p0); o.pop("_res")
