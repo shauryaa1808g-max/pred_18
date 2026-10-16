@@ -47,3 +47,43 @@ R6_long_s1_t2,official open+Yahoo extremes+official close,all,479,479,-0.1441740
 R6_long_s1_t2,official open+Yahoo extremes+official close,val,173,173,-0.13946152222563157,-0.03946152222563158
 R6_long_s1_t2,official open+Yahoo extremes+official close,final,306,306,-0.1468383908059588,-0.0468383908059588
 R6_long_s1_t2,official open+Yahoo extremes+official close,cas,42,42,-0.17045479034059544,-0.07045479034059544
+R3_z1.5,"hourly rule, exit at official close",all,439,60,-0.598226342950123,-0.49822634295012286
+R3_z1.5,"hourly rule, exit at official close",val,133,15,-1.5370005324810758,-1.4370005324810757
+R3_z1.5,"hourly rule, exit at official close",final,306,45,-0.28530161310647206,-0.18530161310647195
+R3_z1.5,"hourly rule, exit at official close",cas,42,5,0.308792095845698,0.40879209584569803
+R3_z1.5,"hourly rule, exit at Yahoo last printed price",all,439,60,-0.5866525576959315,-0.48665255769593146
+R3_z1.5,"hourly rule, exit at Yahoo last printed price",val,133,15,-1.5171694986530755,-1.4171694986530754
+R3_z1.5,"hourly rule, exit at Yahoo last printed price",final,306,45,-0.27648024404355026,-0.17648024404355014
+R3_z1.5,"hourly rule, exit at Yahoo last printed price",cas,42,5,0.3087920190143634,0.40879201901436346
+R3_z1.0,"hourly rule, exit at official close",all,439,126,-0.6510709615240907,-0.5510709615240906
+R3_z1.0,"hourly rule, exit at official close",val,133,38,-1.384885876128666,-1.284885876128666
+R3_z1.0,"hourly rule, exit at official close",final,306,88,-0.33419633930847875,-0.2341963393084787
+R3_z1.0,"hourly rule, exit at official close",cas,42,13,0.05695723650067396,0.15695723650067406
+R3_z1.0,"hourly rule, exit at Yahoo last printed price",all,439,126,-0.6452417493455134,-0.5452417493455133
+R3_z1.0,"hourly rule, exit at Yahoo last printed price",val,133,38,-1.3672296174585283,-1.2672296174585282
+R3_z1.0,"hourly rule, exit at Yahoo last printed price",final,306,88,-0.3334742608421659,-0.23347426084216585
+R3_z1.0,"hourly rule, exit at Yahoo last printed price",cas,42,13,0.056957098130786615,0.1569570981307867
+R3_z2.0,"hourly rule, exit at official close",all,439,24,-0.4825363873915606,-0.3825363873915605
+R3_z2.0,"hourly rule, exit at official close",val,133,9,-1.9231480332331994,-1.8231480332331993
+R3_z2.0,"hourly rule, exit at official close",final,306,15,0.3818306001134227,0.48183060011342277
+R3_z2.0,"hourly rule, exit at official close",cas,42,2,2.4918173585019074,2.591817358501908
+R3_z2.0,"hourly rule, exit at Yahoo last printed price",all,439,24,-0.5227692344739733,-0.42276923447397324
+R3_z2.0,"hourly rule, exit at Yahoo last printed price",val,133,9,-1.8317346513275101,-1.73173465132751
+R3_z2.0,"hourly rule, exit at Yahoo last printed price",final,306,15,0.26261001563814873,0.3626100156381488
+R3_z2.0,"hourly rule, exit at Yahoo last printed price",cas,42,2,2.491818735299456,2.591818735299456
+R4a,"hourly rule, exit at official close",all,439,351,0.16726249495096557,0.26726249495096566
+R4a,"hourly rule, exit at official close",val,133,105,0.4673602457748745,0.5673602457748745
+R4a,"hourly rule, exit at official close",final,306,246,0.03917199155051666,0.13917199155051677
+R4a,"hourly rule, exit at official close",cas,42,35,-0.14144650376482473,-0.04144650376482468
+R4a,"hourly rule, exit at Yahoo last printed price",all,439,351,0.15498991388856767,0.2549899138885678
+R4a,"hourly rule, exit at Yahoo last printed price",val,133,105,0.4408547747172786,0.5408547747172787
+R4a,"hourly rule, exit at Yahoo last printed price",final,306,246,0.03297442451045933,0.1329744245104594
+R4a,"hourly rule, exit at Yahoo last printed price",cas,42,35,-0.14144653705570526,-0.04144653705570521
+R4b,"hourly rule, exit at official close",all,439,271,0.19956435443066908,0.2995643544306692
+R4b,"hourly rule, exit at official close",val,133,82,0.4762795159939135,0.5762795159939136
+R4b,"hourly rule, exit at official close",final,306,189,0.07950804094820325,0.17950804094820333
+R4b,"hourly rule, exit at official close",cas,42,27,0.06897190747038034,0.16897190747038038
+R4b,"hourly rule, exit at Yahoo last printed price",all,439,271,0.18112281811181444,0.28112281811181455
+R4b,"hourly rule, exit at Yahoo last printed price",val,133,82,0.46254495516689537,0.5625449551668955
+R4b,"hourly rule, exit at Yahoo last printed price",final,306,189,0.059024324786329574,0.15902432478632966
+R4b,"hourly rule, exit at Yahoo last printed price",cas,42,27,0.06897175016583565,0.16897175016583568

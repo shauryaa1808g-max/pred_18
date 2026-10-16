@@ -57,5 +57,25 @@
  "hourly_sessions_used": 479,
  "placebo_reps_per_setting": 2000,
  "hourly_file_sha256": "ef5d3b6be31bcf7fdfbdbfcf537bf8bb7dc7f407b46b1030a7254ad87912754b",
- "hourly_file_note": "Yahoo chart API, symbol BSE.NS, range=2y, interval=60m, fetched 15 Oct 2026 (last bar 15:15 IST bar of 15 Oct); not stored in the repo"
+ "hourly_file_note": "Yahoo chart API, symbol BSE.NS, range=2y, interval=60m, fetched 15 Oct 2026 (last bar 15:15 IST bar of 15 Oct); not stored in the repo",
+ "cut_low_mid_pct_fullsample": 2.148720416853925,
+ "cut_mid_high_pct_fullsample": 3.0451312837104703,
+ "regime_for_16oct_fullsample": "mid",
+ "n_by_regime_final_fullsample": {
+  "low": 76,
+  "mid": 212,
+  "high": 32
+ },
+ "n_by_regime_cas_fullsample": {
+  "low": 30,
+  "mid": 21,
+  "high": 0
+ },
+ "n_by_regime_all_fullsample": {
+  "low": 641,
+  "mid": 641,
+  "high": 641
+ },
+ "indepcheck_passed": 145,
+ "indepcheck_total": 145
 }

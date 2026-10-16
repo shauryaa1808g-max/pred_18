@@ -1,0 +1,29 @@
+{
+ "asof_ist": "2026-10-15T15:28:00+05:30",
+ "source": "Yahoo chart API 1-minute bars (unofficial, near-real-time)",
+ "price_now": 3428.0,
+ "prev_official_close": 3338.0,
+ "change_vs_prev_close_pct": 2.696225284601561,
+ "day_high_so_far": 3445.0,
+ "day_low_so_far": 3315.199951171875,
+ "minutes_to_close": 2.0,
+ "sigma_remaining_pct": 0.18337167400359627,
+ "vol_scale_today_vs_typical": 1.0958846730631417,
+ "indicative_close": 3428.0,
+ "close_50": [
+  3425.031148767017,
+  3430.9714246629055
+ ],
+ "close_90": [
+  3417.553371439611,
+  3438.4785613603826
+ ],
+ "close_95": [
+  3412.972807945992,
+  3443.093356220479
+ ],
+ "typical_miss_rs": 10.30621149260882,
+ "half_the_time_miss_under_rs": 7.011492548450923,
+ "calibration_note": "checked leave-one-session-out on 39 sessions: the printed 50% / 90% ranges covered 50% / 90% of checkpoints (effective sample about 39 sessions: a rough guide, 90% coverage could be 83-96%; the 50% range is too narrow in the morning and about right late)",
+ "tightening_schedule_if_price_unchanged": []
+}
