@@ -12,6 +12,6 @@
 "pt1_avg_net_pct": null,
 "pt2_trades": 0,
 "pt2_avg_net_pct": null,
-"note": "First entry is issued about 08:35 IST on Fri 16 Oct, before the open, and committed before 09:15; it is scored after the official file at about 16:34 IST."
+"note": "The Fri 16 Oct entry was issued at 08:36 IST and committed at 08:36:41 IST (commit 40ab965), before the open: lean up for the close and down from open to close; PT1 short at the open, PT2 no trade. It is scored after the official file at about 16:34 IST."
 }
 ]

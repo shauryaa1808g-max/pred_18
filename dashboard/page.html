@@ -77,7 +77,7 @@
 
 <div class="bd" id="bd">
   <header class="head" id="top">
-    <div class="cap">BSE Ltd · NSE: BSE · session of Wed 14 Oct 2026 · prices in ₹</div>
+    <div class="cap">BSE Ltd · NSE: BSE · prices in ₹ · forecast record of Wed 14 Oct 2026 · live pages for Fri 16 Oct 2026</div>
     <h1>A reliable range, only a weak lean on direction</h1>
     <p class="take">Median close <b class="num">₹<span data-source="summary" data-where="record=v2" data-field="close_median" data-fmt="f1">—</span></b>, 90% interval <b class="num">₹<span data-source="summary" data-where="record=v2" data-field="close_p05" data-fmt="f0">—</span> to ₹<span data-source="summary" data-where="record=v2" data-field="close_p95" data-fmt="f0">—</span></b>. The session closed at <b class="num">₹<span data-source="realised" data-row="0" data-field="close" data-fmt="f1">—</span></b> (<span class="num" data-source="realised" data-row="0" data-field="r_pct" data-fmt="s2">—</span>), inside the 50% band. One session says nothing about skill.</p>
     <div class="chips">
@@ -85,8 +85,9 @@
       <span class="chip">v1 · forecast of record · committed before the session</span>
       <span class="chip">v2 · late update · committed after the session</span>
       <span class="chip">Upload was Yahoo data, not TradingView</span>
+      <span class="chip strong">Fri 16 Oct: today's calls, high and low, can it be traded</span>
     </div>
-    <nav class="nav" aria-label="Sections"><a href="#forecast">Forecast</a><a href="#open">Opening price</a><a href="#live">Live close</a><a href="#board">Scoreboard</a><a href="#scoring">Scoring</a><a href="#behaviour">Behaviour</a><a href="#checks">Verification</a><a href="#limits">Limits</a></nav>
+    <nav class="nav" aria-label="Sections"><a href="#today">Today</a><a href="#hl">High and low</a><a href="#forecast">Forecast</a><a href="#open">Opening price</a><a href="#live">Live close</a><a href="#board">Scoreboard</a><a href="#scoring">Scoring</a><a href="#behaviour">Behaviour</a><a href="#checks">Verification</a><a href="#limits">Limits</a></nav>
   </header>
 
   <section class="tiles" id="forecast" aria-label="Headline figures">
@@ -95,6 +96,25 @@
     <div class="tile"><span class="lab">90% close interval, v2</span><span class="big num"><span data-source="summary" data-where="record=v2" data-field="close_p05" data-fmt="f0">—</span>–<span data-source="summary" data-where="record=v2" data-field="close_p95" data-fmt="f0">—</span></span><span class="sub">50%: <span data-source="summary" data-where="record=v2" data-field="close_p25" data-fmt="f0">—</span>–<span data-source="summary" data-where="record=v2" data-field="close_p75" data-fmt="f0">—</span></span></div>
     <div class="tile"><span class="lab">Close volatility, one session</span><span class="big num"><span data-source="summary" data-where="record=v2" data-field="sigma_r_pct" data-fmt="p2">—</span></span><span class="sub">Median day range <span data-source="summary" data-where="record=v2" data-field="range_median_pct" data-fmt="p2">—</span> of price</span></div>
     <div class="tile"><span class="lab">Realised close, 14 Oct</span><span class="big num">₹<span data-source="realised" data-row="0" data-field="close" data-fmt="f1">—</span></span><span class="sub"><span data-source="realised" data-row="0" data-field="r_pct" data-fmt="s2">—</span> · <span data-source="realised" data-row="0" data-field="abs_r_over_sigma" data-fmt="f2">—</span> sigma · base scenario</span></div>
+  </section>
+
+  <section class="card" id="today" aria-labelledby="h-today">
+    <div><h2 id="h-today">Today, Fri 16 Oct: what I said before the open and what has happened</h2><p class="note">The ranges below were committed at 08:36 IST, before the open (commit 40ab965). "Half the time" means the real number should land inside it about half the time; "9 in 10" is the wider range. The open is final once the 09:08 auction is done. High, low and close are "so far" or "now" until NSE's official file at about 16:34 IST; the high and low so far use Yahoo's 1-minute bars plus the official open, so they can be a few rupees off the official figures.</p></div>
+    <div class="tw"><table id="bd-today" data-source="today_check" data-row-key="measure"><thead><tr><th data-field="measure">Measure</th><th data-field="best_guess" class="r">My best guess</th><th data-field="lo50" class="r">Half the time, from</th><th data-field="hi50" class="r">to</th><th data-field="lo90" class="r">9 in 10, from</th><th data-field="hi90" class="r">to</th><th data-field="actual" class="r">Actual</th><th data-field="landed">Where it landed</th><th data-field="as_of">As of</th></tr></thead><tbody></tbody></table></div>
+    <p class="cap">Direction lean issued with those ranges: up for the close, down from open to close; the paper trade PT1 is a short at the open (PT2: no trade). A lean worth about zero after costs, and one day proves nothing either way.</p>
+    <p class="note"><b>Live close estimate, today.</b> At each reading the pinpoint estimate of the close is the price at that time (green dot); the line is the 90% range and the box the 50% range. It is not a direction call, and it tightens as the day goes on (typical miss about ₹40 at 09:45, ₹10 by 15:00).</p>
+    <div class="chart" id="bd-live" data-source="live_today"></div>
+    <p class="cap"><span class="gdot"></span>Green dot = my pinpoint estimate of the close at that time. Hover a time for the numbers.</p>
+    <div class="tw"><table id="bd-ltab" data-source="live_today" data-row-key="asof"><thead><tr><th data-field="asof">As of (IST)</th><th data-field="price_then" class="r">My pinpoint estimate of the close</th><th data-field="close_50_lo" class="r">50% low</th><th data-field="close_50_hi" class="r">50% high</th><th data-field="close_90_lo" class="r">90% low</th><th data-field="close_90_hi" class="r">90% high</th><th data-field="typical_miss_rs" class="r">Typical miss</th><th data-field="inside_90">Inside 90%</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="card" id="hl" aria-labelledby="h-hl">
+    <div><h2 id="h-hl">High and low of the day</h2><p class="note">Best guess is the median of the model's distribution. Typical miss is the average rupee error of that best guess on past sessions it had not seen. These are ranges for how far the day stretches, not a direction call. Once the official open is known (09:08 auction) the second version applies: it is better by about ₹8 to ₹10 because the open sets the starting level; the gap's size and direction added nothing beyond that.</p></div>
+    <div class="tw"><table id="bd-hl" data-source="hl_forecast" data-row-key="key"><thead><tr><th data-field="stage">When</th><th data-field="side">Side</th><th data-field="best_guess" class="r">Best guess</th><th data-field="typical_miss_rs" class="r">Typical miss</th><th data-field="half_miss_rs" class="r">Half the time within</th><th data-field="lo50" class="r">Half the time, from</th><th data-field="hi50" class="r">to</th><th data-field="wide">The wider range</th></tr></thead><tbody></tbody></table></div>
+    <p class="cap">Caution: in the 52 sessions since the closing auction began, the real high fell below the pre-open high band's 5% line on 15% of days (8 of 52; 5% expected). A small sample, but it makes the high the shakier of the two numbers.</p>
+    <p class="note"><b>Evidence and limits.</b> Each line was checked by an independent agent that recomputed the numbers from the raw data files (reports in research/hl/). Nothing here is a buy or short signal.</p>
+    <div class="tw tall"><table id="bd-hlev" data-source="hl_evidence" data-row-key="item"><thead><tr><th data-field="item">What</th><th data-field="result">Result</th><th data-field="sample">Sample</th><th data-field="status">Status</th><th data-field="caveat">Caveat</th></tr></thead><tbody></tbody></table></div>
+    <p class="note"><b>Can the high and low be traded?</b> Not on this evidence. Buying at the estimated low or selling at the estimated high and exiting at the close lost money after costs, even though the levels were reached as often as promised: being reached does not mean the price turns. What they are good for is sizing stops and judging how far a move can run.</p>
   </section>
 
   <section class="card" aria-labelledby="h-fan">
@@ -118,13 +138,12 @@
   </div>
 
   <section class="card" id="open" aria-labelledby="h-open">
-    <div><h2 id="h-open">Opening price from NSE's pre-open auction</h2><p class="note">Between 09:00 and 09:08 NSE collects orders and sets the opening price in a call auction; from 09:08 it is final and becomes the official open at 09:15. Reading it is not a forecast, it is the opening price itself, available about seven minutes early. It says nothing by itself about whether the day goes up or down. Run python3 src/preopen.py at 09:09, or ask me.</p></div>
+    <div><h2 id="h-open">Opening price from NSE's pre-open auction</h2><p class="note">Between 09:00 and 09:08 NSE collects orders and sets the opening price in a call auction; from 09:08 it is final and becomes the official open at 09:15. Reading it is not a forecast, it is the opening price itself, available about seven minutes early. It says nothing by itself about whether the day goes up or down. Run python3 src/preopen.py at 09:09, or ask me. The order-book imbalance in the table is only logged; whether it means anything is untested (on 15 Oct sellers outnumbered buyers 3 to 1 and the stock still rose 2.7%).</p></div>
     <div class="tiles">
       <div class="tile"><span class="lab">Pre-open price, read <span data-source="preopen" data-row="0" data-field="read_at_ist" data-fmt="raw">—</span> IST on <span data-source="preopen" data-row="0" data-field="date" data-fmt="raw">—</span></span><span class="big num">₹<span data-source="preopen" data-row="0" data-field="preopen_price" data-fmt="f1">—</span></span><span class="sub">Previous close ₹<span data-source="preopen" data-row="0" data-field="previous_close" data-fmt="f1">—</span></span></div>
-      <div class="tile"><span class="lab">Official open</span><span class="big num">₹<span data-source="preopen" data-row="0" data-field="official_open" data-fmt="f1">—</span></span><span class="sub">Official bhavcopy, same session</span></div>
-      <div class="tile"><span class="lab">Official open minus pre-open price</span><span class="big num">₹<span data-source="preopen" data-row="0" data-field="miss_rs" data-fmt="f1">—</span></span><span class="sub">One session so far; the scoreboard keeps adding to this</span></div>
       <div class="tile"><span class="lab">Orders waiting at 09:09</span><span class="big num"><span data-source="preopen" data-row="0" data-field="buy_qty" data-fmt="int">—</span> buy</span><span class="sub"><span data-source="preopen" data-row="0" data-field="sell_qty" data-fmt="int">—</span> sell (shares). Whether this order imbalance means anything is untested; logging started 15 Oct.</span></div>
     </div>
+    <div class="tw"><table id="bd-pre" data-source="preopen" data-row-key="date"><thead><tr><th data-field="date">Session</th><th data-field="preopen_price" class="r">Pre-open price</th><th data-field="previous_close" class="r">Previous close</th><th data-field="buy_qty" class="r">Buy orders</th><th data-field="sell_qty" class="r">Sell orders</th><th data-field="official_open" class="r">Official open (bhavcopy)</th><th data-field="miss_rs" class="r">Official minus pre-open</th></tr></thead><tbody></tbody></table></div>
   </section>
 
   <section class="card" id="live" aria-labelledby="h-live">
@@ -146,7 +165,7 @@
     </div>
     <p class="note"><span data-source="scoreboard" data-where="kind=summary" data-field="note" data-fmt="raw">—</span></p>
     <div class="tw"><table id="bd-btab" data-source="scoreboard" data-row-key="date"><thead><tr><th data-field="date">Session</th><th data-field="open" class="r">Open</th><th data-field="close" class="r">Close</th><th data-field="open_miss_rs" class="r">Open miss</th><th data-field="close_miss_rs" class="r">Close miss</th><th data-field="close_inside_90">Inside 90%</th><th data-field="lean">Lean</th><th data-field="lean_hit">Right</th><th data-field="pt1_net_pct" class="r">Paper, every day</th><th data-field="pt2_net_pct" class="r">Paper, strongest</th></tr></thead><tbody></tbody></table></div>
-    <p class="cap" id="bd-bempty">No sessions scored yet. The first entry is issued before the open on Fri 16 Oct.</p>
+    <p class="cap" id="bd-bempty">No sessions scored yet. The first entry (Fri 16 Oct) was committed at 08:36 IST, before the open, and is scored after the official file at about 16:34 IST.</p>
   </section>
 
   <section class="card" id="scoring" aria-labelledby="h-score">
@@ -436,35 +455,56 @@
 
 
   // --- live close replay
-  function drawReplay() {
-    const host = $('#bd-replay'), rp = rows('nowcast_replay');
+  function drawReplay(hostSel, dsId) {
+    const host = $(hostSel), rp0 = rows(dsId), rp = rp0 && rp0.filter(r => r.price_then != null);
     host.querySelectorAll('svg').forEach(n => n.remove());
-    if (!rp) { host.classList.add('dash-skeleton'); return; }
+    if (!rp || !rp.length) { host.classList.add('dash-skeleton'); return; }
     host.classList.remove('dash-skeleton');
     const W = Math.max(300, host.clientWidth), H = W < 560 ? 280 : 330, m = { l: 52, r: 16, t: 18, b: 34 };
-    const fin = rp[0].final_close;
-    const lo = Math.min(d3.min(rp, r => r.close_90_lo), fin) - 12, hi = Math.max(d3.max(rp, r => r.close_90_hi), fin) + 12;
+    const fin = rp[0].final_close == null ? null : rp[0].final_close;
+    const lo = Math.min(d3.min(rp, r => r.close_90_lo), fin == null ? Infinity : fin) - 12, hi = Math.max(d3.max(rp, r => r.close_90_hi), fin == null ? -Infinity : fin) + 12;
     const y = d3.scaleLinear().domain([lo, hi]).nice().range([H - m.b, m.t]);
     const step = (W - m.l - m.r) / rp.length, X = i => m.l + (i + 0.5) * step;
-    const svg = d3.select(host).insert('svg', ':first-child').attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%').attr('role', 'img').attr('aria-label', 'Live close ranges at nine times of day against the final close');
+    const svg = d3.select(host).insert('svg', ':first-child').attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%').attr('role', 'img').attr('aria-label', 'Live close ranges at several times of day against the final close');
     y.ticks(6).forEach(tv => { svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(tv)).attr('y2', y(tv)).attr('stroke', 'var(--cds-chart-grid)'); svg.append('text').attr('x', m.l - 8).attr('y', y(tv) + 4).attr('text-anchor', 'end').text(f0(tv)); });
-    svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(fin)).attr('y2', y(fin)).attr('stroke', 'var(--color-fg)').attr('stroke-width', 1.4).attr('stroke-dasharray', '5 4');
-    svg.append('text').attr('x', W - m.r).attr('y', y(fin) - 6).attr('text-anchor', 'end').attr('class', 'strong').text('final close ' + f1(fin));
+    if (fin != null) {
+      svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(fin)).attr('y2', y(fin)).attr('stroke', 'var(--color-fg)').attr('stroke-width', 1.4).attr('stroke-dasharray', '5 4');
+      svg.append('text').attr('x', W - m.r).attr('y', y(fin) - 6).attr('text-anchor', 'end').attr('class', 'strong').text('final close ' + f1(fin));
+    }
     const tip = tipFor(host);
     rp.forEach((r, i) => {
-      const out = r.inside_90 !== 'yes', col = out ? 'var(--color-bad)' : accent(), x = X(i), bw = Math.min(26, step * 0.5);
+      const out = r.inside_90 === 'no', col = out ? 'var(--color-bad)' : accent(), x = X(i), bw = Math.min(26, step * 0.5);
       svg.append('line').attr('x1', x).attr('x2', x).attr('y1', y(r.close_90_hi)).attr('y2', y(r.close_90_lo)).attr('stroke', col).attr('stroke-width', 2).attr('stroke-linecap', 'round');
       svg.append('rect').attr('x', x - bw / 2).attr('width', bw).attr('y', y(r.close_50_hi)).attr('height', y(r.close_50_lo) - y(r.close_50_hi)).attr('rx', 3).attr('fill', col).attr('fill-opacity', 0.35);
       svg.append('circle').attr('cx', x).attr('cy', y(r.price_then)).attr('r', 5).attr('fill', 'var(--color-ok)').attr('stroke', 'var(--color-bg)').attr('stroke-width', 1.5);
       if (W >= 560) svg.append('text').attr('x', x + bw / 2 + 4).attr('y', y(r.price_then) + 4).attr('text-anchor', 'start').attr('style', 'fill: var(--color-ok); font-size: 10px; font-weight: 600').text(f1(r.price_then));
       svg.append('text').attr('x', x).attr('y', H - 12).attr('text-anchor', 'middle').text(r.asof);
       svg.append('rect').attr('x', x - step / 2).attr('y', m.t).attr('width', step).attr('height', H - m.t - m.b).attr('fill', 'transparent')
-        .on('mousemove', ev => tip.show(box([line('d', 'As of ' + r.asof + ' IST'), line('g', '₹' + f1(r.price_then), 'My pinpoint estimate of the close:'), line('', f0(r.close_50_lo) + ' to ' + f0(r.close_50_hi), '50% range'), line('', f0(r.close_90_lo) + ' to ' + f0(r.close_90_hi), '90% range'), line('', '₹' + f1(r.final_close), 'Final close'), line('', (r.error_rs >= 0 ? '+' : '') + f1(r.error_rs) + ' rupees', 'Estimate was off by'), line('d', out ? 'Final close fell outside the 90% range' : 'Final close fell inside the 90% range')]), ev))
+        .on('mousemove', ev => tip.show(box([line('d', 'As of ' + r.asof + ' IST'), line('g', '₹' + f1(r.price_then), 'My pinpoint estimate of the close:'), line('', f0(r.close_50_lo) + ' to ' + f0(r.close_50_hi), '50% range'), line('', f0(r.close_90_lo) + ' to ' + f0(r.close_90_hi), '90% range'), line('', r.final_close == null ? 'not known yet' : '₹' + f1(r.final_close), 'Final close'), line('', r.error_rs == null ? 'scored after the official file' : (r.error_rs >= 0 ? '+' : '') + f1(r.error_rs) + ' rupees', 'Estimate was off by'), line('d', r.inside_90 === 'pending' ? 'Not scored yet' : (out ? 'Final close fell outside the 90% range' : 'Final close fell inside the 90% range'))]), ev))
         .on('mouseleave', () => tip.hide());
     });
   }
   function drawRTab() {
     fillBody($('#bd-rtab'), 'nowcast_replay', [{ field: 'asof' }, { field: 'price_then', cls: 'r num', fmt: f1 }, { field: 'close_90_lo', cls: 'r num', fmt: f1 }, { field: 'close_90_hi', cls: 'r num', fmt: f1 }, { field: 'typical_miss_rs', cls: 'r num', fmt: f1 }, { field: 'inside_90' }, { field: 'error_rs', cls: 'r num', fmt: f1 }]);
+  }
+  function drawLTab() {
+    fillBody($('#bd-ltab'), 'live_today', [{ field: 'asof' }, { field: 'price_then', cls: 'r num', fmt: v => v == null ? '—' : f1(v) }, { field: 'close_50_lo', cls: 'r num', fmt: v => v == null ? '—' : f1(v) }, { field: 'close_50_hi', cls: 'r num', fmt: v => v == null ? '—' : f1(v) }, { field: 'close_90_lo', cls: 'r num', fmt: v => v == null ? '—' : f1(v) }, { field: 'close_90_hi', cls: 'r num', fmt: v => v == null ? '—' : f1(v) }, { field: 'typical_miss_rs', cls: 'r num', fmt: v => v == null ? '—' : f1(v) }, { field: 'inside_90' }]);
+  }
+  function drawToday() {
+    const rs = v => v == null ? '—' : f1(v);
+    fillBody($('#bd-today'), 'today_check', [{ field: 'measure' }, { field: 'best_guess', cls: 'r num', fmt: rs }, { field: 'lo50', cls: 'r num', fmt: rs }, { field: 'hi50', cls: 'r num', fmt: rs }, { field: 'lo90', cls: 'r num', fmt: rs }, { field: 'hi90', cls: 'r num', fmt: rs },
+      { field: 'actual', cls: 'r num', render: (td, r) => { td.textContent = rs(r.actual); const s = document.createElement('div'); s.className = 'cap'; s.textContent = r.status; td.appendChild(s); } }, { field: 'landed' }, { field: 'as_of' }]);
+  }
+  function drawPre() {
+    const rs = v => v == null ? 'after the official file' : f1(v);
+    fillBody($('#bd-pre'), 'preopen', [{ field: 'date' }, { field: 'preopen_price', cls: 'r num', fmt: f1 }, { field: 'previous_close', cls: 'r num', fmt: f1 }, { field: 'buy_qty', cls: 'r num', fmt: FM.int }, { field: 'sell_qty', cls: 'r num', fmt: FM.int }, { field: 'official_open', cls: 'r num', fmt: rs }, { field: 'miss_rs', cls: 'r num', fmt: v => v == null ? '—' : f1(v) }]);
+  }
+  function drawHL() {
+    fillBody($('#bd-hl'), 'hl_forecast', [{ field: 'stage' }, { field: 'side' }, { field: 'best_guess', cls: 'r num', fmt: f1 }, { field: 'typical_miss_rs', cls: 'r num', fmt: v => '₹' + f0(v) }, { field: 'half_miss_rs', cls: 'r num', fmt: v => '₹' + f0(v) }, { field: 'lo50', cls: 'r num', fmt: f1 }, { field: 'hi50', cls: 'r num', fmt: f1 }, { field: 'wide' }]);
+  }
+  function drawHLEv() {
+    const chip = (td, r) => { const s = document.createElement('span'); s.className = 'st ' + (r.status === 'tested' ? 'v' : r.status === 'caution' ? 'maj' : 'n'); s.textContent = r.status; td.appendChild(s); };
+    fillBody($('#bd-hlev'), 'hl_evidence', [{ field: 'item' }, { field: 'result' }, { field: 'sample' }, { field: 'status', render: chip }, { field: 'caveat' }]);
   }
   function drawBoard() {
     const days = x => x.kind === 'day', list = rows('scoreboard');
@@ -474,6 +514,6 @@
   }
 
   $('#bd-real').addEventListener('change', e => { state.showReal = e.target.checked; drawFan(); drawLadder(); drawScen(); fillMarks(); });
-  dash.onData(() => { const sw = $('#bd-swacc'); if (sw) sw.style.background = accent(); fillMarks(); drawFan(); drawLadder(); drawScen(); drawReplay(); drawRTab(); drawBoard(); drawScore(); drawBeh(); drawVer(); drawRec(); });
+  dash.onData(() => { const sw = $('#bd-swacc'); if (sw) sw.style.background = accent(); fillMarks(); drawFan(); drawLadder(); drawScen(); drawReplay('#bd-replay', 'nowcast_replay'); drawReplay('#bd-live', 'live_today'); drawRTab(); drawLTab(); drawToday(); drawPre(); drawHL(); drawHLEv(); drawBoard(); drawScore(); drawBeh(); drawVer(); drawRec(); });
 })();
 </script>

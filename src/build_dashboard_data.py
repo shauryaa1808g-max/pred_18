@@ -148,7 +148,7 @@ h = S["lean_hit"].dropna().astype(bool) if n else pd.Series(dtype=bool)
 summ = {"kind": "summary", "scored_sessions": n, "open_miss_rs": _m("open_miss_rs"), "open_miss_unchanged_rs": _m("open_miss_unchanged_rs"), "close_miss_rs": _m("close_miss_rs"), "close_miss_unchanged_rs": _m("close_miss_unchanged_rs"),
         "lean_right": int(h.sum()) if n else 0, "lean_n": int(len(h)), "pt1_trades": int(S["PT1_net_pct"].notna().sum()) if n else 0, "pt1_avg_net_pct": round(float(S["PT1_net_pct"].mean()), 3) if n and S["PT1_net_pct"].notna().any() else None,
         "pt2_trades": int(S["PT2_net_pct"].notna().sum()) if n else 0, "pt2_avg_net_pct": round(float(S["PT2_net_pct"].mean()), 3) if n and S["PT2_net_pct"].notna().any() else None,
-        "note": "First entry is issued about 08:35 IST on Fri 16 Oct, before the open, and committed before 09:15; it is scored after the official file at about 16:34 IST." if not n else "Running totals over all scored sessions."}
+        "note": "The Fri 16 Oct entry was issued at 08:36 IST and committed at 08:36:41 IST (commit 40ab965), before the open: lean up for the close and down from open to close; PT1 short at the open, PT2 no trade. It is scored after the official file at about 16:34 IST." if not n else "Running totals over all scored sessions."}
 days = [] if not n else [{"kind": "day", "date": r["date"], "open": r["open"], "close": r["close"], "open_miss_rs": round(r["open_miss_rs"], 1), "close_miss_rs": round(r["close_miss_rs"], 1), "close_inside_90": "yes" if r["close_in90"] else "no",
                            "lean": r["lean_close"], "lean_hit": "yes" if r["lean_hit"] is True or str(r["lean_hit"]) == "True" else "no", "pt1_net_pct": None if pd.isna(r["PT1_net_pct"]) else round(float(r["PT1_net_pct"]), 2), "pt2_net_pct": None if pd.isna(r["PT2_net_pct"]) else round(float(r["PT2_net_pct"]), 2)} for _, r in S.iterrows()]
 dump("scoreboard", [summ] + days)
@@ -165,4 +165,86 @@ for f in sorted(_g.glob("results/preopen/BSE_*.jsonl")):
     off = float(e.loc[day, "open"]) if extra.exists() and pd.Timestamp(day) in e.index else None
     rows.append({"date": day, "preopen_price": float(z["pre"]["IEP"]), "previous_close": float(z["pre"]["prevClose"]), "buy_qty": int(z["pre"]["totalBuyQuantity"]), "sell_qty": int(z["pre"]["totalSellQuantity"]),
                  "read_at_ist": z["pre"]["lastUpdateTime"][-8:], "official_open": off, "miss_rs": None if off is None else round(off - float(z["pre"]["IEP"]), 2)})
+rows = rows[::-1]
 dump("preopen", rows if rows else [{"date": "none yet", "preopen_price": None, "previous_close": None, "buy_qty": None, "sell_qty": None, "read_at_ist": None, "official_open": None, "miss_rs": None}])
+
+
+# --- today's session: the calls made before the open against what has happened so far (rebuilt through the day)
+import sys as _sys
+_sys.path.insert(0, "src")
+from hl_model import hl_forecast
+ent_files = sorted(_g.glob("results/scoreboard/entries/*.json"))
+if ent_files:
+    ent = _j.loads(_P(ent_files[-1]).read_text()); D = ent["target_session"]
+    hp = _j.loads(_P(f"results/hl_dayahead_{D}.json").read_text()); pre = hp["pre_open"]
+    nl = [_j.loads(l) for l in _P("results/nowcast_log.jsonl").read_text().splitlines() if l.strip()]
+    nl = [z for z in nl if z["asof_ist"][:10] == D]
+    last = nl[-1] if nl else None
+    pf = [r for r in (_j.loads(l) for f in _g.glob(f"results/preopen/BSE_{D}.jsonl") for l in _P(f).read_text().splitlines() if l.strip()) if r["pre"]["lastUpdateTime"][-8:] >= "09:08:00" and float(r["pre"].get("finalPrice") or 0) > 0]
+    pre_open_price = float(pf[-1]["pre"]["finalPrice"]) if pf else None
+    official = e.loc[D] if extra.exists() and pd.Timestamp(D) in e.index else None
+    open_now = float(official["open"]) if official is not None else pre_open_price
+    hh = last["asof_ist"][11:16] if last else None
+    def _land(v, lo50, hi50, lo90, hi90, settled):
+        if v is None: return "not known yet"
+        w = "inside the half-the-time range" if lo50 <= v <= hi50 else ("inside the 9-in-10 range, outside the half-the-time range" if lo90 <= v <= hi90 else "outside the 9-in-10 range")
+        return w if settled else w + " (so far)"
+    def _row(measure, q, best, actual, status, asof, settled):
+        return {"measure": measure, "best_guess": round(best, 1), "lo50": round(q["q25"] if "q25" in q else q["q0.25"], 1), "hi50": round(q["q75"] if "q75" in q else q["q0.75"], 1), "lo90": round(q["q5"] if "q5" in q else q["q0.05"], 1),
+                "hi90": round(q["q95"] if "q95" in q else q["q0.95"], 1), "actual": None if actual is None else round(actual, 1), "status": status, "as_of": asof,
+                "landed": _land(actual, *( (q["q25"] if "q25" in q else q["q0.25"]), (q["q75"] if "q75" in q else q["q0.75"]), (q["q5"] if "q5" in q else q["q0.05"]), (q["q95"] if "q95" in q else q["q0.95"]) ), settled)}
+    oq, cq = ent["open"]["price"], ent["close"]["price"]
+    hq, lq = pre["high"]["price_quantiles"], pre["low"]["price_quantiles"]
+    if official is not None:
+        rows = [_row("Open", oq, oq["q0.5"], float(official["open"]), "final (official)", "NSE bhavcopy", True), _row("High", hq, hq["q50"], float(official["high"]), "final (official)", "NSE bhavcopy", True),
+                _row("Low", lq, lq["q50"], float(official["low"]), "final (official)", "NSE bhavcopy", True), _row("Close", cq, cq["q0.5"], float(official["close"]), "final (official)", "NSE bhavcopy", True)]
+    else:
+        hi_sf = max([x for x in (last["day_high_so_far"] if last else None, open_now) if x is not None], default=None)
+        lo_sf = min([x for x in (last["day_low_so_far"] if last else None, open_now) if x is not None], default=None)
+        rows = [_row("Open", oq, oq["q0.5"], open_now, "final (pre-open auction)" if open_now else "not yet", "NSE pre-open, 09:09", True), _row("High", hq, hq["q50"], hi_sf, "so far", f"{hh} IST, Yahoo plus the open", False),
+                _row("Low", lq, lq["q50"], lo_sf, "so far", f"{hh} IST, Yahoo plus the open", False), _row("Close", cq, cq["q0.5"], last["price_now"] if last else None, "price now, not final", f"{hh} IST", False)]
+    dump("today_check", rows)
+
+    # the live close readings of the day (green dot = pinpoint estimate)
+    seen = {}
+    for z in nl:
+        seen[z["asof_ist"][11:16]] = z
+    fin = float(official["close"]) if official is not None else None
+    lt = []
+    for k in sorted(seen):
+        z = seen[k]
+        lt.append({"asof": k, "price_then": round(z["price_now"], 1), "close_50_lo": round(z["close_50"][0], 1), "close_50_hi": round(z["close_50"][1], 1), "close_90_lo": round(z["close_90"][0], 1), "close_90_hi": round(z["close_90"][1], 1),
+                   "typical_miss_rs": round(z["typical_miss_rs"], 1), "final_close": fin, "inside_50": "pending" if fin is None else ("yes" if z["close_50"][0] <= fin <= z["close_50"][1] else "no"),
+                   "inside_90": "pending" if fin is None else ("yes" if z["close_90"][0] <= fin <= z["close_90"][1] else "no"), "error_rs": None if fin is None else round(fin - z["price_now"], 1), "session": D,
+                   "final_source": "not final yet: NSE official file due about 16:34 IST" if fin is None else "NSE official bhavcopy " + D})
+    dump("live_today", lt if lt else [{"asof": "none yet", "price_then": None, "close_50_lo": None, "close_50_hi": None, "close_90_lo": None, "close_90_hi": None, "typical_miss_rs": None, "final_close": None, "inside_50": "pending", "inside_90": "pending", "error_rs": None, "session": D, "final_source": ""}])
+
+    # high and low forecasts: before the open and, once the open is known, after it
+    def _hl(stage, key, side, blk, post=False):
+        q = blk["price_quantiles"]
+        wide = (f"19 days in 20 at or below ₹{q['q95']:,.0f}; about 1 day in 25 the open itself is the high" if post and side == "High" else f"₹{q['q5']:,.0f} to ₹{q['q95']:,.0f} (9 times in 10)")
+        return {"key": key, "stage": stage, "side": side, "best_guess": round(q["q50"], 1), "typical_miss_rs": round(blk["typical_miss_rs"], 1), "half_miss_rs": round(blk["half_the_time_within_rs"], 1),
+                "lo50": round(q["q25"], 1), "hi50": round(q["q75"], 1), "wide": wide, "sessions": blk["miss_measured_on_sessions"]}
+    hl_rows = [_hl("Before the open", "pre_high", "High", pre["high"]), _hl("Before the open", "pre_low", "Low", pre["low"])]
+    if open_now is not None:
+        po = hl_forecast(D, open_price=open_now)["post_open"]
+        st = f"After the open (open ₹{open_now:,.1f})"
+        hl_rows += [_hl(st, "post_high", "High", po["high"], True), _hl(st, "post_low", "Low", po["low"])]
+    dump("hl_forecast", hl_rows)
+
+    # evidence behind the high/low numbers (curated from research/hl/*.md and the three independent verification reports)
+    EV = [
+     ("Typical miss of the best guess, before the open", "High ₹43, low ₹48 (half the time within ₹34 / ₹32); 'price stays' would miss by ₹63 / ₹61", "320 sessions, 1 Jul 2025 to 15 Oct 2026", "tested", "Out of sample; independent check reproduced it from the raw files"),
+     ("Typical miss once the official open is known (09:08)", "High ₹35, low ₹37; pinball loss 23% lower than before the open (Holm p < 0.001)", "320 sessions; 52 since the closing auction (same direction)", "tested", "The gain comes from the open's level, not from the gap's size or sign (those added nothing, Holm p >= 0.48)"),
+     ("Do the bands hold?", "90% bands held 90.3% (high) and 88.8% (low); the after-open high band is really a 19-in-20 band (the open is the high on about 4% of days)", "320 sessions", "tested", "Wording fixed after the independent check"),
+     ("Since the closing auction began", "50% bands held only about 40% of the time; the real high fell below its own 5% line on 15% of days (8 of 52)", "52 sessions", "caution", "Small sample, suggestive; the high is the shakier of the two numbers"),
+     ("Any extra variable (gap, weekday, range model, Garman-Klass)", "None beat the project baseline; the volatility model helps the high against raw history, ties for the low", "34 variant-target pairs, Holm-corrected", "not_found", "Gain is in the band shape, not the best guess"),
+     ("Live running high and low: do the printed bands hold?", "Final high / low 'half the time' bands held 54% / 57%; 'nine times in ten' held 88% / 88%", "39 sessions, 8 checkpoints each (strongly dependent)", "tested", "Real uncertainty is about +-16 points on a 50% cell; the tool ignores the official open, so the high floor can be a few rupees low"),
+     ("'The high is already in' probability", "Conservative: stated 62% was followed by 81% (15-minute data) and 61% by 72% (hourly)", "167 and 918 states", "tested", "Fails in the 90-100% bin (stated 97.5%, observed 91.3%, two sessions)"),
+     ("The live tool's 'another Rs X-Y is typical' line and 'chance of at least Rs 5/10/20/40'", "The typical-extension line contained the real extension only 33-36% of the time (intended 50%); the chance of a given extension runs 4-9 points too high", "80 high and 141 low extension states", "caution", "Do not rely on these two lines"),
+     ("Yahoo against the NSE official high and low", "Official high above Yahoo's by ₹0.2 typically (mean 0.9, 95th percentile 4.0); official low below by ₹0.7 (mean 1.1, 95th percentile 3.9)", "39 sessions of 15-minute bars", "tested", "A few rupees either way; on gap-open days the official open can sit outside every Yahoo bar"),
+     ("Trade a limit buy at the estimated low, exit at the close", "Lost ₹14 a share net of a 0.10% round-trip cost (85 fills of 320)", "320 sessions", "not_found", "The level is reached as often as promised (26.6%) but the price does not turn there"),
+     ("Trade a limit sell at the estimated high, exit at the close", "Lost ₹9.9 a share net of cost (78 fills of 320)", "320 sessions", "not_found", "Same: reached 24.4% of days against 25% promised"),
+     ("Follow a break of the first-hour range to the close", "+0.47% a trade in one six-month window, +0.04% after, -0.14% since the closing auction", "daily and hourly history", "not_found", "Looks like an edge in one window, then fades; not usable"),
+    ]
+    dump("hl_evidence", [{"item": a, "result": b, "sample": c, "status": st_, "caveat": d_} for a, b, c, st_, d_ in EV])
