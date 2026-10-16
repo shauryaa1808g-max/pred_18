@@ -1,4 +1,4 @@
-# Hour-by-hour paper trade: rules fixed BEFORE the backtest (written Fri 16 Oct 2026, about 14:22 IST)
+# Hour-by-hour paper trade: rules fixed BEFORE the backtest (written Fri 16 Oct 2026, about 14:19 IST; git commit 23a7f4c is the authoritative time)
 
 Purpose: the user asked for a paper-trade algorithm built on the hour-by-hour method (next-hour high/low pin-points), "if that would be better" than the open-to-close lean (PT1/PT2 of the scoreboard). These rules and the verdict test below were written before any rule was run. Nothing here claims an edge: the pin-points are medians of price excursions, symmetric around the price, so they carry no direction information by construction; the test is whether trading around them survives costs.
 

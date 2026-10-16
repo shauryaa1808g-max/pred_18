@@ -209,6 +209,11 @@ def build(asof: str | None = None, save: bool = True) -> dict | None:
     ev_t = eval_row()
     row["typical_miss_next_hour_rs"] = typical_miss(ev_t, tmin)
     if save and not asof:
+        try:                                                      # paper ledger (src/paper_hourly.py): settle finished hours, place this row's paper orders
+            import paper_hourly as PH
+            row["paper"] = {"settled": PH.settle(day, pd.Timestamp(now), PH.ORDERS, PH.LEDGER), "placed": PH.place(row, PH.ORDERS)}
+        except Exception as e:                                    # noqa: BLE001  (never hide a failure: it is printed under the table)
+            row["paper"] = {"error": f"{type(e).__name__}: {e}"}
         Path("results").mkdir(exist_ok=True)
         with open(LOG, "a") as f:
             f.write(json.dumps({**row, "logged_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")}) + "\n")
@@ -238,6 +243,9 @@ def fmt_row(r: dict) -> str:
     body = f"| {r['asof']} | {r['close_pin']:,.1f} (typical miss {r['close_typical_miss_rs']:,.0f}) | half the time {r['close_50'][0]:,.0f}-{r['close_50'][1]:,.0f}; 9 in 10 {r['close_90'][0]:,.0f}-{r['close_90'][1]:,.0f} | {H} | {L} | {cell('high')} | {cell('low')} |"
     foot = [f"Window of the next-hour columns: {nh['window_start']}-{nh['window_end']} IST." if nh else "", f"Typical miss of the next-hour pin-points at this time (leave-one-session-out, past sessions): high Rs {tm[0]:,.0f}, low Rs {tm[1]:,.0f}." if tm[0] is not None else "Typical miss of the next-hour pin-points: run --eval.",
             f"Day so far (Yahoo): high {r['day_high_so_far']:,.1f}, low {r['day_low_so_far']:,.1f}; this hour's actual high/low are Yahoo 1-minute figures (NSE's official ones can differ by a few rupees)."]
+    pp = r.get("paper")
+    if pp:
+        foot.append(f"Paper ledger FAILED this time ({pp['error']})." if "error" in pp else f"Paper ledger (src/paper_hourly.py): {pp['placed']} new paper orders placed for this window, {pp['settled']} older orders settled. Backtest verdict: no rule beats doing nothing.")
     return head + "\n" + body + "\n" + "\n".join(x for x in foot if x)
 
 
