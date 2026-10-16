@@ -1,0 +1,30 @@
+{
+ "data_through": "2026-10-15",
+ "reference_close_rs": 3428.0,
+ "next_session": "2026-10-16",
+ "ewma_scales_for_16oct_pct": {
+  "sigR": 2.260051487361747,
+  "sigG": 0.7781308147213386,
+  "sigI": 2.0263419273516328,
+  "sigL": 1.9001061163379642,
+  "sigH": 2.0100690981739313
+ },
+ "ewma_scales_in_rupees_at_reference": {
+  "sigR": 77.4745649867607,
+  "sigG": 26.674324328647486,
+  "sigI": 69.46300126961397,
+  "sigL": 65.13563766806541,
+  "sigH": 68.90516868540236
+ },
+ "R1_k1_level_offset_below_open": {
+  "pct": 1.8821678948249598,
+  "rs": 64.52071543459962
+ },
+ "R2_k1_level_offset_above_open": {
+  "pct": 2.0304070273172714,
+  "rs": 69.60235289643606
+ },
+ "regime_expanding_terciles": "mid",
+ "regime_trailing500_posthoc": "low",
+ "note": "descriptive; the open of 16 Oct is not known; all rupee figures are percent x the 15 Oct close"
+}

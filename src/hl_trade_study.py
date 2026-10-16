@@ -10,7 +10,9 @@ Run from the repo root (python3; no network; reads data/processed/*.csv, results
   python3 src/hl_trade_study.py part2  --hourly <h60_BSE.NS.json>
   python3 src/hl_trade_study.py placebo --hourly <h60_BSE.NS.json> --reps 2000 [--procs 4]
   python3 src/hl_trade_study.py finish --hourly <h60_BSE.NS.json>
-(`all` = selftest, part1, part2, placebo, finish.)  Temporary placebo output goes to $HL_TRADE_TMP (default /tmp/hl_trade).
+  python3 src/hl_trade_study.py posthoc --hourly <h60_BSE.NS.json>   (post-hoc variants + pooled-clock placebo sensitivity; needs the placebo output)
+  python3 src/hl_trade_study.py today --hourly <h60_BSE.NS.json>     (numbers for 16 Oct 2026)
+(`all` = selftest, part1, part2, placebo, finish, posthoc, today.)  Temporary placebo output goes to $HL_TRADE_TMP (default /tmp/hl_trade).
 """
 from __future__ import annotations
 
@@ -273,6 +275,65 @@ def run_variants(S: Sess, mode: int = 0, model: pd.DataFrame | None = None, with
     return out
 
 
+POSTHOC_FAMILY_SIZE = 16          # M2 x3, M1 x3, M8_emp x2, M7_emp x2, M8_post x2, M7_post x2 (the last four are model-quantile mirrors), R4a_long, R4a_short -> see posthoc_variants
+
+
+def posthoc_variants(S: Sess, mode: int = 0, model: pd.DataFrame | None = None, with_model: bool = True) -> dict:
+    """POST-HOC variants, declared AFTER the pre-fixed results were seen (they are exploratory and are labelled so in the report).
+    M1 / M2 / M7 / M8 = the mirror image of R1 / R2 / R7 / R8: trade WITH the breach of the level (stop-entry: buy when the high trades through
+    the upper level, sell short when the low trades through the lower level; filled at the level, which is generous for a stop order; exit at the close;
+    two marketable legs).  R4a_long / R4a_short = R4a split by the direction of the first breakout."""
+    E = estimators(S)
+    n, i0 = S.n, S.i0
+    pos = np.arange(i0, n)
+    sl = (Ellipsis, slice(i0, n))
+    O, H, L, C = (a[sl] for a in (S.O, S.H, S.L, S.C))
+    out = {}
+    for k in (0.5, 1.0, 1.5):
+        lv = O * np.exp(k * E["sigH"][sl])
+        out[f"M2_k{k}"] = pack(tt_sell(H, lv, mode), C / lv - 1, 2, pos, np.isfinite(lv))
+        lv = O * np.exp(-k * E["sigL"][sl])
+        out[f"M1_k{k}"] = pack(tt_buy(L, lv, mode), 1 - C / lv, 2, pos, np.isfinite(lv))
+    qL = roll_q(E["LO"], [0.25, 0.10])
+    qH = roll_q(E["HO"], [0.75, 0.90])
+    for j, tau in enumerate(("q75", "q90")):
+        lv = O * np.exp(qH[j][sl])
+        out[f"M8_emp_{tau}"] = pack(tt_sell(H, lv, mode), C / lv - 1, 2, pos, np.isfinite(lv))
+    for j, tau in enumerate(("q25", "q10")):
+        lv = O * np.exp(qL[j][sl])
+        out[f"M7_emp_{tau}"] = pack(tt_buy(L, lv, mode), 1 - C / lv, 2, pos, np.isfinite(lv))
+    if model is not None and with_model:
+        m = {c: model[c].values[None, :][sl] for c in model.columns if c.startswith("W_I6_")}
+        have = np.isfinite(m["W_I6_L_q25"])
+        for tau in ("q75", "q90"):
+            lv = m[f"W_I6_H_{tau}"]
+            out[f"M8_post_{tau}"] = pack(tt_sell(H, lv, mode), C / lv - 1, 2, pos, have)
+        for tau in ("q25", "q10"):
+            lv = m[f"W_I6_L_{tau}"]
+            out[f"M7_post_{tau}"] = pack(tt_buy(L, lv, mode), 1 - C / lv, 2, pos, have)
+    if S.hidx is not None and S.ho is not None:
+        hp = S.hidx
+        Ch = S.C[..., hp]
+        o1, h1, l1, c1 = S.ho[..., 0], S.hh[..., 0], S.hl[..., 0], S.hc[..., 0]
+        sig1 = ewma_rms(np.log(c1 / o1), warm=40)
+        shp = Ch.shape
+        done, ga, dirn = np.zeros(shp, bool), np.zeros(shp), np.zeros(shp)
+        for k in range(1, 5):
+            lb, sb = tt_sell(S.hh[..., k], h1, mode), tt_buy(S.hl[..., k], l1, mode)
+            el, es = np.maximum(h1, S.ho[..., k]), np.minimum(l1, S.ho[..., k])
+            rl, rs_ = Ch / el - 1, 1 - Ch / es
+            r = np.where(lb & sb, np.minimum(rl, rs_), np.where(lb, rl, rs_))
+            dd = np.where(lb & sb, np.where(rl <= rs_, 1, -1), np.where(lb, 1, -1))
+            new = ~done & (lb | sb)
+            ga = np.where(new, r, ga)
+            dirn = np.where(new, dd, dirn)
+            done |= new
+        ok = np.isfinite(sig1)
+        out["R4a_long"] = pack(done & (dirn == 1), ga, 2, hp, ok)
+        out["R4a_short"] = pack(done & (dirn == -1), ga, 2, hp, ok)
+    return out
+
+
 PRIMARY = {"R1": "R1_k1.0", "R2": "R2_k1.0", "R3": "R3_z1.5", "R4": "R4a", "R5": "R5_z1.0", "R6": "R6_long_s1_t2", "R7": "R7_post_q25", "R8": "R8_post_q75"}
 HOURLY_VARIANTS = ("R3_z1.5", "R3_z1.0", "R3_z2.0", "R3t_z1.5", "R4a", "R4b")
 
@@ -436,6 +497,8 @@ def dm_and_kupiec(S, rec0, outdir):
     pm = D.copy()
     for w, g in D.groupby("window"):
         D.loc[g.index, "holm_one_sided_over_pairs"] = holm(g["p_one_sided_model_better"].values)
+    # added after the first run (two-sided, "model differs from benchmark"), Holm over all pairs x windows in the table
+    D["holm_two_sided_over_all_rows"] = holm(D["p_two_sided"].values, m_total=len(D))
     D.to_csv(outdir / "hl_trade_dm.csv", index=False)
     # Kupiec fill frequency
     nominal = {"q25": 0.25, "q10": 0.10, "q75": 0.25, "q90": 0.10}
@@ -673,6 +736,18 @@ def data_checks(S: Sess, d: pd.DataFrame, audit: dict, outdir: Path):
     return audit
 
 
+def open_equals_prev(S: Sess, outdir: Path):
+    """How often the official open equals the previous official close (closing-auction regime check), by window (daily bars, from 2019-01-01)."""
+    rows = []
+    O, P0 = S.O[0], S.P0[0]
+    for w in WINDOWS + ("final_pre",):
+        wm = win_mask(S.dates, w) & (np.arange(S.n) >= S.i0)
+        eq = np.abs(O - P0) < 1e-6
+        g = np.abs(np.log(O / P0))
+        rows.append({"window": w, "n_sessions": int(wm.sum()), "open_equals_prev_close": int(eq[wm].sum()), "share": float(eq[wm].mean()), "median_abs_gap_pct": 100 * float(np.median(g[wm])), "mean_abs_gap_pct": 100 * float(g[wm].mean())})
+    pd.DataFrame(rows).to_csv(outdir / "hl_trade_open_equals_prev.csv", index=False)
+
+
 # ----------------------------------------------------------------------------- cross-check: Yahoo-consistent execution for the open rules
 def crosscheck(S: Sess, E, outdir: Path):
     """R1, R2, R5, R6 primaries on the hourly sample with Yahoo's first printed open, Yahoo's own extremes and Yahoo's last printed price,
@@ -740,7 +815,7 @@ class Ctx:
     pass
 
 
-def build_ctx(S: Sess, E) -> Ctx:
+def build_ctx(S: Sess, E, clock: str = "mean_ratio") -> Ctx:
     c = Ctx()
     n = S.n
     c.n, c.dates, c.hidx, c.i0 = n, S.dates, S.hidx, S.i0
@@ -754,7 +829,8 @@ def build_ctx(S: Sess, E) -> Ctx:
     hc, ho = S.hc[0], S.ho[0]
     r = np.column_stack([np.log(hc[:, 0] / ho[:, 0])] + [np.log(hc[:, k] / hc[:, k - 1]) for k in range(1, 7)])
     sh = (r ** 2) / (r ** 2).sum(1, keepdims=True)
-    c.share = sh.mean(0)
+    # "mean_ratio" = the pre-fixed clock (mean of session-normalised shares; biased toward 1/7 by ratio noise); "pooled" = ratio of sums (post-hoc sensitivity)
+    c.share = sh.mean(0) if clock == "mean_ratio" else (r ** 2).sum(0) / (r ** 2).sum()
     w = np.zeros(K5)
     for k in range(7):
         a = BAR_STEPS[k]
@@ -850,18 +926,24 @@ def _placebo_worker(args):
     rng = np.random.default_rng(seed_seq)
     S = simulate(rng, R, c, drift)
     rec = run_variants(S, 0, None, with_model=False)
+    rec.update(posthoc_variants(S, 0, None, with_model=False))
     return placebo_stats(S, rec), timing_stats(S)
+
+
+# placebo settings: A / B are the pre-fixed ones; P0 / P1 repeat them with the pooled (ratio-of-sums) variance clock (post-hoc sensitivity, see report)
+SETTINGS = (("A", False, "mean_ratio"), ("B", True, "mean_ratio"), ("P0", False, "pooled"), ("P1", True, "pooled"))
 
 
 def placebo(S: Sess, E, reps: int, procs: int, chunk: int, path: Path):
     from multiprocessing import Pool
-    c = build_ctx(S, E)
+    ctxs = {clk: build_ctx(S, E, clk) for clk in ("mean_ratio", "pooled")}
+    c = ctxs["mean_ratio"]
     nchunk = int(np.ceil(reps / chunk))
     ss = np.random.SeedSequence(SEED).spawn(nchunk)
     res = {}
     t0 = time.time()
-    for drift in (False, True):
-        jobs = [(ss[i], min(chunk, reps - i * chunk), c, drift, True) for i in range(nchunk)]
+    for tag, drift, clk in SETTINGS:
+        jobs = [(ss[i], min(chunk, reps - i * chunk), ctxs[clk], drift, True) for i in range(nchunk)]
         with Pool(procs) as pool:
             outs = pool.map(_placebo_worker, jobs)
         agg, tim = {}, {}
@@ -870,13 +952,13 @@ def placebo(S: Sess, E, reps: int, procs: int, chunk: int, path: Path):
                 agg.setdefault(k, []).append(v)
             for k, v in tm.items():
                 tim.setdefault(k, []).append(v)
-        tag = "B" if drift else "A"
         for k, v in agg.items():
             res[f"stat|{tag}|{k[0]}|{k[1]}"] = np.concatenate(v, axis=0)
         for k, v in tim.items():
             res[f"timing|{tag}|{k[0]}|{k[1]}"] = np.concatenate(v, axis=0)
-        print(f"placebo setting {tag} done, {reps} histories, {time.time()-t0:.0f}s")
+        print(f"placebo setting {tag} (drift={drift}, clock={clk}) done, {reps} histories, {time.time()-t0:.0f}s")
     res["meta"] = np.array([c.v2, c.v2g] + list(c.share))
+    res["meta_pooled_clock"] = np.array(ctxs["pooled"].share)
     TMP.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(path, **res)
     return res
@@ -917,6 +999,37 @@ def selftest(S: Sess, d: pd.DataFrame, model):
     # level of session t0 itself uses only data before t0 and the open
     E1, E2 = estimators(S), estimators(S2)
     res.append(("sigma_and_level_inputs_of_session_t_unchanged_by_its_own_HLC", bool(np.array_equal(E1["sigL"][0][: t0 + 1], E2["sigL"][0][: t0 + 1], equal_nan=True) and np.array_equal(E1["sigG"][0][: t0 + 1], E2["sigG"][0][: t0 + 1], equal_nan=True)), 0))
+    # hourly rules (R3, R4): (a) changing bars 2..7 of hourly session m0 must leave every earlier session AND the R3 signal / fill of m0 itself unchanged (R3 uses bar 1 only);
+    # (b) changing the first bar's close of m0 must leave earlier sessions bit-identical and (positive control) change at least one later R3 outcome.
+    m0 = 250
+    hb = run_variants(S, 0, None, with_model=False)
+    hh2, hl2, hc2, ho2 = S.hh.copy(), S.hl.copy(), S.hc.copy(), S.ho.copy()
+    hh2[0, m0, 1:] *= 1.04; hl2[0, m0, 1:] *= 0.96; hc2[0, m0, 1:] *= 1.02
+    ha = run_variants(Sess(S.dates, S.O, S.H, S.L, S.C, S.P0, S.hidx, ho2, hh2, hl2, hc2), 0, None, with_model=False)
+    bad_h, r3_same_all = 0, True
+    for k in HOURLY_VARIANTS:
+        for key in ("fill", "gross"):
+            x, y = np.nan_to_num(hb[k][key][0]), np.nan_to_num(ha[k][key][0])
+            if not np.array_equal(x[:m0], y[:m0]):
+                bad_h += 1
+        if k.startswith("R3") and not np.array_equal(hb[k]["fill"][0], ha[k]["fill"][0]):
+            r3_same_all = False
+    res.append(("hourly_rules_earlier_sessions_bit_identical_when_later_bars_of_session_m0_change", bad_h == 0, bad_h))
+    res.append(("R3_fill_signal_depends_on_first_bar_only (bars 2-7 of session m0 and all later fills unchanged)", r3_same_all, 0))
+    hh3, hl3, hc3, ho3 = S.hh.copy(), S.hl.copy(), S.hc.copy(), S.ho.copy()
+    hc3[0, m0, 0] = ho3[0, m0, 0] * 1.03
+    hh3[0, m0, 0] = np.maximum(hh3[0, m0, 0], hc3[0, m0, 0])
+    hc_alt = run_variants(Sess(S.dates, S.O, S.H, S.L, S.C, S.P0, S.hidx, ho3, hh3, hl3, hc3), 0, None, with_model=False)
+    bad_b, chg_later = 0, 0
+    for k in HOURLY_VARIANTS:
+        for key in ("fill", "gross"):
+            x, y = np.nan_to_num(hb[k][key][0]), np.nan_to_num(hc_alt[k][key][0])
+            if not np.array_equal(x[:m0], y[:m0]):
+                bad_b += 1
+            if not np.array_equal(x[m0 + 1:], y[m0 + 1:]):
+                chg_later += 1
+    res.append(("hourly_rules_earlier_sessions_bit_identical_when_first_bar_of_session_m0_changes", bad_b == 0, bad_b))
+    res.append(("hourly_rules_later_sessions_change_positive_control", chg_later > 0, chg_later))
     # model-variant check: changing H/L/C does not change the stored level inputs (predictions come from a file; just check the file's P0 equals prev)
     if model is not None:
         m = model.dropna(subset=["P0"])
@@ -1049,17 +1162,155 @@ def finish(S: Sess, d: pd.DataFrame, model, outdir: Path, extra: dict):
                 rows.append({"placebo_setting": tag, "window": w, "n_hourly_sessions": n_,
                              "obs_high_in_first_hour": r_["high_in_first_hour"], "sim_high_in_first_hour": a[:, 0].mean(), "obs_low_in_first_hour": r_["low_in_first_hour"], "sim_low_in_first_hour": a[:, 1].mean(),
                              "obs_high_or_low_first_hour": r_["high_or_low_in_first_hour"], "sim_high_or_low_first_hour": a[:, 2].mean(), "sim_5pct": np.quantile(a[:, 2], 0.05), "sim_95pct": np.quantile(a[:, 2], 0.95),
-                             "p_two_sided_obs_vs_sim": float(2 * min((a[:, 2] >= r_["high_or_low_in_first_hour"] - 1e-12).mean(), (a[:, 2] <= r_["high_or_low_in_first_hour"] + 1e-12).mean())),
+                             "p_two_sided_obs_vs_sim": float(min(1.0, 2 * min((a[:, 2] >= r_["high_or_low_in_first_hour"] - 1e-12).mean(), (a[:, 2] <= r_["high_or_low_in_first_hour"] + 1e-12).mean()))),
                              "obs_high_and_low_first_hour": r_["high_and_low_in_first_hour"], "sim_high_and_low_first_hour": a[:, 3].mean(), "obs_high_in_last_bar": r_["high_in_last_bar"], "sim_high_in_last_bar": a[:, 4].mean(),
                              "n_daily_sessions": int(rd["n"]), "obs_open_is_high": rd["open_is_high"], "sim_open_is_high": o[:, 0].mean(), "obs_open_is_low": rd["open_is_low"], "sim_open_is_low": o[:, 1].mean()})
         pd.DataFrame(rows).to_csv(outdir / "hl_trade_open_hl.csv", index=False)
     return H, Vdf
 
 
+# ----------------------------------------------------------------------------- post-hoc report and clock sensitivity
+PTAGS = ("A", "B", "P0", "P1")
+
+
+def _placebo_cols(P, tag: str, variant: str, w: str, obs_net_pct: float, n_trades: int) -> dict:
+    """Placebo p (share of simulated histories, plus one, with a net mean at least as large as the observed one) and null summaries; same logic as finish()."""
+    nan = {"p": np.nan, "null_mean": np.nan, "null_sd": np.nan, "null_q95": np.nan, "null_gross": np.nan, "null_n": np.nan}
+    key = f"stat|{tag}|{variant}|{w}"
+    if P is None or key not in P.files or not np.isfinite(obs_net_pct) or n_trades < MIN_TRADES:
+        return nan
+    arr = P[key]
+    with np.errstate(invalid="ignore", divide="ignore"):
+        mean_net = arr[:, 2] / arr[:, 0]
+        mean_gross = arr[:, 1] / arr[:, 0]
+    valid = arr[:, 0] >= 1
+    mn = np.where(valid, mean_net, -np.inf)
+    obs = obs_net_pct / 100
+    return {"p": (1 + np.sum(mn >= obs - 1e-15)) / (len(mn) + 1), "null_mean": np.nanmean(mean_net[valid]) * 100, "null_sd": np.nanstd(mean_net[valid], ddof=1) * 100,
+            "null_q95": np.nanquantile(mean_net[valid], 0.95) * 100, "null_gross": np.nanmean(mean_gross[valid]) * 100, "null_n": float(np.mean(arr[:, 0]))}
+
+
+def posthoc_report(S: Sess, d: pd.DataFrame, model, outdir: Path):
+    """(1) The 16 post-hoc variants on the real data, all windows and fill conventions, Holm over the joint family (31 pre-fixed + 16 post-hoc = 47) and
+    placebo p under A, B (pre-fixed placebo) and P0, P1 (pooled variance clock).  (2) The 31 pre-fixed variants under the four placebo settings."""
+    path = TMP / "placebo.npz"
+    P = np.load(path) if path.exists() else None
+    R = pd.read_csv(outdir / "hl_trade_rules.csv")
+    rows = []
+    for mode in (0, 1, 2):
+        rec = posthoc_variants(S, mode, model)
+        for name, r in rec.items():
+            for w in WINDOWS:
+                if name.startswith("R4a_") and w == "dev":
+                    continue
+                rows.append(summarize_one(name, r, S.dates, w, mode))
+    PH = pd.DataFrame(rows)
+    fam = N_FAMILY + PH["variant"].nunique()
+    PH["family_size_for_holm"] = fam
+    PH["holm_hac_joint_family"] = np.nan
+    for (mode, w), g in PH.groupby(["fill_mode", "window"]):
+        pre = R[(R.fill_mode == mode) & (R.window == w)]
+        adj = holm(np.concatenate([pre["p_hac_net"].values, g["p_hac_net"].values]), m_total=fam)
+        PH.loc[g.index, "holm_hac_joint_family"] = adj[len(pre):]
+    # placebo columns (fill convention F0 only)
+    for tag in PTAGS:
+        for col in ("p", "null_mean", "null_sd", "null_q95", "null_gross", "null_n"):
+            PH[f"placebo_{col}_{tag}"] = np.nan
+        PH[f"holm_placebo_joint_{tag}"] = np.nan
+    pre_p = {}                                                               # placebo p of the 31 pre-fixed variants (needed for the joint Holm)
+    SENS = []
+    for w in WINDOWS:
+        sub = R[(R.fill_mode == 0) & (R.window == w)].copy()
+        sub["holm_hac"] = holm(sub["p_hac_net"].values)
+        for tag in PTAGS:
+            cols = [_placebo_cols(P, tag, r_["variant"], w, r_.get("mean_net_pct", np.nan), r_["n_trades"]) for _, r_ in sub.iterrows()]
+            sub[f"p_placebo_{tag}"] = [c_["p"] for c_ in cols]
+            sub[f"null_mean_net_pct_{tag}"] = [c_["null_mean"] for c_ in cols]
+            sub[f"null_sd_net_pct_{tag}"] = [c_["null_sd"] for c_ in cols]
+            sub[f"null_mean_trades_{tag}"] = [c_["null_n"] for c_ in cols]
+            sub[f"holm_placebo_{tag}"] = holm(sub[f"p_placebo_{tag}"].values)
+            pre_p[(w, tag)] = sub[f"p_placebo_{tag}"].values
+            g = PH[(PH.fill_mode == 0) & (PH.window == w)]
+            cc = [_placebo_cols(P, tag, r_["variant"], w, r_.get("mean_net_pct", np.nan), r_["n_trades"]) for _, r_ in g.iterrows()]
+            for col in ("p", "null_mean", "null_sd", "null_q95", "null_gross", "null_n"):
+                PH.loc[g.index, f"placebo_{col}_{tag}"] = [c_[col] for c_ in cc]
+            adj = holm(np.concatenate([pre_p[(w, tag)], np.array([c_["p"] for c_ in cc])]), m_total=fam)
+            PH.loc[g.index, f"holm_placebo_joint_{tag}"] = adj[len(sub):]
+        SENS.append(sub[["variant", "rule", "window", "n_sessions", "n_trades", "fill_rate", "mean_gross_pct", "mean_net_pct", "sd_net_pct", "p_hac_net", "holm_hac"]
+                        + [f"{a}_{t}" for t in PTAGS for a in ("p_placebo", "holm_placebo", "null_mean_net_pct", "null_sd_net_pct", "null_mean_trades")]])
+    PH.to_csv(outdir / "hl_trade_posthoc.csv", index=False)
+    pd.concat(SENS).to_csv(outdir / "hl_trade_sensitivity_clock.csv", index=False)
+    # by-year view of the post-hoc variants (F0, 0.10% round trip)
+    rec0 = posthoc_variants(S, 0, model)
+    yrows = []
+    for name, r in rec0.items():
+        dts = S.dates[r["pos"]]
+        for y in sorted(set(dts.year)):
+            wm = dts.year == y
+            f = r["fill"][0] & wm
+            g = r["gross"][0][f]
+            if wm.sum() == 0:
+                continue
+            row = {"variant": name, "year": y, "n_sessions": int((wm & r["elig"][0]).sum()), "n_trades": int(f.sum())}
+            if f.sum():
+                row.update({"mean_gross_pct": 100 * g.mean(), "mean_net_pct": 100 * (g - COST).mean(), "win_rate": float(((g - COST) > 0).mean())})
+            yrows.append(row)
+    pd.DataFrame(yrows).to_csv(outdir / "hl_trade_posthoc_byyear.csv", index=False)
+    # timing statistics under the four placebo settings
+    if P is not None:
+        real = pd.read_csv(outdir / "hl_trade_open_hl_real.csv")
+        rows = []
+        for tag in PTAGS:
+            for w in ("all", "val", "final", "cas"):
+                a = P[f"timing|{tag}|hl_first_hour|{w}"]
+                o = P[f"timing|{tag}|open_is_hl|{w}"]
+                r_ = real[(real.source == "hourly bars") & (real.window == w)].iloc[0]
+                x = r_["high_or_low_in_first_hour"]
+                rows.append({"placebo_setting": tag, "window": w, "n_hourly_sessions": int(r_["n"]), "obs_high_or_low_first_hour": x, "sim_mean": a[:, 2].mean(), "sim_5pct": np.quantile(a[:, 2], 0.05),
+                             "sim_95pct": np.quantile(a[:, 2], 0.95), "p_two_sided": float(min(1.0, 2 * min((a[:, 2] >= x - 1e-12).mean(), (a[:, 2] <= x + 1e-12).mean()))),
+                             "obs_high_and_low_first_hour": r_["high_and_low_in_first_hour"], "sim_high_and_low_first_hour": a[:, 3].mean(),
+                             "obs_high_in_last_bar": r_["high_in_last_bar"], "sim_high_in_last_bar": a[:, 4].mean(), "sim_open_is_high": o[:, 0].mean(), "sim_open_is_low": o[:, 1].mean()})
+        pd.DataFrame(rows).to_csv(outdir / "hl_trade_open_hl_clock.csv", index=False)
+    return PH
+
+
+# ----------------------------------------------------------------------------- the numbers for the next session (descriptive, uses data through 15 Oct 2026 only)
+def today(S: Sess, d: pd.DataFrame, outdir: Path, summary: dict):
+    E = estimators(S)
+    n = S.n
+    O, H, L, C = (a[0] for a in (S.O, S.H, S.L, S.C))
+    last = n - 1
+    nxt = {}
+    for nm, x in (("sigR", "R"), ("sigG", "G"), ("sigI", "I"), ("sigL", "LO"), ("sigH", "HO")):
+        nxt[nm] = float(np.sqrt(LAM * E[nm][0][last] ** 2 + (1 - LAM) * E[x][0][last] ** 2))
+    ref = float(C[last])
+    up, down = H / O - 1, 1 - L / O
+    rows = []
+    for label, sl in (("trailing 250 sessions to 15 Oct 2026", slice(n - 250, n)), ("Final window (2025-07-01 to 15 Oct 2026)", slice(int(np.searchsorted(S.dates.values, FIN0.to_datetime64())), n)),
+                      ("since closing auction (2026-08-04 on)", slice(int(np.searchsorted(S.dates.values, CAS0.to_datetime64())), n))):
+        for side, x in (("price falls below the open (adverse for a long)", down[sl]), ("price rises above the open (adverse for a short)", up[sl])):
+            r = {"sample": label, "n_sessions": int(len(x)), "side": side}
+            for q in (0.25, 0.5, 0.75, 0.9):
+                r[f"q{int(q*100)}_pct"] = 100 * float(np.quantile(x, q))
+                r[f"q{int(q*100)}_rs_at_{int(ref)}"] = float(np.quantile(x, q)) * ref
+            r["mean_pct"], r["mean_rs"] = 100 * float(x.mean()), float(x.mean()) * ref
+            rows.append(r)
+    pd.DataFrame(rows).to_csv(outdir / "hl_trade_today_2026-10-16.csv", index=False)
+    out = {"data_through": str(S.dates[-1].date()), "reference_close_rs": ref, "next_session": "2026-10-16",
+           "ewma_scales_for_16oct_pct": {k: 100 * v for k, v in nxt.items()},
+           "ewma_scales_in_rupees_at_reference": {k: v * ref for k, v in nxt.items()},
+           "R1_k1_level_offset_below_open": {"pct": 100 * (1 - np.exp(-nxt["sigL"])), "rs": ref * (1 - np.exp(-nxt["sigL"]))},
+           "R2_k1_level_offset_above_open": {"pct": 100 * (np.exp(nxt["sigH"]) - 1), "rs": ref * (np.exp(nxt["sigH"]) - 1)},
+           "regime_expanding_terciles": summary.get("regime_for_16oct_expanding"), "regime_trailing500_posthoc": summary.get("regime_for_16oct_trailing500"),
+           "note": "descriptive; the open of 16 Oct is not known; all rupee figures are percent x the 15 Oct close"}
+    (outdir / "hl_trade_today_2026-10-16.json").write_text(json.dumps(out, indent=1))
+    return out
+
+
 # ----------------------------------------------------------------------------- main
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["selftest", "part1", "part2", "placebo", "finish", "all"])
+    ap.add_argument("cmd", choices=["selftest", "part1", "part2", "placebo", "finish", "posthoc", "today", "all"])
     ap.add_argument("--hourly", default=os.environ.get("HL_HOURLY", ""))
     ap.add_argument("--reps", type=int, default=2000)
     ap.add_argument("--procs", type=int, default=4)
@@ -1070,7 +1321,7 @@ def main():
     S, audit = real_sess(d, a.hourly)
     model = load_model(S)
     E = estimators(S)
-    cmds = ["selftest", "part1", "part2", "placebo", "finish"] if a.cmd == "all" else [a.cmd]
+    cmds = ["selftest", "part1", "part2", "placebo", "finish", "posthoc", "today"] if a.cmd == "all" else [a.cmd]
     summary = json.loads((OUT / "hl_trade_summary.json").read_text()) if (OUT / "hl_trade_summary.json").exists() else {}
     for cmd in cmds:
         t0 = time.time()
@@ -1083,6 +1334,7 @@ def main():
             audit = data_checks(S, d, audit, OUT)
             res, lab = part1(S, d, OUT)
             bracket_resolved(S, E, OUT)
+            open_equals_prev(S, OUT)
             summary.update(res)
             summary["hourly_audit"] = audit
             print(json.dumps(res, indent=1))
@@ -1093,6 +1345,8 @@ def main():
             dm_and_kupiec(S, rec[0], OUT)
             crosscheck(S, E, OUT)
             summary["predictions_file_sha256"] = hashlib.sha256(PRED.read_bytes()).hexdigest()
+            summary["hourly_file_sha256"] = hashlib.sha256(Path(a.hourly).read_bytes()).hexdigest()
+            summary["hourly_file_note"] = "Yahoo chart API, symbol BSE.NS, range=2y, interval=60m, fetched 15 Oct 2026 (last bar 15:15 IST bar of 15 Oct); not stored in the repo"
             summary["daily_sessions"] = int(S.n)
             summary["hourly_sessions_used"] = int(len(S.hidx))
             print(R[(R.window == "final") & (R.fill_mode == 0)][["variant", "n_sessions", "n_trades", "fill_rate", "mean_gross_pct", "mean_net_pct", "p_hac_net"]].to_string(index=False))
@@ -1102,6 +1356,11 @@ def main():
         elif cmd == "finish":
             H, V = finish(S, d, model, OUT, summary)
             print(V.to_string(index=False))
+        elif cmd == "posthoc":
+            PH = posthoc_report(S, d, model, OUT)
+            print(PH[(PH.fill_mode == 0) & (PH.window.isin(["final", "cas"]))][["variant", "window", "n_trades", "mean_gross_pct", "mean_net_pct", "p_hac_net", "holm_hac_joint_family", "placebo_p_A", "placebo_p_B", "placebo_p_P0", "placebo_p_P1"]].to_string(index=False))
+        elif cmd == "today":
+            print(json.dumps(today(S, d, OUT, summary), indent=1))
         print(f"[{cmd}] {time.time()-t0:.1f}s")
     (OUT / "hl_trade_summary.json").write_text(json.dumps(summary, indent=1, default=str))
 

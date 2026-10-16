@@ -54,5 +54,8 @@
  },
  "predictions_file_sha256": "6b97a92d6fc4cf4d0d729c16ab444d88b6b09a303d2a6231b81a7b0f757dd04b",
  "daily_sessions": 2390,
- "hourly_sessions_used": 479
+ "hourly_sessions_used": 479,
+ "placebo_reps_per_setting": 2000,
+ "hourly_file_sha256": "ef5d3b6be31bcf7fdfbdbfcf537bf8bb7dc7f407b46b1030a7254ad87912754b",
+ "hourly_file_note": "Yahoo chart API, symbol BSE.NS, range=2y, interval=60m, fetched 15 Oct 2026 (last bar 15:15 IST bar of 15 Oct); not stored in the repo"
 }
