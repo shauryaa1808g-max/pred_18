@@ -6,6 +6,7 @@
 
 Usage (repo root):
   python3 src/hourly_table.py                  # the row for right now (Yahoo 1-minute bars, unofficial); logs the predictions to results/hourly_table_log.jsonl
+  python3 src/hourly_table.py --vs 15:00       # compare 'this hour' with the table given at 15:00 instead of the latest previous one
   python3 src/hourly_table.py --asof 13:30     # replay today as of 13:30 (only 1-minute bars that started before 13:30)
   python3 src/hourly_table.py --pre-open       # the 08:30 / 09:00 row: open range and open pin-point (NSE pre-open price when it exists)
   python3 src/hourly_table.py --eval           # leave-one-session-out accuracy of the next-hour high/low model -> results/hourly_hl_eval.csv
@@ -186,7 +187,7 @@ def score_logged(df_all: pd.DataFrame, now_ts) -> int:
     return len(new)
 
 
-def build(asof: str | None = None, save: bool = True) -> dict | None:
+def build(asof: str | None = None, save: bool = True, vs: str | None = None) -> dict | None:
     now = dt.datetime.now(IST)
     df_all, fetched = LH.get_bars(save=True)
     if df_all is None or len(df_all) == 0:
@@ -220,9 +221,9 @@ def build(asof: str | None = None, save: bool = True) -> dict | None:
     # --- this hour against the PREVIOUS TABLE given to the user: the latest live row logged before this one is compared with what actually happened in ITS window (so far, if that hour is not over).
     #     No replay, no recomputed prediction: if no earlier table exists the cell says so.
     prev, act, complete = None, None, True
-    row["this_hour"] = {"from": None, "to": None, "prediction_source": "none: no earlier table was given today"}
+    row["this_hour"] = {"from": None, "to": None, "prediction_source": (f"none: no table of {vs} was given today" if vs else "none: no earlier table was given today")}
     for z in reversed(load_log()):
-        if z["date"] != sdate or z["mode"] != "live" or not z.get("next_hour") or z["asof"] >= row["asof"]:
+        if z["date"] != sdate or z["mode"] != "live" or not z.get("next_hour") or z["asof"] >= row["asof"] or (vs and z["asof"] != vs):
             continue
         ws = dt.datetime.fromisoformat(f"{sdate}T{z['next_hour']['window_start']}:00").replace(tzinfo=IST)
         we = dt.datetime.fromisoformat(f"{sdate}T{z['next_hour']['window_end']}:00").replace(tzinfo=IST)
@@ -315,7 +316,7 @@ def report() -> None:
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--asof", default=None); ap.add_argument("--score", action="store_true"); ap.add_argument("--eval", action="store_true"); ap.add_argument("--report", action="store_true"); ap.add_argument("--pre-open", action="store_true"); ap.add_argument("--nosave", action="store_true")
+    ap.add_argument("--asof", default=None); ap.add_argument("--vs", default=None, help="compare this hour with the table given at HH:MM (default: the previous table)"); ap.add_argument("--score", action="store_true"); ap.add_argument("--eval", action="store_true"); ap.add_argument("--report", action="store_true"); ap.add_argument("--pre-open", action="store_true"); ap.add_argument("--nosave", action="store_true")
     a = ap.parse_args()
     if a.eval:
         S = load_sessions(); t = loo_eval(S); Path("results").mkdir(exist_ok=True); t.to_csv(EVAL, index=False)
@@ -328,6 +329,6 @@ if __name__ == "__main__":
     elif a.pre_open:
         pre_open()
     else:
-        r = build(a.asof, save=not a.nosave)
+        r = build(a.asof, save=not a.nosave, vs=a.vs)
         if r:
             print(fmt_row(r))
