@@ -1713,7 +1713,7 @@ def today(S: Sess, d: pd.DataFrame, outdir: Path, summary: dict):
            "R2_k1_level_offset_above_open": {"pct": 100 * (np.exp(nxt["sigH"]) - 1), "rs": ref * (np.exp(nxt["sigH"]) - 1)},
            "regime_expanding_terciles": summary.get("regime_for_16oct_expanding"), "regime_trailing500_posthoc": summary.get("regime_for_16oct_trailing500"),
            "regime_fullsample_posthoc": summary.get("regime_for_16oct_fullsample"),
-           "note": "descriptive; the open of 16 Oct is not known; all rupee figures are percent x the 15 Oct close"}
+           "note": "descriptive; uses nothing dated after the 15 Oct 2026 close (the 16 Oct open and session are not used); all rupee figures are percent x the 15 Oct close"}
     (outdir / "hl_trade_today_2026-10-16.json").write_text(json.dumps(out, indent=1))
     return out
 
@@ -1766,6 +1766,10 @@ def build_report(outdir: Path, report_path: Path | None = None):
             return "n/a"
         return "<0.001" if p < 0.001 else f"{p:.3f}"
 
+    def peq(p):
+        """'= 0.035' or '< 0.001', to follow the word p"""
+        return "n/a" if pd.isna(p) else ("< 0.001" if p < 0.001 else f"= {p:.3f}")
+
     def pc(x, d=0):
         return "n/a" if pd.isna(x) else f"{100 * x:.{d}f}%"
 
@@ -1808,6 +1812,7 @@ def build_report(outdir: Path, report_path: Path | None = None):
     r4v, r4f, r4c = val["R4"], fin["R4"], cas["R4"]
     r4_all = one(HM0, variant="R4a", window="all")
     r4b_all = one(HM0, variant="R4b", window="all")
+    p5_005 = float(stats.t.sf((fin["R5"].mean_gross_pct - 0.05) / fin["R5"].se_hac_pct, int(fin["R5"].n_trades) - 1))
     pmin_005 = min(float(stats.t.sf((fin[k].mean_gross_pct - 0.05) / fin[k].se_hac_pct, int(fin[k].n_trades) - 1)) for k in PRIM)
     chk(pmin_005 > 0.05, "a primary rule would become significant at a 0.05% cost")
     mde_lo, mde_hi = min(fin[k].mde_80pct_power_pct for k in PRIM), max(fin[k].mde_80pct_power_pct for k in PRIM)
@@ -1844,14 +1849,14 @@ def build_report(outdir: Path, report_path: Path | None = None):
       f"(promised 25%, Kupiec p = {f(k7.kupiec_p, 2)}) and the 75% high level on {pc(k8.observed_fill, 1)} (promised 25%, p = {f(k8.kupiec_p, 2)}). "
       f"A level that is touched as often as promised is still not a bargain: a buyer at the estimated low lost Rs {rs(-r7.mean_net_rs)} per share on average per fill "
       f"({sg(r7.mean_net_pct)}% net, {sg(r7.mean_gross_pct)}% before cost, n = {int(r7.n_trades)}), and a seller at the estimated high lost Rs {rs(-r8.mean_net_rs)} "
-      f"({sg(r8.mean_net_pct)}% net, n = {int(r8.n_trades)}). Once the price reaches those levels it has not tended to turn back. "
+      f"({sg(r8.mean_net_pct)}% net, n = {int(r8.n_trades)}). Once the price reached those levels it showed no tendency to turn back (gross mean per fill {sg(r7.mean_gross_pct)}% for the low level and {sg(r8.mean_gross_pct)}% for the high level in Final; {sg(one(HM0, variant='R7_post_q25', window='all').mean_gross_pct)}% and {sg(one(HM0, variant='R8_post_q75', window='all').mean_gross_pct)}% over 2020-2026, where a turn would show as a positive number). "
       "The same was true of the transparent versions (R1, R2). The opposite-direction look (trade with the breach instead of against it) is post hoc and is in section 5.\n")
     w("**What the estimates are good for** is risk management, not entries: how far a stop has to be to survive an ordinary day, how large a position that implies, and how little room is left late in the day (sections 3 and 7). "
       "**What they cannot do** is tell you where to buy or sell for a profit.\n")
     w("**Words used.** *Net* = after the 0.10% round-trip cost (Rs 3.4 a share at today's price). *Fill* = a resting limit order counts as executed only if the day's price trades strictly through its level. "
       "*p-value* = the chance of a result at least this good if there were no edge at all; small (under 0.05) means unlikely to be luck, and *Holm* tightens that after correcting for the number of variants tried. "
       "*Placebo* = the same rule run on 2,000 invented random-walk histories with the same volatility pattern, to show what luck alone produces. "
-      "*Final window* = sessions from 1 Jul 2025; every rule was fixed before any result was computed, so this window was not used to choose a rule (the one exception is the project's own model behind R7 and R8, which the project chose using it). "
+      "*Final window* = sessions from 1 Jul 2025; the rules were fixed in section 0, so this window was not used to choose a rule (section 2 says what can and cannot be checked about that; the one exception is the project's own model behind R7 and R8, which the project chose using it). "
       "*Descriptive* = something happened in this sample; it does not mean tradable.\n")
     w("**In three lines for a trader.** "
       f"(1) Do not place orders at the estimated high or low expecting a turn: in the {nd['final']} Final sessions that lost Rs {rs(-r7.mean_net_rs)} (buying at the low) and Rs {rs(-r8.mean_net_rs)} (selling at the high) a share per fill after costs. "
@@ -1868,7 +1873,9 @@ def build_report(outdir: Path, report_path: Path | None = None):
     w(f"* **Inputs** (nothing dated after 15 Oct 2026; the code drops later bars if they ever appear): `data/processed/bse_daily.csv` + `bse_daily_extra.csv` ({SUM['daily_sessions']:,} sessions, last official bar 15 Oct 2026: open 3,342.0, high 3,445.0, low 3,315.2, close 3,428.0; "
       f"`common.load_bse()` alone ends on 13 Oct, so the extra file is needed); the Yahoo 1-hour file for BSE.NS (range 2y, fetched 15 Oct, SHA-256 `{SUM['hourly_file_sha256'][:16]}...`, last bar the 15:15 bar of 15 Oct, {SUM['hourly_sessions_used']} complete 7-bar sessions used; not stored in the repo); "
       f"specialist A's stored out-of-sample quantiles `results/hl_eval_predictions.csv` (SHA-256 `{SUM['predictions_file_sha256'][:16]}...`).")
-    w("* **When.** The final run of the study and of this report was made on the morning of Fri 16 Oct 2026, before the 09:15 IST open; the data cut-off is the 15 Oct 2026 close.")
+    w("* **When, and what was not used.** The study was re-run and this report written on the morning of Fri 16 Oct 2026; the last full run finished at about 09:23 IST, after the 09:15 open, so the wording 'before the open' used in the brief no longer applies to the run time. "
+      "That does not matter for the data: the data cut-off is the 15 Oct 2026 close, the code drops any later bar (the hourly file's last bar is the 15:15 bar of 15 Oct), and no 16 Oct price enters any number. "
+      "I did see, in a git commit message of the repository history, that a pre-open snapshot of 16 Oct exists and what opening price it records; I did not open that file or use the figure, and nothing in this report depends on it.")
     w("* **Provenance, stated plainly.** An earlier attempt at this task stopped part-way (usage limit) and left code, 28 result files and section 0. I trusted none of its numbers. I re-ran its unchanged code from scratch "
       "(self-test, Part 1, Part 2, the 2,000-history placebo in four settings, the finishing step, the post-hoc step) and compared every result file by SHA-256 with the file on disk: all 28 were byte-for-byte identical (same seeds give the same placebo). "
       "That comparison was done in the session scratchpad and is not reproducible from the repository alone. I then made the additions listed below, re-ran everything, and rebuilt this report from the files.")
@@ -1880,7 +1887,7 @@ def build_report(outdir: Path, report_path: Path | None = None):
     w("  2. A Holm-adjusted two-sided column was added to the Diebold-Mariano table (`hl_trade_dm.csv`).")
     w("  3. The hourly rules R3/R4 were added to the no-look-ahead self-test.")
     w("  4. Volatility regime for Part 1: the pre-fixed expanding terciles leave almost no 'low' sessions in the Final window "
-      f"({SUM['n_by_regime_final_expanding']['low']} of {nd['final']}), so two **post-hoc** definitions were added and labelled: terciles of the trailing 500 sessions, and terciles of all sessions (descriptive only: the cut points use the whole sample, so it is not a classification a trader could have used in real time).")
+      f"({SUM['n_by_regime_final_expanding']['low']} of {nd['final']}), so two **post-hoc** definitions were added and labelled: terciles of the trailing 500 sessions (from the earlier attempt), and terciles of all sessions (mine; descriptive only: the cut points use the whole sample, so it is not a classification a trader could have used in real time).")
     w("  5. A placebo sensitivity with a different variance clock (settings P0 and P1, section 5.3), after I found that the pre-fixed clock under-weights the first hour (`hl_trade_clock.csv`).")
     w("  6. 16 post-hoc variants (section 5) and the numbers for 16 Oct (section 8).")
     tk = TK
@@ -2012,7 +2019,7 @@ def build_report(outdir: Path, report_path: Path | None = None):
     chk(hi_.q50_pct > 1.5 * lo_.q50_pct, "high-volatility days should have clearly larger swings than low-volatility days")
     w(f"\n**Which regime is Friday 16 Oct?** The scale going into 16 Oct is {f(TJ['ewma_scales_for_16oct_pct']['sigR'])}% a day: **{SUM['regime_for_16oct_expanding']}** by the pre-fixed expanding definition, **{SUM['regime_for_16oct_fullsample']}** by the full-sample one, "
       f"**{SUM['regime_for_16oct_trailing500']}** by the trailing-500 one (cut points {f(SUM['cut_low_mid_pct_trailing500'])}% and {f(SUM['cut_mid_high_pct_trailing500'])}%, because 2024-25 was so volatile). "
-      "Two of three definitions say 'mid'; the disagreement is a warning that the regime label is a matter of definition. The Final-window rows are the fair guide for tomorrow.\n")
+      "Two of three definitions say 'mid'; the disagreement is a warning that the regime label is a matter of definition. The Final-window rows are the fair guide for the 16 Oct session.\n")
 
     w("### 3.4 Is the open, or the first hour, the high or the low of the day?\n")
     w("The project's earlier finding (research/v2/05_intraday_structure.md) was that 83.8% (31 of 37) of post-closing-auction sessions had their high or low in the first hour, and that a random walk with the same U-shaped variance profile gives 84.9%, so it is not a pattern. "
@@ -2065,8 +2072,8 @@ def build_report(outdir: Path, report_path: Path | None = None):
     l90f, s90f, l90d, s90d = one(SC, side="long", stop_quantile=0.9, window="final"), one(SC, side="short", stop_quantile=0.9, window="final"), one(SC, side="long", stop_quantile=0.9, window="dev"), one(SC, side="short", stop_quantile=0.9, window="dev")
     chk(l90f.observed_stop_touched < 0.08 and s90f.observed_stop_touched < 0.08 and l90d.observed_stop_touched > 0.11 and s90d.observed_stop_touched > 0.11, "stop-calibration wording")
     w(f"\nPlain reading: the trailing history is a decent guide but not a precise one. In Final the stops at the 90th percentile were touched less often than nominal ({pc(l90f.observed_stop_touched, 1)} long and {pc(s90f.observed_stop_touched, 1)} short against 10%; Kupiec p {pv(l90f.kupiec_p)} and {pv(s90f.kupiec_p)}) "
-      f"because the Final window is calmer than the earlier years that dominate a 250-session history; in the Development window they were touched more often ({pc(l90d.observed_stop_touched, 1)} and {pc(s90d.observed_stop_touched, 1)}; p {pv(l90d.kupiec_p)} and {pv(s90d.kupiec_p)}). "
-      "Expect the realised touch frequency to be within a few percentage points of the nominal one, not exactly equal.\n")
+      f"probably because the Final window is calmer than the earlier years that dominate a 250-session history; in the Development window they were touched more often ({pc(l90d.observed_stop_touched, 1)} and {pc(s90d.observed_stop_touched, 1)}; p {pv(l90d.kupiec_p)} and {pv(s90d.kupiec_p)}). "
+      f"Expect the realised touch frequency to be within about five percentage points of the nominal one (the largest gap in Final was {f(float(((SC[SC.window == 'final'].observed_stop_touched - SC[SC.window == 'final'].nominal_stop_touched).abs() * 100).max()), 1)} points), not exactly equal.\n")
 
     w("### 3.7 Which estimate of the stop distance works best? (added after the pre-fixed section; descriptive)\n")
     w("Same question as 3.6 with two more candidates, forecast from earlier sessions only. **T250** = the trailing-250-session quantile of 3.6. **EXPANDING** = the quantile of all earlier sessions (a constant scale: it ignores whether the market is calm or wild). "
@@ -2094,13 +2101,16 @@ def build_report(outdir: Path, report_path: Path | None = None):
     e_hi = sfe[sfe.stop_quantile >= 0.75]
     chk((e_hi.kupiec_p > 0.2).all(), "EWMA_SCALED 75% / 90% stops should be well calibrated over all years")
     chk((sff.holm_one_sided_12 > 0.05).all(), "no alternative should beat T250 in Final")
+    chk((SF[(SF.window.isin(["val", "final", "cas"])) & (SF.method != "T250")].holm_one_sided_12 > 0.05).all(), "no alternative should beat T250 significantly after Dev")
+    chk((SF[(SF.window == "dev") & (SF.method == "EWMA_SCALED") & (SF.holm_one_sided_12 < 0.05)].shape[0]) >= 3, "EWMA_SCALED should beat T250 in the Development window")
+    mx_dev = float(((SF[SF.window == "final"].touch_freq - SF[SF.window == "final"].nominal_touch).abs() * 100).max())
     f90 = SF[(SF.window == "final") & (SF.stop_quantile == 0.9)].set_index(["side", "method"])
     f75s = one(SF, side="short", stop_quantile=0.75, method="EWMA_SCALED", window="final")
     w(f"\nPlain reading: (1) the constant-scale stop (EXPANDING) is too tight in every case over 2019-2026, because it ignores that the market has been far busier at times: its stops were touched on {pc(sfa.touch_freq.min())}-{pc(sfa.touch_freq.max())} of days against promised {pc(sfa.nominal_touch.min())}-{pc(sfa.nominal_touch.max())} (Kupiec p < 0.001 each). "
-      f"(2) Scaling by recent volatility (EWMA_SCALED) had a lower pinball loss than T250 in all six side-and-level combinations over 2019-2026, significantly so (Holm < 0.05) in {n_sig} of them, mostly in the Development years, and its 75% and 90% stops were touched about as often as promised (Kupiec p above 0.2 in all four). "
+      f"(2) Scaling by recent volatility (EWMA_SCALED) had a lower pinball loss than T250 in all six side-and-level combinations over 2019-2026, significantly so (Holm-adjusted p < 0.05) in {n_sig} of them (two of those only just: {f(sfe[sfe.holm_one_sided_12 < 0.05].holm_one_sided_12.max(), 3)}), all of it coming from the Development years (to mid-2024; in Validation and Final no gain is significant), and its 75% and 90% stops were touched about as often as promised (Kupiec p above 0.2 in all four). "
       f"(3) In the Final window nothing beat T250 (smallest Holm p {f(sff.holm_one_sided_12.min(), 2)}). T250's 90% stops were touched on {pc(f90.loc[('long', 'T250')].touch_freq, 1)} (long) and {pc(f90.loc[('short', 'T250')].touch_freq, 1)} (short) of Final days against 10%, "
       f"EWMA_SCALED's on {pc(f90.loc[('long', 'EWMA_SCALED')].touch_freq, 1)} and {pc(f90.loc[('short', 'EWMA_SCALED')].touch_freq, 1)}; but EWMA_SCALED's 75% short stops were touched on {pc(f75s.touch_freq, 1)} of Final days against 25% (p {pv(f75s.kupiec_p)}). "
-      "In words: after a wild year the trailing-year history sets stops too wide, and a volatility-scaled stop corrects most of that; no method was clearly best in the last fifteen months, so treat any single stop distance as good to within a few percentage points of the promised touch rate, and do not read the difference between T250 and EWMA_SCALED as proven.\n")
+      "In words: after a wild year the trailing-year history sets stops too wide, and a volatility-scaled stop corrects most of that; no method was clearly best in the last fifteen months, so treat any single stop distance as good to within roughly five to seven percentage points of the promised touch rate (the largest deviation in Final was {f(mx_dev, 1)} points), and do not read the difference between T250 and EWMA_SCALED as proven.\n")
 
     # ===================================================================================================================== 4. part 2
     w("## 4. Part 2 (inferential): do rules that trade the levels make money after costs?\n")
@@ -2185,7 +2195,7 @@ def build_report(outdir: Path, report_path: Path | None = None):
     r4_f0, r4_f2 = one(R, variant="R4a", window="final", fill_mode=0), one(R, variant="R4a", window="final", fill_mode=2)
     w("\n**Do not read F2 for the stop-entry rule R4a as a conservative case.** F2 keeps only breakouts that went at least 0.10% beyond the range, yet assumes the fill at the range edge; "
       "that selects trades by what the price did after entry, which flatters a breakout rule (R4a net rises from "
-      f"{sg(r4_f0.mean_net_pct)}% to {sg(r4_f2.mean_net_pct)}%, p = {pv(r4_f2.p_hac_net)} unadjusted). "
+      f"{sg(r4_f0.mean_net_pct)}% to {sg(r4_f2.mean_net_pct)}%, p {peq(r4_f2.p_hac_net)} unadjusted). "
       "A real stop order would have been filled on the marginal breakouts too, and those are the ones that fail. F2 is a fair stress only for resting limit orders (R1, R2, R7, R8), where it makes results worse, as the table shows. "
       "The pre-fixed verdict uses F0 for the test and F1 for the robustness condition, so this does not touch any verdict.\n")
 
@@ -2233,9 +2243,9 @@ def build_report(outdir: Path, report_path: Path | None = None):
     pre_bad = bad[bad.variant.str.contains("_pre_")]
     pre_txt = ("; among the pre-open model levels only " + ", ".join(f"{r_.variant} in the {WN[r_.window]} slice ({pc(r_.observed_fill, 1)} against {pc(r_.nominal_fill)}, n = {int(r_.n)}, p = {f(r_.kupiec_p, 3)})" for r_ in pre_bad.itertuples()) + " departs") if len(pre_bad) else "; no pre-open model level departs either"
     w(f"\nPlain reading: (1) the model's post-open levels are touched about as often as promised in every window (smallest Kupiec p {f(post.kupiec_p.min(), 2)})" + pre_txt
-      + f". The trailing-quantile benchmark is off more often ({len(emp_bad)} of {len(KU[KU.variant.str.contains('_emp_')])} variant-window cells have p < 0.05), mostly because the Final window is calmer than the history its levels come from. "
-      f"(2) In Final neither the model's nor the benchmark's resting orders made money (every mean daily net P&L in the Final rows above is negative); the positive means in the 51-day slice rest on 5-16 fills each. (3) For the 25% low order the model level did **worse** than the plain trailing quantile in Final (DM t = {f(d25.dm_t, 1)}, Holm p = {pv(d25.holm_two_sided_over_all_rows)}, {int(d25.n)} days) "
-      f"and in the post-auction slice (t = {f(d25c.dm_t, 1)}, Holm p = {pv(d25c.holm_two_sided_over_all_rows)}, {int(d25c.n)} days); for the other three pairs there is no difference. "
+      + f". The trailing-quantile benchmark is off more often ({len(emp_bad)} of {len(KU[KU.variant.str.contains('_emp_')])} variant-window cells have p < 0.05: {int((emp_bad.window == 'dev').sum())} in the Development window and {int((emp_bad.window == 'final').sum())} in Final; its 10% and 90% levels were touched on only 6-7% of Final days against 10%). "
+      f"(2) In Final neither the model's nor the benchmark's resting orders made money (every mean daily net P&L in the Final rows above is negative); the positive means in the 51-day slice rest on 5-16 fills each. (3) For the 25% low order the model level did **worse** than the plain trailing quantile in Final (DM t = {f(d25.dm_t, 1)}, Holm p {peq(d25.holm_two_sided_over_all_rows)}, {int(d25.n)} days) "
+      f"and in the post-auction slice (t = {f(d25c.dm_t, 1)}, Holm p {peq(d25c.holm_two_sided_over_all_rows)}, {int(d25c.n)} days); for the other three pairs there is no difference. "
       "This is about the profit and loss of an order, not about the accuracy of the quantile (pinball loss and coverage of the levels themselves are specialist A's tables).\n")
 
     w("### 4.8 Fixed brackets from the open (R6): does the order of events matter?\n")
@@ -2359,9 +2369,9 @@ def build_report(outdir: Path, report_path: Path | None = None):
     w("* **Nothing was validated.** R1, R2, R3, R5, R6, R7 and R8 are 'not found'; R4 is 'descriptive' because its Final-window net mean is above zero, but it is not distinguishable from zero there and turns negative with a further 0.05% per leg "
       f"({sg(r4f.mean_net_s1_pct)}%).")
     w(f"* **Power is low.** Final-window MDEs for the primary variants range from {f(mde_lo)}% ({min(PRIM, key=lambda k: fin[k].mde_80pct_power_pct)}, {int(fin[min(PRIM, key=lambda k: fin[k].mde_80pct_power_pct)].n_trades)} trades) to "
-      f"{f(mde_hi)}% ({max(PRIM, key=lambda k: fin[k].mde_80pct_power_pct)}, {int(fin[max(PRIM, key=lambda k: fin[k].mde_80pct_power_pct)].n_trades)} trades) per trade. Effects of the size that survive costs (0.1-0.3% per trade) are below the detection limit for every limit-order or first-hour rule. "
+      f"{f(mde_hi)}% ({max(PRIM, key=lambda k: fin[k].mde_80pct_power_pct)}, {int(fin[max(PRIM, key=lambda k: fin[k].mde_80pct_power_pct)].n_trades)} trades) per trade. Effects of the size that survive costs (0.1-0.2% per trade) are below the detection limit of every rule. "
       f"The daily sample has {nd['all']:,} sessions, but only {pc(min(one(R0, variant=v_, window='all').fill_rate for v_ in ('R1_k1.0', 'R2_k1.0')))}-{pc(max(one(R0, variant=v_, window='all').fill_rate for v_ in ('R1_k1.0', 'R2_k1.0')))} of them produce a fill for the 1-sigma limit rules; the hourly sample has {nh_all_sessions} sessions.")
-    w("* **Two years of hourly data are one market episode** (a strong bull run, then a calmer 2026). Any rule that needs a trend, or the lack of one, is confounded with that episode.")
+    w(f"* **Two years of hourly data are one market episode** (the price multiplied {f(REF[REF.window == 'val'].iloc[0].buy_and_hold_multiple_over_window, 1)} times in the Validation year and {f(rff.buy_and_hold_multiple_over_window, 2)} times in Final, section 4.10). Any rule that needs a trend, or the lack of one, is confounded with that episode.")
     dgf = lambda m_, w_: one(DG, metric=m_, window=w_)
     mlr = "share_both_low_ge_1pct_and_high_ge_2pct (long 1%/2% bracket both touched)"
     msr = "share_both_high_ge_1pct_and_low_ge_2pct (short 1%/2% bracket both touched)"
@@ -2378,11 +2388,11 @@ def build_report(outdir: Path, report_path: Path | None = None):
       f"Entering 'at the official open' needs the pre-open call auction (orders by 09:08) or a first-print market order; the first printed open differs from the official one by Rs {f(do.mean_abs_rs, 1)} on average. "
       "The close is a 30-minute VWAP before 3 Aug 2026 and an auction price after it; a trader cannot always exit at it.")
     w("* **The 0.10% round-trip cost is the assigned conservative figure**, not a measured cost for any particular account. Gross numbers are shown beside every net number so the reader can substitute their own. "
-      f"With a cost of 0.05% instead of 0.10% the best primary variant in Final would be R4a at {sg(fin['R4'].mean_gross_pct - 0.05)}% per trade, unadjusted p = {f(pmin_005, 2)}; no primary variant would reach p < 0.05 (R5 would turn slightly positive, +{f(fin['R5'].mean_gross_pct - 0.05)}%, with p far from significant).")
+      f"With a cost of 0.05% instead of 0.10% the best primary variant in Final would be R4a at {sg(fin['R4'].mean_gross_pct - 0.05)}% per trade, unadjusted p = {f(pmin_005, 2)}; no primary variant would reach p < 0.05 (R5 would turn slightly positive, {sg(fin['R5'].mean_gross_pct - 0.05)}%, p = {f(p5_005, 2)}).")
     w("* **R7 and R8 use specialist A's model, which was chosen by the project using the Validation and Final windows** (A's independent verifier, item 9), so Final is not completely untouched for them. If that matters at all it flatters R7/R8, and they lost money anyway.")
     w("* **Not tested**: any use of news, index, peers, options or volume; positions held overnight; sizing rules as strategies (section 7 is descriptive); intraday exits other than the close, the stop and the target listed; model quantiles at levels other than the four stored ones. "
       "The pinball loss, coverage and Kupiec tests of the high and low quantiles themselves are specialist A's tables, not repeated here.")
-    w("* **Contradictions with earlier project claims**: none found. This work agrees with the project's statement that the first-hour concentration of highs and lows is a random-walk feature, with its note that the 10:15 follow-the-first-hour rule faded, and with DEVIATIONS item 30 (buying the predicted low and selling the predicted high lost money). "
+    w("* **Contradictions with earlier project claims**: none found. This work agrees with the project's statement that the first-hour concentration of highs and lows is a random-walk feature, with its note that the 10:15 follow-the-first-hour rule faded, with DEVIATIONS item 30 (buying the predicted low and selling the predicted high lost money after a 0.10% cost; breakout entries roughly broke even) and with items 31 and 33 (rules that looked good early in a sample reversed later). "
       "It adds that the first-hour share depends on the placebo clock (5.3) and that the opening print is the day's extreme about one session in ten (not a random-walk feature).\n")
 
     # ===================================================================================================================== 7. what a trader can do
@@ -2418,7 +2428,7 @@ def build_report(outdir: Path, report_path: Path | None = None):
       f"{f(mde_lo, 1)}-{f(mde_hi, 1)}% per trade.\n")
 
     # ===================================================================================================================== 8. for 16 Oct
-    w("## 8. Applying Part 1 to Friday 16 Oct 2026 (descriptive; the open is not known yet)\n")
+    w("## 8. Applying Part 1 to the Friday 16 Oct 2026 session (descriptive; uses nothing dated after the 15 Oct close)\n")
     sg_ = TJ["ewma_scales_for_16oct_pct"]
     w(f"Reference price: Rs {TJ['reference_close_rs']:,.0f} (15 Oct official close; open 3,342.0, high 3,445.0, low 3,315.2). Scales going into 16 Oct (exponentially weighted, lambda 0.94, through the 15 Oct session): close-to-close {f(sg_['sigR'])}% (Rs {rs(TJ['ewma_scales_in_rupees_at_reference']['sigR'])}), "
       f"gap {f(sg_['sigG'])}% (Rs {rs(TJ['ewma_scales_in_rupees_at_reference']['sigG'])}), open-to-close {f(sg_['sigI'])}% (Rs {rs(TJ['ewma_scales_in_rupees_at_reference']['sigI'])}), "
@@ -2429,7 +2439,7 @@ def build_report(outdir: Path, report_path: Path | None = None):
         rows.append([t_.sample, int(t_.n_sessions), t_.side.split(" (")[0], f"{f(t_.q25_pct)}% ({rs(t_.q25_rs_at_3428)})", f"{f(t_.q50_pct)}% ({rs(t_.q50_rs_at_3428)})", f"{f(t_.q75_pct)}% ({rs(t_.q75_rs_at_3428)})", f"{f(t_.q90_pct)}% ({rs(t_.q90_rs_at_3428)})"])
     w("How far the day's low (high) has been from the open, in percent and rupees at Rs 3,428 (`hl_trade_today_2026-10-16.csv`):\n")
     w(table(["sample", "sessions", "extreme", "25th pct", "median", "75th pct", "90th pct"], rows))
-    w("\n**Stop distance from tomorrow's open** under the three estimators of 3.7 (distance in percent of the open and in rupees at Rs 3,428; the share is how often a stop at that distance has been touched, by promise). `hl_trade_today_stops_2026-10-16.csv`:\n")
+    w("\n**Stop distance from the 16 Oct open** under the three estimators of 3.7 (distance in percent of the open and in rupees at Rs 3,428; the share is how often a stop at that distance has been touched, by promise). `hl_trade_today_stops_2026-10-16.csv`:\n")
     rows = []
     for side in ("long", "short"):
         for q in (0.5, 0.75, 0.9):
@@ -2441,7 +2451,7 @@ def build_report(outdir: Path, report_path: Path | None = None):
     w(table(["side", "touched on about", "T250", "EXPANDING", "EWMA_SCALED"], rows))
     fl = one(TODAY, sample="Final window (2025-07-01 to 15 Oct 2026)", side="price falls below the open (adverse for a long)")
     fh = one(TODAY, sample="Final window (2025-07-01 to 15 Oct 2026)", side="price rises above the open (adverse for a short)")
-    w(f"\nHow to read it for tomorrow: whatever the open is, a long entered there has had its low at least Rs {rs(fl.q25_rs_at_3428)} below it on three days in four, at least Rs {rs(fl.q50_rs_at_3428)} below on one day in two and Rs {rs(fl.q90_rs_at_3428)} or more on one day in ten (Final window); "
+    w(f"\nHow to read it for the 16 Oct session: whatever the open is, a long entered there has had its low at least Rs {rs(fl.q25_rs_at_3428)} below it on three days in four, at least Rs {rs(fl.q50_rs_at_3428)} below on one day in two and Rs {rs(fl.q90_rs_at_3428)} or more on one day in ten (Final window); "
       f"for a short, the high was at least Rs {rs(fh.q25_rs_at_3428)}, Rs {rs(fh.q50_rs_at_3428)} and Rs {rs(fh.q90_rs_at_3428)} above the open on three days in four, one in two and one in ten. "
       f"Rule R1 would place a buy limit 1 sigma below the open, i.e. about Rs {rs(TJ['R1_k1_level_offset_below_open']['rs'])} ({f(TJ['R1_k1_level_offset_below_open']['pct'])}%) below, and R2 a sell limit about Rs {rs(TJ['R2_k1_level_offset_above_open']['rs'])} ({f(TJ['R2_k1_level_offset_above_open']['pct'])}%) above; "
       "this report does not recommend either (both lost money in Final). "
@@ -2454,7 +2464,7 @@ def build_report(outdir: Path, report_path: Path | None = None):
     nq.append(f"Estimated-low limit buy (R7, post-open 25% level), Final window: {int(r7.n_trades)} fills in {int(r7.n_sessions)} sessions, {sg(r7.mean_gross_pct)}% gross, {sg(r7.mean_net_pct)}% net = {rup(r7.mean_net_rs)} per share per trade (`hl_trade_rules.csv`).")
     nq.append(f"Estimated-high limit sell (R8, post-open 75% level), Final window: {int(r8.n_trades)} fills, {sg(r8.mean_net_pct)}% net = {rup(r8.mean_net_rs)} per share per trade.")
     nq.append(f"Fill frequency of the model's levels in Final matched the promise: {pc(k7.observed_fill, 1)} against 25% (low, n = {int(k7.n)}, Kupiec p = {f(k7.kupiec_p, 2)}) and {pc(k8.observed_fill, 1)} against 25% (high, Kupiec p = {f(k8.kupiec_p, 2)}) (`hl_trade_kupiec_fill.csv`).")
-    nq.append(f"The model's 25% low level did worse than a plain trailing-quantile level in Final (DM t = {f(d25.dm_t, 1)}, Holm p = {pv(d25.holm_two_sided_over_all_rows)}, {int(d25.n)} days); no difference for the other three pairs (`hl_trade_dm.csv`).")
+    nq.append(f"The model's 25% low level did worse than a plain trailing-quantile level in Final (DM t = {f(d25.dm_t, 1)}, Holm p {peq(d25.holm_two_sided_over_all_rows)}, {int(d25.n)} days); no difference for the other three pairs (`hl_trade_dm.csv`).")
     nq.append(f"Follow-the-breakout (R4a): Validation {sg(r4v.mean_net_pct)}% net per trade (n = {int(r4v.n_trades)}, Holm p = {f(r4v.holm_hac, 3)}), Final {sg(r4f.mean_net_pct)}% (n = {int(r4f.n_trades)}, p = {f(r4f.p_hac_net, 2)}), since the closing auction {sg(r4c.mean_net_pct)}% (n = {int(r4c.n_trades)}); with a further 0.05% per marketable leg the Final figure is {sg(r4f.mean_net_s1_pct)}%.")
     nq.append(f"Typical swing from the official open, Final (n = {int(e['up'].n)}): median high Rs {rs(e['up'].q50_rs)} above, median low Rs {rs(e['down'].q50_rs)} below; 90th percentile Rs {rs(e['up'].q90_rs)} / Rs {rs(e['down'].q90_rs)} (`hl_trade_excursions.csv`).")
     nq.append(f"Entering at 10:15: median room left Rs {rs(one(EX, entry='10:15', window='final', excursion='up').q50_rs)} up / Rs {rs(one(EX, entry='10:15', window='final', excursion='down').q50_rs)} down (Final, n = {nhf}); entering at 13:15: Rs {rs(a13.q50_rs)} / Rs {rs(b13.q50_rs)}.")

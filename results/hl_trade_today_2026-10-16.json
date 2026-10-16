@@ -27,5 +27,5 @@
  "regime_expanding_terciles": "mid",
  "regime_trailing500_posthoc": "low",
  "regime_fullsample_posthoc": "mid",
- "note": "descriptive; the open of 16 Oct is not known; all rupee figures are percent x the 15 Oct close"
+ "note": "descriptive; uses nothing dated after the 15 Oct 2026 close (the 16 Oct open and session are not used); all rupee figures are percent x the 15 Oct close"
 }
