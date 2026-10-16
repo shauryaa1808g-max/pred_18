@@ -248,3 +248,20 @@ if ent_files:
      ("Follow a break of the first-hour range to the close", "+0.47% a trade in one six-month window, +0.04% after, -0.14% since the closing auction", "daily and hourly history", "not_found", "Looks like an edge in one window, then fades; not usable"),
     ]
     dump("hl_evidence", [{"item": a, "result": b, "sample": c, "status": st_, "caveat": d_} for a, b, c, st_, d_ in EV])
+
+
+    # the hour-by-hour tables given to the user today (one row per live table) and how each one's next-hour call turned out once its own window ended
+    hl = [_j.loads(l) for l in _P("results/hourly_table_log.jsonl").read_text().splitlines() if l.strip()] if _P("results/hourly_table_log.jsonl").exists() else []
+    hl = [z for z in hl if z["date"] == D and z["mode"] == "live"]
+    sc = pd.read_csv("results/hourly_table_scored.csv") if _P("results/hourly_table_scored.csv").exists() else pd.DataFrame()
+    sc = sc[sc["date"].astype(str) == D] if len(sc) else sc
+    rows = []
+    for z in hl:
+        nh = z.get("next_hour"); r = None if not len(sc) else sc[sc["asof"].astype(str) == z["asof"]]
+        done = r is not None and len(r) > 0
+        rows.append({"time": z["asof"], "close_pin": z["close_pin"], "close_50_lo": z["close_50"][0], "close_50_hi": z["close_50"][1], "close_90_lo": z["close_90"][0], "close_90_hi": z["close_90"][1],
+                     "window": f"{nh['window_start']}-{nh['window_end']}" if nh else "market closes", "high_pin": nh["high"]["0.5"] if nh else None, "low_pin": nh["low"]["0.5"] if nh else None,
+                     "act_high": float(r.act_high.iloc[0]) if done else None, "act_low": float(r.act_low.iloc[0]) if done else None,
+                     "high_error": round(float(r.act_high.iloc[0] - r.pred_high.iloc[0]), 1) if done else None, "low_error": round(float(r.act_low.iloc[0] - r.pred_low.iloc[0]), 1) if done else None,
+                     "status": ("scored after its window ended" if done else ("no next-hour call (market closes)" if not nh else "window not over or not scored yet"))})
+    dump("hourly_rows", rows if rows else [{"time": "none yet", "close_pin": None, "close_50_lo": None, "close_50_hi": None, "close_90_lo": None, "close_90_hi": None, "window": "", "high_pin": None, "low_pin": None, "act_high": None, "act_low": None, "high_error": None, "low_error": None, "status": "no live table yet"}])

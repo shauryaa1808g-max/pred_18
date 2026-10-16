@@ -176,7 +176,7 @@ def score_logged(df_all: pd.DataFrame, now_ts) -> int:
         if now_ts < b:
             continue
         w = df_all[(df_all.t >= a) & (df_all.t < b)]
-        if len(w) < 0.9 * (b - a).total_seconds() / 60:
+        if w.empty or w.t.max() < b - pd.Timedelta(minutes=5) or w.t.min() > a + pd.Timedelta(minutes=5):      # Yahoo has no bar for a minute without trades: judge completeness by coverage of the window's ends, not by a count
             continue
         act = (float(w.high.max()), float(w.low.min()), len(w))
         ch, cl = compare(nh, act, "high"), compare(nh, act, "low")

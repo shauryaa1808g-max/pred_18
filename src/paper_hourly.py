@@ -154,8 +154,8 @@ def settle(bars_1m: pd.DataFrame, now, orders: str = ORDERS, ledger: str = LEDGE
         if now < b:
             continue
         w = bars_1m[(bars_1m.t >= a) & (bars_1m.t < b)].sort_values("t")
-        if len(w) < 0.9 * (b - a).total_seconds() / 60:                      # incomplete data: do not settle on a guess
-            continue
+        if w.empty or w.t.max() < b - pd.Timedelta(minutes=5) or w.t.min() > a + pd.Timedelta(minutes=5):    # Yahoo has no bar for a minute without trades: judge completeness by coverage of the window's ends
+            continue                                                                                    # incomplete data: do not settle on a guess
         P, Hs, Ls, end = o["P"], o["H_star"], o["L_star"], float(w.close.iloc[-1])
         hs, ls = w.high.values, w.low.values
         r = None; how = ""

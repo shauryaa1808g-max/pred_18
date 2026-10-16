@@ -1,17 +1,30 @@
 [
 {
 "kind": "summary",
-"scored_sessions": 0,
-"open_miss_rs": null,
-"open_miss_unchanged_rs": null,
-"close_miss_rs": null,
-"close_miss_unchanged_rs": null,
+"scored_sessions": 1,
+"open_miss_rs": 22.0,
+"open_miss_unchanged_rs": 22.0,
+"close_miss_rs": 65.0,
+"close_miss_unchanged_rs": 65.0,
 "lean_right": 0,
-"lean_n": 0,
-"pt1_trades": 0,
-"pt1_avg_net_pct": null,
+"lean_n": 1,
+"pt1_trades": 1,
+"pt1_avg_net_pct": 2.422,
 "pt2_trades": 0,
 "pt2_avg_net_pct": null,
-"note": "The Fri 16 Oct entry was issued at 08:36 IST and committed at 08:36:41 IST (commit 40ab965), before the open: lean up for the close and down from open to close; PT1 short at the open, PT2 no trade. It is scored after the official file at about 16:34 IST."
+"note": "Running totals over all scored sessions."
+},
+{
+"kind": "day",
+"date": "2026-10-16",
+"open": 3450.0,
+"close": 3363.0,
+"open_miss_rs": 22.0,
+"close_miss_rs": -65.0,
+"close_inside_90": "yes",
+"lean": "up",
+"lean_hit": "no",
+"pt1_net_pct": 2.42,
+"pt2_net_pct": null
 }
 ]

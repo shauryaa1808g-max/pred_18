@@ -7,8 +7,8 @@
 "lo90": 3390.4,
 "hi90": 3462.2,
 "actual": 3450.0,
-"status": "final (pre-open auction)",
-"as_of": "NSE pre-open, 09:09",
+"status": "final (official)",
+"as_of": "NSE bhavcopy",
 "landed": "inside the 9-in-10 range, outside the half-the-time range"
 },
 {
@@ -18,10 +18,10 @@
 "hi50": 3512.6,
 "lo90": 3421.2,
 "hi90": 3590.6,
-"actual": 3450.0,
-"status": "so far",
-"as_of": "10:56 IST, Yahoo plus the open",
-"landed": "inside the half-the-time range (so far)"
+"actual": 3455.0,
+"status": "final (official)",
+"as_of": "NSE bhavcopy",
+"landed": "inside the half-the-time range"
 },
 {
 "measure": "Low",
@@ -30,10 +30,10 @@
 "hi50": 3418.8,
 "lo90": 3268.7,
 "hi90": 3449.8,
-"actual": 3311.1,
-"status": "so far",
-"as_of": "10:56 IST, Yahoo plus the open",
-"landed": "inside the 9-in-10 range, outside the half-the-time range (so far)"
+"actual": 3310.6,
+"status": "final (official)",
+"as_of": "NSE bhavcopy",
+"landed": "inside the 9-in-10 range, outside the half-the-time range"
 },
 {
 "measure": "Close",
@@ -42,9 +42,9 @@
 "hi50": 3481.3,
 "lo90": 3299.4,
 "hi90": 3560.5,
-"actual": 3343.7,
-"status": "price now, not final",
-"as_of": "10:56 IST",
-"landed": "inside the 9-in-10 range, outside the half-the-time range (so far)"
+"actual": 3363.0,
+"status": "final (official)",
+"as_of": "NSE bhavcopy",
+"landed": "inside the 9-in-10 range, outside the half-the-time range"
 }
 ]

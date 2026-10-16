@@ -87,7 +87,7 @@
       <span class="chip">Upload was Yahoo data, not TradingView</span>
       <span class="chip strong">Fri 16 Oct: today's calls, high and low, can it be traded</span>
     </div>
-    <nav class="nav" aria-label="Sections"><a href="#today">Today</a><a href="#hl">High and low</a><a href="#forecast">Forecast</a><a href="#open">Opening price</a><a href="#live">Live close</a><a href="#board">Scoreboard</a><a href="#scoring">Scoring</a><a href="#behaviour">Behaviour</a><a href="#checks">Verification</a><a href="#limits">Limits</a></nav>
+    <nav class="nav" aria-label="Sections"><a href="#today">Today</a><a href="#hourly">Hourly tables</a><a href="#hl">High and low</a><a href="#forecast">Forecast</a><a href="#open">Opening price</a><a href="#live">Live close</a><a href="#board">Scoreboard</a><a href="#scoring">Scoring</a><a href="#behaviour">Behaviour</a><a href="#checks">Verification</a><a href="#limits">Limits</a></nav>
   </header>
 
   <section class="tiles" id="forecast" aria-label="Headline figures">
@@ -106,6 +106,11 @@
     <div class="chart" id="bd-live" data-source="live_today"></div>
     <p class="cap"><span class="gdot"></span>Green dot = my pinpoint estimate of the close at that time. Hover a time for the numbers.</p>
     <div class="tw"><table id="bd-ltab" data-source="live_today" data-row-key="asof"><thead><tr><th data-field="asof">As of (IST)</th><th data-field="price_then" class="r">My pinpoint estimate of the close</th><th data-field="close_50_lo" class="r">50% low</th><th data-field="close_50_hi" class="r">50% high</th><th data-field="close_90_lo" class="r">90% low</th><th data-field="close_90_hi" class="r">90% high</th><th data-field="typical_miss_rs" class="r">Typical miss</th><th data-field="inside_90">Inside 90%</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="card" id="hourly" aria-labelledby="h-hourly">
+    <div><h2 id="h-hourly">Hour-by-hour tables given today, each scored against its own window</h2><p class="note">One row per live table I gave you on Fri 16 Oct. The next-hour high and low are pin-points (medians) for the window shown. After that window ended I scored the call against Yahoo's 1-minute high and low (NSE's official figures can differ by a few rupees). Errors are actual minus predicted, in rupees. The 14:22, 15:00 and 15:01 windows overlap, so they are not three independent tests, and three tables prove nothing.</p></div>
+    <div class="tw"><table id="bd-hourly" data-source="hourly_rows" data-row-key="time"><thead><tr><th data-field="time">Table at</th><th data-field="close_pin" class="r">Close pin-point</th><th data-field="close_50_lo" class="r">Close 50% low</th><th data-field="close_50_hi" class="r">Close 50% high</th><th data-field="close_90_lo" class="r">Close 90% low</th><th data-field="close_90_hi" class="r">Close 90% high</th><th data-field="window">Next-hour window</th><th data-field="high_pin" class="r">High pin-point</th><th data-field="low_pin" class="r">Low pin-point</th><th data-field="act_high" class="r">Actual high</th><th data-field="act_low" class="r">Actual low</th><th data-field="high_error" class="r">High error</th><th data-field="low_error" class="r">Low error</th><th data-field="status">Status</th></tr></thead><tbody></tbody></table></div>
   </section>
 
   <section class="card" id="hl" aria-labelledby="h-hl">
@@ -506,6 +511,11 @@
     const chip = (td, r) => { const s = document.createElement('span'); s.className = 'st ' + (r.status === 'tested' ? 'v' : r.status === 'caution' ? 'maj' : 'n'); s.textContent = r.status; td.appendChild(s); };
     fillBody($('#bd-hlev'), 'hl_evidence', [{ field: 'item' }, { field: 'result' }, { field: 'sample' }, { field: 'status', render: chip }, { field: 'caveat' }]);
   }
+  function drawHourly() {
+    const n = v => v == null ? '—' : f1(v), e = v => v == null ? '—' : (v >= 0 ? '+' : '') + f1(v);
+    fillBody($('#bd-hourly'), 'hourly_rows', [{ field: 'time' }, { field: 'close_pin', cls: 'r num', fmt: n }, { field: 'close_50_lo', cls: 'r num', fmt: n }, { field: 'close_50_hi', cls: 'r num', fmt: n }, { field: 'close_90_lo', cls: 'r num', fmt: n }, { field: 'close_90_hi', cls: 'r num', fmt: n }, { field: 'window' },
+      { field: 'high_pin', cls: 'r num', fmt: n }, { field: 'low_pin', cls: 'r num', fmt: n }, { field: 'act_high', cls: 'r num', fmt: n }, { field: 'act_low', cls: 'r num', fmt: n }, { field: 'high_error', cls: 'r num', fmt: e }, { field: 'low_error', cls: 'r num', fmt: e }, { field: 'status' }]);
+  }
   function drawBoard() {
     const days = x => x.kind === 'day', list = rows('scoreboard');
     fillBody($('#bd-btab'), 'scoreboard', [{ field: 'date' }, { field: 'open', cls: 'r num', fmt: f1 }, { field: 'close', cls: 'r num', fmt: f1 }, { field: 'open_miss_rs', cls: 'r num', fmt: f1 }, { field: 'close_miss_rs', cls: 'r num', fmt: f1 }, { field: 'close_inside_90' }, { field: 'lean' }, { field: 'lean_hit' },
@@ -514,6 +524,6 @@
   }
 
   $('#bd-real').addEventListener('change', e => { state.showReal = e.target.checked; drawFan(); drawLadder(); drawScen(); fillMarks(); });
-  dash.onData(() => { const sw = $('#bd-swacc'); if (sw) sw.style.background = accent(); fillMarks(); drawFan(); drawLadder(); drawScen(); drawReplay('#bd-replay', 'nowcast_replay'); drawReplay('#bd-live', 'live_today'); drawRTab(); drawLTab(); drawToday(); drawPre(); drawHL(); drawHLEv(); drawBoard(); drawScore(); drawBeh(); drawVer(); drawRec(); });
+  dash.onData(() => { const sw = $('#bd-swacc'); if (sw) sw.style.background = accent(); fillMarks(); drawFan(); drawLadder(); drawScen(); drawReplay('#bd-replay', 'nowcast_replay'); drawReplay('#bd-live', 'live_today'); drawRTab(); drawLTab(); drawToday(); drawHourly(); drawPre(); drawHL(); drawHLEv(); drawBoard(); drawScore(); drawBeh(); drawVer(); drawRec(); });
 })();
 </script>
