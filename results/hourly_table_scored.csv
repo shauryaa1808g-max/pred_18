@@ -1,0 +1,2 @@
+date,window,mode,pred_high,act_high,pred_low,act_low,high_in50,high_in90,low_in50,low_in90
+2026-10-16,13:22-14:22,replay,3388.6,3384.6,3362.8,3362.8,True,True,True,True

@@ -218,7 +218,7 @@ def build(asof: str | None = None, save: bool = True) -> dict | None:
         with open(LOG, "a") as f:
             f.write(json.dumps({**row, "logged_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")}) + "\n")
     if save and act is not None and prev is not None:
-        rec = {"date": sdate, "window": f"{a:%H:%M}-{b:%H:%M}", "mode": "live" if "logged live" in row["this_hour"]["prediction_source"] else "replay", "pred_high": prev["high"]["0.5"], "act_high": round(act[0], 1), "pred_low": prev["low"]["0.5"], "act_low": round(act[1], 1),
+        rec = {"date": sdate, "window": f"{a:%H:%M}-{b:%H:%M}", "mode": "live" if row["this_hour"]["prediction_source"].startswith("logged live at") else "replay", "pred_high": prev["high"]["0.5"], "act_high": round(act[0], 1), "pred_low": prev["low"]["0.5"], "act_low": round(act[1], 1),
                "high_in50": row["this_hour"]["high"]["inside50"], "high_in90": row["this_hour"]["high"]["inside90"], "low_in50": row["this_hour"]["low"]["inside50"], "low_in90": row["this_hour"]["low"]["inside90"]}
         old = pd.read_csv(SCORED) if Path(SCORED).exists() else pd.DataFrame()
         new = pd.concat([old, pd.DataFrame([rec])]).drop_duplicates(["date", "window", "mode"], keep="last")
