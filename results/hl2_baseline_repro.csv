@@ -1,0 +1,27 @@
+check,value,n,stored,diff
+"max |this engine (no features) - hl_model.build|, pre-open P_S6, quantile (log)",0.0,1640,,
+"max |this engine (no features) - hl_model.build|, post-open W_I6, quantile (log)",0.0,1640,,
+P_S6 H final pinball_x1e4: this run vs results/hl_eval_*open.csv (stored),31.151616990444044,320,31.151616990444044,0.0
+P_S6 H final mae_med_rs_at_now: this run vs results/hl_eval_*open.csv (stored),42.68777524959407,320,42.68777524959407,0.0
+P_S6 H final cov90: this run vs results/hl_eval_*open.csv (stored),0.903125,320,0.903125,0.0
+P_S6 H cas pinball_x1e4: this run vs results/hl_eval_*open.csv (stored),31.21892497521141,52,31.21892497521141,0.0
+P_S6 H cas mae_med_rs_at_now: this run vs results/hl_eval_*open.csv (stored),43.685785547839096,52,43.685785547839096,0.0
+P_S6 H cas cov90: this run vs results/hl_eval_*open.csv (stored),0.8461538461538461,52,0.8461538461538461,0.0
+P_S6 L final pinball_x1e4: this run vs results/hl_eval_*open.csv (stored),36.57884674877328,320,36.57884674877328,0.0
+P_S6 L final mae_med_rs_at_now: this run vs results/hl_eval_*open.csv (stored),47.67308668777894,320,47.67308668777894,0.0
+P_S6 L final cov90: this run vs results/hl_eval_*open.csv (stored),0.8875,320,0.8875,0.0
+P_S6 L cas pinball_x1e4: this run vs results/hl_eval_*open.csv (stored),34.01994065499792,52,34.01994065499792,0.0
+P_S6 L cas mae_med_rs_at_now: this run vs results/hl_eval_*open.csv (stored),48.24066522014026,52,48.24066522014026,0.0
+P_S6 L cas cov90: this run vs results/hl_eval_*open.csv (stored),0.8846153846153846,52,0.8846153846153846,0.0
+W_I6 HO final pinball_x1e4: this run vs results/hl_eval_*open.csv (stored),23.853097406196902,320,23.853097406196905,-3.552713678800501e-15
+W_I6 HO final mae_med_rs_at_now: this run vs results/hl_eval_*open.csv (stored),34.805386413066046,320,34.805386413066046,0.0
+W_I6 HO final cov90: this run vs results/hl_eval_*open.csv (stored),0.95,320,0.95,0.0
+W_I6 HO cas pinball_x1e4: this run vs results/hl_eval_*open.csv (stored),22.342135535149808,52,22.342135535149808,0.0
+W_I6 HO cas mae_med_rs_at_now: this run vs results/hl_eval_*open.csv (stored),35.206251510230345,52,35.206251510230345,0.0
+W_I6 HO cas cov90: this run vs results/hl_eval_*open.csv (stored),0.8846153846153846,52,0.8846153846153846,0.0
+W_I6 LO final pinball_x1e4: this run vs results/hl_eval_*open.csv (stored),28.029794254961292,320,28.02979425496129,3.552713678800501e-15
+W_I6 LO final mae_med_rs_at_now: this run vs results/hl_eval_*open.csv (stored),37.41553019214152,320,37.41553019214152,0.0
+W_I6 LO final cov90: this run vs results/hl_eval_*open.csv (stored),0.89375,320,0.89375,0.0
+W_I6 LO cas pinball_x1e4: this run vs results/hl_eval_*open.csv (stored),25.85863807180573,52,25.85863807180573,0.0
+W_I6 LO cas mae_med_rs_at_now: this run vs results/hl_eval_*open.csv (stored),37.865328097697734,52,37.86532809769773,7.105427357601002e-15
+W_I6 LO cas cov90: this run vs results/hl_eval_*open.csv (stored),0.8653846153846154,52,0.8653846153846154,0.0

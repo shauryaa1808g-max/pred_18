@@ -7,10 +7,12 @@ IDEA   Describe every session by a vector of context features known BEFORE the f
        The design, variant list and adoption rule were fixed before any result (research/hl/G_analogue.md, Section 0).
 
 Usage (repo root; python3 src/hl_analog.py ...), no network access:
-  --eval            full walk-forward evaluation of all variants -> results/hl5_*.csv   (about 3-5 min)
-  --leak            leakage tests (junk from the target session on; 8 sessions + 2 positive controls) -> results/hl5_leakage.csv   (about 10 min)
+  --eval            full walk-forward evaluation of all variants -> results/hl5_*.csv   (about 40 s)
+  --leak            leakage tests (junk from the target session on, and a positive control, for 8 sessions) -> results/hl5_leakage.csv   (about 7 min)
   --adopt           apply the pre-fixed adoption rule (needs --eval and --leak first) -> results/hl5_adoption.csv
   --live            the 16 Oct 2026 result as of the 15 Oct close and the official open Rs 3,450.0 -> results/hl5_2026-10-16.json (+ results/hl5_2026-10-16_analogues.csv)
+  --tables          markdown tables for the report, from the result files
+  --check           consistency of analog_forecast() with the walk-forward rows and of the baseline with hl_model.hl_forecast (needs --eval and --live first) -> results/hl5_live_checks.csv
   --date YYYY-MM-DD [--open P] [--p0 P] [--json]     plain words (or JSON) for any date; only sessions BEFORE --date are used
 Importable: analog_forecast(date, open_price=None, p0=None, d=None) -> dict   (same keys as hl_model.hl_forecast, plus 'analogues' and 'variants').
 """
@@ -253,7 +255,8 @@ def run_space(phase, space, X, U, scale, idx, blocks, keep=()):
     Ufin = np.isfinite(U).all(1)
     pos = {s: i for i, s in enumerate(idx)}
     outs = {e: np.full((len(idx), 2, 9), np.nan) for e in EST}
-    info = dict(fallback=0, neigh={}, k5=np.full((len(idx), 2), np.nan), ridge_pred=np.full((len(idx), 2), np.nan), ridge_bench=np.full((len(idx), 2), np.nan), ridge_w=[], ridge_r2val=[], n_dropped={})
+    info = dict(fallback=0, neigh={}, k5=np.full((len(idx), 2), np.nan), ridge_pred=np.full((len(idx), 2), np.nan), ridge_bench=np.full((len(idx), 2), np.nan), ridge_w=[], ridge_r2val=[], n_dropped={},
+                age80=np.full(len(idx), np.nan), rec500_80=np.full(len(idx), np.nan), rec500_pool=np.full(len(idx), np.nan))       # descriptive: how old are the 80 nearest sessions, and which share is from the last 500 sessions
     for b0, sess in blocks:
         okf = np.isfinite(Xs).all(1) & Ufin; okf[:POOL_FIRST] = False; okf[b0:] = False
         if okf.sum() < MIN_FIT:
@@ -291,8 +294,9 @@ def run_space(phase, space, X, U, scale, idx, blocks, keep=()):
             h2 = max(float(d2[order[min(KER_K, len(pidx)) - 1]]), 1e-12)
             outs["ker"][i] = wquant(sc * U[pidx], np.exp(-0.5 * d2 / h2))
             info["k5"][i] = sc * np.median(U[pidx[order[:5]]], axis=0)
+            age = t - pidx; info["age80"][i], info["rec500_80"][i], info["rec500_pool"][i] = float(np.median(age[order[:80]])), float((age[order[:80]] <= 500).mean()), float((age <= 500).mean())
             if t in keep:
-                info["neigh"][t] = dict(idx=pidx[order[:50]], d2=d2[order[:50]], h2=h2, n_pool=len(pidx), d2_all=d2, used=used, cols=[ALL_COLS[c] for c in cols])
+                info["neigh"][t] = dict(idx=pidx[order[:50]], idx160=pidx[order[:160]], d2=d2[order[:50]], h2=h2, n_pool=len(pidx), d2_all=d2, used=used, cols=[ALL_COLS[c] for c in cols])
     return outs, info
 
 
@@ -325,7 +329,7 @@ def blend(Qb, Qa, Y, starts, m):
 
 
 # ----------------------------------------------------------------------------------------------- pipeline
-def pipeline(b: dict, live_date=None, live_open=None, upto=None, keep=(), verbose=True) -> dict:
+def pipeline(b: dict, live_date=None, live_open=None, upto=None, keep=(), verbose=True, live_p0=None) -> dict:
     """All walk-forward forecasts for sessions START..(last session, or `upto`); with live_date also the live session n (outcome unknown; its metric fits use all n known sessions).
     Returns baseline and variant quantile arrays [m, 2, 9] for both phases."""
     d = b["d"]; t = targets(d); n = len(d); live = live_date is not None
@@ -335,7 +339,7 @@ def pipeline(b: dict, live_date=None, live_open=None, upto=None, keep=(), verbos
     if live:
         sig, sigI = np.r_[sig, HM.s6_next(R, v)], np.r_[sigI, HM.s6_next(I, gk)]
     N = len(sig)
-    P0 = float(d["prev"].iloc[-1] if False else d["close"].iloc[-1]) if live else None
+    P0 = (float(d["close"].iloc[-1]) if live_p0 is None else float(live_p0)) if live else None        # previous official close (the project's rule: last bar of the file)
     dates = pd.DatetimeIndex(list(d.index) + ([pd.Timestamp(live_date)] if live else []))
     Gall = np.r_[G, np.log(live_open / P0) if (live and live_open is not None) else (np.nan if live else [])] if live else G.copy()
     A = after_state(b); mk = market_after(b, d.index)
@@ -464,7 +468,37 @@ def eval_tables(res: dict, d: pd.DataFrame):
             for j in range(2):
                 g = mm & np.isfinite(pr[:, j])
                 s3.append(dict(phase=ph, target=names[ph][0][j], window=w, n=int(g.sum()), oos_r2_vs_training_mean=float(1 - np.sum((Y[g, j] - pr[g, j]) ** 2) / np.sum((Y[g, j] - bch[g, j]) ** 2))))
-    return summ, pd.DataFrame(wr), dmt, s1, pd.DataFrame(s2), pd.DataFrame(s3), Qall
+    # ---- ADDED AFTER THE FIRST RESULTS WERE SEEN (post hoc, not part of the pre-fixed rule; Section 6 of the report): S4 matching vs random draws, S5 by-year gains, S6 age of the neighbours
+    a, bb = HM.WIN["final"]; mm = (dts >= a) & (dts <= bb)                                       # Final window
+    s4 = []
+    for ph in ("pre", "post"):
+        tn = names[ph][0]
+        for sp in ("V", "A", "B", "C", "L"):
+            for j in range(2):
+                md, tt, p1, p2 = HM.dm(L[(ph, f"{sp}_k80_a")][j][mm], L[(ph, "RAND80_a")][j][mm])
+                s4.append(dict(phase=ph, space=sp, estimator="k80", form="a", target=tn[j], n=int(mm.sum()), mean_pinball_matched_x1e4=1e4 * L[(ph, f"{sp}_k80_a")][j][mm].mean(), mean_pinball_random80_x1e4=1e4 * L[(ph, "RAND80_a")][j][mm].mean(),
+                               gain_pct_vs_random80=100 * md / L[(ph, "RAND80_a")][j][mm].mean(), dm_t=tt, p_two_sided=p2))
+    s4 = pd.DataFrame(s4); s4["holm_two_sided"] = HM.holm(s4.p_two_sided.values); s4["family_size"] = len(s4)
+    s5 = []
+    for ph in ("pre", "post"):
+        tn, bn = names[ph][0], names[ph][1]
+        for j in range(2):
+            fin_gain = {v: 100 * (L[(ph, bn)][j][mm].mean() - L[(ph, v)][j][mm].mean()) / L[(ph, bn)][j][mm].mean() for (p_, v) in L if p_ == ph and v not in (bn, "P_EMP250", "W_EMP250")}
+            best = max(fin_gain, key=fin_gain.get)
+            for v, tag in (("B_k80_a", "display, pre-fixed"), ("B_k80_b", "display, pre-fixed"), ("POOL_a", "control"), (best, "best variant in Final for this target (chosen after seeing Final: post hoc)")):
+                for yr in sorted(set(dts.year)):
+                    my = dts.year == yr
+                    s5.append(dict(phase=ph, target=tn[j], variant=v, tag=tag, year=int(yr), n=int(my.sum()), pinball_base_x1e4=1e4 * L[(ph, bn)][j][my].mean(), pinball_variant_x1e4=1e4 * L[(ph, v)][j][my].mean(),
+                                   gain_pct=100 * (L[(ph, bn)][j][my].mean() - L[(ph, v)][j][my].mean()) / L[(ph, bn)][j][my].mean()))
+    s6 = []
+    for ph in ("pre", "post"):
+        for sp in SPACES:
+            inf = res["info"][ph][sp]
+            for w in ("val", "final", "cas"):
+                a, bb = HM.WIN[w]; mw = (dts >= a) & (dts <= bb)
+                s6.append(dict(phase=ph, space=sp, window=w, n=int(mw.sum()), median_age_sessions_of_80_nearest=float(np.nanmean(inf["age80"][ok][mw])), share_of_80_nearest_from_last_500_sessions=float(np.nanmean(inf["rec500_80"][ok][mw])),
+                               share_of_all_eligible_from_last_500_sessions=float(np.nanmean(inf["rec500_pool"][ok][mw]))))
+    return summ, pd.DataFrame(wr), dmt, s1, pd.DataFrame(s2), pd.DataFrame(s3), Qall, dict(s4=s4, s5=pd.DataFrame(s5), s6=pd.DataFrame(s6))
 
 
 def adoption(summ: pd.DataFrame, dmt: pd.DataFrame, leak_ok) -> pd.DataFrame:
@@ -497,22 +531,27 @@ def junkify(b: dict, k: int, seed: int = 0, perturb_only_previous=False) -> dict
     """Copy of the inputs where everything from session k on is replaced by junk (session k keeps its open and previous close).  perturb_only_previous: positive control, session k-1 is distorted instead."""
     rng = np.random.default_rng(seed)
     d = b["d"].copy(); n = len(d); t0 = d.index[k]
+    d = d.astype({c: float for c in d.select_dtypes("number").columns})                    # junk values are floats (pandas refuses float into an int64 column)
     if perturb_only_previous:
         r = d.index[k - 1]
         d.loc[r, "high"] *= 1.07; d.loc[r, "low"] *= 0.94; d.loc[r, "close"] *= 1.03; d.loc[r, "high"] = max(d.loc[r, "high"], d.loc[r, "close"]); d.loc[d.index[k], "prev"] = d.loc[r, "close"]
         d.loc[r, "vol"] *= 2.5; d.loc[r, "turnover_cr"] *= 2.5
         return dict(b, d=d)
+    prevc, cols = float(d["close"].iloc[k - 1]), {c: d[c].values.copy() for c in ("open", "prev", "high", "low", "close", "last", "vol", "turnover_cr", "trades", "deliv_pct", "ca_factor") if c in d.columns}
     for r in range(k, n):
-        o = d.iloc[r]["open"] if r == k else float(d["close"].iloc[r - 1]) * np.exp(rng.normal(0, 0.03))
+        o = float(cols["open"][r]) if r == k else prevc * np.exp(rng.normal(0, 0.03))
         if r > k:
-            d.iloc[r, d.columns.get_loc("open")] = o; d.iloc[r, d.columns.get_loc("prev")] = float(d["close"].iloc[r - 1])
+            cols["open"][r], cols["prev"][r] = o, prevc
         c = o * np.exp(rng.normal(0, 0.05)); hi = max(o, c) * np.exp(abs(rng.normal(0, 0.03))); lo = min(o, c) * np.exp(-abs(rng.normal(0, 0.03)))
         for col, val in (("close", c), ("high", hi), ("low", lo), ("last", c), ("vol", float(np.exp(rng.normal(14, 1)))), ("turnover_cr", float(np.exp(rng.normal(6, 1)))), ("trades", 5e4), ("deliv_pct", float(rng.uniform(10, 70))), ("ca_factor", 1.0)):
-            if col in d.columns:
-                d.iloc[r, d.columns.get_loc(col)] = val
+            if col in cols:
+                cols[col][r] = val
+        prevc = c
+    for col, arr in cols.items():
+        d[col] = arr
     junk = lambda df, cut: df.mask(df.index >= cut) if False else df                                      # noqa: E731
     def jdf(df, cut, date_col=None):
-        df = df.copy(); m = (df[date_col] >= cut) if date_col else (df.index >= cut)
+        df = df.copy(); df = df.astype({c: float for c in df.select_dtypes("number").columns}); m = (df[date_col] >= cut) if date_col else (df.index >= cut)
         num = df.select_dtypes("number").columns
         for c in num:
             if (date_col and c == date_col):
@@ -535,13 +574,20 @@ def leak_test(res: dict, b: dict, sessions) -> pd.DataFrame:
     for k in sessions:
         for mode in ("junk_from_target_on", "positive_control_previous_session_changed"):
             bj = junkify(b, k, perturb_only_previous=(mode != "junk_from_target_on"))
+            t0 = b["d"].index[k]                                                           # proof that the junk really replaced the data (counts of changed values from the target session on, and before it)
+            nchg = lambda x, y: int(((x.values != y.values) & ~(np.isnan(x.values) & np.isnan(y.values))).sum())      # noqa: E731
+            ixa, ixb, bra, brb, pea, peb = bj["ix"], b["ix"], bj["br"], b["br"], bj["peers"], b["peers"]
+            chg = dict(bars_changed_from_target_on=nchg(bj["d"]["close"].iloc[k:], b["d"]["close"].iloc[k:]), bars_changed_before_target=nchg(bj["d"]["close"].iloc[:k], b["d"]["close"].iloc[:k]),
+                       index_rows_changed_from_target_on=nchg(ixa["nifty50_close"][ixa.index >= t0], ixb["nifty50_close"][ixb.index >= t0]), index_rows_changed_before_target=nchg(ixa["nifty50_close"][ixa.index < t0], ixb["nifty50_close"][ixb.index < t0]),
+                       breadth_rows_changed_from_target_on=nchg(bra["adv_share"][bra.index >= t0], brb["adv_share"][brb.index >= t0]), peer_rows_changed_from_target_on=nchg(pea["close"][pea.date >= t0], peb["close"][peb.date >= t0]),
+                       macro_obs_changed_from_day_before_target=sum(nchg(bj["macro"][kk][bj["macro"][kk].index >= t0 - pd.Timedelta(days=1)], b["macro"][kk][b["macro"][kk].index >= t0 - pd.Timedelta(days=1)]) for kk in b["macro"]))
             rj = pipeline(bj, upto=k, verbose=False); i = k - START
             for ph in ("pre", "post"):
                 diffs = {v: float(np.max(np.abs(rj["Q"][ph][v][i] - res["Q"][ph][v][i]))) for v in res["Q"][ph]}
                 diffs["BASELINE"] = float(np.max(np.abs(rj["base"][ph][i] - res["base"][ph][i])))
                 mx = max(diffs.values()); worst = max(diffs, key=diffs.get)
                 rows.append(dict(session_index=k, session_date=str(res["dates"][i].date()), test=mode, phase=ph, n_variants=len(diffs), max_abs_diff_log_units=mx, worst_variant=worst,
-                                 n_variants_changed=int(sum(x > 1e-9 for x in diffs.values())), passed=(mx <= 1e-9) if mode == "junk_from_target_on" else (mx > 1e-9)))
+                                 n_variants_changed=int(sum(x > 1e-9 for x in diffs.values())), passed=(mx <= 1e-9) if mode == "junk_from_target_on" else (mx > 1e-9), **chg))
             print(f"  leak test session {k} ({res['dates'][i].date()}) {mode}: pre max diff {rows[-2]['max_abs_diff_log_units']:.2e}, post {rows[-1]['max_abs_diff_log_units']:.2e}", flush=True)
     out = pd.DataFrame(rows); out["overall"] = "PASSED" if out.passed.all() else "FAILED"
     return out
@@ -565,7 +611,7 @@ def _analogues(res, phase, space, t, d, N_SHOW=10) -> dict:
     tg = res["t"]; rows = []
     for rank, (s, d2) in enumerate(zip(nb["idx"][:N_SHOW], nb["d2"][:N_SHOW]), 1):
         e = {"rank": rank, "date": str(dts_all[s].date()), "distance": round(float(np.sqrt(d2)), 3), "similarity_vs_80th": round(float(np.exp(-0.5 * d2 / nb["h2"])), 3),
-             "closer_than_pct_of_past_sessions": round(100 * float((nb["d2_all"] > d2).mean()), 1), "gap_pct": round(100 * float(np.exp(tg["G"].values[s]) - 1), 2), "day_return_pct": round(100 * float(np.exp(tg["R"].values[s]) - 1), 2)}
+             "more_similar_than_pct_of_past_sessions": round(100 * float((nb["d2_all"] > d2).mean()), 1), "gap_pct": round(100 * float(np.exp(tg["G"].values[s]) - 1), 2), "day_return_pct": round(100 * float(np.exp(tg["R"].values[s]) - 1), 2)}
         if phase == "pre":
             e.update(high_pct_of_prev_close=round(100 * float(np.exp(tg["Hp"].values[s]) - 1), 2), low_pct_of_prev_close=round(100 * float(np.exp(tg["Lp"].values[s]) - 1), 2))
         else:
@@ -586,7 +632,7 @@ def analog_forecast(date, open_price=None, p0=None, d=None, bundle=None, verbose
     if open_price is not None and abs(np.log(open_price / P0)) > 0.2:
         raise ValueError("open more than 20% from the previous close: check the number")
     missing = [str(x.date()) for x in pd.bdate_range(dd.index[-1] + pd.Timedelta(days=1), date - pd.Timedelta(days=1))]
-    res = pipeline(b, live_date=date, live_open=open_price, keep=(n,), verbose=verbose); res["live_date"] = date
+    res = pipeline(b, live_date=date, live_open=open_price, keep=(n,), verbose=verbose, live_p0=P0); res["live_date"] = date
     i = n - START; vid = f"{DISPLAY_SPACE}_{DISPLAY_EST}"
     sm = pd.read_csv(OUT / "hl5_eval_summary.csv") if (OUT / "hl5_eval_summary.csv").exists() else pd.DataFrame(columns=["phase", "variant", "target", "window"])
     row = lambda ph, v, tg: (lambda x: x.iloc[0] if len(x) else None)(sm[(sm.phase == ph) & (sm.variant == v) & (sm.target == tg) & (sm.window == "final")])     # noqa: E731
@@ -604,6 +650,13 @@ def analog_forecast(date, open_price=None, p0=None, d=None, bundle=None, verbose
     qb = res["base"]["pre"][i]
     var["baseline"] = {"pre_open": {"high": _side(ref, qb[0], row("pre", "P_S6", "H")), "low": _side(ref, qb[1], row("pre", "P_S6", "L"))}}
     out["pre_open"] = var["analogue_alone"]["pre_open"]
+    tgt, sg, sgI = res["t"], res["sig"], res["sigI"]
+    def draws(phase):                                                                       # the 80 nearest sessions' standardised outcomes x the target session's baseline sigma (the display variant's own sample)
+        ii = res["info"][phase][DISPLAY_SPACE]["neigh"][n]["idx160"][:80]
+        cols, s_ = (("Hp", "Lp"), sg) if phase == "pre" else (("HO", "LO"), sgI)
+        return np.column_stack([tgt[c].values[ii] / s_[ii] for c in cols]) * float(res["sig_next"] if phase == "pre" else res["sigI_next"])
+    U80 = draws("pre")
+    out["pre_open"]["touch_prob"] = {f"high >= P0+{c:g}%": round(float((U80[:, 0] >= np.log1p(c / 100)).mean()), 3) for c in (0.5, 1, 2, 3)} | {f"low <= P0-{c:g}%": round(float((U80[:, 1] <= np.log1p(-c / 100)).mean()), 3) for c in (0.5, 1, 2, 3)}
     ana = {"pre_open": {sp: _analogues(res, "pre", sp, n, dd) for sp in SPACES}}
     if open_price is not None:
         sI = float(res["sigI_next"]); out.update(open=float(open_price), gap_pct=100 * float(np.log(open_price / P0)), sigma_I_pct=100 * sI)
@@ -615,9 +668,23 @@ def analog_forecast(date, open_price=None, p0=None, d=None, bundle=None, verbose
         qb = res["base"]["post"][i]
         var["baseline"]["post_open"] = {"high": _side(open_price, qb[0], row("post", "W_I6", "HO")), "low": _side(open_price, qb[1], row("post", "W_I6", "LO"))}
         out["post_open"] = var["analogue_alone"]["post_open"]
+        out["model_post"] = f"analogue forecast, space {DISPLAY_SPACE} + the 5 post-open features, {DISPLAY_EST[1:]} nearest past sessions, standardised (HO, LO) x today's S6 open-to-close sigma"
+        U80o = draws("post")
+        out["post_open"]["touch_prob"] = {f"high >= open+{c:g}%": round(float((U80o[:, 0] >= np.log1p(c / 100)).mean()), 3) for c in (0.5, 1, 2, 3)} | {f"low <= open-{c:g}%": round(float((U80o[:, 1] <= np.log1p(-c / 100)).mean()), 3) for c in (0.5, 1, 2, 3)}
         ana["post_open"] = {sp: _analogues(res, "post", sp, n, dd) for sp in SPACES}
         out["open_vs_yesterday"] = {"open_above_yesterdays_high": bool(res["X"][n, CI["obeyond"]] > 0), "open_below_yesterdays_low": bool(res["X"][n, CI["obeyond"]] < 0), "yesterdays_high": float(dd["high"].iloc[-1]), "yesterdays_low": float(dd["low"].iloc[-1])}
     out["variants"], out["analogues"] = var, ana
+    rd = {}
+    for ph, key, unit in (("pre_open", "pre", "previous close"), ("post_open", "post", "open")):
+        if ph not in ana:
+            continue
+        a = ana[ph][DISPLAY_SPACE]; hk, lk = ("high_pct_of_prev_close", "low_pct_of_prev_close") if key == "pre" else ("high_pct_of_open", "low_pct_of_open")
+        r5, r10 = a["sessions"][:5], a["sessions"][:10]; q = out[ph]
+        rd[ph] = (f"The 5 most similar past sessions (space {DISPLAY_SPACE}, {len(a['features_used'])} features, {a['n_pool']} past sessions compared) ended with a high of {min(r[hk] for r in r5):+.2f}% to {max(r[hk] for r in r5):+.2f}% (median {a['summary']['top5']['median_high_pct']:+.2f}%) "
+                  f"and a low of {min(r[lk] for r in r5):+.2f}% to {max(r[lk] for r in r5):+.2f}% (median {a['summary']['top5']['median_low_pct']:+.2f}%) of the {unit}; the 10 most similar: median high {a['summary']['top10']['median_high_pct']:+.2f}%, median low {a['summary']['top10']['median_low_pct']:+.2f}%. "
+                  f"The 80-nearest forecast (scaled to today's sigma) has a median high {q['high']['pct_of_reference']['q50']:+.2f}% and low {q['low']['pct_of_reference']['q50']:+.2f}%; the project baseline says {var['baseline'][ph]['high']['pct_of_reference']['q50']:+.2f}% / {var['baseline'][ph]['low']['pct_of_reference']['q50']:+.2f}%. "
+                  f"Five days are a very small sample: their range is about as wide as the whole spread of past days, and in the walk-forward test the median of the 5 nearest was a worse guess than the baseline median (research/hl/G_analogue.md).")
+    out["reading"] = rd
     out["_res"] = res
     return out
 
@@ -689,9 +756,10 @@ def do_eval():
     b = load_bundle(); d = b["d"]
     print("pipeline (walk-forward, all variants) ...", flush=True)
     res = pipeline(b); res["dates_all"] = d.index
-    summ, wts, dmt, s1, s2, s3, Qall = eval_tables(res, d)
+    summ, wts, dmt, s1, s2, s3, Qall, ex = eval_tables(res, d)
     summ.to_csv(OUT / "hl5_eval_summary.csv", index=False); wts.to_csv(OUT / "hl5_blend_weights.csv", index=False); dmt.to_csv(OUT / "hl5_dm_holm.csv", index=False)
     s1.to_csv(OUT / "hl5_secondary_vs_volonly.csv", index=False); s2.to_csv(OUT / "hl5_secondary_5nearest_point.csv", index=False); s3.to_csv(OUT / "hl5_secondary_ridge_r2.csv", index=False)
+    ex["s4"].to_csv(OUT / "hl5_posthoc_matching_vs_random.csv", index=False); ex["s5"].to_csv(OUT / "hl5_posthoc_byyear.csv", index=False); ex["s6"].to_csv(OUT / "hl5_posthoc_neighbour_age.csv", index=False)
     rep = baseline_repro(res, d); rep.to_csv(OUT / "hl5_baseline_repro.csv", index=False)
     vt = pd.DataFrame([dict(phase=ph, variant=v, space=v.split("_")[0], estimator=(v.split("_")[1] if v.split("_")[0] in SPACES else ("k80 random" if v.startswith("RAND") else "all eligible")), form=v.split("_")[-1],
                             n_features=len(space_cols(ph, v.split("_")[0])) if v.split("_")[0] in SPACES else 0) for ph in ("pre", "post") for v in res["Q"][ph]])
@@ -709,13 +777,14 @@ def do_eval():
     # stored predictions: baseline and display variants (prices)
     ok = np.arange(len(res["idx"])) < (res["n"] - START); idx = res["idx"][ok]; P0, O = d["prev"].values[idx], d["open"].values[idx]
     pr = pd.DataFrame({"date": res["dates"][ok], "P0": P0, "open": O, "H": d["high"].values[idx], "L": d["low"].values[idx]})
+    cols_ = {}
     for ph, ref, nms in (("pre", P0, ["P_S6", "B_k80_a", "B_k80_b", "V_k80_b"]), ("post", O, ["W_I6", "B_k80_a", "B_k80_b", "V_k80_b"])):
         for nm in nms:
             Q = res["base"][ph][ok] if nm in ("P_S6", "W_I6") else res["Q"][ph][nm][ok]
             for j, tg in enumerate(("H", "L")):
                 for k, g in LV.items():
-                    pr[f"{ph}_{nm}_{tg}_{k}"] = ref * np.exp(Q[:, j, g])
-    pr.to_csv(OUT / "hl5_predictions.csv", index=False)
+                    cols_[f"{ph}_{nm}_{tg}_{k}"] = ref * np.exp(Q[:, j, g])
+    pd.concat([pr, pd.DataFrame(cols_)], axis=1).to_csv(OUT / "hl5_predictions.csv", index=False)
     fam = dmt[(dmt.window == "final")]
     print(f"done in {time.time() - t0:.0f}s; variants per phase {len(res['Q']['pre'])}; family size {len(fam)} variant-target pairs")
     return res
@@ -736,6 +805,95 @@ def do_adopt():
     print("leakage test", "PASSED" if leak_ok else "NOT PASSED / NOT RUN", "| family size", int(ad.family_size.iloc[0]), "| adopted:", ad[ad.ADOPT][["phase", "variant", "target"]].values.tolist() or "none"); return ad
 
 
+def do_check():
+    """Consistency of the production function with the walk-forward evaluation: (1) analog_forecast for replayed dates against results/hl5_predictions.csv (differences come only from the fresh S6 fit at the target session and from the blend weight being refitted at the target rather than at the 20-session block start);
+    (2) the baseline inside the 16 Oct result against hl_model.hl_forecast."""
+    pr = pd.read_csv(OUT / "hl5_predictions.csv", parse_dates=["date"]).set_index("date"); rows = []
+    d0 = HM.load_ohlc()
+    for day in ("2025-12-01", "2026-09-01", "2026-10-14", "2026-10-15", str(d0.index[2350].date())):          # session 2350 (19 Aug 2026) is the first session of a 20-session block: live and walk-forward fits coincide there
+        r = pr.loc[day]; o = analog_forecast(day, float(r["open"]), verbose=False); o.pop("_res")
+        for nm, key in (("analogue_alone", "B_k80_a"), ("blend_with_baseline", "B_k80_b")):
+            for ph, ptag, blk in (("pre", "pre", "pre_open"), ("post", "post", "post_open")):
+                for tg, side in (("H", "high"), ("L", "low")):
+                    for qk in ("q5", "q25", "q50", "q75", "q95"):
+                        live = o["variants"][nm][blk][side]["price_quantiles"][qk]; wf = r[f"{ptag}_{key}_{tg}_{qk}"]
+                        rows.append(dict(check="analog_forecast(date, open) vs walk-forward row", date=day, variant=key, phase=ph, quantile=f"{tg} {qk}", live=live, walk_forward=float(wf), abs_diff_rs=abs(live - float(wf))))
+    f = HM.hl_forecast("2026-10-16", 3450.0); o = json.load(open(OUT / "hl5_2026-10-16.json"))["variants"]["baseline"]
+    for blk in ("pre_open", "post_open"):
+        for side in ("high", "low"):
+            for qk in ("q5", "q25", "q50", "q75", "q95"):
+                rows.append(dict(check="baseline in hl5 result vs hl_model.hl_forecast, 16 Oct", date="2026-10-16", variant="baseline", phase=blk, quantile=f"{side} {qk}", live=o[blk][side]["price_quantiles"][qk], walk_forward=f[blk][side]["price_quantiles"][qk],
+                                 abs_diff_rs=abs(o[blk][side]["price_quantiles"][qk] - f[blk][side]["price_quantiles"][qk])))
+    out = pd.DataFrame(rows); out.to_csv(OUT / "hl5_live_checks.csv", index=False)
+    print(out.groupby(["check", "date", "variant"]).abs_diff_rs.agg(["max", "median"]).round(3).to_string()); return out
+
+
+# ----------------------------------------------------------------------------------------------- report tables (markdown) from the result files
+def _md(df: pd.DataFrame, fmt: dict | None = None) -> str:
+    fmt = fmt or {}
+    df = df.rename(columns=str); cols = list(df.columns)
+    def cell(c, v):
+        if isinstance(v, (float, np.floating)):
+            return "" if not np.isfinite(v) else fmt.get(c, "{:.2f}").format(v)
+        return str(v)
+    head = "| " + " | ".join(cols) + " |\n|" + "|".join("---" for _ in cols) + "|\n"
+    return head + "\n".join("| " + " | ".join(cell(c, v) for c, v in zip(cols, row)) + " |" for row in df.itertuples(index=False))
+
+
+def report_tables() -> dict:
+    """Markdown tables for research/hl/G_analogue.md, read from the hl5_*.csv files (so every number in them is in a file)."""
+    S, D, A = pd.read_csv(OUT / "hl5_eval_summary.csv"), pd.read_csv(OUT / "hl5_dm_holm.csv"), pd.read_csv(OUT / "hl5_adoption.csv")
+    T = {}
+    f = S[S.window == "final"]
+    rows = []
+    for ph, tn, names in (("pre", ("H", "L"), [("P_S6", "BASELINE P_S6"), ("P_EMP250", "trailing-250 empirical"), ("PRICE_STAYS", "price stays")]), ("post", ("HO", "LO"), [("W_I6", "BASELINE W_I6"), ("W_EMP250", "trailing-250 empirical"), ("OPEN_STAYS", "open stays")])):
+        for v, lab in names:
+            for tg in tn:
+                r = f[(f.phase == ph) & (f.variant == v) & (f.target == tg)].iloc[0]
+                rows.append({"target": tg, "model": lab, "n": int(r.n), "pinball x1e4": r.pinball_x1e4, "50% band covers": r.cov50, "90% band covers": r.cov90, "typical miss of median (Rs at 3,428)": r.mae_med_rs_at_now, "half the time within (Rs)": r.medae_med_rs_at_now})
+    T["baseline"] = _md(pd.DataFrame(rows), {"50% band covers": "{:.3f}", "90% band covers": "{:.3f}", "pinball x1e4": "{:.3f}", "typical miss of median (Rs at 3,428)": "{:.1f}", "half the time within (Rs)": "{:.1f}"})
+    fin = D[D.window == "final"]; val = D[D.window == "val"]
+    order = lambda v: (["V", "A", "B", "C", "L", "RAND80", "POOL"].index(v.split("_")[0]), (["k40", "k80", "k160", "ker"].index(v.split("_")[1]) if v.split("_")[0] in SPACES else 0), v[-1])      # noqa: E731
+    for ph, tn in (("pre", ("H", "L")), ("post", ("HO", "LO"))):
+        vs = sorted(fin[fin.phase == ph].variant.unique(), key=order); rows = []
+        for v in vs:
+            row = {"variant": v}
+            for tg in tn:
+                r = fin[(fin.phase == ph) & (fin.variant == v) & (fin.target == tg)].iloc[0]; rv = val[(val.phase == ph) & (val.variant == v) & (val.target == tg)].iloc[0]
+                m = S[(S.window == "final") & (S.phase == ph) & (S.variant == v) & (S.target == tg)].iloc[0]
+                row.update({f"{tg} gain % (Final)": r.gain_pct, f"{tg} Holm p": r.holm_two_sided, f"{tg} Val gain %": rv.gain_pct, f"{tg} miss Rs": m.mae_med_rs_at_now})
+            rows.append(row)
+        T[f"matrix_{ph}"] = _md(pd.DataFrame(rows), {c: ("{:.3f}" if "Holm" in c else ("{:.1f}" if "miss" in c else "{:+.2f}")) for c in pd.DataFrame(rows).columns})
+    rows = []
+    for (ph, tg), g in A.groupby(["phase", "target"], sort=False):
+        fg = fin[(fin.phase == ph) & (fin.target == tg)]
+        best = g.sort_values("gain_pct_final", ascending=False).iloc[0]
+        pos = fg[fg.gain_pct > 0]; se = np.abs(fg.gain_pct / fg.dm_t); se = se[np.isfinite(se)]
+        rows.append({"target": tg, "variants": len(g), "c1 gain >= 2% and Holm < 0.05": int(g.c1_accuracy_holm.sum()), "c2 validation sign": int(g.c2_validation_sign.sum()), "c3 calibration": int(g.c3_calibration.sum()), "c4 auction slice": int(g.c4_auction_slice.sum()),
+                     "c5 leakage": int(g.c5_leakage.sum()), "ADOPTED": int(g.ADOPT.sum()), "variants better than baseline in Final": len(pos), "largest Final gain %": best.gain_pct_final, "that variant": best.variant, "its Holm p": best.holm_final,
+                     "smallest raw p among the better ones": pos.p_two_sided.min() if len(pos) else np.nan, "worse than baseline with Holm < 0.05": int(((fg.gain_pct < 0) & (fg.holm_two_sided < 0.05)).sum()), "median s.e. of the gain (% points)": float(np.median(se))})
+    T["adoption"] = _md(pd.DataFrame(rows), {"largest Final gain %": "{:+.2f}", "its Holm p": "{:.3f}", "smallest raw p among the better ones": "{:.4f}", "median s.e. of the gain (% points)": "{:.2f}"})
+    s1 = pd.read_csv(OUT / "hl5_secondary_vs_volonly.csv")
+    r1 = s1.assign(cell=lambda x: x.apply(lambda r: f"{r.gain_pct_vs_V:+.2f}% (p {r.p_two_sided:.3f}, Holm {r.holm_two_sided:.2f})", axis=1)).pivot_table(index=["phase", "space", "form"], columns="target", values="cell", aggfunc="first").reset_index()
+    T["s1"] = _md(r1[["phase", "space", "form"] + [c for c in ("H", "L", "HO", "LO") if c in r1.columns]])
+    s4 = pd.read_csv(OUT / "hl5_posthoc_matching_vs_random.csv")
+    r4 = s4.assign(cell=lambda x: x.apply(lambda r: f"{r.gain_pct_vs_random80:+.2f}% (p {r.p_two_sided:.3f}, Holm {r.holm_two_sided:.2f})", axis=1)).pivot_table(index=["phase", "space"], columns="target", values="cell", aggfunc="first").reset_index()
+    T["s4"] = _md(r4[["phase", "space"] + [c for c in ("H", "L", "HO", "LO") if c in r4.columns]])
+    T["s2"] = _md(pd.read_csv(OUT / "hl5_secondary_5nearest_point.csv"), {"mae_median_of_5_nearest_rs": "{:.1f}", "se_rs": "{:.1f}", "mae_baseline_median_rs": "{:.1f}", "ratio": "{:.3f}"})
+    T["s3"] = _md(pd.read_csv(OUT / "hl5_secondary_ridge_r2.csv"), {"oos_r2_vs_training_mean": "{:+.4f}"})
+    ag = pd.read_csv(OUT / "hl5_posthoc_neighbour_age.csv"); T["age"] = _md(ag[ag.window == "final"].drop(columns="window"), {"median_age_sessions_of_80_nearest": "{:.0f}", "share_of_80_nearest_from_last_500_sessions": "{:.3f}", "share_of_all_eligible_from_last_500_sessions": "{:.3f}"})
+    by = pd.read_csv(OUT / "hl5_posthoc_byyear.csv"); by = by[by.tag.str.startswith("display") | (by.variant == "POOL_a")]
+    rb = by.assign(cell=lambda x: x.gain_pct.map("{:+.2f}".format)).pivot_table(index=["phase", "target", "variant"], columns="year", values="cell", aggfunc="first").reset_index()
+    T["byyear"] = _md(rb)
+    return T
+
+
+def do_tables():
+    T = report_tables()
+    for k, v in T.items():
+        print(f"\n##### {k}\n{v}")
+
+
 def do_live(date="2026-10-16", open_price=3450.0):
     o = analog_forecast(date, open_price, verbose=True); res = o.pop("_res")
     o["adoption_status"] = "see results/hl5_adoption.csv: the baseline stays the headline unless a variant is adopted by the pre-fixed rule"
@@ -751,7 +909,7 @@ def do_live(date="2026-10-16", open_price=3450.0):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--eval", action="store_true"); ap.add_argument("--leak", action="store_true"); ap.add_argument("--adopt", action="store_true"); ap.add_argument("--live", action="store_true")
+    ap.add_argument("--eval", action="store_true"); ap.add_argument("--leak", action="store_true"); ap.add_argument("--adopt", action="store_true"); ap.add_argument("--live", action="store_true"); ap.add_argument("--check", action="store_true"); ap.add_argument("--tables", action="store_true")
     ap.add_argument("--date"); ap.add_argument("--open", type=float, default=None); ap.add_argument("--p0", type=float, default=None); ap.add_argument("--json", action="store_true")
     a = ap.parse_args()
     if a.eval:
@@ -762,6 +920,10 @@ def main():
         return do_adopt()
     if a.live:
         return do_live()
+    if a.check:
+        return do_check()
+    if a.tables:
+        return do_tables()
     if not a.date:
         ap.error("--date YYYY-MM-DD (or --eval / --leak / --adopt / --live)")
     o = analog_forecast(a.date, a.open, a.p0); o.pop("_res")
