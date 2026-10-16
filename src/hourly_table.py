@@ -165,7 +165,7 @@ def score_logged(df_all: pd.DataFrame, now_ts) -> int:
     This is bookkeeping only: the 'this hour' columns of a table still compare with the previous table, nothing else."""
     cols = ["date", "asof", "window", "mode", "pred_high", "act_high", "pred_low", "act_low", "high_in50", "high_in90", "low_in50", "low_in90"]
     old = pd.read_csv(SCORED) if Path(SCORED).exists() else pd.DataFrame(columns=cols)
-    done = set(zip(old.date.astype(str), old.asof.astype(str))) if "asof" in old else set()
+    done = set(zip(old["date"].astype(str), old["asof"].astype(str))) if "asof" in old.columns else set()
     new = []
     for z in load_log():
         nh = z.get("next_hour")
