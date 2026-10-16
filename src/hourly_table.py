@@ -16,8 +16,8 @@ Method (descriptive, small sample; nothing here predicts direction):
   * next-hour high / low: from the price now P and the typical size of price moves in the coming 60 minutes at this time of day
     (the variance profile of 15-minute bars since the closing auction, ~39 sessions), the high of the next hour is P * exp(z * sigma_window) where z comes from the
     pooled, standardised past excursions (filtered historical simulation).  The pin-point is the MEDIAN of that distribution.  The window is cut at 15:30.
-  * 'this hour': the realised high / low of the last 60 minutes (Yahoo 1-minute bars; NSE's official figures can differ by a few rupees) against the prediction logged an hour earlier (within 5 minutes of the start of that hour).
-    If no prediction was logged an hour earlier the tool says so and shows a REPLAY computed now from the bars before that time (labelled), never a made-up number.
+  * 'this hour': the PREVIOUS stated prediction (the latest live row logged at least 20 minutes ago) against what actually happened in ITS window (Yahoo 1-minute high / low; NSE's official figures can differ by a few rupees).
+    If that window is not over yet the comparison says so ('so far only') and is scored only when the window ends.  If no live row exists the tool shows a REPLAY computed now from the bars before T-60 (labelled), never a made-up number.
 Known limits: 39 sessions; a few cells below are noisy; the leave-one-out table (--eval) says how big the typical miss is at each time of day.
 """
 from __future__ import annotations
@@ -190,20 +190,30 @@ def build(asof: str | None = None, save: bool = True) -> dict | None:
     close = LN.run_live(save=False, asof=asof) if asof else LN.run_live(save=False)
     row = {"date": sdate, "asof": T.strftime("%H:%M"), "mode": "replay" if asof else "live", "price_now": round(P, 1), "close_pin": round(P, 1), "close_50": [round(x, 1) for x in close["close_50"]], "close_90": [round(x, 1) for x in close["close_90"]],
            "close_typical_miss_rs": round(close["typical_miss_rs"], 1), "next_hour": nh, "day_high_so_far": round(float(d1.high.max()), 1), "day_low_so_far": round(float(d1.low.min()), 1)}
-    # --- this hour against the prediction made an hour ago
-    a, b = T - dt.timedelta(minutes=WIN), T
-    a = max(a, day.t.iloc[0].replace(second=0, microsecond=0))
-    row["this_hour"] = {"from": a.strftime("%H:%M"), "to": b.strftime("%H:%M")}
-    act = hl_between(d1, a, b)
-    prev = None
+    # --- this hour against the PREVIOUS stated prediction: the latest LIVE row logged at least 20 minutes ago is compared with what actually happened in ITS window (so far, if that hour is not over);
+    #     if no such live row exists, the prediction is REPLAYED from the bars before T-60 (and labelled)
+    first_bar = day.t.iloc[0].replace(second=0, microsecond=0)
+    prev, act, complete = None, None, True
     for z in reversed(load_log()):
-        if z["date"] == sdate and z["mode"] == "live" and z.get("next_hour") and abs((dt.datetime.fromisoformat(f"{sdate}T{z['next_hour']['window_start']}:00") - dt.datetime.fromisoformat(f"{sdate}T{a:%H:%M}:00")).total_seconds()) <= 300 and z["asof"] <= row["asof"]:
-            prev = z["next_hour"]; row["this_hour"]["prediction_source"] = f"logged live at {z['asof']}"; break
-    if prev is None and (a - day.t.iloc[0]).total_seconds() >= 60:
-        S2 = S
-        dp = day[day.t < a]
-        tm0 = int((a.hour * 60 + a.minute) - OPEN_MIN)
-        prev = next_hour(float(dp.close.iloc[-1]), tm0, ev, zh, zl); row["this_hour"]["prediction_source"] = f"REPLAYED now from the bars before {a:%H:%M} (not logged live at the time)"
+        if z["date"] != sdate or z["mode"] != "live" or not z.get("next_hour"):
+            continue
+        if dt.datetime.fromisoformat(f"{sdate}T{z['asof']}:00").replace(tzinfo=IST) > T - dt.timedelta(minutes=20):
+            continue
+        ws = dt.datetime.fromisoformat(f"{sdate}T{z['next_hour']['window_start']}:00").replace(tzinfo=IST)
+        we = dt.datetime.fromisoformat(f"{sdate}T{z['next_hour']['window_end']}:00").replace(tzinfo=IST)
+        a, b = ws, min(we, T); complete = T >= we
+        prev = z["next_hour"]
+        row["this_hour"] = {"from": a.strftime("%H:%M"), "to": b.strftime("%H:%M"), "prediction_source": f"logged live at {z['asof']}" + ("" if complete else f"; that hour ends {we:%H:%M}: so far only, final check then")}
+        act = hl_between(d1, a, b)
+        break
+    if prev is None:
+        a, b = max(T - dt.timedelta(minutes=WIN), first_bar), T
+        row["this_hour"] = {"from": a.strftime("%H:%M"), "to": b.strftime("%H:%M")}
+        act = hl_between(d1, a, b)
+        if (a - day.t.iloc[0]).total_seconds() >= 60:
+            dp = day[day.t < a]
+            tm0 = int((a.hour * 60 + a.minute) - OPEN_MIN)
+            prev = next_hour(float(dp.close.iloc[-1]), tm0, ev, zh, zl); row["this_hour"]["prediction_source"] = f"REPLAYED now from the bars before {a:%H:%M} (not logged live at the time)"
     row["this_hour"]["actual_high_low_yahoo"] = None if act is None else [round(act[0], 1), round(act[1], 1)]
     row["this_hour"]["high"] = compare(prev, act, "high"); row["this_hour"]["low"] = compare(prev, act, "low")
     ev_t = eval_row()
@@ -217,7 +227,7 @@ def build(asof: str | None = None, save: bool = True) -> dict | None:
         Path("results").mkdir(exist_ok=True)
         with open(LOG, "a") as f:
             f.write(json.dumps({**row, "logged_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")}) + "\n")
-    if save and act is not None and prev is not None:
+    if save and act is not None and prev is not None and complete:
         rec = {"date": sdate, "window": f"{a:%H:%M}-{b:%H:%M}", "mode": "live" if row["this_hour"]["prediction_source"].startswith("logged live at") else "replay", "pred_high": prev["high"]["0.5"], "act_high": round(act[0], 1), "pred_low": prev["low"]["0.5"], "act_low": round(act[1], 1),
                "high_in50": row["this_hour"]["high"]["inside50"], "high_in90": row["this_hour"]["high"]["inside90"], "low_in50": row["this_hour"]["low"]["inside50"], "low_in90": row["this_hour"]["low"]["inside90"]}
         old = pd.read_csv(SCORED) if Path(SCORED).exists() else pd.DataFrame()
@@ -236,7 +246,7 @@ def fmt_row(r: dict) -> str:
         if not c:
             return "n/a (no earlier prediction possible)"
         s = "high" if side == "high" else "low"
-        return (f"actual {c['actual']:,.1f} vs predicted {c['predicted']:,.1f}: off by {c['error_rs']:+,.1f}; inside half-the-time range: {'yes' if c['inside50'] else 'no'}; inside 9-in-10: {'yes' if c['inside90'] else 'no'} "
+        return (f"{th['from']}-{th['to']}: actual {c['actual']:,.1f} vs predicted {c['predicted']:,.1f}: off by {c['error_rs']:+,.1f}; inside half-the-time range: {'yes' if c['inside50'] else 'no'}; inside 9-in-10: {'yes' if c['inside90'] else 'no'} "
                 f"[{th['prediction_source']}]")
     tm = r["typical_miss_next_hour_rs"]
     head = "| time | precise close | close range at the end of the day | precise high of the next hour | precise low of the next hour | this hour's high vs previous prediction | this hour's low vs previous prediction |\n|---|---|---|---|---|---|---|"
