@@ -1,58 +1,54 @@
 {
- "asof_ist": "2026-10-16T09:46:38+05:30",
+ "asof_ist": "2026-10-16T10:32:20+05:30",
  "source": "Yahoo chart API 1-minute bars (unofficial, near-real-time)",
- "price_now": 3350.60009765625,
+ "price_now": 3353.5,
  "prev_official_close": 3428.0,
- "change_vs_prev_close_pct": -2.2578734639366993,
+ "change_vs_prev_close_pct": -2.1732788798133007,
  "day_high_so_far": 3443.699951171875,
  "day_low_so_far": 3311.10009765625,
- "minutes_to_close": 344.0,
- "sigma_remaining_pct": 1.5465701225776507,
- "vol_scale_today_vs_typical": 2.5159519784677626,
- "indicative_close": 3350.60009765625,
+ "minutes_to_close": 298.0,
+ "sigma_remaining_pct": 1.4241087045966798,
+ "vol_scale_today_vs_typical": 2.2635424769120838,
+ "indicative_close": 3353.5,
  "close_50": [
-  3326.204589813433,
-  3375.1745303928433
+  3331.010251251923,
+  3376.1415912104535
  ],
  "close_90": [
-  3265.4509775074557,
-  3437.9695459349273
+  3274.945659316158,
+  3433.9385809376363
  ],
  "close_95": [
-  3228.7209435871623,
-  3477.079998725818
+  3241.010497018383,
+  3469.8938063748624
  ],
- "typical_miss_rs": 41.05613175957658,
- "half_the_time_miss_under_rs": 33.022539466548814,
+ "typical_miss_rs": 39.39022346405642,
+ "half_the_time_miss_under_rs": 35.219998158521356,
  "calibration_note": "checked leave-one-session-out on 39 sessions: the printed 50% / 90% ranges covered 50% / 90% of checkpoints (effective sample about 39 sessions: a rough guide, 90% coverage could be 83-96%; the 50% range is too narrow in the morning and about right late)",
  "tightening_schedule_if_price_unchanged": [
   {
-   "at": "10:15",
-   "half_width_90_rs": 81.5715836791168
-  },
-  {
    "at": "11:15",
-   "half_width_90_rs": 74.99706370215885
+   "half_width_90_rs": 75.06197271978719
   },
   {
    "at": "12:15",
-   "half_width_90_rs": 66.97497820980523
+   "half_width_90_rs": 67.03294421309492
   },
   {
    "at": "13:15",
-   "half_width_90_rs": 60.40586298546046
+   "half_width_90_rs": 60.45814350194773
   },
   {
    "at": "14:15",
-   "half_width_90_rs": 42.24637475091313
+   "half_width_90_rs": 42.28293845818479
   },
   {
    "at": "14:45",
-   "half_width_90_rs": 33.10337448362197
+   "half_width_90_rs": 33.13202503888168
   },
   {
    "at": "15:00",
-   "half_width_90_rs": 29.021121446239974
+   "half_width_90_rs": 29.046238862716823
   }
  ]
 }
