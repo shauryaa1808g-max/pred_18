@@ -12,6 +12,7 @@ Usage (repo root; python3 src/hl_analog.py ...), no network access:
   --adopt           apply the pre-fixed adoption rule (needs --eval and --leak first) -> results/hl5_adoption.csv
   --live            the 16 Oct 2026 result as of the 15 Oct close and the official open Rs 3,450.0 -> results/hl5_2026-10-16.json (+ results/hl5_2026-10-16_analogues.csv)
   --tables          markdown tables for the report, from the result files
+  --live-filled     SENSITIVITY: the same 16 Oct result with the inputs that end early (index, breadth, peers, US, delivery %) completed from results/hl2_fill_*.csv -> results/hl5_2026-10-16_filled.json
   --selfcheck       independent loop re-computation of features, analogue quantiles and blend weights vs the vectorised code -> results/hl5_selfchecks.csv   (about 2 min)
   --check           consistency of analog_forecast() with the walk-forward rows and of the baseline with hl_model.hl_forecast (needs --eval and --live first) -> results/hl5_live_checks.csv
   --date YYYY-MM-DD [--open P] [--p0 P] [--json]     plain words (or JSON) for any date; only sessions BEFORE --date are used
@@ -599,11 +600,16 @@ def leak_test(res: dict, b: dict, sessions) -> pd.DataFrame:
 LV = HM.LV
 
 
-def _side(ref, q, summ_row) -> dict:
+def _side(ref, q, rows, tail=False) -> dict:
+    """Same keys as hl_model._side: rupee quantiles, % of the reference, band widths, and the out-of-sample typical miss of the median in the Final window and in the closing-auction slice (rows = {'final': row, 'cas': row} of results/hl5_eval_summary.csv)."""
     px = {**{k: round(float(ref * np.exp(q[g])), 2) for k, g in LV.items()}, "q2.5": round(float(ref * np.exp(q[0])), 2), "q97.5": round(float(ref * np.exp(q[8])), 2)}
     out = {"price_quantiles": px, "pct_of_reference": {k: round(100 * float(np.exp(q[g]) - 1), 2) for k, g in LV.items()}, "band_width_rs": {"50%": round(px["q75"] - px["q25"], 1), "90%": round(px["q95"] - px["q5"], 1)}}
-    if summ_row is not None:
-        out.update(typical_miss_rs=round(float(summ_row.mae_med_pct) / 100 * ref, 1), half_the_time_within_rs=round(float(summ_row.medae_med_pct) / 100 * ref, 1), miss_measured_on_sessions=int(summ_row.n))
+    for w, key in (("final", ""), ("cas", "_cas_slice")):
+        r = (rows or {}).get(w)
+        if r is not None:
+            out.update({f"typical_miss_rs{key}": round(float(r.mae_med_pct) / 100 * ref, 1), f"half_the_time_within_rs{key}": round(float(r.medae_med_pct) / 100 * ref, 1), f"miss_measured_on_sessions{key}": int(r.n)})
+            if w == "cas" and tail:
+                out["cas_slice_tail_shares"] = {"n": int(r.n), "below_q5": float(r.below_q5), "above_q95": float(r.above_q95)}
     return out
 
 
@@ -641,9 +647,9 @@ def analog_forecast(date, open_price=None, p0=None, d=None, bundle=None, verbose
     res = pipeline(b, live_date=date, live_open=open_price, keep=(n,), verbose=verbose, live_p0=P0); res["live_date"] = date
     i = n - START; vid = f"{DISPLAY_SPACE}_{DISPLAY_EST}"
     sm = pd.read_csv(OUT / "hl5_eval_summary.csv") if (OUT / "hl5_eval_summary.csv").exists() else pd.DataFrame(columns=["phase", "variant", "target", "window"])
-    row = lambda ph, v, tg: (lambda x: x.iloc[0] if len(x) else None)(sm[(sm.phase == ph) & (sm.variant == v) & (sm.target == tg) & (sm.window == "final")])     # noqa: E731
+    row = lambda ph, v, tg: {w: (lambda x: x.iloc[0] if len(x) else None)(sm[(sm.phase == ph) & (sm.variant == v) & (sm.target == tg) & (sm.window == w)]) for w in ("final", "cas")}     # noqa: E731
     out = {"date": str(date.date()), "p0": P0, "data_through": str(dd.index[-1].date()), "n_sessions": n, "missing_weekdays_between_data_and_date": missing, "is_weekend": bool(date.dayofweek >= 5),
-           "data_sha256_files_on_disk": {f: hashlib.sha256(Path(f).read_bytes()).hexdigest() for f in ("data/processed/bse_daily.csv", str(HM.EXTRA), "data/processed/index_daily.csv") if Path(f).exists()},
+           "data_sha256": {f: hashlib.sha256(Path(f).read_bytes()).hexdigest() for f in ("data/processed/bse_daily.csv", str(HM.EXTRA), "data/processed/index_daily.csv") if Path(f).exists()},
            "bars_used_sha256": hashlib.sha256(dd.to_csv().encode()).hexdigest(), "bars_used_note": "sha256 of the official bars the forecast actually used (sessions strictly before the target date); the file hashes above cover whole files, which can later gain rows dated on or after the target date",
            "display_variant": vid, "sigma_R_pct": 100 * float(res["sig_next"]), "model_pre": f"analogue forecast, space {DISPLAY_SPACE} (14 BSE-own features, shrunk Mahalanobis), {DISPLAY_EST[1:]} nearest past sessions (equal weight, sessions t-5..t-1 excluded), standardised (Hp, Lp) x today's S6 sigma",
            "features_dropped_for_this_session": {sp: res["info"]["pre"][sp]["n_dropped"].get(n, []) for sp in SPACES}}
@@ -651,11 +657,11 @@ def analog_forecast(date, open_price=None, p0=None, d=None, bundle=None, verbose
     var = {}
     for form, nm in (("a", "analogue_alone"), ("b", "blend_with_baseline")):
         q = res["Q"]["pre"][f"{vid}_{form}"][i]
-        var[nm] = {"pre_open": {"high": _side(ref, q[0], row("pre", f"{vid}_{form}", "H")), "low": _side(ref, q[1], row("pre", f"{vid}_{form}", "L"))}}
+        var[nm] = {"pre_open": {"high": _side(ref, q[0], row("pre", f"{vid}_{form}", "H"), True), "low": _side(ref, q[1], row("pre", f"{vid}_{form}", "L"), True)}}
         if form == "b":
             var[nm]["blend_weight_w_on_analogue"] = {"high": float(res["W"]["pre"][f"{vid}_b"][i, 0]), "low": float(res["W"]["pre"][f"{vid}_b"][i, 1])}
     qb = res["base"]["pre"][i]
-    var["baseline"] = {"pre_open": {"high": _side(ref, qb[0], row("pre", "P_S6", "H")), "low": _side(ref, qb[1], row("pre", "P_S6", "L"))}}
+    var["baseline"] = {"pre_open": {"high": _side(ref, qb[0], row("pre", "P_S6", "H"), True), "low": _side(ref, qb[1], row("pre", "P_S6", "L"), True)}}
     out["pre_open"] = var["analogue_alone"]["pre_open"]
     tgt, sg, sgI = res["t"], res["sig"], res["sigI"]
     def draws(phase):                                                                       # the 80 nearest sessions' standardised outcomes x the target session's baseline sigma (the display variant's own sample)
@@ -669,17 +675,24 @@ def analog_forecast(date, open_price=None, p0=None, d=None, bundle=None, verbose
         sI = float(res["sigI_next"]); out.update(open=float(open_price), gap_pct=100 * float(np.log(open_price / P0)), sigma_I_pct=100 * sI)
         for form, nm in (("a", "analogue_alone"), ("b", "blend_with_baseline")):
             q = res["Q"]["post"][f"{vid}_{form}"][i]
-            var[nm]["post_open"] = {"high": _side(open_price, q[0], row("post", f"{vid}_{form}", "HO")), "low": _side(open_price, q[1], row("post", f"{vid}_{form}", "LO"))}
+            var[nm]["post_open"] = {"open": float(open_price), "gap_pct": 100 * float(np.log(open_price / P0)), "high": _side(open_price, q[0], row("post", f"{vid}_{form}", "HO")), "low": _side(open_price, q[1], row("post", f"{vid}_{form}", "LO"))}
             if form == "b":
                 var[nm]["blend_weight_w_on_analogue_post"] = {"high": float(res["W"]["post"][f"{vid}_b"][i, 0]), "low": float(res["W"]["post"][f"{vid}_b"][i, 1])}
         qb = res["base"]["post"][i]
-        var["baseline"]["post_open"] = {"high": _side(open_price, qb[0], row("post", "W_I6", "HO")), "low": _side(open_price, qb[1], row("post", "W_I6", "LO"))}
+        var["baseline"]["post_open"] = {"open": float(open_price), "gap_pct": 100 * float(np.log(open_price / P0)), "high": _side(open_price, qb[0], row("post", "W_I6", "HO")), "low": _side(open_price, qb[1], row("post", "W_I6", "LO"))}
         out["post_open"] = var["analogue_alone"]["post_open"]
         out["model_post"] = f"analogue forecast, space {DISPLAY_SPACE} + the 5 post-open features, {DISPLAY_EST[1:]} nearest past sessions, standardised (HO, LO) x today's S6 open-to-close sigma"
         U80o = draws("post")
         out["post_open"]["touch_prob"] = {f"high >= open+{c:g}%": round(float((U80o[:, 0] >= np.log1p(c / 100)).mean()), 3) for c in (0.5, 1, 2, 3)} | {f"low <= open-{c:g}%": round(float((U80o[:, 1] <= np.log1p(-c / 100)).mean()), 3) for c in (0.5, 1, 2, 3)}
         ana["post_open"] = {sp: _analogues(res, "post", sp, n, dd) for sp in SPACES}
         out["open_vs_yesterday"] = {"open_above_yesterdays_high": bool(res["X"][n, CI["obeyond"]] > 0), "open_below_yesterdays_low": bool(res["X"][n, CI["obeyond"]] < 0), "yesterdays_high": float(dd["high"].iloc[-1]), "yesterdays_low": float(dd["low"].iloc[-1])}
+    out["features_today"] = {c: (None if not np.isfinite(res["X"][n, CI[c]]) else round(float(res["X"][n, CI[c]]), 4)) for c in ALL_COLS if (open_price is not None or c not in F_POST)}
+    byspace = {}
+    for ph, key, refp in (("pre_open", "pre", P0), ("post_open", "post", open_price)):
+        if refp is None or (key == "post" and "post" not in res["Q"]) or (key == "post" and open_price is None):
+            continue
+        byspace[ph] = {sp: {tg: {k: round(float(refp * np.exp(res["Q"][key][f"{sp}_k80_a"][i][j][g])), 2) for k, g in (("q5", 1), ("q25", 3), ("q50", 4), ("q75", 5), ("q95", 7))} for j, tg in enumerate(("high", "low"))} for sp in SPACES}
+    out["k80_analogue_alone_by_space"] = byspace
     out["variants"], out["analogues"] = var, ana
     rd = {}
     s2f = OUT / "hl5_secondary_5nearest_point.csv"; s2 = pd.read_csv(s2f) if s2f.exists() else None
@@ -761,7 +774,7 @@ def feature_table_csv(res: dict) -> pd.DataFrame:
         spaces = [s for s in SPACES if c in space_cols("post", s)] if c in F_POST else [s for s in SPACES if c in SPACES[s]]
         rows.append(dict(feature=c, group=FEATURE_SOURCE[c][0], timestamp_rule=FEATURE_SOURCE[c][1], in_spaces="".join(spaces) if c not in F_POST else "post-open (" + "".join(spaces) + ")",
                          first_valid_session=int(fv[0]) if len(fv) else -1, first_valid_date=str(res["dates_all"][fv[0]].date()) if len(fv) else "", share_valid_from_session_500=float(np.isfinite(col[POOL_FIRST:]).mean()),
-                         live_value_16oct=float(X[n, CI[c]]) if X.shape[0] > n and np.isfinite(X[n, CI[c]]) else np.nan))
+                         n_sessions_valid=int(len(fv)), n_sessions_missing_from_500=int((~np.isfinite(col[POOL_FIRST:])).sum())))
     return pd.DataFrame(rows)
 
 
@@ -1107,9 +1120,44 @@ def do_live(date="2026-10-16", open_price=3450.0):
     print(words(o)); return o
 
 
+FILL_FILES = ("hl2_fill_index.csv", "hl2_fill_breadth.csv", "hl2_fill_peers.csv", "hl2_fill_us.csv", "hl2_fill_delivery.csv")
+
+
+def filled_bundle(date) -> tuple:
+    """SENSITIVITY ONLY (not part of any test): the inputs that end before the previous session (index / VIX to 12 Oct, breadth 13 Oct, peers 13 Oct, S&P 500 and US VIX 12 Oct, delivery % of 13-15 Oct missing) completed with the
+    rows another specialist fetched (results/hl2_fill_*.csv; not verified by me).  The same timestamp rules apply (the US value used is still the last one dated on or before the target date minus 2 days).  Returns (bundle, what was added)."""
+    b = load_bundle(before=date); date = pd.Timestamp(date); added = {}
+    rd = lambda f: pd.read_csv(OUT / f"hl2_fill_{f}.csv", parse_dates=["date"])         # noqa: E731
+    fx = rd("index").set_index("date"); fx = fx[(fx.index < date) & (fx.index > b["ix"].index.max())]
+    ix = pd.concat([b["ix"], fx.reindex(columns=b["ix"].columns)]); added["index_rows"] = [str(x.date()) for x in fx.index]
+    fb = rd("breadth").set_index("date"); fb = fb[(fb.index < date) & (fb.index > b["br"].index.max())]
+    br = pd.concat([b["br"], fb.reindex(columns=b["br"].columns)]); added["breadth_rows"] = [str(x.date()) for x in fb.index]
+    fp = rd("peers"); fp = fp[(fp.date < date) & (fp.date > b["peers"].date.max())]
+    pe = pd.concat([b["peers"], fp.reindex(columns=b["peers"].columns)], ignore_index=True); added["peers_dates"] = sorted({str(x.date()) for x in fp.date})
+    fu = rd("us").set_index("date"); mac = dict(b["macro"])
+    for key, col in (("SP500", "sp"), ("VIX", "vix")):
+        s_ = mac[key].dropna(); new = fu[col][(fu.index > s_.index.max()) & (fu.index < date)]
+        mac[key] = pd.concat([s_, new]); added[f"US_{key}_dates"] = [str(x.date()) for x in new.index]
+    dd = b["d"].copy(); fd = rd("delivery").set_index("date"); added["delivery_pct_dates"] = []
+    for dt, v in fd.deliv_pct.items():
+        if dt in dd.index and dt < date and not np.isfinite(dd.loc[dt, "deliv_pct"]):
+            dd.loc[dt, "deliv_pct"] = v; added["delivery_pct_dates"].append(str(dt.date()))
+    added["fill_files_sha256"] = {f: hashlib.sha256((OUT / f).read_bytes()).hexdigest() for f in FILL_FILES if (OUT / f).exists()}
+    return dict(b, d=dd, ix=ix, br=br, peers=pe, macro=mac), added
+
+
+def do_live_filled(date="2026-10-16", open_price=3450.0):
+    b2, added = filled_bundle(date); o = analog_forecast(date, open_price, bundle=b2, verbose=False); o.pop("_res")
+    o["SENSITIVITY"] = "inputs completed with results/hl2_fill_*.csv (see fill_added); not part of the pre-fixed analysis; the headline is results/hl5_2026-10-16.json"; o["fill_added"] = added
+    (OUT / f"hl5_{date}_filled.json").write_text(json.dumps(o, indent=1, default=float))
+    rows = [dict(phase=ph, space=sp, n_pool=a["n_pool"], features_dropped=";".join(a["features_dropped"]), **r) for ph, spaces in o["analogues"].items() for sp, a in spaces.items() for r in a["sessions"]]
+    pd.DataFrame(rows).to_csv(OUT / f"hl5_{date}_filled_analogues.csv", index=False)
+    print(words(o)); return o
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--eval", action="store_true"); ap.add_argument("--leak", action="store_true"); ap.add_argument("--adopt", action="store_true"); ap.add_argument("--live", action="store_true"); ap.add_argument("--check", action="store_true"); ap.add_argument("--tables", action="store_true"); ap.add_argument("--selfcheck", action="store_true")
+    ap.add_argument("--eval", action="store_true"); ap.add_argument("--leak", action="store_true"); ap.add_argument("--adopt", action="store_true"); ap.add_argument("--live", action="store_true"); ap.add_argument("--check", action="store_true"); ap.add_argument("--tables", action="store_true"); ap.add_argument("--selfcheck", action="store_true"); ap.add_argument("--live-filled", action="store_true", dest="live_filled")
     ap.add_argument("--date"); ap.add_argument("--open", type=float, default=None); ap.add_argument("--p0", type=float, default=None); ap.add_argument("--json", action="store_true")
     a = ap.parse_args()
     if a.eval:
@@ -1126,6 +1174,8 @@ def main():
         return do_tables()
     if a.selfcheck:
         return do_selfcheck()
+    if a.live_filled:
+        return do_live_filled()
     if not a.date:
         ap.error("--date YYYY-MM-DD (or --eval / --leak / --adopt / --live)")
     o = analog_forecast(a.date, a.open, a.p0); o.pop("_res")

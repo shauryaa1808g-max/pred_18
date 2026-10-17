@@ -1,44 +1,44 @@
-feature,group,timestamp_rule,in_spaces,first_valid_session,first_valid_date,share_valid_from_session_500,live_value_16oct
-rng1,BSE own,ln(H/L) of session j minus ln sigma_s; bar of j (bhavcopy ~16:34 IST on j),ABCL,500,2019-02-15,1.0,
-cloc,BSE own,(C-L)/(H-L) of session j,ABCL,1,2017-02-07,1.0,
-gap1,BSE own,abs opening gap of session j over sigma_s,ABCL,500,2019-02-15,1.0,
-r5,BSE own,log return j-5..j over sigma_s*sqrt5,ABCL,500,2019-02-15,1.0,
-r20,BSE own,log return j-20..j over sigma_s*sqrt20,ABCL,500,2019-02-15,1.0,
-lnsig_rel,volatility state,"baseline S6 sigma of the target session (known pre-open) over RMS of R, sessions j-249..j",VABCL,500,2019-02-15,1.0,
-pk5,BSE own,5-session Parkinson vol to j minus ln sigma_s,BCL,500,2019-02-15,1.0,
-gk20,BSE own,20-session Garman-Klass vol to j minus ln sigma_s,BCL,500,2019-02-15,1.0,
-volz,BSE own,"60-session z of ln share volume (split-adjusted), window ends j",BCL,60,2017-05-08,1.0,
-turnz,BSE own,"60-session z of ln turnover, window ends j",BCL,60,2017-05-08,1.0,
-delz,BSE own,"60-session z of delivery %, window ends j (file has no delivery % for 14-15 Oct 2026)",BCL,691,2019-12-03,0.8973544973544973,
-dhi,BSE own,"close_j minus trailing-250 high, over sigma_s*sqrt20",BCL,500,2019-02-15,1.0,
-dlo,BSE own,"close_j minus trailing-250 low, over sigma_s*sqrt20",BCL,500,2019-02-15,1.0,
-streak,BSE own,signed run of consecutive up/down closes to j (cap 6),BCL,1,2017-02-07,1.0,
-dow_mon,calendar,weekday of the target date,CL,0,2017-02-06,1.0,
-dow_tue,calendar,weekday of the target date,CL,0,2017-02-06,1.0,
-dow_wed,calendar,weekday of the target date,CL,0,2017-02-06,1.0,
-dow_thu,calendar,weekday of the target date,CL,0,2017-02-06,1.0,
-mend,calendar,target date is one of the last two weekdays of its month,CL,0,2017-02-06,1.0,
-nifty_r1,market,Nifty 50 return on date j over its trailing-60 sd (index file row j),CL,60,2017-05-08,0.9989417989417989,
-nifty_rng1,market,Nifty 50 ln(H/L) on j over its trailing-60 return sd,CL,60,2017-05-08,0.9989417989417989,
-bank_r1,market,Bank Nifty return on j over trailing-60 sd,CL,60,2017-05-08,0.9989417989417989,
-bank_rng1,market,Bank Nifty ln(H/L) on j over trailing-60 sd,CL,60,2017-05-08,0.9989417989417989,
-vix_ln,market,ln India VIX close on j,CL,1,2017-02-07,0.9989417989417989,
-vix_d1,market,change of ln India VIX on j,CL,1,2017-02-07,0.9989417989417989,
-vix_rv,market,ln VIX minus ln Nifty 20-session realised vol (annualised %) at j,CL,20,2017-03-07,0.9989417989417989,
-adv,breadth,advance share on j (breadth file row j),CL,1,2017-02-07,0.9994708994708995,
-tailbal,breadth,(stocks up>=5% minus down>=5%)/liquid stocks on j,CL,1,2017-02-07,0.9994708994708995,
-mktturn_z,breadth,60-session z of ln equity-market turnover to j,CL,59,2017-05-05,0.9994708994708995,
-peers_r1,peers,"mean return of CDSL, MCX, MOTILALOFS, IEX on j over trailing-60 sd (abs return >15% dropped)",CL,59,2017-05-05,0.9994708994708995,
-peers_rng1,peers,ln of mean peer ln(H/L) on j over its trailing-60 mean,CL,59,2017-05-05,0.9994708994708995,
-sp_r1,US overnight,"S&P 500 return, last observation dated <= target date - 2 days, over trailing-60 sd",CL,0,2017-02-06,0.9994708994708995,
-usvix_ln,US overnight,"ln US VIX (VIXCLS), obs dated <= target date - 2 days",CL,0,2017-02-06,0.9994708994708995,
-usvix_d1,US overnight,"change of ln US VIX, obs dated <= target date - 2 days",CL,0,2017-02-06,0.9994708994708995,
-us10y_d5,slow macro,"DGS10 5-observation change, obs <= target date - 6 days",L,0,2017-02-06,0.9994708994708995,
-brent_r5,slow macro,"Brent 5-observation log change, obs <= target date - 8 days",L,0,2017-02-06,0.9994708994708995,
-dxy_r5,slow macro,"broad dollar index 5-observation log change, obs <= target date - 12 days",L,0,2017-02-06,0.9994708994708995,
-inr_r5,slow macro,"DEXINUS (INR per USD) 5-observation log change, obs <= target date - 12 days",L,0,2017-02-06,0.9994708994708995,
-gz,post-open,"ln(O/P0)/sigma_s, O = official open (NSE pre-open auction, final 09:08 IST)",post-open (ABCL),500,2019-02-15,1.0,
-agz,post-open,abs(gz),post-open (ABCL),500,2019-02-15,1.0,
-obeyond,post-open,+1 / -1 / 0: open above yesterday's high / below yesterday's low / inside,post-open (ABCL),1,2017-02-07,1.0,
-orel,post-open,"(open - low_j)/(high_j - low_j) clipped to [-1, 2]",post-open (ABCL),1,2017-02-07,1.0,
-lnsI_rel,post-open,"baseline S6 sigma of the open-to-close return (known pre-open) over RMS of I, sessions j-249..j",post-open (VABCL),500,2019-02-15,1.0,
+feature,group,timestamp_rule,in_spaces,first_valid_session,first_valid_date,share_valid_from_session_500,n_sessions_valid,n_sessions_missing_from_500
+rng1,BSE own,ln(H/L) of session j minus ln sigma_s; bar of j (bhavcopy ~16:34 IST on j),ABCL,500,2019-02-15,1.0,1890,0
+cloc,BSE own,(C-L)/(H-L) of session j,ABCL,1,2017-02-07,1.0,2389,0
+gap1,BSE own,abs opening gap of session j over sigma_s,ABCL,500,2019-02-15,1.0,1890,0
+r5,BSE own,log return j-5..j over sigma_s*sqrt5,ABCL,500,2019-02-15,1.0,1890,0
+r20,BSE own,log return j-20..j over sigma_s*sqrt20,ABCL,500,2019-02-15,1.0,1890,0
+lnsig_rel,volatility state,"baseline S6 sigma of the target session (known pre-open) over RMS of R, sessions j-249..j",VABCL,500,2019-02-15,1.0,1890,0
+pk5,BSE own,5-session Parkinson vol to j minus ln sigma_s,BCL,500,2019-02-15,1.0,1890,0
+gk20,BSE own,20-session Garman-Klass vol to j minus ln sigma_s,BCL,500,2019-02-15,1.0,1890,0
+volz,BSE own,"60-session z of ln share volume (split-adjusted), window ends j",BCL,60,2017-05-08,1.0,2330,0
+turnz,BSE own,"60-session z of ln turnover, window ends j",BCL,60,2017-05-08,1.0,2330,0
+delz,BSE own,"60-session z of delivery %, window ends j (file has no delivery % for 14-15 Oct 2026)",BCL,691,2019-12-03,0.8973544973544973,1696,194
+dhi,BSE own,"close_j minus trailing-250 high, over sigma_s*sqrt20",BCL,500,2019-02-15,1.0,1890,0
+dlo,BSE own,"close_j minus trailing-250 low, over sigma_s*sqrt20",BCL,500,2019-02-15,1.0,1890,0
+streak,BSE own,signed run of consecutive up/down closes to j (cap 6),BCL,1,2017-02-07,1.0,2389,0
+dow_mon,calendar,weekday of the target date,CL,0,2017-02-06,1.0,2390,0
+dow_tue,calendar,weekday of the target date,CL,0,2017-02-06,1.0,2390,0
+dow_wed,calendar,weekday of the target date,CL,0,2017-02-06,1.0,2390,0
+dow_thu,calendar,weekday of the target date,CL,0,2017-02-06,1.0,2390,0
+mend,calendar,target date is one of the last two weekdays of its month,CL,0,2017-02-06,1.0,2390,0
+nifty_r1,market,Nifty 50 return on date j over its trailing-60 sd (index file row j),CL,60,2017-05-08,0.9989417989417989,2328,2
+nifty_rng1,market,Nifty 50 ln(H/L) on j over its trailing-60 return sd,CL,60,2017-05-08,0.9989417989417989,2328,2
+bank_r1,market,Bank Nifty return on j over trailing-60 sd,CL,60,2017-05-08,0.9989417989417989,2328,2
+bank_rng1,market,Bank Nifty ln(H/L) on j over trailing-60 sd,CL,60,2017-05-08,0.9989417989417989,2328,2
+vix_ln,market,ln India VIX close on j,CL,1,2017-02-07,0.9989417989417989,2387,2
+vix_d1,market,change of ln India VIX on j,CL,1,2017-02-07,0.9989417989417989,2387,2
+vix_rv,market,ln VIX minus ln Nifty 20-session realised vol (annualised %) at j,CL,20,2017-03-07,0.9989417989417989,2368,2
+adv,breadth,advance share on j (breadth file row j),CL,1,2017-02-07,0.9994708994708995,2388,1
+tailbal,breadth,(stocks up>=5% minus down>=5%)/liquid stocks on j,CL,1,2017-02-07,0.9994708994708995,2388,1
+mktturn_z,breadth,60-session z of ln equity-market turnover to j,CL,59,2017-05-05,0.9994708994708995,2330,1
+peers_r1,peers,"mean return of CDSL, MCX, MOTILALOFS, IEX on j over trailing-60 sd (abs return >15% dropped)",CL,59,2017-05-05,0.9994708994708995,2330,1
+peers_rng1,peers,ln of mean peer ln(H/L) on j over its trailing-60 mean,CL,59,2017-05-05,0.9994708994708995,2330,1
+sp_r1,US overnight,"S&P 500 return, last observation dated <= target date - 2 days, over trailing-60 sd",CL,0,2017-02-06,0.9994708994708995,2389,1
+usvix_ln,US overnight,"ln US VIX (VIXCLS), obs dated <= target date - 2 days",CL,0,2017-02-06,0.9994708994708995,2389,1
+usvix_d1,US overnight,"change of ln US VIX, obs dated <= target date - 2 days",CL,0,2017-02-06,0.9994708994708995,2389,1
+us10y_d5,slow macro,"DGS10 5-observation change, obs <= target date - 6 days",L,0,2017-02-06,0.9994708994708995,2389,1
+brent_r5,slow macro,"Brent 5-observation log change, obs <= target date - 8 days",L,0,2017-02-06,0.9994708994708995,2389,1
+dxy_r5,slow macro,"broad dollar index 5-observation log change, obs <= target date - 12 days",L,0,2017-02-06,0.9994708994708995,2389,1
+inr_r5,slow macro,"DEXINUS (INR per USD) 5-observation log change, obs <= target date - 12 days",L,0,2017-02-06,0.9994708994708995,2389,1
+gz,post-open,"ln(O/P0)/sigma_s, O = official open (NSE pre-open auction, final 09:08 IST)",post-open (ABCL),500,2019-02-15,1.0,1890,0
+agz,post-open,abs(gz),post-open (ABCL),500,2019-02-15,1.0,1890,0
+obeyond,post-open,+1 / -1 / 0: open above yesterday's high / below yesterday's low / inside,post-open (ABCL),1,2017-02-07,1.0,2389,0
+orel,post-open,"(open - low_j)/(high_j - low_j) clipped to [-1, 2]",post-open (ABCL),1,2017-02-07,1.0,2389,0
+lnsI_rel,post-open,"baseline S6 sigma of the open-to-close return (known pre-open) over RMS of I, sessions j-249..j",post-open (VABCL),500,2019-02-15,1.0,1890,0

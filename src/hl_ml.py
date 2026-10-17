@@ -7,6 +7,9 @@ Two ways a model is tied to the baseline (report 0.3):  A (direct):  y/sigma_t ~
 
 Usage (repo root; python3 src/hl_ml.py ...):
   --baseline-check                  rebuild the project baseline on the sessions before 16 Oct 2026 and compare with the stored results/hl_eval_*.csv (writes results/hl3_baseline_repro.csv)
+  --posthoc                         POST-HOC descriptive DM of every variant on the Development window and on all 1,640 sessions (results/hl3_posthoc_allsessions.csv)
+  --bins                            DESCRIPTIVE terciles reading of the menu in units of the baseline scale (results/hl3_menu_bins.csv)
+  --meta                            counts, hashes and versions (results/hl3_meta.json)
   --validate-solver                 check the own L1 quantile-regression solver against scikit-learn / HiGHS
   --eval [--workers N]              full walk-forward evaluation of all variants (hours; cached in the scratch folder), writes results/hl3_*.csv/json
   --leak                            leakage test of every variant at 6 sessions (junk from the target session onward)
@@ -1496,6 +1499,84 @@ def words_ml(o: dict) -> str:
         L.append("  inputs not available today (treated as 'no information'): " + ", ".join(o["inputs_missing_today_treated_as_no_information"]))
     return "\n".join(L)
 
+
+# ----------------------------------------------------------------------------------------------- POST-HOC (descriptive, not part of the pre-fixed rule): all evaluation sessions pooled
+def posthoc_all() -> pd.DataFrame:
+    """Added AFTER the pre-fixed results were seen, therefore labelled post-hoc and descriptive.  DM test (same HAC lag 5, HLN) of every variant against BASE on the Development window (n = 1,072)
+    and on all 1,640 evaluation sessions, Holm across the pairs of each window; used only to say whether the Final-window null is a short-sample accident or a long-run null."""
+    import pickle
+    _root()
+    ctx = Ctx(load_inputs())
+    PRED = pickle.load(open(SCRATCH / "wf_result.pkl", "rb"))["PRED"]
+    ea = eval_arrays(ctx)
+    dts = ea["dts"]
+    rows = []
+    for ph in ("pre", "post"):
+        for j, tn in enumerate(TGT[ph]):
+            Y = ea["Y"][ph][:, j]
+            Lb = M.pinball(Y, ea["BASE"][ph][:, j, :])
+            for v in VARIANTS:
+                Q = PRED[ph][v][:, j, :]
+                ok = np.isfinite(Q).all(axis=1)
+                Lv = np.where(ok, M.pinball(Y, np.nan_to_num(Q)), np.nan)
+                for w in ("dev", "all"):
+                    m = (window_mask(dts, w) if w != "all" else np.ones(len(dts), bool)) & ok
+                    if m.sum() < 100:
+                        continue
+                    md, tt, p1, p2 = H.dm(Lv[m], Lb[m])
+                    rows.append(dict(variant=v, name=VARIANTS[v][0], target=tn, window=w, n=int(m.sum()), gain_pct=100 * md / Lb[m].mean(), dm_t=tt, p_two_sided=p2,
+                                     years_positive=int(sum(1 for y_ in sorted(set(dts[m].year)) if (Lb[m][dts[m].year == y_].mean() - Lv[m][dts[m].year == y_].mean()) > 0)), years=len(set(dts[m].year))))
+    df = pd.DataFrame(rows)
+    df["holm_post_hoc"] = np.nan
+    for w in ("dev", "all"):
+        mk = df.window == w
+        df.loc[mk, "holm_post_hoc"] = H.holm(df.loc[mk, "p_two_sided"].values)
+    df.to_csv(OUT / "hl3_posthoc_allsessions.csv", index=False)
+    print(df[df.window == "all"].sort_values("p_two_sided").head(12)[["variant", "name", "target", "n", "gain_pct", "p_two_sided", "holm_post_hoc", "years_positive", "years"]].round(4).to_string(index=False))
+    return df
+
+
+# ----------------------------------------------------------------------------------------------- DESCRIPTIVE: model-free plain-words reading of the menu (terciles; list fixed here)
+BIN_FEATURES_PRE = ("idx_vix_ln", "idx_vix_chg", "idx_vix_rvspread", "us_usvix_ln", "us_sp_ret", "sig_ln", "own_rng1", "own_gk10", "own_ret5", "own_dhi250", "own_cloc", "flow_turn_z", "flow_deliv_z",
+                    "brd_adv", "peer_rng", "peer_ret", "idx_nifty_rng", "iv_rel")
+BIN_FEATURES_POST = ("gap_agz", "gap_gz")
+
+
+def menu_bins() -> pd.DataFrame:
+    """Descriptive.  For each menu feature (fixed list above): cut the sessions into thirds with cut points from the sessions BEFORE the Final window (up to 2025-06-30; for iv_rel from the IV sample), then show, for
+    the bottom and top third, in the pre-Final sessions and in the Final sessions: n, the median and the 90% (high) / 10% (low) point of the target in units of the baseline's own scale (Hp/sigma_R, Lp/sigma_R; post-open HO/sigma_I, LO/sigma_I).
+    If a feature mattered beyond what the baseline scale already contains, the top third would sit clearly above/below the bottom third.  Nothing here is a forecast or a test."""
+    _root()
+    ctx = Ctx(load_inputs())
+    rows = []
+    cut_date = pd.Timestamp("2025-06-30")
+    for ph, feats in (("pre", BIN_FEATURES_PRE), ("post", BIN_FEATURES_POST)):
+        P_ = ctx.ph[ph]
+        X = P_["F"]
+        sg = P_["sig"]
+        for fn in feats:
+            if fn not in X.columns:
+                continue
+            x = X[fn].values
+            for j, tn in enumerate(TGT[ph]):
+                u = P_["Y"][:, j] / sg
+                ok = np.isfinite(x) & np.isfinite(u) & (np.arange(ctx.N) >= TR0)
+                pre = ok & (ctx.dates <= cut_date)
+                fin = ok & (ctx.dates > cut_date)
+                if pre.sum() < 150:
+                    continue
+                lo_c, hi_c = np.quantile(x[pre], [1 / 3, 2 / 3])
+                ext = 0.9 if j == 0 else 0.1
+                for lab, mk in (("bottom third", x <= lo_c), ("top third", x >= hi_c)):
+                    for wn, wm in (("before Final", pre), ("Final", fin)):
+                        m = mk & wm
+                        if m.sum() < 5:
+                            continue
+                        rows.append(dict(phase=ph, target=tn, feature=fn, third=lab, window=wn, n=int(m.sum()), cut_low=float(lo_c), cut_high=float(hi_c), median_u=float(np.median(u[m])), ext_level=ext, ext_u=float(np.quantile(u[m], ext)), mean_u=float(u[m].mean())))
+    df = pd.DataFrame(rows)
+    df.to_csv(OUT / "hl3_menu_bins.csv", index=False)
+    return df
+
 # ----------------------------------------------------------------------------------------------- command line
 def _sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -1505,6 +1586,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--baseline-check", action="store_true")
     ap.add_argument("--meta", action="store_true")
+    ap.add_argument("--posthoc", action="store_true")
+    ap.add_argument("--bins", action="store_true")
     ap.add_argument("--validate-solver", action="store_true")
     ap.add_argument("--eval", action="store_true")
     ap.add_argument("--leak", action="store_true")
@@ -1521,6 +1604,10 @@ def main():
         baseline_repro()
     if a.meta:
         write_meta()
+    if a.posthoc:
+        posthoc_all()
+    if a.bins:
+        menu_bins()
     if a.validate_solver:
         df = validate_solver()
         df.to_csv(OUT / "hl3_solver_validation.csv", index=False)

@@ -16,6 +16,9 @@ Usage (repo root; python3 src/hl_model2.py ...):
   --eval                                full walk-forward evaluation of every pre-fixed variant                      -> results/hl2_*.csv   (several minutes)
   --leakage                             junk-replacement leakage test (data from the target session on replaced)     -> results/hl2_leakage.csv, hl2_expiry_advance_check.csv; sets the adoption verdicts in hl2_adoption.csv
   --tables                              print the report's markdown tables from the result files
+  --univariate                          rebuild only results/hl2_univariate.csv (descriptive screen; also done by --eval)
+  --finalize                            merge results/hl2_leakage.csv into results/hl2_adoption.csv (adopted = conditions i-v); run after --eval and --leakage
+  --spotcheck / --sp-buckets            timestamp spot check of the feature panel -> results/hl2_spotcheck.csv; descriptive S&P-bucket table -> results/hl2_sp_buckets.csv
   --date 2026-10-16 [--open 3450] [--variant P_SL_f] [--json] [--save]   forecast in the shape of hl_model.hl_forecast (the baseline unless a variant was adopted)
 Importable: hl2_forecast(date, open_price=None, variant=None) -> dict (same shape as hl_model.hl_forecast).
 """
@@ -155,9 +158,11 @@ VARIANTS.update({
 DIAG = {"P_PLACEBO": dict(phase="pre", scale=["rnd"], loc=[], tail=False), "W_PLACEBO": dict(phase="post", scale=["rnd"], loc=[], tail=False)}   # random N(0,1) features: diagnostic, not a candidate
 # POST HOC sensitivity variants (added after the first results were seen; NOT candidates, not in the Holm family, cannot be adopted): the same models with a FIXED ridge strength instead of CV
 POSTHOC = {f"{nm}_fix{lam:g}": dict(VARIANTS[nm], fixlam=lam) for nm in ("P_SC_f", "P_LO_f", "P_SL_f", "W_SC_fo", "W_LO_fo") for lam in (0.3, 3.0)}
-POSTHOC.update({"P_LO_b": dict(phase="pre", scale=[], loc=["b"], tail=False), "P_LO_sp": dict(phase="pre", scale=[], loc=["sp"], tail=False)})      # post hoc: the location signal of P_LO_f, narrowed to the US block / the S&P return after the coefficients were seen
+POSTHOC.update({f"{nm}_fix{lam:g}": dict(VARIANTS[nm], fixlam=lam) for nm in ("P_SC_s", "W_SC_s") for lam in (0.3, 3.0)})        # the short-sample (implied vol) block with a fixed ridge instead of CV
+POSTHOC.update({"P_LO_b": dict(phase="pre", scale=[], loc=["b"], tail=False), "P_LO_sp": dict(phase="pre", scale=[], loc=["sp"], tail=False), "W_LO_sp": dict(phase="post", scale=[], loc=["sp"], tail=False)})      # post hoc: the location signal of P_LO_f, narrowed to the US block / the S&P return after the coefficients were seen
 POSTHOC.update({f"{nm}_fix{lam:g}": dict(DIAG[nm], fixlam=lam) for nm in ("P_PLACEBO", "W_PLACEBO") for lam in (0.3, 3.0)})       # random columns FORCED in with a fixed ridge: what pure noise costs when CV does not shrink it away
 BASE = {"pre": "P_S6", "post": "W_I6"}
+POSTHOC_LOC = ["P_LO_b", "P_LO_sp", "W_LO_sp"]       # post hoc location variants (US block / S&P return only); listed with the pre-fixed ones in the comparison file and in the leakage test, never adoptable
 N_RND = 10
 
 
@@ -761,7 +766,7 @@ def univariate_screen(ctx, E):
         for lab, y in tg.items():
             feats = SCALE_FEATS if lab.startswith("scale") else LOC_FEATS
             for blk, names in feats.items():
-                if blk == "o" and ph == "pre":
+                if (blk == "o" and ph == "pre") or blk == "sp":          # the single-feature pseudo-block "sp" duplicates sp_ret of block b
                     continue
                 for f in names:
                     r = dict(phase=ph, target=lab, block=blk, feature=f)
@@ -828,15 +833,19 @@ def evaluate(n_jobs=4, dump=None):
     summ.to_csv(OUT / "hl2_eval_summary.csv", index=False)
     # ---- DM against the baseline, per window; Holm over the whole family (Final window)
     rows = []
-    WIN_ALL = {**H1.WIN, "all": ("2000-01-01", "2099-01-01")}                 # "all" = every evaluated session (n = 1,640): SUPPLEMENTARY, not part of the adoption rule
+    WIN_ALL = {**H1.WIN, "all": ("2000-01-01", "2099-01-01"), "from_2026_03": ("2026-03-09", "2099-01-01")}       # SUPPLEMENTARY windows, not part of the adoption rule: "all" = every evaluated session (n = 1,640); "from_2026_03" = from the first block in which the short-sample (implied vol) block was fitted with a finite ridge
     for nm in list(VARIANTS) + list(DIAG) + list(POSTHOC):
         ph = "pre" if nm.startswith("P_") else "post"
         for j, tn in enumerate(tgs[ph]):
-            for w in ("final", "val", "valfinal", "cas", "dev", "all"):
+            for w in ("final", "val", "valfinal", "cas", "dev", "all", "from_2026_03"):
                 a, b = WIN_ALL[w]; m = (dts >= a) & (dts <= b)
                 md, t_, p1, p2 = H1.dm(L[nm][j][m], L[BASE[ph]][j][m])
+                p2l = {}
+                for lg in (10, 20):         # SUPPLEMENTARY: the same test with a longer HAC lag (the rule uses lag 5)
+                    _, _, p1l = M.diebold_mariano(L[nm][j][m], L[BASE[ph]][j][m], lag=lg)
+                    p2l[f"p_two_sided_lag{lg}"] = 2 * min(p1l, 1 - p1l) if np.isfinite(p1l) else np.nan
                 rows.append(dict(variant=nm, target=tn, window=w, n=int(m.sum()), pinball_var_x1e4=1e4 * L[nm][j][m].mean(), pinball_base_x1e4=1e4 * L[BASE[ph]][j][m].mean(), gain_x1e4=1e4 * md,
-                                 gain_pct=100 * md / L[BASE[ph]][j][m].mean(), dm_t=t_, p_variant_better=p1, p_two_sided=p2, in_family=nm in VARIANTS))
+                                 gain_pct=100 * md / L[BASE[ph]][j][m].mean(), dm_t=t_, p_variant_better=p1, p_two_sided=p2, in_family=nm in VARIANTS, **p2l))
     dmt = pd.DataFrame(rows)
     for w in ("final", "valfinal", "all"):
         sel = (dmt.window == w) & dmt.in_family
@@ -860,36 +869,45 @@ def evaluate(n_jobs=4, dump=None):
     fam = int(((dmt.window == "final") & dmt.in_family).sum())
     print(f"family size (variant-target pairs): {fam}")
     # ---- adoption rule (fixed in the report before any variant was run)
-    ad = []
     S = summ.set_index(["variant", "target", "window"])
-    for nm in list(VARIANTS) + list(DIAG):
-        ph = "pre" if nm.startswith("P_") else "post"
-        for tn in tgs[ph]:
-            g = dmt[(dmt.variant == nm) & (dmt.target == tn)].set_index("window")
-            b = BASE[ph]
-            n_act_val = None
-            if nm in act and act[nm] is not None:
-                vm = (dts >= pd.Timestamp(H1.WIN["val"][0])) & (dts <= pd.Timestamp(H1.WIN["val"][1]))
-                n_act_val = int((idx[vm] >= act[nm]).sum())
-            short = VARIANTS.get(nm, DIAG.get(nm, {})).get("short", False)
-            c1 = bool(g.loc["final", "gain_pct"] >= 2.0 and g.loc["final", "dm_t"] > 0 and (g.loc["final", "holm_two_sided"] < 0.05 if g.loc["final", "in_family"] else False))
-            c2 = bool(g.loc["val", "gain_pct"] > 0 and (not short or (n_act_val is not None and n_act_val >= 0.5 * g.loc["val", "n"])))
-            cov_ok, cov_info = True, {}
-            for lab in ("50", "90"):
-                if ph == "pre":          # pre-open: nominal level 0.5 / 0.9 (as fixed in the report); post-open: the model-implied nominal (atom at zero)
-                    lvl = 0.5 if lab == "50" else 0.9
-                    dv, db = S.loc[(nm, tn, "final"), f"cov{lab}"] - lvl, S.loc[(b, tn, "final"), f"cov{lab}"] - lvl
-                else:
-                    dv, db = S.loc[(nm, tn, "final"), f"dev{lab}"], S.loc[(b, tn, "final"), f"dev{lab}"]
-                pv = S.loc[(nm, tn, "final"), f"atom_p{lab}"] if ph == "post" else S.loc[(nm, tn, "final"), f"kupiec{lab}"]
-                cov_info[f"dev{lab}_var"], cov_info[f"dev{lab}_base"], cov_info[f"p{lab}_var"] = dv, db, pv
-                cov_ok &= bool(abs(dv) <= abs(db) + 1e-12 and pv > 0.05)
-            cas_ratio = S.loc[(nm, tn, "cas"), "pinball_x1e4"] / S.loc[(b, tn, "cas"), "pinball_x1e4"]
-            c4 = bool(cas_ratio <= 1.05)
-            ad.append(dict(variant=nm, target=tn, family_member=nm in VARIANTS, gain_pct_final=g.loc["final", "gain_pct"], p_final=g.loc["final", "p_two_sided"], holm_final=g.loc["final", "holm_two_sided"], gain_pct_val=g.loc["val", "gain_pct"],
-                           active_val_sessions=n_act_val, **cov_info, cas_pinball_ratio=cas_ratio, c1_gain_dm_holm=c1, c2_validation_sign=c2, c3_coverage=bool(cov_ok), c4_cas=c4, c5_leakage="see hl2_leakage.csv",
-                           passes_c1_to_c4=bool(c1 and c2 and cov_ok and c4 and nm in VARIANTS), miss_med_rs_var=S.loc[(nm, tn, "final"), "mae_med_rs_at_now"], miss_med_rs_base=S.loc[(b, tn, "final"), "mae_med_rs_at_now"]))
+
+    def adoption_rows(names, holm_col, member):
+        ad_ = []
+        for nm in names:
+            ph = "pre" if nm.startswith("P_") else "post"
+            for tn in tgs[ph]:
+                g = dmt[(dmt.variant == nm) & (dmt.target == tn)].set_index("window")
+                b = BASE[ph]
+                n_act_val = None
+                if nm in act and act[nm] is not None:
+                    vm = (dts >= pd.Timestamp(H1.WIN["val"][0])) & (dts <= pd.Timestamp(H1.WIN["val"][1]))
+                    n_act_val = int((idx[vm] >= act[nm]).sum())
+                short = VARIANTS.get(nm, DIAG.get(nm, {})).get("short", False)
+                hp = g.loc["final", holm_col]
+                c1 = bool(g.loc["final", "gain_pct"] >= 2.0 and g.loc["final", "dm_t"] > 0 and (hp < 0.05 if pd.notna(hp) else False))
+                c2 = bool(g.loc["val", "gain_pct"] > 0 and (not short or (n_act_val is not None and n_act_val >= 0.5 * g.loc["val", "n"])))
+                cov_ok, cov_info = True, {}
+                for lab in ("50", "90"):
+                    if ph == "pre":          # pre-open: nominal level 0.5 / 0.9 (as fixed in the report); post-open: the model-implied nominal (atom at zero)
+                        lvl = 0.5 if lab == "50" else 0.9
+                        dv, db = S.loc[(nm, tn, "final"), f"cov{lab}"] - lvl, S.loc[(b, tn, "final"), f"cov{lab}"] - lvl
+                    else:
+                        dv, db = S.loc[(nm, tn, "final"), f"dev{lab}"], S.loc[(b, tn, "final"), f"dev{lab}"]
+                    pv = S.loc[(nm, tn, "final"), f"atom_p{lab}"] if ph == "post" else S.loc[(nm, tn, "final"), f"kupiec{lab}"]
+                    cov_info[f"dev{lab}_var"], cov_info[f"dev{lab}_base"], cov_info[f"p{lab}_var"] = dv, db, pv
+                    cov_ok &= bool(abs(dv) <= abs(db) + 1e-12 and pv > 0.05)
+                cas_ratio = S.loc[(nm, tn, "cas"), "pinball_x1e4"] / S.loc[(b, tn, "cas"), "pinball_x1e4"]
+                c4 = bool(cas_ratio <= 1.05)
+                ad_.append(dict(variant=nm, target=tn, family_member=member(nm), gain_pct_final=g.loc["final", "gain_pct"], p_final=g.loc["final", "p_two_sided"], holm_final=hp, gain_pct_val=g.loc["val", "gain_pct"],
+                                active_val_sessions=n_act_val, **cov_info, cas_pinball_ratio=cas_ratio, c1_gain_dm_holm=c1, c2_validation_sign=c2, c3_coverage=bool(cov_ok), c4_cas=c4, c5_leakage="see hl2_leakage.csv",
+                                passes_c1_to_c4=bool(c1 and c2 and cov_ok and c4 and member(nm)), miss_med_rs_var=S.loc[(nm, tn, "final"), "mae_med_rs_at_now"], miss_med_rs_base=S.loc[(b, tn, "final"), "mae_med_rs_at_now"]))
+        return ad_
+
+    ad = adoption_rows(list(VARIANTS) + list(DIAG), "holm_two_sided", lambda nm: nm in VARIANTS)
     pd.DataFrame(ad).to_csv(OUT / "hl2_adoption.csv", index=False)
+    # POST HOC variants (sensitivity checks and the two location variants narrowed after the coefficients were seen): the same five conditions evaluated "as if" they had been in the family, with the Holm that counts every pair
+    # tried (pre-fixed + placebo + post hoc).  These rows CANNOT lead to adoption (family_member False => passes False); they exist so that the lead can see how far each would have been from the rule.
+    pd.DataFrame(adoption_rows(list(POSTHOC), "holm_incl_posthoc", lambda nm: False)).drop(columns=["passes_c1_to_c4", "c5_leakage"]).to_csv(OUT / "hl2_adoption_posthoc.csv", index=False)
     # ---- descriptive: pinball by calendar year (gain vs baseline, %)
     by = []
     for nm in list(VARIANTS) + list(POSTHOC):
@@ -1012,7 +1030,7 @@ def hl2_forecast(date, open_price=None, variant=None, tb=None, all_variants=Fals
         out["post_open"] = {"open": float(open_price), "gap_pct": out["gap_pct"], "high": _side2(used["HO"], "HO", float(open_price), qo, summ), "low": _side2(used["LO"], "LO", float(open_price), qlo, summ), "touch_prob": tp}
     if all_variants:
         av = {}
-        for nm in [BASE["pre"]] + [k for k in VARIANTS if k.startswith("P_")] + ([BASE["post"]] + [k for k in VARIANTS if k.startswith("W_")] if open_price is not None else []):
+        for nm in [BASE["pre"]] + [k for k in VARIANTS if k.startswith("P_")] + [k for k in POSTHOC_LOC if k.startswith("P_")] + ([BASE["post"]] + [k for k in VARIANTS if k.startswith("W_")] + [k for k in POSTHOC_LOC if k.startswith("W_")] if open_price is not None else []):
             ph = "pre" if nm.startswith("P_") else "post"
             q, _ = lvq(nm, ph)
             ref = P0 if ph == "pre" else float(open_price)
@@ -1041,6 +1059,7 @@ def words2(o: dict) -> str:
 
 
 # ----------------------------------------------------------------------------------------------- leakage test (adoption rule, condition v)
+CONTROL_DATES = ("2022-03-21", "2024-09-18", "2025-09-10", "2026-08-03")          # sessions that also get the two positive controls
 LEAK_DATES = ["2020-09-15", "2022-03-21", "2023-08-10", "2024-09-18", "2025-03-12", "2025-05-23", "2025-09-10", "2026-02-18", "2026-07-15", "2026-08-03", "2026-09-09", "2026-10-15"]
 
 
@@ -1110,15 +1129,17 @@ def _leak_job(args):
     real = make_context(tb_real)
     ti = int(real["dates"].get_loc(pd.Timestamp(T)))
     Tm1 = real["dates"][ti - 1]
-    names = [BASE["pre"], BASE["post"]] + list(VARIANTS) + list(DIAG)
-    cx = {"J": make_context(junk_tables(tb_real, T, 1000 + ti, keep_open=False)), "Jo": make_context(junk_tables(tb_real, T, 2000 + ti, keep_open=True)),
-          "C1": make_context(junk_tables(tb_real, Tm1, 3000 + ti, keep_open=True, parts=("bars",))), "C2": make_context(junk_tables(tb_real, Tm1, 4000 + ti, keep_open=True, parts=("tables",)))}
+    names = [BASE["pre"], BASE["post"]] + list(VARIANTS) + list(DIAG) + POSTHOC_LOC
+    cx = {"J": make_context(junk_tables(tb_real, T, 1000 + ti, keep_open=False)), "Jo": make_context(junk_tables(tb_real, T, 2000 + ti, keep_open=True))}
+    ctrl = row in CONTROL_DATES
+    if ctrl:
+        cx.update({"C1": make_context(junk_tables(tb_real, Tm1, 3000 + ti, keep_open=True, parts=("bars",))), "C2": make_context(junk_tables(tb_real, Tm1, 4000 + ti, keep_open=True, parts=("tables",)))})
     lab = {"J": "junk_from_T", "Jo": "junk_from_T_open_kept", "C1": "positive_control_bars_junk_from_T-1", "C2": "positive_control_tables_junk_from_T-1"}
     for nm in names:
         spec = BASE_SPEC["pre" if nm.startswith("P_") else "post"] if nm in BASE.values() else spec_of(nm)
         ph = spec["phase"]
         qr = run_variant(real, spec, nm, [ti])[0][0]
-        for kind in ("J", "Jo", "C1", "C2"):
+        for kind in cx:
             if ph == "pre" and kind == "Jo":
                 continue           # pre-open variants must not use the open: tested with the open junked ("J")
             if ph == "post" and kind == "J":
@@ -1245,6 +1266,31 @@ def spotcheck(n_sessions=60, seed=5) -> pd.DataFrame:
     return df
 
 
+# ----------------------------------------------------------------------------------------------- descriptive: where the high and low sit, by the S&P 500 overnight move
+def sp_buckets() -> pd.DataFrame:
+    """DESCRIPTIVE (no model, no test): the median high / low (ln vs the previous close) and the median gap and open-to-extreme moves, by the size of the S&P 500 move of the last US session (same date rule as the features).
+    Evaluated sessions only (session 750 on, to 15 Oct 2026) so that the windows are the ones of the walk-forward."""
+    tb = load_tables(last=LAST_OFFICIAL)
+    ctx = make_context(tb)
+    idx = np.arange(START, ctx["n"])
+    F, d = ctx["F"].iloc[idx], ctx["d"].iloc[idx]
+    t = targets(ctx["d"]).iloc[idx]
+    sp = F["sp_ret"].values
+    dts = d.index
+    rows = []
+    for wl, m in (("all evaluated (1,640)", np.ones(len(idx), bool)), ("Development+Validation", dts <= pd.Timestamp("2025-06-30")), ("Final", dts >= pd.Timestamp("2025-07-01")), ("auction slice", dts >= pd.Timestamp("2026-08-03"))):
+        for bl, b in (("S&P down >= 0.5%", sp <= -0.005), ("S&P within +-0.5%", (sp > -0.005) & (sp < 0.005)), ("S&P up >= 0.5%", sp >= 0.005)):
+            k = m & b & np.isfinite(sp)
+            if k.sum():
+                rows.append(dict(window=wl, bucket=bl, n=int(k.sum()), median_gap_pct=100 * float(np.median(np.expm1(t["G"].values[k]))), median_high_vs_prev_close_pct=100 * float(np.median(np.expm1(t["Hp"].values[k]))),
+                                 median_low_vs_prev_close_pct=100 * float(np.median(np.expm1(t["Lp"].values[k]))), median_high_vs_open_pct=100 * float(np.median(np.expm1(t["HO"].values[k]))), median_low_vs_open_pct=100 * float(np.median(np.expm1(t["LO"].values[k]))),
+                                 mean_sp_ret_pct=100 * float(sp[k].mean())))
+    out = pd.DataFrame(rows)
+    out.to_csv(OUT / "hl2_sp_buckets.csv", index=False)
+    print(out.round(2).to_string(index=False))
+    return out
+
+
 # ----------------------------------------------------------------------------------------------- report tables (markdown, printed from the result files)
 def _verdict(r):
     if not r.family_member:
@@ -1257,28 +1303,34 @@ def _verdict(r):
     return "tie: fails " + ", ".join(fails)
 
 
-def tables():
-    """Markdown tables for research/hl/D_features.md, printed from results/hl2_*.csv (nothing is typed by hand)."""
+def table_blocks() -> dict:
+    """Markdown tables for research/hl/D_features.md, built from results/hl2_*.csv (nothing is typed by hand): {'pre': ..., 'post': ..., 'windows': ...}."""
     S, D, A, MM = (pd.read_csv(OUT / f) for f in ("hl2_eval_summary.csv", "hl2_eval_dm_holm.csv", "hl2_adoption.csv", "hl2_eval_medmiss.csv"))
     f = lambda x, k=2: "-" if pd.isna(x) else f"{x:.{k}f}"          # noqa: E731
-    out = []
-    for ph, nm_base, title in (("P_", "P_S6", "Pre-open (baseline P_S6)"), ("W_", "W_I6", "Post-open (baseline W_I6)")):
-        out.append(f"\n**{title}: Final window (n = 320), every pre-fixed variant.** pinball x1e4 (lower is better); gain = % lower than baseline; DM p raw and Holm over the {int(((D.window == 'final') & D.in_family).sum())} pairs; "
-                   "miss = mean absolute error of the median in Rs at 3,428 (baseline in brackets); Val = Validation gain %; CAS = pinball ratio to baseline in the 52 auction sessions; cov dev = coverage minus nominal (50% / 90%).\n")
-        out.append("| variant | target | pinball | base | gain % | p raw | Holm | miss Rs (base) | Val gain % | CAS ratio | cov dev 50 / 90 | verdict |\n|---|---|---|---|---|---|---|---|---|---|---|---|")
+    fp = lambda x: "-" if pd.isna(x) else ("<0.001" if x < 0.0005 else f"{x:.3f}")          # noqa: E731
+    out = {}
+    for key, ph, nm_base, title in (("pre", "P_", "P_S6", "Pre-open (baseline P_S6)"), ("post", "W_", "W_I6", "Post-open (baseline W_I6)")):
+        L = [f"**{title}: Final window (n = 320), every pre-fixed variant.** pinball x1e4 (lower is better); gain = % lower than baseline; DM p raw and Holm over the {int(((D.window == 'final') & D.in_family).sum())} pairs; "
+             "miss = mean absolute error of the median in Rs at 3,428 (baseline in brackets); Val = Validation gain %; CAS = pinball ratio to baseline in the 52 auction sessions; cov dev = coverage minus nominal in percentage points (50% / 90%).\n",
+             "| variant | target | pinball | base | gain % | p raw | Holm | miss Rs (base) | Val gain % | CAS ratio | cov dev 50 / 90 | verdict |\n|---|---|---|---|---|---|---|---|---|---|---|---|"]
         for r in A[A.variant.str.startswith(ph)].itertuples():
             d = D[(D.variant == r.variant) & (D.target == r.target) & (D.window == "final")].iloc[0]
-            sv = S[(S.variant == r.variant) & (S.target == r.target) & (S.window == "final")].iloc[0]
-            out.append(f"| `{r.variant}` | {r.target} | {f(d.pinball_var_x1e4)} | {f(d.pinball_base_x1e4)} | {f(d.gain_pct)} | {f(d.p_two_sided, 3)} | {f(d.holm_two_sided, 3)} | {f(r.miss_med_rs_var, 1)} ({f(r.miss_med_rs_base, 1)}) | {f(r.gain_pct_val)} | {f(r.cas_pinball_ratio, 3)} | {f(100 * r.dev50_var, 1)} / {f(100 * r.dev90_var, 1)} | {_verdict(pd.Series(r._asdict()))} |")
-    out.append("\n**Pinball gain % by window** (positive = variant better; n: dev 1,072, val 248, val+final 568, final 320, auction 52, all evaluated 1,640; 'all' is supplementary, not part of the rule).\n")
-    out.append("| variant | target | dev | val | val+final | final | auction | all | p raw (all) |\n|---|---|---|---|---|---|---|---|---|")
+            L.append(f"| `{r.variant}` | {r.target} | {f(d.pinball_var_x1e4)} | {f(d.pinball_base_x1e4)} | {f(d.gain_pct)} | {fp(d.p_two_sided)} | {fp(d.holm_two_sided)} | {f(r.miss_med_rs_var, 1)} ({f(r.miss_med_rs_base, 1)}) | {f(r.gain_pct_val)} | {f(r.cas_pinball_ratio, 3)} | {f(100 * r.dev50_var, 1)} / {f(100 * r.dev90_var, 1)} | {_verdict(pd.Series(r._asdict()))} |")
+        out[key] = "\n".join(L)
+    W = ["**Pinball gain % by window** (positive = variant better; n: dev 1,072, val 248, val+final 568, final 320, auction 52, all evaluated 1,640; 'all' is supplementary, not part of the rule; the rows below the pre-fixed ones are the POST HOC variants).\n",
+         "| variant | target | dev | val | val+final | final | auction | all | p raw (all) |\n|---|---|---|---|---|---|---|---|---|"]
     for v in [k for k in VARIANTS] + list(POSTHOC):
         for tg in (("H", "L") if v.startswith("P_") else ("HO", "LO")):
             g = D[(D.variant == v) & (D.target == tg)].set_index("window")
             if g.empty:
                 continue
-            out.append(f"| `{v}` | {tg} | " + " | ".join(f(g.loc[w, "gain_pct"]) for w in ("dev", "val", "valfinal", "final", "cas", "all")) + f" | {f(g.loc['all', 'p_two_sided'], 3)} |")
-    print("\n".join(out))
+            W.append(f"| `{v}` | {tg} | " + " | ".join(f(g.loc[w, "gain_pct"]) for w in ("dev", "val", "valfinal", "final", "cas", "all")) + f" | {fp(g.loc['all', 'p_two_sided'])} |")
+    out["windows"] = "\n".join(W)
+    return out
+
+
+def tables():
+    print("\n\n".join(table_blocks().values()))
 
 
 # ----------------------------------------------------------------------------------------------- command line
@@ -1286,7 +1338,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--date"); ap.add_argument("--open", type=float, default=None); ap.add_argument("--variant", default=None); ap.add_argument("--json", action="store_true"); ap.add_argument("--save", action="store_true")
     ap.add_argument("--refresh-fill", action="store_true"); ap.add_argument("--fill-cache", default=None)
-    ap.add_argument("--baseline-check", action="store_true"); ap.add_argument("--tables", action="store_true"); ap.add_argument("--spotcheck", action="store_true"); ap.add_argument("--eval", action="store_true"); ap.add_argument("--leakage", action="store_true"); ap.add_argument("--jobs", type=int, default=4)
+    ap.add_argument("--baseline-check", action="store_true"); ap.add_argument("--tables", action="store_true"); ap.add_argument("--spotcheck", action="store_true"); ap.add_argument("--sp-buckets", action="store_true"); ap.add_argument("--finalize", action="store_true"); ap.add_argument("--univariate", action="store_true"); ap.add_argument("--eval", action="store_true"); ap.add_argument("--leakage", action="store_true"); ap.add_argument("--jobs", type=int, default=4)
     a = ap.parse_args()
     if a.refresh_fill:
         return refresh_fill(cache=a.fill_cache)
@@ -1296,6 +1348,13 @@ def main():
         return tables()
     if a.spotcheck:
         return spotcheck()
+    if a.sp_buckets:
+        return sp_buckets()
+    if a.finalize:
+        return finalize_adoption()
+    if a.univariate:
+        ctx = make_context(load_tables(last=LAST_OFFICIAL))
+        return univariate_screen(ctx, _eval_frame(ctx))
     if a.eval:
         return evaluate(n_jobs=a.jobs)
     if a.leakage:

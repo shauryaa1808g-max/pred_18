@@ -74,13 +74,13 @@ gain_pct_final,post,HO,B_k80_b,-1.0894835582733262,95% interval -3.31 to +1.14; 
 miss_rs_final,post,HO,B_k80_b,34.53275785900441,
 gain_pct_final,post,HO,V_k80_a,-3.375865354302367,95% interval -5.03 to -1.72; Holm p 0.012
 miss_rs_final,post,HO,V_k80_a,34.39533698169394,
-gain_pct_final,post,HO,V_k80_b,0.0,95% interval +nan to +nan; Holm p 1.000
+gain_pct_final,post,HO,V_k80_b,0.0,forecast identical to the baseline in the Final window (blend weight 0 throughout)
 miss_rs_final,post,HO,V_k80_b,34.805386413066046,
 gain_pct_final,post,HO,POOL_a,-3.066170014129804,95% interval -4.28 to -1.85; Holm p 0.000
 miss_rs_final,post,HO,POOL_a,34.61342811841636,
 gain_pct_final,post,HO,RAND80_a,-4.421326897628927,95% interval -6.29 to -2.55; Holm p 0.001
 miss_rs_final,post,HO,RAND80_a,34.94449724990244,
-gain_pct_final,post,HO,RAND80_b,0.0,95% interval +nan to +nan; Holm p 1.000
+gain_pct_final,post,HO,RAND80_b,0.0,forecast identical to the baseline in the Final window (blend weight 0 throughout)
 miss_rs_final,post,HO,RAND80_b,34.805386413066046,
 baseline_pinball_x1e4_final,post,LO,W_I6,28.02979425496129,
 baseline_miss_rs_final,post,LO,W_I6,37.41553019214152,
