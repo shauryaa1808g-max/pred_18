@@ -1,0 +1,9 @@
+session,date,weekday,phase,n_variants_incl_baseline,max_abs_diff_log,worst
+1303,2022-05-23,Monday,pre,44,0.0,POOL_a
+1303,2022-05-23,Monday,post,44,0.0,POOL_a
+1650,2023-10-16,Monday,pre,44,0.0,POOL_a
+1650,2023-10-16,Monday,post,44,0.0,POOL_a
+2054,2025-06-09,Monday,pre,44,0.0,POOL_a
+2054,2025-06-09,Monday,post,44,0.0,POOL_a
+2333,2026-07-27,Monday,pre,44,0.0,POOL_a
+2333,2026-07-27,Monday,post,44,0.0,POOL_a
