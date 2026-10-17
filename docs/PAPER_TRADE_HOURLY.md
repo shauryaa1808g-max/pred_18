@@ -1,0 +1,25 @@
+# Hour-by-hour paper trade: rules fixed BEFORE the backtest (written Fri 16 Oct 2026, about 14:19 IST; git commit 23a7f4c is the authoritative time)
+
+Purpose: the user asked for a paper-trade algorithm built on the hour-by-hour method (next-hour high/low pin-points), "if that would be better" than the open-to-close lean (PT1/PT2 of the scoreboard). These rules and the verdict test below were written before any rule was run. Nothing here claims an edge: the pin-points are medians of price excursions, symmetric around the price, so they carry no direction information by construction; the test is whether trading around them survives costs.
+
+Checkpoints: 10:00, 11:00, 12:00, 13:00, 14:00 (15-minute bar index k = 3, 7, 11, 15, 19 completed bars). Window = the next 4 bars (60 minutes). P = close of the last completed bar. Pin-points H* and L* = the leave-one-session-out MEDIAN of the next-hour high and low from `src/hourly_table.py`. Cost: 0.10% round trip on every filled trade (the project's convention); no extra slippage (stated, generous to the rules). One trade per rule per window, exit at the close of the window's last bar. Orders fill only if the bar trades STRICTLY through the level (low < limit for a buy, high > limit for a short); fills are at the limit price; if stop and target are both inside the same bar the stop is assumed first.
+
+Rules:
+* R-A buy the dip: limit buy at L*; exit at window end.
+* R-B sell the pop: limit short at H*; exit at window end.
+* R-C long with bracket: buy at P; target H*, stop L*; exit at window end otherwise.
+* R-D short with bracket: sell at P; target L*, stop H*; exit at window end otherwise.
+* R-E control: buy at P, sell at window end (no use of the predictions).
+
+Data: the 39 post-closing-auction sessions of 15-minute bars (data/processed/intraday_union_15m.csv + intraday_extra_15m.csv), predictions leave-one-session-out (no look-ahead). Placebo: 400 random-walk paths per checkpoint with the same time-of-day variance profile, same prediction method, same rules (what a no-edge world pays).
+
+Verdict rule (fixed now): a rule is called "better than nothing" only if its mean net return per trade is > 0 with a session-clustered t-statistic > 2 AND it is positive in both halves of the sample AND it beats the placebo's mean by more than 2 standard errors. Otherwise it is "not found" (and the live paper ledger still records it, labelled, because paper trading is how the question gets answered with more data). The scoreboard's PT1/PT2 stay as they are.
+
+
+## Independent check and corrections (added Fri 16 Oct 2026, about 19:20 IST)
+An independent agent recomputed everything from the raw 15-minute files with its own code (report: `research/hl/verify_paper_hourly.md`). Verdict: pass with fixes, low severity.
+* **Reproduced exactly (39 sessions, 195 windows):** all 975 trade rows match `results/paper_hourly_trades.csv`; every column of the backtest table matches; no look-ahead (leave-one-session-out pin-points; corrupting the session being scored changed 0 of 195 pins); window indexing, cost, strict-through fills and stop-first coded as written here. **None of the five rules passes the verdict rule** (every rule fails the first test, mean net > 0), also on 40 sessions and under every variant the verifier tried (target-first, entry at the bar open).
+* **Gross before cost the rules earn about zero** (-0.03% to 0.00% per trade, |t| < 1); after cost each earns about minus the 0.10% cost. The test could only have found gross edges of roughly 0.14% to 0.23% per hourly trade, so "no edge found" is supportable and "no edge exists" is not. The t-statistics of about -5 for R-C and R-D are the cost against a tiny variance, not evidence of losses beyond cost.
+* **Corrections applied after the check:** (1) the placebo took bar highs/lows from 1-minute closes only; it now uses continuous-path (Brownian-bridge) extremes, giving placebo means of -0.10% to -0.12% and z-scores near zero; the placebo is a cost-drag benchmark, not a calibrated null (its fill rates, 55-64%, differ from the real 48% and 53%). (2) Shorts are now scored (entry - exit) / entry; R-B is -0.124% per filled trade on 40 sessions. (3) The table prints the per-trade mean and the session-average mean with its t. (4) Live settlement now exits on the last TRADED minute (rows with zero volume are quote snapshots, e.g. the 15:15:00 row of 3,355.0) and counts an hour as complete once a fetch happened after it ended; the 14:22 window was re-settled: R-A -0.118%, R-B no fill, R-C -0.480%, R-D +0.280%, R-E -0.497% (the earlier ledger is kept in `results/paper_hourly_ledger_SUPERSEDED_before_verifier_fixes.csv`). One window is not evidence for or against any rule.
+* **Current backtest (40 sessions, 200 windows), mean net per filled trade:** R-A -0.130% (95 trades), R-B -0.124% (107), R-C -0.101% (200), R-D -0.111% (200), R-E -0.099% (200).
+* **Provenance caveat:** the rules commit (23a7f4c, 14:19 IST) and the backtest commit were two minutes apart on data the method was built on; the pre-registration is credible but self-declared. The first, buggy placebo version was never committed.

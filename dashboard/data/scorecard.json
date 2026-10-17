@@ -1,0 +1,50 @@
+[
+{
+"target": "Close (close-to-close)",
+"realised_log_pct": -1.114,
+"v1_pinball_e4": 28.64,
+"v2_pinball_e4": 28.34,
+"inside_50": "yes",
+"inside_90": "yes"
+},
+{
+"target": "Open gap",
+"realised_log_pct": 0.0,
+"v1_pinball_e4": 5.49,
+"v2_pinball_e4": 5.76,
+"inside_50": "yes",
+"inside_90": "yes"
+},
+{
+"target": "Open-to-close",
+"realised_log_pct": -1.114,
+"v1_pinball_e4": 26.5,
+"v2_pinball_e4": 26.5,
+"inside_50": "yes",
+"inside_90": "yes"
+},
+{
+"target": "Day range",
+"realised_log_pct": 2.625,
+"v1_pinball_e4": 12.79,
+"v2_pinball_e4": 12.79,
+"inside_50": "n/a",
+"inside_90": "yes"
+},
+{
+"target": "Day high",
+"realised_log_pct": 0.97,
+"v1_pinball_e4": 16.23,
+"v2_pinball_e4": 15.93,
+"inside_50": "yes",
+"inside_90": "yes"
+},
+{
+"target": "Day low",
+"realised_log_pct": -1.655,
+"v1_pinball_e4": 18.18,
+"v2_pinball_e4": 17.88,
+"inside_50": "yes",
+"inside_90": "yes"
+}
+]

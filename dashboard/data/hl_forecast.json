@@ -1,0 +1,50 @@
+[
+{
+"key": "pre_high",
+"stage": "Before the open",
+"side": "High",
+"best_guess": 3475.0,
+"typical_miss_rs": 42.7,
+"half_miss_rs": 33.6,
+"lo50": 3449.4,
+"hi50": 3512.6,
+"wide": "₹3,421 to ₹3,591 (9 times in 10)",
+"sessions": 320
+},
+{
+"key": "pre_low",
+"stage": "Before the open",
+"side": "Low",
+"best_guess": 3390.1,
+"typical_miss_rs": 47.7,
+"half_miss_rs": 32.2,
+"lo50": 3351.8,
+"hi50": 3418.8,
+"wide": "₹3,269 to ₹3,450 (9 times in 10)",
+"sessions": 320
+},
+{
+"key": "post_high",
+"stage": "After the open (open ₹3,450.0)",
+"side": "High",
+"best_guess": 3488.5,
+"typical_miss_rs": 35.0,
+"half_miss_rs": 29.3,
+"lo50": 3467.6,
+"hi50": 3526.2,
+"wide": "19 days in 20 at or below ₹3,591; about 1 day in 25 the open itself is the high",
+"sessions": 320
+},
+{
+"key": "post_low",
+"stage": "After the open (open ₹3,450.0)",
+"side": "Low",
+"best_guess": 3409.9,
+"typical_miss_rs": 37.7,
+"half_miss_rs": 26.8,
+"lo50": 3373.6,
+"hi50": 3429.6,
+"wide": "₹3,294 to ₹3,447 (9 times in 10)",
+"sessions": 320
+}
+]

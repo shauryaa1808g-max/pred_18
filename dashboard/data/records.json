@@ -1,0 +1,29 @@
+[
+{
+"record": "v1",
+"role": "Forecast of record",
+"file": "results/forecast_record_2026-10-14.json",
+"commit": "e8a0f22",
+"committed_ist": "2026-10-13 21:11",
+"cutoff_ist": "2026-10-13 16:55",
+"status": "Pre-session, frozen"
+},
+{
+"record": "v2",
+"role": "Late update",
+"file": "results/forecast_record_2026-10-14_v2.json",
+"commit": "dfb99f1",
+"committed_ist": "2026-10-14 21:00",
+"cutoff_ist": "2026-10-13 22:00",
+"status": "Committed after the session; information set limited by rule, not by clock"
+},
+{
+"record": "score",
+"role": "Scoring",
+"file": "results/forecast_score_2026-10-14[_v2].json",
+"commit": "3603234",
+"committed_ist": "after both records",
+"cutoff_ist": "n/a",
+"status": "Official NSE bhavcopy, 14 Oct"
+}
+]

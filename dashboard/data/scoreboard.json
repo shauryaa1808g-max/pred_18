@@ -1,0 +1,30 @@
+[
+{
+"kind": "summary",
+"scored_sessions": 1,
+"open_miss_rs": 22.0,
+"open_miss_unchanged_rs": 22.0,
+"close_miss_rs": 65.0,
+"close_miss_unchanged_rs": 65.0,
+"lean_right": 0,
+"lean_n": 1,
+"pt1_trades": 1,
+"pt1_avg_net_pct": 2.422,
+"pt2_trades": 0,
+"pt2_avg_net_pct": null,
+"note": "Running totals over all scored sessions."
+},
+{
+"kind": "day",
+"date": "2026-10-16",
+"open": 3450.0,
+"close": 3363.0,
+"open_miss_rs": 22.0,
+"close_miss_rs": -65.0,
+"close_inside_90": "yes",
+"lean": "up",
+"lean_hit": "no",
+"pt1_net_pct": 2.42,
+"pt2_net_pct": null
+}
+]

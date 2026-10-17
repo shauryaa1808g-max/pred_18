@@ -1,0 +1,4 @@
+date,asof,window,mode,pred_high,act_high,pred_low,act_low,high_in50,high_in90,low_in50,low_in90
+2026-10-16,14:22,14:22-15:22,live,3383.7,3373.5,3359.5,3352.1,False,True,True,True
+2026-10-16,15:00,15:00-15:30,live,3375.1,3368.9,3357.7,3352.1,False,True,True,True
+2026-10-16,15:01,15:01-15:30,live,3375.5,3368.9,3358.7,3352.1,False,True,False,True

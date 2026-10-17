@@ -1,0 +1,71 @@
+{
+ "record": "results/forecast_record_2026-10-14_v2.json",
+ "target_session": "2026-10-14",
+ "P0_in_record": 3375.4,
+ "P0_status": "OFFICIAL NSE close of 2026-10-13 from BhavCopy_NSE_CM_0_0_0_20261013_F_0000.csv.zip (published ~16:34 IST); equals Google Finance / stockanalysis / Yahoo prints",
+ "realised": {
+  "open": 3375.4,
+  "high": 3408.3,
+  "low": 3320.0,
+  "close": 3338.0,
+  "volume": 3001424.0
+ },
+ "realised_log": {
+  "G": 0.0,
+  "I": -0.011142010580603661,
+  "R": -0.011142010580603661,
+  "Hp": 0.009699797441584676,
+  "Lp": -0.016549052891849773,
+  "rho": 0.026248850333434322
+ },
+ "targets": {
+  "G": {
+   "y": 0.0,
+   "pinball": 0.0005761242308153925,
+   "pit_approx": 0.536121126882809,
+   "inside_50": true,
+   "inside_80": true,
+   "inside_90": true,
+   "inside_95": true
+  },
+  "I": {
+   "y": -0.011142010580603661,
+   "pinball": 0.0026504500558546633,
+   "pit_approx": 0.30899534588013927,
+   "inside_50": true,
+   "inside_80": true,
+   "inside_90": true,
+   "inside_95": true
+  },
+  "R": {
+   "y": -0.011142010580603661,
+   "pinball": 0.002833966244207949,
+   "pit_approx": 0.3326484345375723,
+   "inside_50": true,
+   "inside_80": true,
+   "inside_90": true,
+   "inside_95": true
+  },
+  "rho": {
+   "y": 0.026248850333434322,
+   "pinball": 0.0012787972228513417,
+   "inside_90": true
+  },
+  "Hp": {
+   "y": 0.009699797441584676,
+   "pinball": 0.0015933933532452072,
+   "inside_90": true,
+   "inside_50": true
+  },
+  "Lp": {
+   "y": -0.016549052891849773,
+   "pinball": 0.0017884792935256365,
+   "inside_90": true,
+   "inside_50": true
+  }
+ },
+ "close_above_P0": false,
+ "brier_P_up_0.5": 0.25,
+ "broadly_unchanged_|R|<0.25sigma": false,
+ "abs_R_over_sigma": 0.4495542744362503
+}

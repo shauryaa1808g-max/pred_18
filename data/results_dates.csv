@@ -1,0 +1,8 @@
+quarter,announcement_date,first_tradable_session,after_market_evidence,source
+Q2 FY25,2024-11-12,2024-11-13,pattern (all confirmed releases were after market),research/01_company_dossier.md Appendix A
+Q4 FY25,2025-05-06,2025-05-07,pattern,research/01_company_dossier.md Appendix A
+Q1 FY26,2025-08-07,2025-08-08,pattern,research/01_company_dossier.md Appendix A
+Q2 FY26,2025-11-11,2025-11-12,confirmed (dossier 02 A13: reaction 12 Nov),research/01 + 02
+Q3 FY26,2026-02-09,2026-02-10,confirmed (dossier 02 A10: 'results 9 Feb after hours'),research/01 + 02
+Q4 FY26,2026-05-07,2026-05-08,confirmed (dossier 02 A13: reaction 8 May),research/01 + 02
+Q1 FY27,2026-08-04,2026-08-05,confirmed (dossier 01: 'announced 4 Aug after market'),research/01 + 02
