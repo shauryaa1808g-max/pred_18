@@ -1,9 +1,9 @@
-"""NSE pre-open call auction for BSE: the OPENING PRICE as the exchange itself computes it, readable from 09:00 and final at 09:08 IST (trading starts 09:15).
+"""NSE pre-open call auction for BSE: the OPENING PRICE as the exchange itself computes it, readable from 09:00 and final at about 09:09 IST (trading starts 09:15).
 
   python3 src/preopen.py            # fetch now, print in plain words, append the snapshot to results/preopen/<date>.jsonl
   python3 src/preopen.py --symbol CDSL
 
-The indicative equilibrium price (IEP) moves while orders are entered (09:00-09:08) and is fixed at 09:08; NSE uses it as the official open, so from about 09:08-09:09 this is
+The indicative equilibrium price (IEP) moves while orders are entered (09:00-09:08) and is fixed at about 09:08-09:09 (the final price appears on the endpoint stamped 09:09:00 to 09:09:34 on 15 and 16 Oct; secondary sources say NSE changed the pre-open timetable from 7 Sep 2026, unconfirmed: the tool therefore calls the price final only when NSE's finalPrice field is filled); NSE uses it as the official open, so from then on this is
 the opening price to within a tick or two, not a forecast.  Source: NSE https://www.nseindia.com/api/market-data-pre-open?key=ALL (public page data, unofficial API, may change).
 After the open, the snapshot stays on the endpoint until the next pre-open, so a call after 09:15 returns that morning's final pre-open.
 """
@@ -40,10 +40,12 @@ def fetch(symbol: str = "BSE", tries: int = 3) -> dict:
 def words(s: dict, symbol: str = "BSE") -> str:
     m, p = s["meta"], s["pre"]; iep = float(p["IEP"]); prev = float(p["prevClose"])
     t = p["lastUpdateTime"]; hhmmss = t[-8:]
-    final = hhmmss >= "09:08:00"
+    fin = float(p.get("finalPrice") or 0)
+    final = fin > 0                       # NSE fills finalPrice only once the auction has matched (16 Oct: IEP 3,450 at 09:08:34 with finalPrice 0; finalPrice 3,450 stamped 09:09:00); a clock rule would call an indicative price final
+    if final: iep = fin
     book = sorted(p["preopen"], key=lambda r: r["price"])
     near = [r for r in book if abs(r["price"] - iep) <= max(5.0, 0.002 * iep)]
-    lines = [f"{symbol} pre-open (NSE, updated {t} IST): opening price {'FINAL' if final else 'INDICATIVE (can still change until 09:08)'} = Rs {iep:,.1f}, {100*(iep/prev-1):+.2f}% vs previous close Rs {prev:,.1f}.",
+    lines = [f"{symbol} pre-open (NSE, updated {t} IST): opening price {'FINAL' if final else 'INDICATIVE (not fixed yet: wait until the final price appears; about 09:09 on 15 and 16 Oct)'} = Rs {iep:,.1f}, {100*(iep/prev-1):+.2f}% vs previous close Rs {prev:,.1f}.",
              f"Orders waiting: {int(p['totalBuyQuantity']):,} to buy vs {int(p['totalSellQuantity']):,} to sell (shares); matched at the open: {int(p['finalQuantity']):,}.  Book near the price: " + "; ".join(f"{r['price']:.1f}: buy {r['buyQty']:,} / sell {r['sellQty']:,}" for r in near)]
     if final:
         lines.append("This is the official opening price (to within a tick or two): not a forecast.")

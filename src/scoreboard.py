@@ -157,7 +157,7 @@ def score(day: pd.Timestamp) -> dict:
     pf = Path(f"results/preopen/BSE_{day.date()}.jsonl")                  # NSE pre-open price read at ~09:09 (src/preopen.py): the official open is set by it
     if pf.exists():
         snaps = [json.loads(l) for l in pf.read_text().splitlines() if l.strip()]
-        fin = [z for z in snaps if z["pre"]["lastUpdateTime"][-8:] >= "09:08:00"]
+        fin = [z for z in snaps if float(z["pre"].get("finalPrice") or 0) > 0]   # final = NSE has filled finalPrice (a clock rule can catch an indicative price)
         if fin:
             res["preopen_price"] = float(fin[-1]["pre"]["IEP"]); res["preopen_miss_rs"] = op - res["preopen_price"]
     OUT.mkdir(parents=True, exist_ok=True); (OUT / f"{day.date()}.json").write_text(json.dumps(res, indent=1))
