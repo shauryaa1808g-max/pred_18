@@ -35,6 +35,34 @@
 "caveat": "Gain is in the band shape, not the best guess"
 },
 {
+"item": "More parameters (study D): India VIX, US overnight, Indian market and peers, BSE own history, calendar, option-implied volatility",
+"result": "None made the high or low more precise: 0 of 46 variant-target pairs passed the pre-fixed rule. Best pair: pre-open high 2.4% lower loss, typical miss ₹41.8 against ₹42.7. After the open, adding inputs made the low worse (typical miss ₹38.6 against ₹37.4)",
+"sample": "320 sessions; 46 pairs, Holm-corrected",
+"status": "not_found",
+"caveat": "A true gain of 1% to 3% (₹0.4 to ₹1.3) can be neither confirmed nor excluded; independent check found no look-ahead"
+},
+{
+"item": "Flexible models (study E): quantile regression, boosting, forest, conformal, stacks on the same inputs",
+"result": "0 of 72 pairs passed; no eligible variant gained more than 1.5%; every variant within about ₹1.5 of the baseline's typical miss",
+"sample": "320 sessions; 72 pairs, Holm-corrected",
+"status": "not_found",
+"caveat": "Reads as 'no gain shown' (power about 23% against a true 2% gain), not 'no gain exists'"
+},
+{
+"item": "Comparable past days (study G, 'watch the past to shape the future')",
+"result": "0 of 172 pairs passed. The median of the five most similar past days misses by ₹46 / ₹52 / ₹41 / ₹42 against ₹43 / ₹48 / ₹35 / ₹37 for the model: worse",
+"sample": "320 sessions; 172 pairs; 80 nearest days are only about 27 separate episodes",
+"status": "not_found",
+"caveat": "The context adds nothing beyond the volatility the model already uses"
+},
+{
+"item": "One lead, not a finding: the S&P 500's last session shifting the whole pre-open range",
+"result": "About 2% to 3% lower loss in two studies, in the same direction; not significant after correcting for the number of things tried (Holm 0.25 to 1.0)",
+"sample": "320 sessions; chosen after looking, so optimistic",
+"status": "caution",
+"caveat": "Not used in any forecast; needs forward testing before use"
+},
+{
 "item": "Live running high and low: do the printed bands hold?",
 "result": "Final high / low 'half the time' bands held 54% / 57%; 'nine times in ten' held 88% / 88%",
 "sample": "39 sessions, 8 checkpoints each (strongly dependent)",
