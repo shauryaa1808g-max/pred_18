@@ -1,0 +1,479 @@
+{
+ "source": "api.upstox.com v3 historical-candle, instrument NSE_INDEX%7CNifty%2050, unauthenticated public GET",
+ "symbol": "Nifty 50",
+ "interval_minutes": 15,
+ "window": [
+  "2022-01-03",
+  "2026-10-15"
+ ],
+ "rows": 29649,
+ "sessions": 1187,
+ "csv_sha256": "8d6daa1f904c2e03ea9462e7dbff8c70768740ad89bc4619f7250777cdd020f3",
+ "requests": [
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2022-01-31/2022-01-03",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:32:28+00:00",
+   "bytes": 34067,
+   "sha256": "52dd29e44f11ebd6dc9167f44c9341e099bbf86981a14f61157b5d2ae7fd61f4",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2022-02-28/2022-02-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:32:32+00:00",
+   "bytes": 34034,
+   "sha256": "6a08bf3a795d7c64939c4f00c12bd33573a375e0af94cc3586ed0a6e635f93f9",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2022-03-31/2022-03-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:32:36+00:00",
+   "bytes": 36156,
+   "sha256": "fe4cadb02334fb3cd3586543344a353f818956be8cba9330dc1595978337e8e1",
+   "bars": 531
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2022-04-30/2022-04-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:32:39+00:00",
+   "bytes": 33645,
+   "sha256": "3e595653041eef6369541092499a2e9f6ccc42811c7c8ebf8c4340001cd823fe",
+   "bars": 494
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2022-05-31/2022-05-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:32:44+00:00",
+   "bytes": 37127,
+   "sha256": "30ebe3aba01b4370bc7c410dca86971ed134c4e615485661d937b42b08fa8810",
+   "bars": 546
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2022-06-30/2022-06-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:32:48+00:00",
+   "bytes": 38946,
+   "sha256": "d4d5831607d11c7c5a222057b960e054d8543a2d77b6821aeab17447b4396cec",
+   "bars": 572
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2022-07-31/2022-07-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:32:51+00:00",
+   "bytes": 36835,
+   "sha256": "a0e97f9bca0c8ba691cf89429c10a4a26d6280f4a81626ed00ffe1901442b295",
+   "bars": 541
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2022-08-31/2022-08-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:32:55+00:00",
+   "bytes": 34033,
+   "sha256": "d2689331b31f130e899d2027aa649ce03006d6b7a3a762e293ea3896ec1fb335",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2022-09-30/2022-09-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:32:58+00:00",
+   "bytes": 37430,
+   "sha256": "8a89e78cd1874e723f9d0a29b1e0473727da2601849416530e237cacae90b142",
+   "bars": 550
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2022-10-31/2022-10-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:33:02+00:00",
+   "bytes": 30913,
+   "sha256": "7b2c5f6f5cd65e8117c2a1011bff0ffcb5f90161bca971bd83bfed0402c7caaf",
+   "bars": 454
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2022-11-30/2022-11-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:33:05+00:00",
+   "bytes": 35751,
+   "sha256": "02c63097a52adfad7f1951b08aade1164a86261f592e520f462548dd64006f67",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2022-12-31/2022-12-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:33:09+00:00",
+   "bytes": 37456,
+   "sha256": "7396824700af8e474ea8665d807d875aa9ffb23eec79aa5c626b5e3db93822e4",
+   "bars": 550
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2023-01-31/2023-01-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:33:13+00:00",
+   "bytes": 35719,
+   "sha256": "9eaa9eec1cd036976cec1588e5c56475c4223d9abf8523804587d01d9cf30e9b",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2023-02-28/2023-02-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:33:17+00:00",
+   "bytes": 34025,
+   "sha256": "7666ec7b70dceaace69532a5bcd11bfcc09ceb7742eca2c93261e4dec4a35055",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2023-03-31/2023-03-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:33:20+00:00",
+   "bytes": 35752,
+   "sha256": "84faea41609dcf31232a58b2a656debab29cca8f29653f3167335ce5fdfbe913",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2023-04-30/2023-04-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:33:23+00:00",
+   "bytes": 28933,
+   "sha256": "4c791533d2c814e6990b30a63b7c8c6561510cfa7dc5387e7c63cc5c0fac2103",
+   "bars": 425
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2023-05-31/2023-05-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:33:27+00:00",
+   "bytes": 37439,
+   "sha256": "557962b5a1b6e44fdba61e6ec77f459dce6fe918991711bfa0302712acdc2b46",
+   "bars": 550
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2023-06-30/2023-06-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:33:31+00:00",
+   "bytes": 35711,
+   "sha256": "dc155538ea93fde5add3ab286d514562eba412b0778126a84040c484c0c5a41c",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2023-07-31/2023-07-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:33:35+00:00",
+   "bytes": 35726,
+   "sha256": "eb3f825a2f0d4a9a7463246710e87a8093ba9c1188c6d7c8d0adba67e792b23a",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2023-08-31/2023-08-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:33:38+00:00",
+   "bytes": 37413,
+   "sha256": "3f63425184b0ca4e2b4bfcc3c9f691a612c4b8973e812b7542a9aaa7f25f56db",
+   "bars": 550
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2023-09-30/2023-09-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:33:42+00:00",
+   "bytes": 34053,
+   "sha256": "82e47d275555db42eefc947b7af61f0b8c8e2bad0b1708ed41736f231639363f",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2023-10-31/2023-10-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:33:46+00:00",
+   "bytes": 34035,
+   "sha256": "19d424581bb259833064d20891fdbfe02172a7defc19030c711be86e9b2abce9",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2023-11-30/2023-11-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:33:49+00:00",
+   "bytes": 34322,
+   "sha256": "3ea2d15974a7a0185f070a8e02c07b20fff241ac371ee0b0e369b5b444b07350",
+   "bars": 504
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2023-12-31/2023-12-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:33:53+00:00",
+   "bytes": 34024,
+   "sha256": "589b3aa18509dd5f68288466772f5bd8b4e57ac4b15b3773b70a4e54f8eb19d3",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2024-01-31/2024-01-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:33:56+00:00",
+   "bytes": 37416,
+   "sha256": "8ff577a8a4dd5bc9917a3d572006dd6930a4e460e026f86f630bfeec6d0978ec",
+   "bars": 550
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2024-02-29/2024-02-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:33:59+00:00",
+   "bytes": 35769,
+   "sha256": "c3bd1e101be1de8aa1f86ca792dc91530cd61793c6df4144b31e1c7559d8a917",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2024-03-31/2024-03-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:34:03+00:00",
+   "bytes": 31138,
+   "sha256": "cfcff96d7b5cba363a8a4f39e22c6ba342d19c55955ae5324644695c1520f47c",
+   "bars": 457
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2024-04-30/2024-04-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:34:07+00:00",
+   "bytes": 34046,
+   "sha256": "b21918328203887d4ab9ac08cea490b28606bfd1317d139a4475eb7c28d0b0b0",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2024-05-31/2024-05-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:34:10+00:00",
+   "bytes": 36218,
+   "sha256": "3cce9d28d02a146012de5d21975382a9b97cd1b543fea313f54eccaca5cd8eef",
+   "bars": 532
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2024-06-30/2024-06-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:34:14+00:00",
+   "bytes": 32349,
+   "sha256": "4dec8f0083de5338103d0735e50730d542ba03cceaca601192f260384e8392f6",
+   "bars": 475
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2024-07-31/2024-07-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:34:18+00:00",
+   "bytes": 37429,
+   "sha256": "cb474b706fbe87b1216d7f35d8528b29382a1be68c3d9275921dc2a4a1c60d06",
+   "bars": 550
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2024-08-31/2024-08-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:34:22+00:00",
+   "bytes": 35753,
+   "sha256": "c93971bd231bdaab6e85d9a82a8a81628c6f6c54e1486e5f9e9bc7b077977fd8",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2024-09-30/2024-09-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:34:25+00:00",
+   "bytes": 35721,
+   "sha256": "aaef16cc2849284783999f4a30a94ad718707d0abd61f0fb344d8d831656435d",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2024-10-31/2024-10-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:34:29+00:00",
+   "bytes": 37431,
+   "sha256": "7efd4772278eeb5663ee0c9a018f782ce36e96c73f3efe0e07360f27c3b58730",
+   "bars": 550
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2024-11-30/2024-11-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:34:32+00:00",
+   "bytes": 30937,
+   "sha256": "7c2be8f530042e438a69a66766f6e6e823c07e1b2c4b36ea561eec847a1008d2",
+   "bars": 454
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2024-12-31/2024-12-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:34:36+00:00",
+   "bytes": 35729,
+   "sha256": "48fd935c50b9da32203bd42a500881d34a32dd147501a091eff2a87454d90891",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2025-01-31/2025-01-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:34:40+00:00",
+   "bytes": 39154,
+   "sha256": "064e2d073d86b74bce1b214b60897b9d41aaabf5aab243d26f8a4efb440e00e4",
+   "bars": 575
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2025-02-28/2025-02-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:34:44+00:00",
+   "bytes": 34016,
+   "sha256": "909ecafe41168b2e5334943a40c8cc57914f1cf7c11c04e1d21116f2af630cfb",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2025-03-31/2025-03-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:34:47+00:00",
+   "bytes": 32329,
+   "sha256": "ac7976cc839aac3dcfb2f0293616aa547c94b4a4e901c0050adf3651474a2ce9",
+   "bars": 475
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2025-04-30/2025-04-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:34:51+00:00",
+   "bytes": 32624,
+   "sha256": "5faf7c4d69eeddd025d1d46a491b30d003df6675a7627ba18b0282517e743b5e",
+   "bars": 479
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2025-05-31/2025-05-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:34:54+00:00",
+   "bytes": 36160,
+   "sha256": "482d59a98130432e40ce943f45987603720c6e0187e4644f605efa190d084e36",
+   "bars": 531
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2025-06-30/2025-06-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:34:58+00:00",
+   "bytes": 35747,
+   "sha256": "5b5fbd08ed60610653127ca7bea408cf41c7a792973bedf07e419105175c0ab0",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2025-07-31/2025-07-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:35:01+00:00",
+   "bytes": 39187,
+   "sha256": "0baea6b73b2af366897a42504b97d0928c4d9501b4019b9d4c1c964f1d292397",
+   "bars": 575
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2025-08-31/2025-08-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:35:04+00:00",
+   "bytes": 32324,
+   "sha256": "cf9c877de4ee17052b7521709792b5ac0178b3c93fd0d2b1bf9be75b1645d778",
+   "bars": 475
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2025-09-30/2025-09-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:35:08+00:00",
+   "bytes": 37404,
+   "sha256": "c69c829b10be2c027ea91d051ebc2641dd60d2af1109c1c51d97045044d7bbd8",
+   "bars": 550
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2025-10-31/2025-10-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:35:12+00:00",
+   "bytes": 34324,
+   "sha256": "1c6e2f24f78efa53547c1114732d0873a6318de048c364ae9850802c4ab10d89",
+   "bars": 504
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2025-11-30/2025-11-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:35:16+00:00",
+   "bytes": 32330,
+   "sha256": "9eb54c82b3cb0442d648eeaea6b4170f19cd122200ba1d1e64f4b2f2c7615023",
+   "bars": 475
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2025-12-31/2025-12-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:35:20+00:00",
+   "bytes": 37479,
+   "sha256": "6e721ff27e0b640337fb8c812cd1edf099763979e4eefa8515c2c28976966d5b",
+   "bars": 550
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2026-01-31/2026-01-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:35:23+00:00",
+   "bytes": 34027,
+   "sha256": "10897341d004433ee71569103addb6b381124f370dfe2d7e10ea161e64f28ca3",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2026-02-28/2026-02-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:35:27+00:00",
+   "bytes": 35746,
+   "sha256": "d10125119c65f631584f6f07bf26a4b207e1c8c2297dac5d11139c50bb0e65d5",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2026-03-31/2026-03-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:35:30+00:00",
+   "bytes": 32338,
+   "sha256": "66966f9d59aa45f15fd508072429deddefa5378a7d35af5fd269c19b78723da2",
+   "bars": 475
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2026-04-30/2026-04-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:35:34+00:00",
+   "bytes": 34026,
+   "sha256": "28b9a3fdbaa75fd6d7c64b1259439c5cb35cfa2a8bc67ec5249fe968380ddc45",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2026-05-31/2026-05-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:35:37+00:00",
+   "bytes": 32363,
+   "sha256": "14bdecdb8a81bc4cd317ad6ade2320c635ddac1530bdfebb187e371b455d3427",
+   "bars": 475
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2026-06-30/2026-06-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:35:40+00:00",
+   "bytes": 35778,
+   "sha256": "b19344b69da751eda07fd5eb568b542e682f9dbcd34427acd8452534b6620e42",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2026-07-31/2026-07-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:35:44+00:00",
+   "bytes": 39124,
+   "sha256": "5604373197a58b270349c19f38f7d72ef045e1150255654f4e1a4cdaf92e65b4",
+   "bars": 575
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2026-08-31/2026-08-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:35:47+00:00",
+   "bytes": 35774,
+   "sha256": "65090b63291d3f7a7b1ba35ffc799e53f92f11a4a2384381bf8729bf125f737e",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2026-09-30/2026-09-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:35:51+00:00",
+   "bytes": 35741,
+   "sha256": "2193f6db39d928353da6ddd032c59b90088df3e427de779ae83863357379c8dd",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CNifty%2050/minutes/15/2026-10-15/2026-10-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:35:54+00:00",
+   "bytes": 17030,
+   "sha256": "3be3a65c8e34c300b486e17ab76b394a0095e1319be1d6e4b3ea7b5f81d77f23",
+   "bars": 250
+  }
+ ],
+ "prices": "as served (BSE: adjusted for later corporate actions; indices unadjusted); volume in shares (indices: 0)"
+}

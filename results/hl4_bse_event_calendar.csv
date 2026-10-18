@@ -1,0 +1,48 @@
+meeting_date,weekday,purpose,is_results,since_2022,first_outcome_filing_ist,first_filing_kind,filed_after_1530,next_session_after_meeting,intimation_ist_earliest,outcome_pdf,future_as_of_cutoff
+2017-02-14,Tue,Results/Dividend,True,False,2017-02-14 14:52:44,Financial Result Updates,False,2017-02-15,,https://nsearchives.nseindia.com/corporate/BSE_Outcome_of_BM_14_02_2017_14022017145244.zip,False
+2017-05-05,Fri,Results/Dividend,True,False,2017-05-05 14:28:42,Financial Result Updates,False,2017-05-08,,https://nsearchives.nseindia.com/corporate/Outcome_of_Board_meeting_05052017142842.zip,False
+2017-07-07,Fri,Others,False,False,,,,2017-07-11,,,False
+2017-08-03,Thu,Results,True,False,2017-08-03 13:49:36,Financial Result Updates,False,2017-08-04,,https://nsearchives.nseindia.com/corporate/OutcomeofBoardMeeting3082017_03082017134936.zip,False
+2017-11-03,Fri,Results,True,False,2017-11-03 16:16:00,Outcome of Board Meeting,True,2017-11-06,,https://nsearchives.nseindia.com/corporate/Outcome_BM_03_Nov_2017_03112017161659_421.zip,False
+2018-01-15,Mon,Buyback,False,False,2018-01-15 16:56:00,Outcome of Board Meeting,True,2018-01-16,,https://nsearchives.nseindia.com/corporate/bm_15012018165618_229.zip,False
+2018-02-02,Fri,Results,True,False,2018-02-02 13:28:00,Outcome of Board Meeting,False,2018-02-05,,https://nsearchives.nseindia.com/corporate/BMOutcome222018_02022018132848_179.zip,False
+2018-02-02,Fri,Results/Dividend,True,False,2018-02-02 13:28:00,Outcome of Board Meeting,False,2018-02-05,,https://nsearchives.nseindia.com/corporate/BMOutcome222018_02022018132848_179.zip,False
+2018-05-04,Fri,Financial Results/Dividend,True,False,2018-05-04 14:32:40,Financial Result Updates,False,2018-05-07,,https://nsearchives.nseindia.com/corporate/outcomeBM452018_04052018143240.zip,False
+2018-08-03,Fri,Financial Results,True,False,2018-08-03 16:47:51,Financial Result Updates,True,2018-08-06,,https://nsearchives.nseindia.com/corporate/quickresults_03082018164751.zip,False
+2018-11-02,Fri,Financial Results,True,False,2018-11-02 15:54:37,Financial Result Updates,True,2018-11-05,,https://nsearchives.nseindia.com/corporate/toNSEOutcome_02112018155437.zip,False
+2018-11-30,Fri,Dividend,False,False,,,,2018-12-03,,,False
+2019-02-01,Fri,Financial Results,True,False,2019-02-01 15:14:00,Outcome of Board Meeting,False,2019-02-04,,https://nsearchives.nseindia.com/corporate/BSE_01022019151224_NSEIntimationoutcome_193.pdf,False
+2019-05-07,Tue,Financial Results/Dividend/Buyback,True,False,2019-05-07 15:58:24,Financial Result Updates,True,2019-05-08,,https://nsearchives.nseindia.com/corporate/NSEIntimation_07052019155824.zip,False
+2019-05-07,Tue,Dividend/Buyback/Other business matters,False,False,2019-05-07 15:58:24,Financial Result Updates,True,2019-05-08,,https://nsearchives.nseindia.com/corporate/NSEIntimation_07052019155824.zip,False
+2019-08-02,Fri,Financial Results,True,False,2019-08-02 14:11:00,Outcome of Board Meeting,False,2019-08-05,,https://nsearchives.nseindia.com/corporate/BSE_02082019141113_outcome_186.pdf,False
+2019-11-06,Wed,Financial Results,True,False,2019-11-06 15:53:17,Financial Result Updates,True,2019-11-07,,https://nsearchives.nseindia.com/corporate/NSEOutcome1_06112019155317.zip,False
+2020-02-11,Tue,Financial Results,True,False,2020-02-11 16:35:49,Financial Result Updates,True,2020-02-12,,https://nsearchives.nseindia.com/corporate/Outcomeofboardmeeting_11022020163549.zip,False
+2020-05-21,Thu,Financial Results/Dividend,True,False,2020-05-21 19:35:14,Financial Result Updates,True,2020-05-22,,https://nsearchives.nseindia.com/corporate/Nseintimation_21052020193514.zip,False
+2020-08-03,Mon,Financial Results,True,False,2020-08-03 18:29:13,Outcome of Board Meeting,True,2020-08-04,,https://nsearchives.nseindia.com/corporate/BSE_03082020182913_Outcome.pdf,False
+2020-11-07,Sat,Financial Results,True,False,2020-11-07 18:40:16,Outcome of Board Meeting,True,2020-11-09,,https://nsearchives.nseindia.com/corporate/BSE_07112020184016_OutcomeSeptResults.pdf,False
+2021-02-11,Thu,Financial Results,True,False,2021-02-11 19:27:58,Outcome of Board Meeting,True,2021-02-12,,https://nsearchives.nseindia.com/corporate/BSE_11022021192758_OutcomeQ3.pdf,False
+2021-05-13,Thu,Financial Results/Dividend,True,False,2021-05-13 23:03:33,Financial Result Updates,True,2021-05-14,,https://nsearchives.nseindia.com/corporate/Standalone_13052021230333.pdf,False
+2021-08-06,Fri,Financial Results,True,False,2021-08-06 16:35:43,Financial Result Updates,True,2021-08-09,,https://nsearchives.nseindia.com/corporate/OutcomeAugustMeeting_06082021163543.pdf,False
+2021-11-12,Fri,Financial Results,True,False,2021-11-12 16:42:36,Outcome of Board Meeting,True,2021-11-15,,https://nsearchives.nseindia.com/corporate/BSE_12112021164236_NSEIntimationOutcome12112021.pdf,False
+2022-02-08,Tue,Bonus,False,True,2022-02-08 16:35:16,Financial Result Updates,True,2022-02-09,,https://nsearchives.nseindia.com/corporate/OutcomeBM08022022_08022022163516.pdf,False
+2022-02-08,Tue,Financial Results,True,True,2022-02-08 16:35:16,Financial Result Updates,True,2022-02-09,,https://nsearchives.nseindia.com/corporate/OutcomeBM08022022_08022022163516.pdf,False
+2022-08-03,Wed,Financial results,True,True,2022-08-03 15:03:06,Outcome of Board Meeting,False,2022-08-04,,https://nsearchives.nseindia.com/corporate/BSE_03082022150306_NSEintimationOutcome.pdf,False
+2022-11-07,Mon,Financial results,True,True,2022-11-07 16:52:12,Outcome of Board Meeting,True,2022-11-09,,https://nsearchives.nseindia.com/corporate/BSE_07112022165212_NSEintimation.pdf,False
+2023-02-07,Tue,Financial Results,True,True,2023-02-07 16:30:07,Financial Result Updates,True,2023-02-08,,https://nsearchives.nseindia.com/corporate/NSEIntimation_07022023163007.pdf,False
+2023-05-11,Thu,Financial Results/Dividend,True,True,2023-05-11 18:00:35,Financial Result Updates,True,2023-05-12,,https://nsearchives.nseindia.com/corporate/NSEintimation_11052023180035.pdf,False
+2023-07-06,Thu,Buyback,False,True,2023-07-06 13:52:40,Outcome of Board Meeting,False,2023-07-07,,https://nsearchives.nseindia.com/corporate/BSE_06072023135240_NSEintimation.pdf,False
+2023-08-09,Wed,Financial Results,True,True,2023-08-09 17:24:47,Financial Result Updates,True,2023-08-10,,https://nsearchives.nseindia.com/corporate/Nseintimationfinal_09082023172447.pdf,False
+2023-11-10,Fri,Financial Results,True,True,2023-11-10 16:26:00,Financial Result Updates,True,2023-11-13,,https://nsearchives.nseindia.com/corporate/NSEintimation_10112023162600.pdf,False
+2024-02-05,Mon,Financial Results,True,True,2024-02-05 17:07:19,Financial Result Updates,True,2024-02-06,,https://nsearchives.nseindia.com/corporate/NSEintimations_05022024170719.pdf,False
+2024-05-08,Wed,Financial Results/Dividend,True,True,2024-05-08 17:18:55,Financial Result Updates,True,2024-05-09,,https://nsearchives.nseindia.com/corporate/NSEintimation_08052024171855.pdf,False
+2024-08-07,Wed,Financial Results,True,True,2024-08-07 16:49:54,Financial Result Updates,True,2024-08-08,,https://nsearchives.nseindia.com/corporate/NSEintimation_07082024164954.pdf,False
+2024-11-12,Tue,Financial Results,True,True,2024-11-12 17:49:43,Financial Result Updates,True,2024-11-13,16-Oct-2024 16:56:06,https://nsearchives.nseindia.com/corporate/NSEIntimationsigned_12112024174943.pdf,False
+2025-02-06,Thu,Financial Results,True,True,2025-02-06 18:13:20,Financial Result Updates,True,2025-02-07,17-Jan-2025 17:53:12,https://nsearchives.nseindia.com/corporate/NSEintimation_06022025181320.pdf,False
+2025-03-30,Sun,Bonus,False,True,,,,2025-04-01,26-Mar-2025 16:22:54,,False
+2025-05-06,Tue,Financial Results/Dividend,True,True,2025-05-06 18:51:07,Outcome of Board Meeting,True,2025-05-07,21-Apr-2025 18:12:13,https://nsearchives.nseindia.com/corporate/BSE1_06052025184756_Outcome.pdf,False
+2025-08-07,Thu,Financial Results,True,True,2025-08-07 18:18:47,Outcome of Board Meeting,True,2025-08-08,16-Jul-2025 12:19:57,https://nsearchives.nseindia.com/corporate/BSE1_07082025181717_NSEIntimation.pdf,False
+2025-11-11,Tue,Financial Results,True,True,2025-11-11 18:02:00,Outcome of Board Meeting,True,2025-11-12,23-Oct-2025 12:28:13,https://nsearchives.nseindia.com/corporate/BSE1_11112025180026_NSEIntimation.pdf,False
+2026-02-09,Mon,Financial Results,True,True,2026-02-09 18:40:23,Outcome of Board Meeting,True,2026-02-10,13-Jan-2026 16:46:53,https://nsearchives.nseindia.com/corporate/BSE1_09022026183921_NSEIntimation.pdf,False
+2026-05-07,Thu,Financial Results/Dividend,True,True,2026-05-07 17:36:02,Outcome of Board Meeting,True,2026-05-08,20-Apr-2026 16:16:13,https://nsearchives.nseindia.com/corporate/BSE1_07052026173203_NSEintimation07052026.pdf,False
+2026-08-04,Tue,Financial Results,True,True,2026-08-04 18:45:51,Outcome of Board Meeting,True,2026-08-05,14-Jul-2026 18:11:41,https://nsearchives.nseindia.com/corporate/BSE1_04082026184424_NSEIntimation.pdf,False
+2026-11-04,Wed,Financial Results,True,True,,,,,13-Oct-2026 16:02:54,,True

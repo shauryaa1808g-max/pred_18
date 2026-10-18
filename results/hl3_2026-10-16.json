@@ -6,7 +6,8 @@
  "is_weekend": false,
  "missing_weekdays_between_data_and_date": [],
  "sigma_R_pct": 2.4347758145617524,
- "model": "flexible models on the feature menu (research/hl/E_quantile.md); trained on sessions before the date only; display variant = best pooled Validation+Final pinball, DESCRIPTIVE, not an adoption",
+ "model_pre": "flexible models on the feature menu (research/hl/E_quantile.md); trained on sessions before the date only; display variant = best pooled Validation+Final pinball, DESCRIPTIVE, not an adoption",
+ "model_post": "same flexible models, with the official open (gap block) added; see model_pre",
  "inputs_missing_today_treated_as_no_information": [
   "flow_deliv_z",
   "idx_nifty_ret_z",
@@ -66,6 +67,14 @@
    "typical_miss_rs": 42.3,
    "half_the_time_within_rs": 32.1,
    "miss_measured_on_sessions": 320,
+   "typical_miss_rs_cas_slice": 44.3,
+   "half_the_time_within_rs_cas_slice": 39.7,
+   "miss_measured_on_sessions_cas_slice": 52,
+   "cas_slice_tail_shares": {
+    "n": 52,
+    "below_q5": 0.0769230769230769,
+    "above_q95": 0.0384615384615384
+   },
    "adopted_by_prefixed_rule": false
   },
   "low": {
@@ -99,6 +108,14 @@
    "typical_miss_rs": 47.7,
    "half_the_time_within_rs": 34.6,
    "miss_measured_on_sessions": 320,
+   "typical_miss_rs_cas_slice": 48.2,
+   "half_the_time_within_rs_cas_slice": 37.5,
+   "miss_measured_on_sessions_cas_slice": 52,
+   "cas_slice_tail_shares": {
+    "n": 52,
+    "below_q5": 0.0576923076923076,
+    "above_q95": 0.0576923076923076
+   },
    "adopted_by_prefixed_rule": false
   }
  },
@@ -135,6 +152,14 @@
     "typical_miss_rs": 42.7,
     "half_the_time_within_rs": 33.6,
     "miss_measured_on_sessions": 320,
+    "typical_miss_rs_cas_slice": 43.7,
+    "half_the_time_within_rs_cas_slice": 39.4,
+    "miss_measured_on_sessions_cas_slice": 52,
+    "cas_slice_tail_shares": {
+     "n": 52,
+     "below_q5": 0.1538461538461538,
+     "above_q95": 0.0
+    },
     "adopted_by_prefixed_rule": false
    },
    "low": {
@@ -168,6 +193,14 @@
     "typical_miss_rs": 47.7,
     "half_the_time_within_rs": 32.2,
     "miss_measured_on_sessions": 320,
+    "typical_miss_rs_cas_slice": 48.2,
+    "half_the_time_within_rs_cas_slice": 38.2,
+    "miss_measured_on_sessions_cas_slice": 52,
+    "cas_slice_tail_shares": {
+     "n": 52,
+     "below_q5": 0.0576923076923076,
+     "above_q95": 0.0576923076923076
+    },
     "adopted_by_prefixed_rule": false
    }
   },
@@ -203,6 +236,9 @@
     "typical_miss_rs": 35.0,
     "half_the_time_within_rs": 29.3,
     "miss_measured_on_sessions": 320,
+    "typical_miss_rs_cas_slice": 35.4,
+    "half_the_time_within_rs_cas_slice": 34.0,
+    "miss_measured_on_sessions_cas_slice": 52,
     "adopted_by_prefixed_rule": false
    },
    "low": {
@@ -236,6 +272,9 @@
     "typical_miss_rs": 37.7,
     "half_the_time_within_rs": 26.8,
     "miss_measured_on_sessions": 320,
+    "typical_miss_rs_cas_slice": 38.1,
+    "half_the_time_within_rs_cas_slice": 29.4,
+    "miss_measured_on_sessions_cas_slice": 52,
     "adopted_by_prefixed_rule": false
    }
   }
@@ -272,6 +311,9 @@
    "typical_miss_rs": 34.5,
    "half_the_time_within_rs": 28.2,
    "miss_measured_on_sessions": 320,
+   "typical_miss_rs_cas_slice": 37.1,
+   "half_the_time_within_rs_cas_slice": 35.6,
+   "miss_measured_on_sessions_cas_slice": 52,
    "adopted_by_prefixed_rule": false
   },
   "low": {
@@ -305,6 +347,9 @@
    "typical_miss_rs": 37.8,
    "half_the_time_within_rs": 27.6,
    "miss_measured_on_sessions": 320,
+   "typical_miss_rs_cas_slice": 37.9,
+   "half_the_time_within_rs_cas_slice": 29.1,
+   "miss_measured_on_sessions_cas_slice": 52,
    "adopted_by_prefixed_rule": false
   }
  },

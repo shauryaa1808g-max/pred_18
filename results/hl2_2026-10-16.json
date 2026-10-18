@@ -5,6 +5,10 @@
  "n_sessions": 2390,
  "missing_weekdays_between_data_and_date": [],
  "is_weekend": false,
+ "data_sha256": {
+  "data/processed/bse_daily.csv": "e7939803bac1621419c3fc9d65df7829921a561ccb8d4d9e0f6b6196135eb627",
+  "data/processed/bse_daily_extra.csv": "c6a5cb439b27a02ae81f4533542856534c5150329527f208a547b09914285b2a"
+ },
  "model_pre": "baseline S6 volatility x filtered historical simulation (hl_model.py)",
  "variants_used": {
   "H": "P_S6",
@@ -52,7 +56,12 @@
    "miss_measured_on_sessions": 320,
    "typical_miss_rs_cas_slice": 43.7,
    "half_the_time_within_rs_cas_slice": 39.4,
-   "miss_measured_on_sessions_cas_slice": 52
+   "miss_measured_on_sessions_cas_slice": 52,
+   "cas_slice_tail_shares": {
+    "n": 52,
+    "below_q5": 0.1538461538461538,
+    "above_q95": 0.0
+   }
   },
   "low": {
    "variant": "P_S6",
@@ -85,7 +94,12 @@
    "miss_measured_on_sessions": 320,
    "typical_miss_rs_cas_slice": 48.2,
    "half_the_time_within_rs_cas_slice": 38.2,
-   "miss_measured_on_sessions_cas_slice": 52
+   "miss_measured_on_sessions_cas_slice": 52,
+   "cas_slice_tail_shares": {
+    "n": 52,
+    "below_q5": 0.0576923076923076,
+    "above_q95": 0.0576923076923076
+   }
   },
   "touch_prob": {
    "high >= P0+0.5%": 0.786,

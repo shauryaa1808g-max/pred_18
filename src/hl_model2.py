@@ -19,6 +19,7 @@ Usage (repo root; python3 src/hl_model2.py ...):
   --univariate                          rebuild only results/hl2_univariate.csv (descriptive screen; also done by --eval)
   --finalize                            merge results/hl2_leakage.csv into results/hl2_adoption.csv (adopted = conditions i-v); run after --eval and --leakage
   --spotcheck / --sp-buckets            timestamp spot check of the feature panel -> results/hl2_spotcheck.csv; descriptive S&P-bucket table -> results/hl2_sp_buckets.csv
+  --fresh-day [2026-10-16]              descriptive single-session score of the stored live forecast against that session's official bar (never used by the study) -> results/hl2_fresh_16oct.csv
   --date 2026-10-16 [--open 3450] [--variant P_SL_f] [--json] [--save]   forecast in the shape of hl_model.hl_forecast (the baseline unless a variant was adopted)
 Importable: hl2_forecast(date, open_price=None, variant=None) -> dict (same shape as hl_model.hl_forecast).
 """
@@ -977,6 +978,8 @@ def _side2(variant, target, ref, q, summ):
             x = summ[(summ.variant == variant) & (summ.target == target) & (summ.window == w)]
             if not x.empty:
                 out.update({f"typical_miss_rs{key}": round(float(x.mae_med_pct.iloc[0]) / 100 * ref, 1), f"half_the_time_within_rs{key}": round(float(x.medae_med_pct.iloc[0]) / 100 * ref, 1), f"miss_measured_on_sessions{key}": int(x.n.iloc[0])})
+                if w == "cas" and variant.startswith("P_"):          # same tail check as hl_model._side (drop-in: hl_model.words() prints a caution from it); output only, no effect on any forecast number
+                    out["cas_slice_tail_shares"] = {"n": int(x.n.iloc[0]), "below_q5": float(x.below_q5.iloc[0]), "above_q95": float(x.above_q95.iloc[0])}
     return out
 
 
@@ -1015,6 +1018,7 @@ def hl2_forecast(date, open_price=None, variant=None, tb=None, all_variants=Fals
     cols = [c for c in ALL_FEATS if c in ctx["F"].columns]
     row = ctx["F"].iloc[n]
     out = {"date": str(date.date()), "p0": P0, "data_through": last, "n_sessions": n, "missing_weekdays_between_data_and_date": missing, "is_weekend": bool(date.dayofweek >= 5),
+           "data_sha256": {f: __import__("hashlib").sha256(Path(f).read_bytes()).hexdigest() for f in ("data/processed/bse_daily.csv", str(H1.EXTRA)) if Path(f).exists()},
            "model_pre": "baseline S6 volatility x filtered historical simulation (hl_model.py)" if all(used[k] == BASE["pre"] for k in ("H", "L")) else f"{used['H']} (high) / {used['L']} (low), see research/hl/D_features.md",
            "variants_used": used, "adopted_variants": ad, "sigma_R_pct": 100 * float(ctx["sig"]["pre"][n]),
            "features_missing_on_the_forecast_date_pre_open_scale_and_location": sorted(c for c in cols if c not in ("absgap_z", "beyond_any", "orel_abs", "gap_z", "orel_c", "beyond_signed") and not np.isfinite(row[c]))}
@@ -1050,6 +1054,9 @@ def words2(o: dict) -> str:
             b, q = blk[k], blk[k]["price_quantiles"]
             miss = f"  Typical miss about Rs {b['typical_miss_rs']:,.0f} (half the time within Rs {b['half_the_time_within_rs']:,.0f}), measured out of sample on the last {b['miss_measured_on_sessions']} sessions." if "typical_miss_rs" in b else ""
             out.append(f"  {nm}: best single guess Rs {q['q50']:,.0f}.{miss}\n        Half the time between Rs {q['q25']:,.0f} and {q['q75']:,.0f}; 19 days in 20 below Rs {q['q95']:,.0f} (5% quantile Rs {q['q5']:,.0f}).")
+            c = b.get("cas_slice_tail_shares")
+            if c and max(c["below_q5"], c["above_q95"]) > 0.10:
+                out.append(f"        Caution (small sample, suggestive): since the closing auction began ({c['n']} sessions) the actual {nm.strip().lower()} fell below this band's 5% level on {100*c['below_q5']:.0f}% and above its 95% level on {100*c['above_q95']:.0f}% of days (5% each expected).")
         return "\n".join(out)
     L.append("BEFORE THE OPEN:\n" + side(o["pre_open"]))
     if "post_open" in o:
@@ -1333,15 +1340,53 @@ def tables():
     print("\n\n".join(table_blocks().values()))
 
 
+# ----------------------------------------------------------------------------------------------- one fresh day (descriptive, after the adoption decision)
+def fresh_day(date="2026-10-16"):
+    """Score the stored live forecast of `date` (results/hl2_<date>.json: made from data to the previous session + the official open) against the official bar of that session, which the study never used.
+    One session = descriptive only.  -> results/hl2_fresh_<ddmon>.csv (16 Oct 2026 -> hl2_fresh_16oct.csv).  Needs the bar in data/processed/bse_daily_extra.csv."""
+    day = pd.Timestamp(date)
+    a = json.loads((OUT / f"hl2_{day.date()}.json").read_text())
+    P0, O = float(a["p0"]), float(a["open"])
+    bar = pd.read_csv(H1.EXTRA, index_col=0, parse_dates=True).loc[day]
+    assert abs(float(bar["open"]) - O) < 1e-9 and abs(float(bar["prev"]) - P0) < 1e-9, "the stored forecast and the official bar do not match (open / previous close)"
+    Hh, Ll = float(bar["high"]), float(bar["low"])
+    ctx = make_context(load_tables(last=day - pd.Timedelta(days=1)), day, O)
+    lev = list(GRID)
+    names = ["q2.5", "q5", "q10", "q25", "q50", "q75", "q90", "q95", "q97.5"]
+    rows = []
+    for nm in a["all_variants"]:
+        ph = "pre" if nm.startswith("P_") else "post"
+        ref = P0 if ph == "pre" else O
+        qq, _ = live_variant_quantiles(ctx, nm, ph)
+        for j, side in enumerate(("high", "low")):
+            act = Hh if side == "high" else Ll
+            q = {k: float(ref * np.exp(qq[j][g])) for g, k in enumerate(names)}
+            y = np.log(act / ref)
+            pin = float(np.mean([max(t * (y - np.log(q[k] / ref)), (t - 1) * (y - np.log(q[k] / ref))) for k, t in zip(names, lev)]))
+            below = [k for k in names if act < q[k]]
+            pos = "below q2.5" if len(below) == 9 else ("above q97.5" if not below else f"between {names[names.index(below[0]) - 1] if names.index(below[0]) else 'min'} and {below[0]}")
+            rows.append(dict(variant=nm, phase=ph, target=(("H" if side == "high" else "L") if ph == "pre" else ("HO" if side == "high" else "LO")), actual=act, median=q["q50"], miss_rs=abs(act - q["q50"]), signed_err_rs=act - q["q50"],
+                             q25=q["q25"], q75=q["q75"], q5=q["q5"], q95=q["q95"], inside50=bool(q["q25"] <= act <= q["q75"]), inside90=bool(q["q5"] <= act <= q["q95"]), position=pos, pinball_x1e4=1e4 * pin))
+    d = pd.DataFrame(rows)
+    d["base_pinball_x1e4"] = [d[(d.variant == BASE[r.phase]) & (d.target == r.target)].pinball_x1e4.iloc[0] for r in d.itertuples()]
+    d["pinball_vs_base_pct"] = 100 * (d.base_pinball_x1e4 - d.pinball_x1e4) / d.base_pinball_x1e4
+    f = OUT / f"hl2_fresh_{day.day:02d}{day.strftime('%b').lower()}.csv"
+    d.round(3).to_csv(f, index=False)
+    print(f"{day.date()}: open {O} high {Hh} low {Ll} close {float(bar['close'])} previous close {P0}   ->  {f}")
+    print(d[["variant", "target", "median", "actual", "signed_err_rs", "inside50", "inside90", "position", "pinball_x1e4", "pinball_vs_base_pct"]].round(2).to_string())
+
+
 # ----------------------------------------------------------------------------------------------- command line
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--date"); ap.add_argument("--open", type=float, default=None); ap.add_argument("--variant", default=None); ap.add_argument("--json", action="store_true"); ap.add_argument("--save", action="store_true")
+    ap.add_argument("--fresh-day", nargs="?", const="2026-10-16", default=None); ap.add_argument("--date"); ap.add_argument("--open", type=float, default=None); ap.add_argument("--variant", default=None); ap.add_argument("--json", action="store_true"); ap.add_argument("--save", action="store_true")
     ap.add_argument("--refresh-fill", action="store_true"); ap.add_argument("--fill-cache", default=None)
     ap.add_argument("--baseline-check", action="store_true"); ap.add_argument("--tables", action="store_true"); ap.add_argument("--spotcheck", action="store_true"); ap.add_argument("--sp-buckets", action="store_true"); ap.add_argument("--finalize", action="store_true"); ap.add_argument("--univariate", action="store_true"); ap.add_argument("--eval", action="store_true"); ap.add_argument("--leakage", action="store_true"); ap.add_argument("--jobs", type=int, default=4)
     a = ap.parse_args()
     if a.refresh_fill:
         return refresh_fill(cache=a.fill_cache)
+    if a.fresh_day:
+        return fresh_day(a.fresh_day)
     if a.baseline_check:
         return baseline_check()
     if a.tables:

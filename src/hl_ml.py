@@ -9,11 +9,13 @@ Usage (repo root; python3 src/hl_ml.py ...):
   --baseline-check                  rebuild the project baseline on the sessions before 16 Oct 2026 and compare with the stored results/hl_eval_*.csv (writes results/hl3_baseline_repro.csv)
   --posthoc                         POST-HOC descriptive DM of every variant on the Development window and on all 1,640 sessions (results/hl3_posthoc_allsessions.csv)
   --bins                            DESCRIPTIVE terciles reading of the menu in units of the baseline scale (results/hl3_menu_bins.csv)
+  --halfyear                        POST-HOC half-year gains of the stored out-of-sample forecasts against the baseline (results/hl3_posthoc_halfyear.csv)
   --meta                            counts, hashes and versions (results/hl3_meta.json)
   --validate-solver                 check the own L1 quantile-regression solver against scikit-learn / HiGHS
   --eval [--workers N]              full walk-forward evaluation of all variants (hours; cached in the scratch folder), writes results/hl3_*.csv/json
   --leak                            leakage test of every variant at 6 sessions (junk from the target session onward)
   --importance                      permutation importance (training windows only) and partial-dependence style readings
+  --look 2026-10-16                 single-day look (n = 1, after the adoption decision) at a finished session against the stored forecast file (results/hl3_single_day_<date>.json)
   --date 2026-10-16 [--open 3450.0] [--save]   forecast of one session from the sessions before it (importable: ml_forecast(date, open_price=None))
 No network access is used.  Sessions are NSE sessions (IST).
 """
@@ -1330,9 +1332,13 @@ def _side_out(variant: str, tn: str, ref: float, q: np.ndarray) -> dict:
     f = OUT / "hl3_eval_variants.csv"
     if f.exists():
         r = pd.read_csv(f)
-        x = r[(r.variant == variant) & (r.target == tn) & (r.window == "final")]
-        if not x.empty:
-            out.update(typical_miss_rs=round(float(x.mae_med_pct.iloc[0]) / 100 * ref, 1), half_the_time_within_rs=round(float(x.medae_med_pct.iloc[0]) / 100 * ref, 1), miss_measured_on_sessions=int(x.n.iloc[0]))
+        for w, key in (("final", ""), ("cas", "_cas_slice")):                       # same keys as hl_model.hl_forecast
+            x = r[(r.variant == variant) & (r.target == tn) & (r.window == w)]
+            if not x.empty:
+                out.update({f"typical_miss_rs{key}": round(float(x.mae_med_pct.iloc[0]) / 100 * ref, 1), f"half_the_time_within_rs{key}": round(float(x.medae_med_pct.iloc[0]) / 100 * ref, 1),
+                            f"miss_measured_on_sessions{key}": int(x.n.iloc[0])})
+                if w == "cas" and tn in ("H", "L"):
+                    out["cas_slice_tail_shares"] = {"n": int(x.n.iloc[0]), "below_q5": float(x.below_q5.iloc[0]), "above_q95": float(x.above_q95.iloc[0])}
     return out
 
 
@@ -1386,7 +1392,8 @@ def ml_forecast(date, open_price=None, workers: int = 4, inp: dict | None = None
     miss_in = [f"{c}" for c in ctx.ph["pre"]["cols"] if not np.isfinite(ctx.ph["pre"]["X"][n][ctx.ph["pre"]["cols"].index(c)])]
     out = {"date": str(date.date()), "p0": P0, "data_through": str(inp["d"].index[-1].date()), "n_sessions": n, "is_weekend": bool(date.dayofweek >= 5),
            "missing_weekdays_between_data_and_date": [str(x.date()) for x in pd.bdate_range(inp["d"].index[-1] + pd.Timedelta(days=1), date - pd.Timedelta(days=1))],
-           "sigma_R_pct": 100 * float(ctx.ph["pre"]["sig"][n]), "model": "flexible models on the feature menu (research/hl/E_quantile.md); trained on sessions before the date only; display variant = best pooled Validation+Final pinball, DESCRIPTIVE, not an adoption",
+           "sigma_R_pct": 100 * float(ctx.ph["pre"]["sig"][n]), "model_pre": "flexible models on the feature menu (research/hl/E_quantile.md); trained on sessions before the date only; display variant = best pooled Validation+Final pinball, DESCRIPTIVE, not an adoption",
+           "model_post": "same flexible models, with the official open (gap block) added; see model_pre",
            "inputs_missing_today_treated_as_no_information": miss_in}
     if open_price is not None:
         out["open"], out["gap_pct"], out["sigma_I_pct"] = float(open_price), 100 * float(np.log(open_price / P0)), 100 * float(ctx.ph["post"]["sig"][n])
@@ -1536,6 +1543,32 @@ def posthoc_all() -> pd.DataFrame:
     return df
 
 
+def posthoc_halfyear() -> pd.DataFrame:
+    """POST-HOC, descriptive (added after the Final results were seen): gain in mean pinball of the variants stored in results/hl3_oos_predictions.csv (Final window for all variants; Validation window only for BASE and the
+    stack ingredients V02, V03, V08, V09, V10) against BASE, by half-year, to show whether a gain is stable in time.  No test, no selection."""
+    _root()
+    o = pd.read_csv(OUT / "hl3_oos_predictions.csv", parse_dates=["date"])
+    qc = ["q2.5", "q5", "q10", "q25", "q50", "q75", "q90", "q95", "q97.5"]
+    per = {"2024-07..12": ("2024-07-01", "2024-12-31"), "2025-01..06": ("2025-01-01", "2025-06-30"), "2025-07..12": ("2025-07-01", "2025-12-31"), "2026-01..06": ("2026-01-01", "2026-06-30"), "2026-07..10-15": ("2026-07-01", "2026-10-15")}
+    rows = []
+    for tn in ("H", "L", "HO", "LO"):
+        b = o[(o.variant == "BASE") & (o.target == tn)].set_index("date").sort_index()
+        lb = pd.Series(pin_rows(b.y_realised.values, b[qc].values), index=b.index)
+        for v in [k for k in VARIANTS]:
+            x = o[(o.variant == v) & (o.target == tn)].set_index("date").sort_index()
+            if x.empty:
+                continue
+            lv = pd.Series(pin_rows(x.y_realised.values, x[qc].values), index=x.index)
+            ix = lv.index.intersection(lb.index)
+            for lab, (a, c) in per.items():
+                m = (ix >= a) & (ix <= c)
+                if m.sum() >= 20:
+                    rows.append(dict(variant=v, name=VARIANTS[v][0], target=tn, period=lab, n=int(m.sum()), gain_pct=100 * (1 - lv[ix][m].mean() / lb[ix][m].mean())))
+    df = pd.DataFrame(rows)
+    df.to_csv(OUT / "hl3_posthoc_halfyear.csv", index=False)
+    return df
+
+
 # ----------------------------------------------------------------------------------------------- DESCRIPTIVE: model-free plain-words reading of the menu (terciles; list fixed here)
 BIN_FEATURES_PRE = ("idx_vix_ln", "idx_vix_chg", "idx_vix_rvspread", "us_usvix_ln", "us_sp_ret", "sig_ln", "own_rng1", "own_gk10", "own_ret5", "own_dhi250", "own_cloc", "flow_turn_z", "flow_deliv_z",
                     "brd_adv", "peer_rng", "peer_ret", "idx_nifty_rng", "iv_rel")
@@ -1577,6 +1610,42 @@ def menu_bins() -> pd.DataFrame:
     df.to_csv(OUT / "hl3_menu_bins.csv", index=False)
     return df
 
+# ----------------------------------------------------------------------------------------------- SINGLE-DAY LOOK (n = 1, after the adoption decision; nothing is refitted, tuned or selected on it)
+def single_day_look(date: str = "2026-10-16") -> dict:
+    """Compares the stored forecast of one session (results/hl3_<date>.json, made from the sessions before it and the official open) with the official bar of that session.  n = 1: an illustration, NOT evidence
+    for or against any model; it is run only after the adoption table was written and changes nothing in it.  Writes results/hl3_single_day_<date>.json."""
+    _root()
+    dt = pd.Timestamp(date)
+    f = json.loads((OUT / f"hl3_{date}.json").read_text())
+    bar = H.load_ohlc(before=dt + pd.Timedelta(days=1))
+    if bar.index[-1] != dt:
+        raise ValueError(f"no official bar for {date} in the data files")
+    r = bar.iloc[-1]
+    hi, lo, op = float(r["high"]), float(r["low"]), float(r["open"])
+    P0 = float(f["p0"])
+    keys = list(PCT_KEYS)
+
+    def score(qd: dict, real: float, ref: float):
+        q = np.array([[np.log(qd[k] / ref) for k in keys]])
+        y = np.array([np.log(real / ref)])
+        pb = 1e4 * float(pin_rows(y, np.sort(q, axis=1)).mean())
+        return dict(median=qd["q50"], miss_median_rs=round(real - qd["q50"], 1), inside_50=bool(qd["q25"] <= real <= qd["q75"]), inside_90=bool(qd["q5"] <= real <= qd["q95"]), pinball_x1e4=round(pb, 3))
+
+    out = dict(date=date, label="SINGLE-DAY LOOK, n = 1, made after the adoption decision; not evidence for or against any model; nothing was refitted or selected on it",
+               official_bar=dict(open=op, high=hi, low=lo, close=float(r["close"])), p0=P0, forecast_file=f"results/hl3_{date}.json", rows=[])
+    for ph, key, ref in (("pre", "pre_open", P0), ("post", "post_open", float(f.get("open", op)))):
+        for k, real in (("high", hi), ("low", lo)):
+            qb = f["base"][key][k]["price_quantiles"]
+            out["rows"].append(dict(phase=ph, side=k, variant="BASE", realised=real, **score(qb, real, ref)))
+            for v in VARIANTS:
+                qv = f["variants"][v][ph][k]
+                out["rows"].append(dict(phase=ph, side=k, variant=v, realised=real, **score(qv, real, ref)))
+    (OUT / f"hl3_single_day_{date}.json").write_text(json.dumps(out, indent=1, default=_json_default))
+    df = pd.DataFrame(out["rows"])
+    print(df[df.variant.isin(["BASE", "V03", "V04", "V07", "V10", "V16"])].to_string(index=False))
+    return out
+
+
 # ----------------------------------------------------------------------------------------------- command line
 def _sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -1588,10 +1657,12 @@ def main():
     ap.add_argument("--meta", action="store_true")
     ap.add_argument("--posthoc", action="store_true")
     ap.add_argument("--bins", action="store_true")
+    ap.add_argument("--halfyear", action="store_true")
     ap.add_argument("--validate-solver", action="store_true")
     ap.add_argument("--eval", action="store_true")
     ap.add_argument("--leak", action="store_true")
     ap.add_argument("--importance", action="store_true")
+    ap.add_argument("--look", help="single-day look at a finished session, e.g. 2026-10-16 (needs results/hl3_<date>.json)")
     ap.add_argument("--date")
     ap.add_argument("--open", type=float)
     ap.add_argument("--save", action="store_true")
@@ -1608,6 +1679,8 @@ def main():
         posthoc_all()
     if a.bins:
         menu_bins()
+    if a.halfyear:
+        posthoc_halfyear()
     if a.validate_solver:
         df = validate_solver()
         df.to_csv(OUT / "hl3_solver_validation.csv", index=False)
@@ -1625,8 +1698,16 @@ def main():
     if a.leak:
         inp = load_inputs()
         res = pickle.load(open(SCRATCH / "wf_result.pkl", "rb"))
-        lk = leak_test(inp, res["PRED"], workers=a.workers)
-        lk.to_csv(OUT / "hl3_leakage.csv", index=False)
+        lk_path = OUT / "hl3_leakage.csv"
+        parts = [pd.read_csv(lk_path)] if lk_path.exists() else []
+        done = set(parts[0].session.astype(str)) if parts else set()
+        for ds in LEAK_DATES:                       # one session at a time, saved after each one (a run can be resumed)
+            if ds in done:
+                print(f"leak test {ds}: already in {lk_path.name}", flush=True)
+                continue
+            parts.append(leak_test(inp, res["PRED"], dates=(ds,), workers=a.workers))
+            pd.concat(parts, ignore_index=True).to_csv(lk_path, index=False)
+        lk = pd.concat(parts, ignore_index=True)
         print(lk.groupby("variant").identical.all().to_string())
     if a.importance:
         inp = load_inputs()
@@ -1641,6 +1722,8 @@ def main():
         pdp = pdp_run(ctx, top)
         pdp.to_csv(OUT / "hl3_pdp.csv", index=False)
         print("importance and pdp written")
+    if a.look:
+        single_day_look(a.look)
     if a.date:
         f = ml_forecast(a.date, a.open, workers=a.workers)
         txt = json.dumps(f, indent=1, default=_json_default)
