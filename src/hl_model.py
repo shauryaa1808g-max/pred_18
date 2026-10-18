@@ -15,6 +15,7 @@ Importable: hl_forecast(date, open_price=None, p0=None) -> dict.   No network ac
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import hashlib
 import json
 from pathlib import Path
@@ -475,8 +476,15 @@ def main():
         ap.error("--date YYYY-MM-DD (or --eval)")
     o = hl_forecast(a.date, a.open, a.p0, examples=a.save and a.open is None)
     if a.save:
+        o["saved_at_ist"] = dt.datetime.now(dt.timezone(dt.timedelta(hours=5, minutes=30))).isoformat(timespec="seconds")      # when this forecast was written (used by src/readings_csv.py)
         OUT.mkdir(exist_ok=True); (OUT / f"hl_dayahead_{a.date}{'' if a.open is None else f'_open{a.open:g}'}.json").write_text(json.dumps(o, indent=1))
     print(json.dumps(o, indent=1) if a.json else words(o))
+    if a.save:
+        try:
+            import readings_csv as RC
+            RC.rebuild()                                           # the saved forecast joins results/readings/readings.csv
+        except Exception as e:                                     # noqa: BLE001
+            print(f"(readings CSV not refreshed: {type(e).__name__}: {e})")
 
 
 if __name__ == "__main__":

@@ -247,6 +247,8 @@ def build(asof: str | None = None, save: bool = True, vs: str | None = None) -> 
             f.write(json.dumps({**row, "logged_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")}) + "\n")
     if save:
         row["scored_now"] = score_logged(df_all, pd.Timestamp(now))
+        if not asof:
+            refresh_readings()
     return row
 
 
@@ -273,6 +275,15 @@ def fmt_row(r: dict) -> str:
     return head + "\n" + body + "\n" + "\n".join(x for x in foot if x)
 
 
+def refresh_readings() -> None:
+    """Rewrite results/readings/readings.csv and results/readings/by_day/<date>.csv from the logs (src/readings_csv.py); a CSV problem is printed, never hidden, and never blocks the reading."""
+    try:
+        import readings_csv as RC
+        RC.rebuild()
+    except Exception as e:                                                 # noqa: BLE001
+        print(f"(readings CSV not refreshed: {type(e).__name__}: {e})")
+
+
 # ------------------------------------------------------------------ before the open
 def pre_open() -> None:
     now = dt.datetime.now(IST)
@@ -294,6 +305,7 @@ def pre_open() -> None:
         p = s["pre"]
         t = p["lastUpdateTime"]
         st = PO.status(s, now)
+        PO.save_snapshot(s, "BSE", st, now)                    # kept (never when STALE) so the 09:00 reading is stored in results/preopen and in the readings CSV
         if st == "STALE":
             lines.append(f"NSE pre-open: no order data for today yet (the page still shows {t}). It opens 09:00; the price is fixed when order entry closes at a random moment between 09:08 and 09:10 (since 7 Sep 2026); no page at all on a holiday.")
         else:
@@ -305,6 +317,7 @@ def pre_open() -> None:
     except Exception as e:                         # noqa: BLE001
         lines.append(f"NSE pre-open could not be read ({e}).")
     print("\n".join(lines))
+    refresh_readings()
 
 
 def report() -> None:
@@ -325,7 +338,7 @@ if __name__ == "__main__":
         print(f"{len(S)} sessions; leave-one-session-out; next-hour high/low pin-point = median; typical miss in rupees (price stays = P):")
         print(t[["time", "n_sessions", "high_miss_rs", "high_stays_miss_rs", "low_miss_rs", "low_stays_miss_rs", "high_cov50", "high_cov90", "low_cov50", "low_cov90"]].to_string(index=False))
     elif a.score:
-        df_all, _ = LH.get_bars(save=True); print(f"scored {score_logged(df_all, pd.Timestamp.now(tz=IST))} new live predictions"); report()
+        df_all, _ = LH.get_bars(save=True); print(f"scored {score_logged(df_all, pd.Timestamp.now(tz=IST))} new live predictions"); report(); refresh_readings()
     elif a.report:
         report()
     elif a.pre_open:

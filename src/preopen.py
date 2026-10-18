@@ -78,6 +78,29 @@ def words(s: dict, symbol: str = "BSE", now: dt.datetime | None = None) -> str:
     return "\n".join(lines)
 
 
+def save_snapshot(s: dict, symbol: str, st: str, t_req: dt.datetime) -> None:
+    """Append one snapshot (with its status, request time and the lag between the clock and NSE's own stamp) to results/preopen/<symbol>_<date>.jsonl.  Stale pages are never saved."""
+    if st == "STALE":
+        return
+    day = dt.datetime.strptime(s["pre"]["lastUpdateTime"][:11], "%d-%b-%Y").strftime("%Y-%m-%d")
+    stamp = None
+    try: stamp = dt.datetime.strptime(s["snapshot_timestamp"], "%d-%b-%Y %H:%M:%S").replace(tzinfo=IST)
+    except Exception: pass                                                 # noqa: BLE001
+    Path("results/preopen").mkdir(parents=True, exist_ok=True)
+    with open(f"results/preopen/{symbol}_{day}.jsonl", "a") as f:
+        f.write(json.dumps({**s, "status": st, "fetched_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "request_start_ist": t_req.isoformat(timespec="seconds"),
+                            "feed_lag_s": None if stamp is None else round((t_req - stamp).total_seconds())}) + "\n")
+
+
+def rebuild_readings() -> None:
+    """Refresh results/readings/readings.csv (every reading given to the user); never lets a CSV problem hide the pre-open price."""
+    try:
+        import readings_csv as RC
+        RC.rebuild()
+    except Exception as e:                                                 # noqa: BLE001
+        print(f"(readings CSV not refreshed: {type(e).__name__}: {e})")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(); ap.add_argument("--symbol", default="BSE"); ap.add_argument("--nosave", action="store_true")
     ap.add_argument("--wait-final", type=int, default=0, metavar="SECONDS", help="poll every ~15 s until FINAL/STALE/NO_PRICE or SECONDS have passed")
@@ -92,14 +115,8 @@ def main() -> None:
     print(words(s, a.symbol, t_req))
     if a.nosave or st == "STALE":
         return
-    day = dt.datetime.strptime(s["pre"]["lastUpdateTime"][:11], "%d-%b-%Y").strftime("%Y-%m-%d")
-    stamp = None
-    try: stamp = dt.datetime.strptime(s["snapshot_timestamp"], "%d-%b-%Y %H:%M:%S").replace(tzinfo=IST)
-    except Exception: pass                                                 # noqa: BLE001
-    Path("results/preopen").mkdir(parents=True, exist_ok=True)
-    with open(f"results/preopen/{a.symbol}_{day}.jsonl", "a") as f:
-        f.write(json.dumps({**s, "status": st, "fetched_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "request_start_ist": t_req.isoformat(timespec="seconds"),
-                            "feed_lag_s": None if stamp is None else round((t_req - stamp).total_seconds())}) + "\n")
+    save_snapshot(s, a.symbol, st, t_req)
+    rebuild_readings()
 
 
 if __name__ == "__main__":
