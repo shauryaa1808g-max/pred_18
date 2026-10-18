@@ -94,7 +94,8 @@ def nse_json(url: str, tries: int = 3):
             return code, body, json.loads(body)
         except Exception as e:                                                                  # noqa: BLE001
             last = f"HTTP {code}: {e}"
-            nse_warm(); time.sleep(2 + 2 * k)
+            if k < tries - 1:                                                                   # no pointless sleep after the last try
+                nse_warm(); time.sleep(2 + 2 * k)
     return 0, b"", {"error": last}
 
 
@@ -121,22 +122,85 @@ def snap_market(out: Path) -> None:
         time.sleep(1.5)
 
 
-def snap_preopen(out: Path, keep_all: bool = False) -> None:
-    """NSE pre-open book (unofficial API, same endpoint as src/preopen.py).  Keeps BSE and the peer rows with the full price ladder, plus market totals; also logs marketStatus."""
-    nse_warm()
+def preopen_summary(j: dict) -> dict:
+    """Market-wide facts from the FULL list (cheap, and the random close shows up as the cluster of update stamps): rows, rows with a final price, earliest/latest stamp."""
+    pm = [r["detail"]["preOpenMarket"] for r in j["data"]]
+    st = sorted(p.get("lastUpdateTime", "")[-8:] for p in pm if p.get("lastUpdateTime"))
+    return {"n_rows": len(pm), "n_final": sum(1 for p in pm if float(p.get("finalPrice") or 0) > 0), "stamp_min": st[0] if st else None, "stamp_max": st[-1] if st else None}
+
+
+def snap_preopen(out: Path, keep_all: bool = False, warm: bool = True, with_status: bool = True, tries: int = 3):
+    """NSE pre-open book (unofficial API, same endpoint as src/preopen.py).  Keeps BSE and the peer rows with the full price ladder, plus market totals; also logs marketStatus.
+    Returns the exchange-side timestamp of the snapshot (or None when nothing usable came back; a failure line is then logged so gaps are visible)."""
+    if warm:
+        nse_warm()
     url = "https://www.nseindia.com/api/market-data-pre-open?key=ALL"
-    code, body, j = nse_json(url)
+    t0 = now_ist()
+    code, body, j = nse_json(url, tries=tries)
+    t1 = now_ist()
     if not isinstance(j, dict) or "data" not in j:
-        print("preopen: no data", str(j)[:200]); return
+        print("preopen: no data", str(j)[:200])
+        log_line(out, "preopen", url, code, body, {"error": str(j)[:300], "req_start_ist": t0.strftime("%H:%M:%S.%f")[:-3], "req_end_ist": t1.strftime("%H:%M:%S.%f")[:-3], "rows": []})
+        return None
     rows = [r for r in j["data"] if keep_all or r["metadata"]["symbol"] in PEERS]
     payload = {"timestamp": j.get("timestamp"), "advances": j.get("advances"), "declines": j.get("declines"), "unchanged": j.get("unchanged"), "totalTradedValue": j.get("totalTradedValue"),
-               "totalTradedVolume": j.get("totalTradedVolume"), "rows": rows}
+               "totalTradedVolume": j.get("totalTradedVolume"), "req_start_ist": t0.strftime("%H:%M:%S.%f")[:-3], "req_end_ist": t1.strftime("%H:%M:%S.%f")[:-3],
+               "summary": preopen_summary(j), "rows": rows}
     p = log_line(out, "preopen", url, code, body, payload)
     b = next((r for r in rows if r["metadata"]["symbol"] == "BSE"), None)
-    print(f"preopen {j.get('timestamp')}: BSE IEP {b['detail']['preOpenMarket']['IEP'] if b else 'n/a'} -> {p}")
-    url2 = "https://www.nseindia.com/api/marketStatus"
-    code2, body2, j2 = nse_json(url2)
-    log_line(out, "marketStatus", url2, code2, body2, j2)
+    pm = b["detail"]["preOpenMarket"] if b else {}
+    print(f"preopen {j.get('timestamp')} (fetched {t1:%H:%M:%S}): BSE IEP {pm.get('IEP', 'n/a')} finalPrice {pm.get('finalPrice', 'n/a')} stamp {str(pm.get('lastUpdateTime', ''))[-8:]} -> {p}")
+    if with_status:
+        url2 = "https://www.nseindia.com/api/marketStatus"
+        code2, body2, j2 = nse_json(url2, tries=tries)
+        log_line(out, "marketStatus", url2, code2, body2, j2)
+    return j.get("timestamp")
+
+
+def _ist_at(hms: str) -> dt.datetime:
+    h, m, s = (int(x) for x in (hms.split(":") + ["0", "0"])[:3])
+    return now_ist().replace(hour=h, minute=m, second=s, microsecond=0)
+
+
+def _wait_to_next_grid_point(t: dt.datetime) -> float:
+    """Seconds to the next grid point: grid = every 60 s (:00), every 30 s (:00/:30) while the random close and the final price can appear (09:07:30 to 09:11:30).  No drift."""
+    step = 30 if dt.time(9, 7, 0) <= t.time() < dt.time(9, 11, 30) else 60
+    sec = t.hour * 3600 + t.minute * 60 + t.second + t.microsecond / 1e6
+    return (int(sec // step) + 1) * step - sec
+
+
+def snap_preopen_loop(out: Path, start_at: str, until: str, keep_all: bool = False, allow_stale: bool = False) -> int:
+    """ONE scheduler job covers the whole pre-open, so a late start of the job does not move the snapshots.
+    Warm up once; GIFT Nifty / index levels once if the job starts well before start_at; wait for start_at; then snapshot on a fixed grid (every 60 s, every 30 s from 09:07:30 to 09:11:30,
+    the window in which the random close and the final price fall; 19 snapshots in all for 09:00:00 to 09:13:00) until `until` (a job that starts after `until` takes one snapshot and stops).  marketStatus only on the first and last snapshot.
+    Holiday / weekend guard: if the exchange stamp of a snapshot taken after 09:02 is not today, stop (exit code 3).  Each snapshot costs 1 request of about 2 MB (peers kept, rest summarised)."""
+    nse_warm()
+    t_start, t_end = _ist_at(start_at), _ist_at(until)
+    if now_ist() < t_start - dt.timedelta(seconds=45):
+        snap_market(out)
+    while now_ist() < t_start:
+        time.sleep(min(5.0, max(0.2, (t_start - now_ist()).total_seconds())))
+    n, last_ts = 0, None
+    while True:
+        t = now_ist()
+        if n > 0 and t > t_end + dt.timedelta(seconds=1):
+            break
+        last = t >= t_end - dt.timedelta(seconds=45)
+        try:
+            ts = snap_preopen(out, keep_all, warm=False, with_status=(n == 0 or last), tries=2)
+        except Exception as e:                                                                  # noqa: BLE001  (one bad answer must not end the loop)
+            print("preopen: iteration failed:", repr(e)); ts = None
+        n += 1
+        t = now_ist()
+        if ts and t.time() >= dt.time(9, 2) and not allow_stale and ts[:11] != t.strftime("%d-%b-%Y"):
+            print(f"preopen: exchange stamp {ts} is not today ({t:%d-%b-%Y}): holiday or no session; stopping after {n} snapshot(s)")
+            return 3
+        wait = _wait_to_next_grid_point(t)
+        if t + dt.timedelta(seconds=wait) > t_end + dt.timedelta(seconds=1):
+            break
+        time.sleep(wait)
+    print(f"preopen loop finished: {n} snapshot(s)")
+    return 0
 
 
 def snap_chain(out: Path) -> None:
@@ -415,11 +479,16 @@ if __name__ == "__main__":
     ap.add_argument("--from", dest="frm", default="2022-01-03"); ap.add_argument("--to", default=CUTOFF); ap.add_argument("--last", type=int, default=0, help="participant: last N sessions up to --to")
     ap.add_argument("--symbol", default="BSE", choices=list(UPSTOX_KEYS)); ap.add_argument("--interval", type=int, default=15); ap.add_argument("--pause", type=float, default=3.0)
     ap.add_argument("--csv", default=None); ap.add_argument("--meta", default=None)
+    ap.add_argument("--loop", action="store_true", help="snap-preopen: run the whole pre-open in this one job (see snap_preopen_loop)")
+    ap.add_argument("--start-at", default="09:00:00", help="--loop: IST time of the first snapshot"); ap.add_argument("--until", default="09:13:00", help="--loop: IST time of the last snapshot")
+    ap.add_argument("--allow-stale", action="store_true", help="--loop: do not stop when the exchange stamp is not today (testing)")
     a = ap.parse_args()
     out = Path(a.out)
     if a.to > CUTOFF and a.cmd in ("upstox", "upstox-index", "participant"):
         raise SystemExit(f"--to {a.to} is after the study cutoff {CUTOFF}: refused (this module never writes later data into results files)")
     if a.cmd == "snap-preopen":
+        if a.loop:
+            raise SystemExit(snap_preopen_loop(out, a.start_at, a.until, a.keep_all, a.allow_stale))
         snap_preopen(out, a.keep_all)
     elif a.cmd == "snap-market":
         snap_market(out)

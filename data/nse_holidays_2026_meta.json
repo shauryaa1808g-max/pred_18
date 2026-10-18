@@ -1,0 +1,6 @@
+{
+ "source": "https://www.nseindia.com/api/holiday-master?type=trading (key CM = cash market)",
+ "retrieved_utc": "2026-10-18T14:43:01+00:00",
+ "payload_sha256": "933cf5dc6dd4efe3b8db8ce6ecd6ecb2582929f5e0b4faffdb88e11cf4efdfbe",
+ "note": "NSE trading holidays 2026 for the cash market. 'Diwali Laxmi Pujan*' (Sun 8 Nov) has a special evening Muhurat session. Verified against the F3 checker's fetch of 18 Oct 2026."
+}

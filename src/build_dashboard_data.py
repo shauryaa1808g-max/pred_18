@@ -159,11 +159,11 @@ import glob as _g, json as _j
 rows = []
 for f in sorted(_g.glob("results/preopen/BSE_*.jsonl")):
     snaps = [_j.loads(l) for l in _P(f).read_text().splitlines() if l.strip()]
-    fin = [z for z in snaps if z["pre"]["lastUpdateTime"][-8:] >= "09:08:00"]
+    fin = [z for z in snaps if float(z["pre"].get("finalPrice") or 0) > 0 and float(z["pre"].get("finalQuantity") or 0) > 0]   # FINAL = NSE filled finalPrice (never by the clock)
     if not fin: continue
     z = fin[-1]; day = pd.to_datetime(z["pre"]["lastUpdateTime"][:11]).strftime("%Y-%m-%d")
     off = float(e.loc[day, "open"]) if extra.exists() and pd.Timestamp(day) in e.index else None
-    rows.append({"date": day, "preopen_price": float(z["pre"]["IEP"]), "previous_close": float(z["pre"]["prevClose"]), "buy_qty": int(z["pre"]["totalBuyQuantity"]), "sell_qty": int(z["pre"]["totalSellQuantity"]),
+    rows.append({"date": day, "preopen_price": float(z["pre"]["finalPrice"]), "previous_close": float(z["pre"]["prevClose"]), "buy_qty": int(z["pre"]["totalBuyQuantity"]), "sell_qty": int(z["pre"]["totalSellQuantity"]),
                  "read_at_ist": z["pre"]["lastUpdateTime"][-8:], "official_open": off, "miss_rs": None if off is None else round(off - float(z["pre"]["IEP"]), 2)})
 rows = rows[::-1]
 dump("preopen", rows if rows else [{"date": "none yet", "preopen_price": None, "previous_close": None, "buy_qty": None, "sell_qty": None, "read_at_ist": None, "official_open": None, "miss_rs": None}])

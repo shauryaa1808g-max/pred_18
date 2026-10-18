@@ -90,7 +90,8 @@ def issue(target: pd.Timestamp, dry: bool = False, late: bool = False, force_gap
     if not late and not dry and now >= dt.datetime.combine(target.date(), dt.time(9, 0), tzinfo=IST):
         raise SystemExit(f"it is {now:%H:%M} IST on or after the pre-open of {target.date()}: an entry made now is not a pre-open entry (pass --late to record it as late)")
     ensure_bars(); d = load_bse_ext()
-    missing = [x for x in pd.bdate_range(d.index[-1] + pd.Timedelta(days=1), target - pd.Timedelta(days=1))]
+    hol = set(pd.read_csv("data/nse_holidays_2026.csv").date) if Path("data/nse_holidays_2026.csv").exists() else set()      # NSE cash-market holidays (api/holiday-master): a weekday on that list is not a missing file
+    missing = [x for x in pd.bdate_range(d.index[-1] + pd.Timedelta(days=1), target - pd.Timedelta(days=1)) if str(x.date()) not in hol]
     if missing and not force_gap:
         raise SystemExit(f"no official bar for weekday(s) {[str(x.date()) for x in missing]} between the last bar and the target: a holiday (then pass --force-gap) or a missing file (then fix the data first)")
     if d.index[-1] >= target:

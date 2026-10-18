@@ -293,11 +293,13 @@ def pre_open() -> None:
         s = PO.fetch("BSE")
         p = s["pre"]
         t = p["lastUpdateTime"]
-        final = t[-8:] >= "09:08:00" and float(p.get("finalPrice") or 0) > 0
-        if t[:11] != now.strftime("%d-%b-%Y"):
-            lines.append(f"NSE pre-open: no order data for today yet (the page still shows {t}). Opens 09:00; final at 09:08.")
+        st = PO.status(s, now)
+        if st == "STALE":
+            lines.append(f"NSE pre-open: no order data for today yet (the page still shows {t}). It opens 09:00; the price is fixed when order entry closes at a random moment between 09:08 and 09:10 (since 7 Sep 2026); no page at all on a holiday.")
         else:
-            lines.append(f"NSE pre-open price at {t[-8:]}: Rs {float(p['IEP']):,.1f} ({'FINAL = the official opening price' if final else 'INDICATIVE: can still change until 09:08'}); buy orders {int(p['totalBuyQuantity']):,} vs sell orders {int(p['totalSellQuantity']):,} (shares).")
+            lbl = {"FINAL": "FINAL = the official opening price", "NO_PRICE": "NOT DISCOVERED: the open will be the first trade"}.get(st, "INDICATIVE: can still change until NSE closes order entry, between 09:08 and 09:10")
+            px = float(p["finalPrice"]) if st == "FINAL" else float(p["IEP"])
+            lines.append(f"NSE pre-open price at {t[-8:]}: Rs {px:,.1f} ({lbl}); buy orders {int(p['totalBuyQuantity']):,} vs sell orders {int(p['totalSellQuantity']):,} (shares).")
     except SystemExit as e:                        # noqa: BLE001
         lines.append(f"NSE pre-open could not be read ({e}).")
     except Exception as e:                         # noqa: BLE001
