@@ -1,2 +1,3 @@
 date,open,close,prev_close,open_median,close_median,open_miss_rs,close_miss_rs,open_miss_unchanged_rs,close_miss_unchanged_rs,open_in50,open_in90,close_in50,close_in90,lean_close,close_return_pct,lean_hit,open_to_close_pct,PT1_net_pct,PT1_side,PT2_net_pct,PT2_side,preopen_price,preopen_miss_rs
 2026-10-16,3450.0,3363.0,3428.0,3428.0,3428.0,22.0,-65.0,22.0,-65.0,False,True,False,True,up,-1.914356797740083,False,-2.554079828513587,2.4217391304347857,short,,none,3450.0,0.0
+2026-10-19,3363.0,3336.0,3363.0,3363.0,3363.0,0.0,-27.0,0.0,-27.0,True,True,True,True,down,-0.8060948261632238,True,-0.8060948261632238,0.702854594112401,short,,none,3363.0,0.0
