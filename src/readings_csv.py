@@ -73,13 +73,16 @@ def _rows_open_range() -> list[dict]:
 
 def _rows_nse() -> list[dict]:
     import preopen as PO
-    out = []
+    out, seen = [], set()
     for f in sorted(glob.glob("results/preopen/BSE_*.jsonl")):
         for l in Path(f).read_text().splitlines():
             if not l.strip():
                 continue
             s = json.loads(l); p = s["pre"]; t = p["lastUpdateTime"]
             day = dt.datetime.strptime(t[:11], "%d-%b-%Y").strftime("%Y-%m-%d")
+            if (day, t) in seen:                                               # the same NSE snapshot read twice (09:09 job and the table tool) is one reading
+                continue
+            seen.add((day, t))
             try:
                 now = dt.datetime.fromisoformat(s["fetched_utc"]).astimezone(IST)
             except Exception:                                                  # noqa: BLE001
