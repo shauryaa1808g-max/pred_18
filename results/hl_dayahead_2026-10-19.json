@@ -1,0 +1,495 @@
+{
+ "date": "2026-10-19",
+ "p0": 3363.0,
+ "data_through": "2026-10-16",
+ "n_sessions": 2391,
+ "missing_weekdays_between_data_and_date": [],
+ "is_weekend": false,
+ "data_sha256": {
+  "data/processed/bse_daily.csv": "e7939803bac1621419c3fc9d65df7829921a561ccb8d4d9e0f6b6196135eb627",
+  "data/processed/bse_daily_extra.csv": "c6a5cb439b27a02ae81f4533542856534c5150329527f208a547b09914285b2a"
+ },
+ "model_pre": "S6 sigma (GARCH(1,1)-t x HAR on gap^2+Garman-Klass) of the close-to-close return x trailing-500 standardised (Hp, Lp) residuals; fitted with sessions through 2026-10-16 only",
+ "sigma_R_pct": 2.5081735137642887,
+ "pre_open": {
+  "high": {
+   "price_quantiles": {
+    "q5": 3356.08,
+    "q10": 3366.52,
+    "q25": 3384.61,
+    "q50": 3410.27,
+    "q75": 3447.91,
+    "q90": 3488.33,
+    "q95": 3526.66,
+    "q2.5": 3344.13,
+    "q97.5": 3546.92
+   },
+   "pct_of_reference": {
+    "q5": -0.21,
+    "q10": 0.1,
+    "q25": 0.64,
+    "q50": 1.41,
+    "q75": 2.52,
+    "q90": 3.73,
+    "q95": 4.87
+   },
+   "band_width_rs": {
+    "50%": 63.3,
+    "90%": 170.6
+   },
+   "typical_miss_rs": 41.9,
+   "half_the_time_within_rs": 32.9,
+   "miss_measured_on_sessions": 320,
+   "typical_miss_rs_cas_slice": 42.9,
+   "half_the_time_within_rs_cas_slice": 38.6,
+   "miss_measured_on_sessions_cas_slice": 52,
+   "cas_slice_tail_shares": {
+    "n": 52,
+    "below_q5": 0.1538461538461538,
+    "above_q95": 0.0
+   }
+  },
+  "low": {
+   "price_quantiles": {
+    "q5": 3202.16,
+    "q10": 3237.34,
+    "q25": 3285.44,
+    "q50": 3324.42,
+    "q75": 3353.5,
+    "q90": 3375.51,
+    "q95": 3385.08,
+    "q2.5": 3170.45,
+    "q97.5": 3401.76
+   },
+   "pct_of_reference": {
+    "q5": -4.78,
+    "q10": -3.74,
+    "q25": -2.31,
+    "q50": -1.15,
+    "q75": -0.28,
+    "q90": 0.37,
+    "q95": 0.66
+   },
+   "band_width_rs": {
+    "50%": 68.1,
+    "90%": 182.9
+   },
+   "typical_miss_rs": 46.8,
+   "half_the_time_within_rs": 31.6,
+   "miss_measured_on_sessions": 320,
+   "typical_miss_rs_cas_slice": 47.3,
+   "half_the_time_within_rs_cas_slice": 37.5,
+   "miss_measured_on_sessions_cas_slice": 52,
+   "cas_slice_tail_shares": {
+    "n": 52,
+    "below_q5": 0.0576923076923076,
+    "above_q95": 0.0576923076923076
+   }
+  },
+  "touch_prob": {
+   "high >= P0+0.5%": 0.788,
+   "high >= P0+1%": 0.612,
+   "high >= P0+2%": 0.366,
+   "high >= P0+3%": 0.188,
+   "low <= P0-0.5%": 0.684,
+   "low <= P0-1%": 0.526,
+   "low <= P0-2%": 0.292,
+   "low <= P0-3%": 0.174
+  }
+ },
+ "model_post": "S6 sigma of the open-to-close return x trailing-500 standardised (HO, LO) residuals (HO >= 0, LO <= 0 by construction); the open sets the reference level only; fitted with sessions through 2026-10-16 only",
+ "sigma_I_pct": 2.2975269506737543,
+ "post_open_examples": {
+  "open -2% vs previous close": {
+   "open": 3295.74,
+   "gap_pct": -2.0202707317519466,
+   "high": {
+    "price_quantiles": {
+     "q5": 3296.69,
+     "q10": 3299.97,
+     "q25": 3313.0,
+     "q50": 3333.76,
+     "q75": 3370.54,
+     "q90": 3407.26,
+     "q95": 3435.35,
+     "q2.5": 3295.74,
+     "q97.5": 3458.78
+    },
+    "pct_of_reference": {
+     "q5": 0.03,
+     "q10": 0.13,
+     "q25": 0.52,
+     "q50": 1.15,
+     "q75": 2.27,
+     "q90": 3.38,
+     "q95": 4.24
+    },
+    "band_width_rs": {
+     "50%": 57.5,
+     "90%": 138.7
+    },
+    "typical_miss_rs": 33.5,
+    "half_the_time_within_rs": 28.0,
+    "miss_measured_on_sessions": 320,
+    "typical_miss_rs_cas_slice": 33.8,
+    "half_the_time_within_rs_cas_slice": 32.4,
+    "miss_measured_on_sessions_cas_slice": 52
+   },
+   "low": {
+    "price_quantiles": {
+     "q5": 3141.62,
+     "q10": 3177.08,
+     "q25": 3219.67,
+     "q50": 3255.35,
+     "q75": 3275.14,
+     "q90": 3288.79,
+     "q95": 3292.88,
+     "q2.5": 3116.3,
+     "q97.5": 3295.23
+    },
+    "pct_of_reference": {
+     "q5": -4.68,
+     "q10": -3.6,
+     "q25": -2.31,
+     "q50": -1.23,
+     "q75": -0.63,
+     "q90": -0.21,
+     "q95": -0.09
+    },
+    "band_width_rs": {
+     "50%": 55.5,
+     "90%": 151.3
+    },
+    "typical_miss_rs": 36.0,
+    "half_the_time_within_rs": 25.6,
+    "miss_measured_on_sessions": 320,
+    "typical_miss_rs_cas_slice": 36.4,
+    "half_the_time_within_rs_cas_slice": 28.0,
+    "miss_measured_on_sessions_cas_slice": 52
+   },
+   "touch_prob": {
+    "high >= open+0.5%": 0.754,
+    "high >= open+1%": 0.55,
+    "high >= open+2%": 0.298,
+    "high >= open+3%": 0.148,
+    "low <= open-0.5%": 0.788,
+    "low <= open-1%": 0.578,
+    "low <= open-2%": 0.294,
+    "low <= open-3%": 0.158
+   }
+  },
+  "open -1% vs previous close": {
+   "open": 3329.37,
+   "gap_pct": -1.005033585350145,
+   "high": {
+    "price_quantiles": {
+     "q5": 3330.32,
+     "q10": 3333.64,
+     "q25": 3346.8,
+     "q50": 3367.77,
+     "q75": 3404.94,
+     "q90": 3442.03,
+     "q95": 3470.4,
+     "q2.5": 3329.37,
+     "q97.5": 3494.07
+    },
+    "pct_of_reference": {
+     "q5": 0.03,
+     "q10": 0.13,
+     "q25": 0.52,
+     "q50": 1.15,
+     "q75": 2.27,
+     "q90": 3.38,
+     "q95": 4.24
+    },
+    "band_width_rs": {
+     "50%": 58.1,
+     "90%": 140.1
+    },
+    "typical_miss_rs": 33.8,
+    "half_the_time_within_rs": 28.3,
+    "miss_measured_on_sessions": 320,
+    "typical_miss_rs_cas_slice": 34.2,
+    "half_the_time_within_rs_cas_slice": 32.8,
+    "miss_measured_on_sessions_cas_slice": 52
+   },
+   "low": {
+    "price_quantiles": {
+     "q5": 3173.67,
+     "q10": 3209.5,
+     "q25": 3252.53,
+     "q50": 3288.57,
+     "q75": 3308.56,
+     "q90": 3322.35,
+     "q95": 3326.49,
+     "q2.5": 3148.1,
+     "q97.5": 3328.85
+    },
+    "pct_of_reference": {
+     "q5": -4.68,
+     "q10": -3.6,
+     "q25": -2.31,
+     "q50": -1.23,
+     "q75": -0.63,
+     "q90": -0.21,
+     "q95": -0.09
+    },
+    "band_width_rs": {
+     "50%": 56.0,
+     "90%": 152.8
+    },
+    "typical_miss_rs": 36.3,
+    "half_the_time_within_rs": 25.9,
+    "miss_measured_on_sessions": 320,
+    "typical_miss_rs_cas_slice": 36.8,
+    "half_the_time_within_rs_cas_slice": 28.3,
+    "miss_measured_on_sessions_cas_slice": 52
+   },
+   "touch_prob": {
+    "high >= open+0.5%": 0.754,
+    "high >= open+1%": 0.55,
+    "high >= open+2%": 0.298,
+    "high >= open+3%": 0.148,
+    "low <= open-0.5%": 0.788,
+    "low <= open-1%": 0.578,
+    "low <= open-2%": 0.294,
+    "low <= open-3%": 0.158
+   }
+  },
+  "open +0% vs previous close": {
+   "open": 3363.0,
+   "gap_pct": 0.0,
+   "high": {
+    "price_quantiles": {
+     "q5": 3363.96,
+     "q10": 3367.31,
+     "q25": 3380.61,
+     "q50": 3401.79,
+     "q75": 3439.33,
+     "q90": 3476.79,
+     "q95": 3505.46,
+     "q2.5": 3363.0,
+     "q97.5": 3529.37
+    },
+    "pct_of_reference": {
+     "q5": 0.03,
+     "q10": 0.13,
+     "q25": 0.52,
+     "q50": 1.15,
+     "q75": 2.27,
+     "q90": 3.38,
+     "q95": 4.24
+    },
+    "band_width_rs": {
+     "50%": 58.7,
+     "90%": 141.5
+    },
+    "typical_miss_rs": 34.1,
+    "half_the_time_within_rs": 28.6,
+    "miss_measured_on_sessions": 320,
+    "typical_miss_rs_cas_slice": 34.5,
+    "half_the_time_within_rs_cas_slice": 33.1,
+    "miss_measured_on_sessions_cas_slice": 52
+   },
+   "low": {
+    "price_quantiles": {
+     "q5": 3205.73,
+     "q10": 3241.92,
+     "q25": 3285.38,
+     "q50": 3321.78,
+     "q75": 3341.98,
+     "q90": 3355.91,
+     "q95": 3360.09,
+     "q2.5": 3179.9,
+     "q97.5": 3362.48
+    },
+    "pct_of_reference": {
+     "q5": -4.68,
+     "q10": -3.6,
+     "q25": -2.31,
+     "q50": -1.23,
+     "q75": -0.63,
+     "q90": -0.21,
+     "q95": -0.09
+    },
+    "band_width_rs": {
+     "50%": 56.6,
+     "90%": 154.4
+    },
+    "typical_miss_rs": 36.7,
+    "half_the_time_within_rs": 26.1,
+    "miss_measured_on_sessions": 320,
+    "typical_miss_rs_cas_slice": 37.1,
+    "half_the_time_within_rs_cas_slice": 28.6,
+    "miss_measured_on_sessions_cas_slice": 52
+   },
+   "touch_prob": {
+    "high >= open+0.5%": 0.754,
+    "high >= open+1%": 0.55,
+    "high >= open+2%": 0.298,
+    "high >= open+3%": 0.148,
+    "low <= open-0.5%": 0.788,
+    "low <= open-1%": 0.578,
+    "low <= open-2%": 0.294,
+    "low <= open-3%": 0.158
+   }
+  },
+  "open +1% vs previous close": {
+   "open": 3396.63,
+   "gap_pct": 0.9950330853168092,
+   "high": {
+    "price_quantiles": {
+     "q5": 3397.6,
+     "q10": 3400.99,
+     "q25": 3414.42,
+     "q50": 3435.81,
+     "q75": 3473.72,
+     "q90": 3511.56,
+     "q95": 3540.51,
+     "q2.5": 3396.63,
+     "q97.5": 3564.66
+    },
+    "pct_of_reference": {
+     "q5": 0.03,
+     "q10": 0.13,
+     "q25": 0.52,
+     "q50": 1.15,
+     "q75": 2.27,
+     "q90": 3.38,
+     "q95": 4.24
+    },
+    "band_width_rs": {
+     "50%": 59.3,
+     "90%": 142.9
+    },
+    "typical_miss_rs": 34.5,
+    "half_the_time_within_rs": 28.9,
+    "miss_measured_on_sessions": 320,
+    "typical_miss_rs_cas_slice": 34.9,
+    "half_the_time_within_rs_cas_slice": 33.4,
+    "miss_measured_on_sessions_cas_slice": 52
+   },
+   "low": {
+    "price_quantiles": {
+     "q5": 3237.79,
+     "q10": 3274.34,
+     "q25": 3318.24,
+     "q50": 3355.0,
+     "q75": 3375.4,
+     "q90": 3389.47,
+     "q95": 3393.69,
+     "q2.5": 3211.7,
+     "q97.5": 3396.1
+    },
+    "pct_of_reference": {
+     "q5": -4.68,
+     "q10": -3.6,
+     "q25": -2.31,
+     "q50": -1.23,
+     "q75": -0.63,
+     "q90": -0.21,
+     "q95": -0.09
+    },
+    "band_width_rs": {
+     "50%": 57.2,
+     "90%": 155.9
+    },
+    "typical_miss_rs": 37.1,
+    "half_the_time_within_rs": 26.4,
+    "miss_measured_on_sessions": 320,
+    "typical_miss_rs_cas_slice": 37.5,
+    "half_the_time_within_rs_cas_slice": 28.9,
+    "miss_measured_on_sessions_cas_slice": 52
+   },
+   "touch_prob": {
+    "high >= open+0.5%": 0.754,
+    "high >= open+1%": 0.55,
+    "high >= open+2%": 0.298,
+    "high >= open+3%": 0.148,
+    "low <= open-0.5%": 0.788,
+    "low <= open-1%": 0.578,
+    "low <= open-2%": 0.294,
+    "low <= open-3%": 0.158
+   }
+  },
+  "open +2% vs previous close": {
+   "open": 3430.26,
+   "gap_pct": 1.980262729617973,
+   "high": {
+    "price_quantiles": {
+     "q5": 3431.24,
+     "q10": 3434.66,
+     "q25": 3448.22,
+     "q50": 3469.83,
+     "q75": 3508.12,
+     "q90": 3546.33,
+     "q95": 3575.56,
+     "q2.5": 3430.26,
+     "q97.5": 3599.95
+    },
+    "pct_of_reference": {
+     "q5": 0.03,
+     "q10": 0.13,
+     "q25": 0.52,
+     "q50": 1.15,
+     "q75": 2.27,
+     "q90": 3.38,
+     "q95": 4.24
+    },
+    "band_width_rs": {
+     "50%": 59.9,
+     "90%": 144.3
+    },
+    "typical_miss_rs": 34.8,
+    "half_the_time_within_rs": 29.2,
+    "miss_measured_on_sessions": 320,
+    "typical_miss_rs_cas_slice": 35.2,
+    "half_the_time_within_rs_cas_slice": 33.8,
+    "miss_measured_on_sessions_cas_slice": 52
+   },
+   "low": {
+    "price_quantiles": {
+     "q5": 3269.85,
+     "q10": 3306.76,
+     "q25": 3351.09,
+     "q50": 3388.22,
+     "q75": 3408.82,
+     "q90": 3423.03,
+     "q95": 3427.29,
+     "q2.5": 3243.5,
+     "q97.5": 3429.73
+    },
+    "pct_of_reference": {
+     "q5": -4.68,
+     "q10": -3.6,
+     "q25": -2.31,
+     "q50": -1.23,
+     "q75": -0.63,
+     "q90": -0.21,
+     "q95": -0.09
+    },
+    "band_width_rs": {
+     "50%": 57.7,
+     "90%": 157.4
+    },
+    "typical_miss_rs": 37.4,
+    "half_the_time_within_rs": 26.7,
+    "miss_measured_on_sessions": 320,
+    "typical_miss_rs_cas_slice": 37.9,
+    "half_the_time_within_rs_cas_slice": 29.2,
+    "miss_measured_on_sessions_cas_slice": 52
+   },
+   "touch_prob": {
+    "high >= open+0.5%": 0.754,
+    "high >= open+1%": 0.55,
+    "high >= open+2%": 0.298,
+    "high >= open+3%": 0.148,
+    "low <= open-0.5%": 0.788,
+    "low <= open-1%": 0.578,
+    "low <= open-2%": 0.294,
+    "low <= open-3%": 0.158
+   }
+  }
+ },
+ "saved_at_ist": "2026-10-19T08:38:06+05:30"
+}
