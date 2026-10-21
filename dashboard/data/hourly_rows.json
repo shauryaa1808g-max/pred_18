@@ -13,6 +13,10 @@
 "act_low": 3294.3,
 "high_error": -8.8,
 "low_error": -43.4,
+"peers_move": null,
+"bse_move": null,
+"peers_gap": null,
+"nifty_move": null,
 "status": "scored after its window ended"
 },
 {
@@ -29,6 +33,10 @@
 "act_low": 3294.3,
 "high_error": 29.0,
 "low_error": 0.5,
+"peers_move": null,
+"bse_move": null,
+"peers_gap": null,
+"nifty_move": null,
 "status": "scored after its window ended"
 },
 {
@@ -45,6 +53,10 @@
 "act_low": 3273.0,
 "high_error": -8.7,
 "low_error": -33.7,
+"peers_move": null,
+"bse_move": null,
+"peers_gap": null,
+"nifty_move": null,
 "status": "scored after its window ended"
 },
 {
@@ -61,6 +73,10 @@
 "act_low": 3266.2,
 "high_error": -5.1,
 "low_error": -24.7,
+"peers_move": null,
+"bse_move": null,
+"peers_gap": null,
+"nifty_move": null,
 "status": "scored after its window ended"
 },
 {
@@ -77,6 +93,10 @@
 "act_low": 3265.4,
 "high_error": -1.3,
 "low_error": 11.4,
+"peers_move": null,
+"bse_move": null,
+"peers_gap": null,
+"nifty_move": null,
 "status": "scored after its window ended"
 },
 {
@@ -93,6 +113,10 @@
 "act_low": 3240.5,
 "high_error": -7.2,
 "low_error": -16.3,
+"peers_move": null,
+"bse_move": null,
+"peers_gap": null,
+"nifty_move": null,
 "status": "scored after its window ended"
 },
 {
@@ -109,6 +133,10 @@
 "act_low": 3250.6,
 "high_error": 1.3,
 "low_error": 2.0,
+"peers_move": null,
+"bse_move": null,
+"peers_gap": null,
+"nifty_move": null,
 "status": "scored after its window ended"
 },
 {
@@ -125,6 +153,10 @@
 "act_low": null,
 "high_error": null,
 "low_error": null,
+"peers_move": null,
+"bse_move": null,
+"peers_gap": null,
+"nifty_move": null,
 "status": "no next-hour call (market closes)"
 }
 ]

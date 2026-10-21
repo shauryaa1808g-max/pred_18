@@ -263,9 +263,13 @@ if ent_files:
     for z in hl:
         nh = z.get("next_hour"); r = None if not len(sc) else sc[sc["asof"].astype(str) == z["asof"]]
         done = r is not None and len(r) > 0
+        pe = z.get("peers") or {}; pv = "error" not in pe and bool((pe.get("P") or {}).get("valid"))
+        pm, bm, pg = ((pe["P"]["move_pct"], pe.get("bse_move_pct"), pe.get("gap_P_pp")) if pv else (None, None, None))
+        nf = (pe.get("symbols") or {}).get("NIFTY") or {}; nm = nf.get("move_pct") if pv and nf.get("status") == "ok" else None
         rows.append({"time": z["asof"], "close_pin": z["close_pin"], "close_50_lo": z["close_50"][0], "close_50_hi": z["close_50"][1], "close_90_lo": z["close_90"][0], "close_90_hi": z["close_90"][1],
                      "window": f"{nh['window_start']}-{nh['window_end']}" if nh else "market closes", "high_pin": nh["high"]["0.5"] if nh else None, "low_pin": nh["low"]["0.5"] if nh else None,
                      "act_high": float(r.act_high.iloc[0]) if done else None, "act_low": float(r.act_low.iloc[0]) if done else None,
                      "high_error": round(float(r.act_high.iloc[0] - r.pred_high.iloc[0]), 1) if done else None, "low_error": round(float(r.act_low.iloc[0] - r.pred_low.iloc[0]), 1) if done else None,
+                     "peers_move": pm, "bse_move": bm, "peers_gap": pg, "nifty_move": nm,                       # peers column (context only; forward test H); None for rows logged before 22 Oct 2026
                      "status": ("scored after its window ended" if done else ("no next-hour call (market closes)" if not nh else "window not over or not scored yet"))})
-    dump("hourly_rows", rows if rows else [{"time": "none yet", "close_pin": None, "close_50_lo": None, "close_50_hi": None, "close_90_lo": None, "close_90_hi": None, "window": "", "high_pin": None, "low_pin": None, "act_high": None, "act_low": None, "high_error": None, "low_error": None, "status": "no live table yet"}])
+    dump("hourly_rows", rows if rows else [{"time": "none yet", "close_pin": None, "close_50_lo": None, "close_50_hi": None, "close_90_lo": None, "close_90_hi": None, "window": "", "high_pin": None, "low_pin": None, "act_high": None, "act_low": None, "high_error": None, "low_error": None, "peers_move": None, "bse_move": None, "peers_gap": None, "nifty_move": None, "status": "no live table yet"}])
