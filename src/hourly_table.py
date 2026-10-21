@@ -3,6 +3,8 @@
   time | precise close | close range at the end of the day | precise high of the next hour | precise low of the next hour |
   this hour's high vs the previous prediction of it | this hour's low vs the previous prediction of it
   plus, at 08:30 and 09:00 (before the open): the open range and the open pin-point.
+  From 22 Oct 2026 a live row has an eighth column, "peers' move today vs BSE's" (src/peers_live.py): CONTEXT ONLY, pre-registered forward test H (research/hl/H_peer_forward.md);
+  rows logged before that and replays (--asof) keep the seven columns exactly as before.
 
 Usage (repo root):
   python3 src/hourly_table.py                  # the row for right now (Yahoo 1-minute bars, unofficial); logs the predictions to results/hourly_table_log.jsonl
@@ -236,6 +238,12 @@ def build(asof: str | None = None, save: bool = True, vs: str | None = None) -> 
     row["this_hour"]["high"] = compare(prev, act, "high"); row["this_hour"]["low"] = compare(prev, act, "low")
     ev_t = eval_row()
     row["typical_miss_next_hour_rs"] = typical_miss(ev_t, tmin)
+    if not asof:                                                  # eighth column (context only; forward test H): peers' move since the previous close against BSE's own. Replays carry no peers.
+        try:
+            import peers_live as PL
+            row["peers"] = PL.snapshot(T, P, LN.prev_close_before(sdate))
+        except Exception as e:                                    # noqa: BLE001  (shown in the cell, never blocks the table)
+            row["peers"] = {"error": f"{type(e).__name__}: {e}"}
     if save and not asof:
         try:                                                      # paper ledger (src/paper_hourly.py): settle finished hours, place this row's paper orders
             import paper_hourly as PH
@@ -267,12 +275,25 @@ def fmt_row(r: dict) -> str:
     tm = r["typical_miss_next_hour_rs"]
     head = "| time | precise close | close range at the end of the day | precise high of the next hour | precise low of the next hour | this hour's high vs previous prediction | this hour's low vs previous prediction |\n|---|---|---|---|---|---|---|"
     body = f"| {r['asof']} | {r['close_pin']:,.1f} (typical miss {r['close_typical_miss_rs']:,.0f}) | half the time {r['close_50'][0]:,.0f}-{r['close_50'][1]:,.0f}; 9 in 10 {r['close_90'][0]:,.0f}-{r['close_90'][1]:,.0f} | {H} | {L} | {cell('high')} | {cell('low')} |"
+    if "peers" in r:                                              # eighth column from 22 Oct 2026 (forward test H); earlier rows and replays keep the seven-column format exactly as they were printed
+        import peers_live as PL
+        head = head.replace(" prediction |\n|---|---|---|---|---|---|---|", " prediction | peers' move today vs BSE's |\n|---|---|---|---|---|---|---|---|")
+        body += f" {PL.words(r['peers'])} |"
     foot = [f"Window of the next-hour columns: {nh['window_start']}-{nh['window_end']} IST." if nh else "", f"Typical miss of the next-hour pin-points at this time (leave-one-session-out, past sessions): high Rs {tm[0]:,.0f}, low Rs {tm[1]:,.0f}." if tm[0] is not None else "Typical miss of the next-hour pin-points: run --eval.",
             f"Day so far (Yahoo): high {r['day_high_so_far']:,.1f}, low {r['day_low_so_far']:,.1f}; this hour's actual high/low are Yahoo 1-minute figures (NSE's official ones can differ by a few rupees)."]
     pp = r.get("paper")
     if pp:
         foot.append(f"Paper ledger FAILED this time ({pp['error']})." if "error" in pp else f"Paper ledger (src/paper_hourly.py): {pp['placed']} new paper orders placed for this window, {pp['settled']} older orders settled. Backtest verdict: no rule beats doing nothing.")
     return head + "\n" + body + "\n" + "\n".join(x for x in foot if x)
+
+
+def peer_forward_update() -> None:
+    """Forward test H (peer column): rebuild results/peer_forward/dataset.csv and print the LOCKED counts line (src/peer_forward.py); a problem is printed, never hidden, and never blocks the scoring."""
+    try:
+        import peer_forward as PF
+        PF.update()
+    except Exception as e:                                                 # noqa: BLE001
+        print(f"(forward test H not updated: {type(e).__name__}: {e})")
 
 
 def refresh_readings() -> None:
@@ -338,7 +359,7 @@ if __name__ == "__main__":
         print(f"{len(S)} sessions; leave-one-session-out; next-hour high/low pin-point = median; typical miss in rupees (price stays = P):")
         print(t[["time", "n_sessions", "high_miss_rs", "high_stays_miss_rs", "low_miss_rs", "low_stays_miss_rs", "high_cov50", "high_cov90", "low_cov50", "low_cov90"]].to_string(index=False))
     elif a.score:
-        df_all, _ = LH.get_bars(save=True); print(f"scored {score_logged(df_all, pd.Timestamp.now(tz=IST))} new live predictions"); report(); refresh_readings()
+        df_all, _ = LH.get_bars(save=True); print(f"scored {score_logged(df_all, pd.Timestamp.now(tz=IST))} new live predictions"); report(); peer_forward_update(); refresh_readings()
     elif a.report:
         report()
     elif a.pre_open:

@@ -17,6 +17,7 @@ from __future__ import annotations
 import datetime as dt
 import glob
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -32,6 +33,7 @@ COLS = ["date", "time_ist", "kind", "source", "price_now",
         "close_pin", "close_50_lo", "close_50_hi", "close_90_lo", "close_90_hi", "close_typical_miss_rs",
         "window_start", "window_end", "high_pin", "high_50_lo", "high_50_hi", "high_90_lo", "high_90_hi", "low_pin", "low_50_lo", "low_50_hi", "low_90_lo", "low_90_hi",
         "typical_miss_high_rs", "typical_miss_low_rs", "day_high_so_far", "day_low_so_far",
+        "bse_move_pct", "peers_move_pct", "peers_minus_bse_pp", "nifty_move_pct", "peers_valid", "remaining_move_to_close_pct",
         "compared_with", "this_hour_from", "this_hour_to",
         "this_hour_pred_high", "this_hour_actual_high", "this_hour_high_error_rs", "this_hour_high_in50", "this_hour_high_in90",
         "this_hour_pred_low", "this_hour_actual_low", "this_hour_low_error_rs", "this_hour_low_in50", "this_hour_low_in90",
@@ -140,6 +142,13 @@ def _rows_table() -> list[dict]:
             row.update({"window_start": nh["window_start"], "window_end": nh["window_end"],
                         "high_pin": nh["high"]["0.5"], "high_50_lo": nh["high"]["0.25"], "high_50_hi": nh["high"]["0.75"], "high_90_lo": nh["high"]["0.05"], "high_90_hi": nh["high"]["0.95"],
                         "low_pin": nh["low"]["0.5"], "low_50_lo": nh["low"]["0.25"], "low_50_hi": nh["low"]["0.75"], "low_90_lo": nh["low"]["0.05"], "low_90_hi": nh["low"]["0.95"]})
+        pe = r.get("peers")                                                    # eighth column (forward test H), present from 22 Oct 2026; moves are 100 x ln(price / previous close)
+        if pe and "error" not in pe:
+            nf = (pe.get("symbols") or {}).get("NIFTY", {})
+            row.update({"bse_move_pct": pe.get("bse_move_pct"), "peers_move_pct": (pe.get("P") or {}).get("move_pct"), "peers_minus_bse_pp": pe.get("gap_P_pp"),
+                        "nifty_move_pct": nf.get("move_pct") if nf.get("status") == "ok" else "", "peers_valid": (pe.get("P") or {}).get("valid")})
+        elif pe:
+            row["peers_valid"] = False; row["note"] = ((row.get("note") or "") + " peers could not be read: " + str(pe.get("error"))).strip()
         for side in ("high", "low"):
             c = th.get(side)
             if c:
@@ -161,6 +170,8 @@ def _attach_scores(rows: list[dict]) -> None:
         o = off.get(r["date"])
         if o:
             r.update({"official_open": o["open"], "official_high": o["high"], "official_low": o["low"], "official_close": o["close"]})
+            if r["kind"] == "table" and r.get("price_now") not in ("", None):
+                r["remaining_move_to_close_pct"] = _r(100 * math.log(o["close"] / r["price_now"]), 3)       # the outcome R of forward test H: 100 x ln(official close / price now)
             if r["kind"] in ("open_range", "nse_preopen", "day_high_low_pre_open", "day_high_low_after_open", "table") and r.get("close_pin") not in ("", None):
                 r["close_error_rs"] = _r(o["close"] - r["close_pin"], 1)
                 if r.get("close_50_lo") not in ("", None):
