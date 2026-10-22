@@ -1,0 +1,2 @@
+date,asof,price_now,error,bse_move_pct,P_valid,P_move_pct,P_n_ok,S_valid,S_move_pct,S_n_ok,G_P_pp,G_S_pp,nifty_move_pct,status_ANGELONE,status_BANKNIFTY,status_CDSL,status_IEX,status_MCX,status_MOTILALOFS,status_NIFTY,official_close,R_pct,normal_session,in_primary_window,primary,eligible
+2026-10-22,09:41,3222.0,,-0.813,True,-1.277,4,True,-1.21,3,-0.464,-0.397,-0.846,ok,ok,ok,ok,ok,ok,ok,,,True,False,False,False
