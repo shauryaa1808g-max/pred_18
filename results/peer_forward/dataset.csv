@@ -1,2 +1,9 @@
 date,asof,price_now,error,bse_move_pct,P_valid,P_move_pct,P_n_ok,S_valid,S_move_pct,S_n_ok,G_P_pp,G_S_pp,nifty_move_pct,status_ANGELONE,status_BANKNIFTY,status_CDSL,status_IEX,status_MCX,status_MOTILALOFS,status_NIFTY,official_close,R_pct,normal_session,in_primary_window,primary,eligible
-2026-10-22,09:41,3222.0,,-0.813,True,-1.277,4,True,-1.21,3,-0.464,-0.397,-0.846,ok,ok,ok,ok,ok,ok,ok,,,True,False,False,False
+2026-10-22,09:41,3222.0,,-0.813,True,-1.277,4,True,-1.21,3,-0.464,-0.397,-0.846,ok,ok,ok,ok,ok,ok,ok,3265.0,1.3257,True,False,False,False
+2026-10-22,10:11,3232.1,,-0.5,True,-0.84,4,True,-0.946,3,-0.34,-0.446,-0.781,ok,ok,ok,ok,ok,ok,ok,3265.0,1.0128,True,False,False,False
+2026-10-22,11:15,3255.9,,0.234,True,-0.071,4,True,-0.241,3,-0.305,-0.475,-0.16,ok,ok,ok,ok,ok,ok,ok,3265.0,0.2791,True,True,True,True
+2026-10-22,12:05,3238.1,,-0.315,True,-0.541,4,True,-0.558,3,-0.226,-0.243,-0.841,ok,ok,ok,ok,ok,ok,ok,3265.0,0.8273,True,True,False,False
+2026-10-22,13:12,3259.5,,0.344,True,-0.069,4,True,-0.391,3,-0.413,-0.735,-0.899,ok,ok,ok,ok,ok,ok,ok,3265.0,0.1686,True,False,False,False
+2026-10-22,14:12,3250.1,,0.055,True,-0.56,4,True,-0.64,3,-0.615,-0.695,-1.161,ok,ok,ok,ok,ok,ok,ok,3265.0,0.4574,True,False,False,False
+2026-10-22,15:13,3265.2,,0.519,True,-0.239,4,True,-0.572,3,-0.758,-1.091,-1.002,ok,ok,ok,ok,ok,ok,ok,3265.0,-0.0061,True,False,False,False
+2026-10-22,15:34,3264.9,,0.51,False,,0,False,,0,,,-0.883,stale,ok,stale,stale,stale,stale,ok,3265.0,0.0031,True,False,False,False
