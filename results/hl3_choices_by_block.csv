@@ -1,0 +1,4005 @@
+variant,phase,target,block,first_session,window,config,null
+V01,pre,H,80,2026-08-19,final,1,False
+V02,pre,H,80,2026-08-19,final,2,False
+V03,pre,H,80,2026-08-19,final,3,False
+V04,pre,H,80,2026-08-19,final,2,False
+V05,pre,H,80,2026-08-19,final,2,False
+V06,pre,H,80,2026-08-19,final,3,False
+V07,pre,H,80,2026-08-19,final,2,False
+V17,pre,H,80,2026-08-19,final,3,False
+V18,pre,H,80,2026-08-19,final,2,False
+V08,pre,H,80,2026-08-19,final,"(3, 60)",False
+V09,pre,H,80,2026-08-19,final,"(3, 30)",False
+V12,pre,H,80,2026-08-19,final,2,False
+V13,pre,H,80,2026-08-19,final,"(2, 30)",False
+V01,pre,H,81,2026-09-17,final,1,False
+V02,pre,H,81,2026-09-17,final,2,False
+V03,pre,H,81,2026-09-17,final,2,False
+V04,pre,H,81,2026-09-17,final,2,False
+V05,pre,H,81,2026-09-17,final,2,False
+V06,pre,H,81,2026-09-17,final,3,False
+V07,pre,H,81,2026-09-17,final,2,False
+V17,pre,H,81,2026-09-17,final,2,False
+V18,pre,H,81,2026-09-17,final,2,False
+V08,pre,H,81,2026-09-17,final,"(3, 60)",False
+V09,pre,H,81,2026-09-17,final,"(3, 30)",False
+V12,pre,H,81,2026-09-17,final,2,False
+V13,pre,H,81,2026-09-17,final,"(2, 30)",False
+V01,pre,L,80,2026-08-19,final,1,False
+V02,pre,L,80,2026-08-19,final,3,False
+V03,pre,L,80,2026-08-19,final,3,False
+V04,pre,L,80,2026-08-19,final,3,False
+V05,pre,L,80,2026-08-19,final,3,False
+V06,pre,L,80,2026-08-19,final,2,False
+V07,pre,L,80,2026-08-19,final,3,False
+V17,pre,L,80,2026-08-19,final,3,False
+V18,pre,L,80,2026-08-19,final,3,False
+V08,pre,L,80,2026-08-19,final,"(2, 30)",False
+V09,pre,L,80,2026-08-19,final,"(3, 30)",False
+V12,pre,L,80,2026-08-19,final,2,False
+V13,pre,L,80,2026-08-19,final,"(3, 30)",False
+V01,pre,L,81,2026-09-17,final,1,False
+V02,pre,L,81,2026-09-17,final,3,False
+V03,pre,L,81,2026-09-17,final,3,False
+V04,pre,L,81,2026-09-17,final,3,False
+V05,pre,L,81,2026-09-17,final,3,False
+V06,pre,L,81,2026-09-17,final,2,False
+V07,pre,L,81,2026-09-17,final,3,False
+V17,pre,L,81,2026-09-17,final,3,False
+V18,pre,L,81,2026-09-17,final,3,False
+V08,pre,L,81,2026-09-17,final,"(2, 30)",False
+V09,pre,L,81,2026-09-17,final,"(3, 30)",False
+V12,pre,L,81,2026-09-17,final,2,False
+V13,pre,L,81,2026-09-17,final,"(3, 30)",False
+V01,post,HO,80,2026-08-19,final,1,False
+V02,post,HO,80,2026-08-19,final,2,False
+V03,post,HO,80,2026-08-19,final,2,False
+V04,post,HO,80,2026-08-19,final,2,False
+V05,post,HO,80,2026-08-19,final,2,False
+V06,post,HO,80,2026-08-19,final,2,False
+V07,post,HO,80,2026-08-19,final,2,False
+V17,post,HO,80,2026-08-19,final,2,False
+V18,post,HO,80,2026-08-19,final,2,False
+V08,post,HO,80,2026-08-19,final,"(2, 30)",False
+V09,post,HO,80,2026-08-19,final,"(2, 30)",False
+V12,post,HO,80,2026-08-19,final,2,False
+V13,post,HO,80,2026-08-19,final,"(2, 60)",False
+V01,post,HO,81,2026-09-17,final,1,False
+V02,post,HO,81,2026-09-17,final,2,False
+V03,post,HO,81,2026-09-17,final,2,False
+V04,post,HO,81,2026-09-17,final,2,False
+V05,post,HO,81,2026-09-17,final,2,False
+V06,post,HO,81,2026-09-17,final,2,False
+V07,post,HO,81,2026-09-17,final,2,False
+V17,post,HO,81,2026-09-17,final,2,False
+V18,post,HO,81,2026-09-17,final,2,False
+V08,post,HO,81,2026-09-17,final,"(2, 30)",False
+V09,post,HO,81,2026-09-17,final,"(2, 30)",False
+V12,post,HO,81,2026-09-17,final,2,False
+V13,post,HO,81,2026-09-17,final,"(2, 60)",False
+V01,post,LO,80,2026-08-19,final,1,False
+V02,post,LO,80,2026-08-19,final,3,False
+V03,post,LO,80,2026-08-19,final,3,False
+V04,post,LO,80,2026-08-19,final,0,True
+V05,post,LO,80,2026-08-19,final,3,False
+V06,post,LO,80,2026-08-19,final,3,False
+V07,post,LO,80,2026-08-19,final,0,True
+V17,post,LO,80,2026-08-19,final,3,False
+V18,post,LO,80,2026-08-19,final,0,True
+V08,post,LO,80,2026-08-19,final,"(2, 30)",False
+V09,post,LO,80,2026-08-19,final,None,True
+V12,post,LO,80,2026-08-19,final,2,False
+V13,post,LO,80,2026-08-19,final,"(3, 30)",False
+V01,post,LO,81,2026-09-17,final,1,False
+V02,post,LO,81,2026-09-17,final,3,False
+V03,post,LO,81,2026-09-17,final,3,False
+V04,post,LO,81,2026-09-17,final,0,True
+V05,post,LO,81,2026-09-17,final,3,False
+V06,post,LO,81,2026-09-17,final,3,False
+V07,post,LO,81,2026-09-17,final,0,True
+V17,post,LO,81,2026-09-17,final,3,False
+V18,post,LO,81,2026-09-17,final,0,True
+V08,post,LO,81,2026-09-17,final,"(2, 30)",False
+V09,post,LO,81,2026-09-17,final,None,True
+V12,post,LO,81,2026-09-17,final,3,False
+V13,post,LO,81,2026-09-17,final,"(3, 30)",False
+V01,pre,H,76,2026-04-24,final,1,False
+V02,pre,H,76,2026-04-24,final,2,False
+V03,pre,H,76,2026-04-24,final,2,False
+V04,pre,H,76,2026-04-24,final,2,False
+V05,pre,H,76,2026-04-24,final,2,False
+V06,pre,H,76,2026-04-24,final,2,False
+V07,pre,H,76,2026-04-24,final,2,False
+V17,pre,H,76,2026-04-24,final,2,False
+V18,pre,H,76,2026-04-24,final,2,False
+V08,pre,H,76,2026-04-24,final,"(3, 30)",False
+V09,pre,H,76,2026-04-24,final,"(3, 30)",False
+V12,pre,H,76,2026-04-24,final,2,False
+V13,pre,H,76,2026-04-24,final,"(2, 60)",False
+V01,pre,H,77,2026-05-25,final,1,False
+V02,pre,H,77,2026-05-25,final,2,False
+V03,pre,H,77,2026-05-25,final,2,False
+V04,pre,H,77,2026-05-25,final,2,False
+V05,pre,H,77,2026-05-25,final,2,False
+V06,pre,H,77,2026-05-25,final,3,False
+V07,pre,H,77,2026-05-25,final,2,False
+V17,pre,H,77,2026-05-25,final,2,False
+V18,pre,H,77,2026-05-25,final,2,False
+V08,pre,H,77,2026-05-25,final,"(3, 30)",False
+V09,pre,H,77,2026-05-25,final,"(3, 30)",False
+V12,pre,H,77,2026-05-25,final,2,False
+V13,pre,H,77,2026-05-25,final,"(2, 60)",False
+V01,pre,H,78,2026-06-23,final,1,False
+V02,pre,H,78,2026-06-23,final,2,False
+V03,pre,H,78,2026-06-23,final,2,False
+V04,pre,H,78,2026-06-23,final,2,False
+V05,pre,H,78,2026-06-23,final,2,False
+V06,pre,H,78,2026-06-23,final,2,False
+V07,pre,H,78,2026-06-23,final,2,False
+V17,pre,H,78,2026-06-23,final,2,False
+V18,pre,H,78,2026-06-23,final,2,False
+V08,pre,H,78,2026-06-23,final,"(3, 30)",False
+V09,pre,H,78,2026-06-23,final,"(3, 30)",False
+V12,pre,H,78,2026-06-23,final,2,False
+V13,pre,H,78,2026-06-23,final,"(2, 60)",False
+V01,pre,H,79,2026-07-22,final,1,False
+V02,pre,H,79,2026-07-22,final,2,False
+V03,pre,H,79,2026-07-22,final,2,False
+V04,pre,H,79,2026-07-22,final,2,False
+V05,pre,H,79,2026-07-22,final,2,False
+V06,pre,H,79,2026-07-22,final,3,False
+V07,pre,H,79,2026-07-22,final,2,False
+V17,pre,H,79,2026-07-22,final,2,False
+V18,pre,H,79,2026-07-22,final,2,False
+V08,pre,H,79,2026-07-22,final,"(3, 30)",False
+V09,pre,H,79,2026-07-22,final,"(3, 30)",False
+V12,pre,H,79,2026-07-22,final,2,False
+V13,pre,H,79,2026-07-22,final,"(2, 60)",False
+V01,pre,L,76,2026-04-24,final,1,False
+V02,pre,L,76,2026-04-24,final,2,False
+V03,pre,L,76,2026-04-24,final,2,False
+V04,pre,L,76,2026-04-24,final,3,False
+V05,pre,L,76,2026-04-24,final,3,False
+V06,pre,L,76,2026-04-24,final,2,False
+V07,pre,L,76,2026-04-24,final,3,False
+V17,pre,L,76,2026-04-24,final,2,False
+V18,pre,L,76,2026-04-24,final,2,False
+V08,pre,L,76,2026-04-24,final,"(2, 30)",False
+V09,pre,L,76,2026-04-24,final,"(2, 30)",False
+V12,pre,L,76,2026-04-24,final,2,False
+V13,pre,L,76,2026-04-24,final,"(2, 60)",False
+V01,pre,L,77,2026-05-25,final,1,False
+V02,pre,L,77,2026-05-25,final,2,False
+V03,pre,L,77,2026-05-25,final,2,False
+V04,pre,L,77,2026-05-25,final,2,False
+V05,pre,L,77,2026-05-25,final,3,False
+V06,pre,L,77,2026-05-25,final,2,False
+V07,pre,L,77,2026-05-25,final,3,False
+V17,pre,L,77,2026-05-25,final,2,False
+V18,pre,L,77,2026-05-25,final,2,False
+V08,pre,L,77,2026-05-25,final,"(2, 30)",False
+V09,pre,L,77,2026-05-25,final,"(2, 30)",False
+V12,pre,L,77,2026-05-25,final,2,False
+V13,pre,L,77,2026-05-25,final,"(2, 60)",False
+V01,pre,L,78,2026-06-23,final,1,False
+V02,pre,L,78,2026-06-23,final,2,False
+V03,pre,L,78,2026-06-23,final,2,False
+V04,pre,L,78,2026-06-23,final,3,False
+V05,pre,L,78,2026-06-23,final,3,False
+V06,pre,L,78,2026-06-23,final,2,False
+V07,pre,L,78,2026-06-23,final,3,False
+V17,pre,L,78,2026-06-23,final,2,False
+V18,pre,L,78,2026-06-23,final,2,False
+V08,pre,L,78,2026-06-23,final,"(2, 30)",False
+V09,pre,L,78,2026-06-23,final,"(2, 30)",False
+V12,pre,L,78,2026-06-23,final,2,False
+V13,pre,L,78,2026-06-23,final,"(2, 60)",False
+V01,pre,L,79,2026-07-22,final,1,False
+V02,pre,L,79,2026-07-22,final,2,False
+V03,pre,L,79,2026-07-22,final,2,False
+V04,pre,L,79,2026-07-22,final,3,False
+V05,pre,L,79,2026-07-22,final,3,False
+V06,pre,L,79,2026-07-22,final,2,False
+V07,pre,L,79,2026-07-22,final,3,False
+V17,pre,L,79,2026-07-22,final,2,False
+V18,pre,L,79,2026-07-22,final,2,False
+V08,pre,L,79,2026-07-22,final,"(2, 30)",False
+V09,pre,L,79,2026-07-22,final,"(2, 30)",False
+V12,pre,L,79,2026-07-22,final,2,False
+V13,pre,L,79,2026-07-22,final,"(2, 60)",False
+V01,post,HO,76,2026-04-24,final,1,False
+V02,post,HO,76,2026-04-24,final,2,False
+V03,post,HO,76,2026-04-24,final,2,False
+V04,post,HO,76,2026-04-24,final,2,False
+V05,post,HO,76,2026-04-24,final,2,False
+V06,post,HO,76,2026-04-24,final,2,False
+V07,post,HO,76,2026-04-24,final,2,False
+V17,post,HO,76,2026-04-24,final,2,False
+V18,post,HO,76,2026-04-24,final,2,False
+V08,post,HO,76,2026-04-24,final,"(3, 30)",False
+V09,post,HO,76,2026-04-24,final,"(2, 30)",False
+V12,post,HO,76,2026-04-24,final,2,False
+V13,post,HO,76,2026-04-24,final,"(2, 60)",False
+V01,post,HO,77,2026-05-25,final,1,False
+V02,post,HO,77,2026-05-25,final,0,True
+V03,post,HO,77,2026-05-25,final,2,False
+V04,post,HO,77,2026-05-25,final,2,False
+V05,post,HO,77,2026-05-25,final,2,False
+V06,post,HO,77,2026-05-25,final,2,False
+V07,post,HO,77,2026-05-25,final,2,False
+V17,post,HO,77,2026-05-25,final,2,False
+V18,post,HO,77,2026-05-25,final,2,False
+V08,post,HO,77,2026-05-25,final,"(3, 30)",False
+V09,post,HO,77,2026-05-25,final,"(2, 30)",False
+V12,post,HO,77,2026-05-25,final,2,False
+V13,post,HO,77,2026-05-25,final,"(2, 60)",False
+V01,post,HO,78,2026-06-23,final,1,False
+V02,post,HO,78,2026-06-23,final,2,False
+V03,post,HO,78,2026-06-23,final,2,False
+V04,post,HO,78,2026-06-23,final,2,False
+V05,post,HO,78,2026-06-23,final,2,False
+V06,post,HO,78,2026-06-23,final,2,False
+V07,post,HO,78,2026-06-23,final,2,False
+V17,post,HO,78,2026-06-23,final,2,False
+V18,post,HO,78,2026-06-23,final,2,False
+V08,post,HO,78,2026-06-23,final,"(3, 30)",False
+V09,post,HO,78,2026-06-23,final,"(2, 30)",False
+V12,post,HO,78,2026-06-23,final,2,False
+V13,post,HO,78,2026-06-23,final,"(2, 60)",False
+V01,post,HO,79,2026-07-22,final,1,False
+V02,post,HO,79,2026-07-22,final,2,False
+V03,post,HO,79,2026-07-22,final,2,False
+V04,post,HO,79,2026-07-22,final,2,False
+V05,post,HO,79,2026-07-22,final,2,False
+V06,post,HO,79,2026-07-22,final,2,False
+V07,post,HO,79,2026-07-22,final,2,False
+V17,post,HO,79,2026-07-22,final,2,False
+V18,post,HO,79,2026-07-22,final,2,False
+V08,post,HO,79,2026-07-22,final,"(3, 30)",False
+V09,post,HO,79,2026-07-22,final,"(2, 30)",False
+V12,post,HO,79,2026-07-22,final,2,False
+V13,post,HO,79,2026-07-22,final,"(2, 60)",False
+V01,post,LO,76,2026-04-24,final,1,False
+V02,post,LO,76,2026-04-24,final,3,False
+V03,post,LO,76,2026-04-24,final,3,False
+V04,post,LO,76,2026-04-24,final,3,False
+V05,post,LO,76,2026-04-24,final,3,False
+V06,post,LO,76,2026-04-24,final,3,False
+V07,post,LO,76,2026-04-24,final,3,False
+V17,post,LO,76,2026-04-24,final,3,False
+V18,post,LO,76,2026-04-24,final,3,False
+V08,post,LO,76,2026-04-24,final,"(2, 30)",False
+V09,post,LO,76,2026-04-24,final,"(2, 30)",False
+V12,post,LO,76,2026-04-24,final,2,False
+V13,post,LO,76,2026-04-24,final,"(3, 60)",False
+V01,post,LO,77,2026-05-25,final,1,False
+V02,post,LO,77,2026-05-25,final,3,False
+V03,post,LO,77,2026-05-25,final,3,False
+V04,post,LO,77,2026-05-25,final,3,False
+V05,post,LO,77,2026-05-25,final,3,False
+V06,post,LO,77,2026-05-25,final,3,False
+V07,post,LO,77,2026-05-25,final,3,False
+V17,post,LO,77,2026-05-25,final,3,False
+V18,post,LO,77,2026-05-25,final,3,False
+V08,post,LO,77,2026-05-25,final,"(2, 30)",False
+V09,post,LO,77,2026-05-25,final,"(2, 30)",False
+V12,post,LO,77,2026-05-25,final,2,False
+V13,post,LO,77,2026-05-25,final,"(3, 60)",False
+V01,post,LO,78,2026-06-23,final,1,False
+V02,post,LO,78,2026-06-23,final,3,False
+V03,post,LO,78,2026-06-23,final,3,False
+V04,post,LO,78,2026-06-23,final,3,False
+V05,post,LO,78,2026-06-23,final,3,False
+V06,post,LO,78,2026-06-23,final,3,False
+V07,post,LO,78,2026-06-23,final,3,False
+V17,post,LO,78,2026-06-23,final,3,False
+V18,post,LO,78,2026-06-23,final,3,False
+V08,post,LO,78,2026-06-23,final,"(2, 30)",False
+V09,post,LO,78,2026-06-23,final,"(2, 30)",False
+V12,post,LO,78,2026-06-23,final,2,False
+V13,post,LO,78,2026-06-23,final,"(3, 60)",False
+V01,post,LO,79,2026-07-22,final,1,False
+V02,post,LO,79,2026-07-22,final,3,False
+V03,post,LO,79,2026-07-22,final,3,False
+V04,post,LO,79,2026-07-22,final,0,True
+V05,post,LO,79,2026-07-22,final,3,False
+V06,post,LO,79,2026-07-22,final,3,False
+V07,post,LO,79,2026-07-22,final,0,True
+V17,post,LO,79,2026-07-22,final,3,False
+V18,post,LO,79,2026-07-22,final,0,True
+V08,post,LO,79,2026-07-22,final,"(2, 30)",False
+V09,post,LO,79,2026-07-22,final,"(2, 30)",False
+V12,post,LO,79,2026-07-22,final,2,False
+V13,post,LO,79,2026-07-22,final,"(3, 60)",False
+V01,pre,H,72,2025-12-24,final,1,False
+V02,pre,H,72,2025-12-24,final,2,False
+V03,pre,H,72,2025-12-24,final,0,True
+V04,pre,H,72,2025-12-24,final,2,False
+V05,pre,H,72,2025-12-24,final,0,True
+V06,pre,H,72,2025-12-24,final,0,True
+V07,pre,H,72,2025-12-24,final,0,True
+V17,pre,H,72,2025-12-24,final,0,True
+V18,pre,H,72,2025-12-24,final,2,False
+V08,pre,H,72,2025-12-24,final,"(3, 30)",False
+V09,pre,H,72,2025-12-24,final,"(3, 30)",False
+V12,pre,H,72,2025-12-24,final,2,False
+V13,pre,H,72,2025-12-24,final,"(3, 30)",False
+V01,pre,H,73,2026-01-23,final,1,False
+V02,pre,H,73,2026-01-23,final,2,False
+V03,pre,H,73,2026-01-23,final,0,True
+V04,pre,H,73,2026-01-23,final,2,False
+V05,pre,H,73,2026-01-23,final,0,True
+V06,pre,H,73,2026-01-23,final,0,True
+V07,pre,H,73,2026-01-23,final,2,False
+V17,pre,H,73,2026-01-23,final,0,True
+V18,pre,H,73,2026-01-23,final,2,False
+V08,pre,H,73,2026-01-23,final,"(3, 30)",False
+V09,pre,H,73,2026-01-23,final,"(3, 30)",False
+V12,pre,H,73,2026-01-23,final,2,False
+V13,pre,H,73,2026-01-23,final,"(3, 30)",False
+V01,pre,H,74,2026-02-20,final,1,False
+V02,pre,H,74,2026-02-20,final,2,False
+V03,pre,H,74,2026-02-20,final,2,False
+V04,pre,H,74,2026-02-20,final,2,False
+V05,pre,H,74,2026-02-20,final,2,False
+V06,pre,H,74,2026-02-20,final,2,False
+V07,pre,H,74,2026-02-20,final,2,False
+V17,pre,H,74,2026-02-20,final,2,False
+V18,pre,H,74,2026-02-20,final,2,False
+V08,pre,H,74,2026-02-20,final,"(3, 30)",False
+V09,pre,H,74,2026-02-20,final,"(3, 30)",False
+V12,pre,H,74,2026-02-20,final,2,False
+V13,pre,H,74,2026-02-20,final,"(3, 30)",False
+V01,pre,H,75,2026-03-23,final,1,False
+V02,pre,H,75,2026-03-23,final,2,False
+V03,pre,H,75,2026-03-23,final,2,False
+V04,pre,H,75,2026-03-23,final,2,False
+V05,pre,H,75,2026-03-23,final,2,False
+V06,pre,H,75,2026-03-23,final,2,False
+V07,pre,H,75,2026-03-23,final,2,False
+V17,pre,H,75,2026-03-23,final,2,False
+V18,pre,H,75,2026-03-23,final,2,False
+V08,pre,H,75,2026-03-23,final,"(3, 30)",False
+V09,pre,H,75,2026-03-23,final,"(3, 30)",False
+V12,pre,H,75,2026-03-23,final,2,False
+V13,pre,H,75,2026-03-23,final,"(3, 30)",False
+V01,pre,L,72,2025-12-24,final,1,False
+V02,pre,L,72,2025-12-24,final,2,False
+V03,pre,L,72,2025-12-24,final,2,False
+V04,pre,L,72,2025-12-24,final,3,False
+V05,pre,L,72,2025-12-24,final,3,False
+V06,pre,L,72,2025-12-24,final,2,False
+V07,pre,L,72,2025-12-24,final,3,False
+V17,pre,L,72,2025-12-24,final,2,False
+V18,pre,L,72,2025-12-24,final,3,False
+V08,pre,L,72,2025-12-24,final,"(3, 30)",False
+V09,pre,L,72,2025-12-24,final,"(2, 30)",False
+V12,pre,L,72,2025-12-24,final,2,False
+V13,pre,L,72,2025-12-24,final,"(2, 60)",False
+V01,pre,L,73,2026-01-23,final,1,False
+V02,pre,L,73,2026-01-23,final,2,False
+V03,pre,L,73,2026-01-23,final,2,False
+V04,pre,L,73,2026-01-23,final,3,False
+V05,pre,L,73,2026-01-23,final,3,False
+V06,pre,L,73,2026-01-23,final,2,False
+V07,pre,L,73,2026-01-23,final,3,False
+V17,pre,L,73,2026-01-23,final,2,False
+V18,pre,L,73,2026-01-23,final,2,False
+V08,pre,L,73,2026-01-23,final,"(3, 30)",False
+V09,pre,L,73,2026-01-23,final,"(2, 30)",False
+V12,pre,L,73,2026-01-23,final,2,False
+V13,pre,L,73,2026-01-23,final,"(2, 60)",False
+V01,pre,L,74,2026-02-20,final,1,False
+V02,pre,L,74,2026-02-20,final,2,False
+V03,pre,L,74,2026-02-20,final,2,False
+V04,pre,L,74,2026-02-20,final,3,False
+V05,pre,L,74,2026-02-20,final,3,False
+V06,pre,L,74,2026-02-20,final,2,False
+V07,pre,L,74,2026-02-20,final,3,False
+V17,pre,L,74,2026-02-20,final,2,False
+V18,pre,L,74,2026-02-20,final,2,False
+V08,pre,L,74,2026-02-20,final,"(3, 30)",False
+V09,pre,L,74,2026-02-20,final,"(2, 30)",False
+V12,pre,L,74,2026-02-20,final,2,False
+V13,pre,L,74,2026-02-20,final,"(2, 60)",False
+V01,pre,L,75,2026-03-23,final,1,False
+V02,pre,L,75,2026-03-23,final,2,False
+V03,pre,L,75,2026-03-23,final,2,False
+V04,pre,L,75,2026-03-23,final,3,False
+V05,pre,L,75,2026-03-23,final,3,False
+V06,pre,L,75,2026-03-23,final,2,False
+V07,pre,L,75,2026-03-23,final,3,False
+V17,pre,L,75,2026-03-23,final,2,False
+V18,pre,L,75,2026-03-23,final,2,False
+V08,pre,L,75,2026-03-23,final,"(3, 30)",False
+V09,pre,L,75,2026-03-23,final,"(2, 30)",False
+V12,pre,L,75,2026-03-23,final,2,False
+V13,pre,L,75,2026-03-23,final,"(2, 60)",False
+V01,post,HO,72,2025-12-24,final,1,False
+V02,post,HO,72,2025-12-24,final,2,False
+V03,post,HO,72,2025-12-24,final,2,False
+V04,post,HO,72,2025-12-24,final,2,False
+V05,post,HO,72,2025-12-24,final,2,False
+V06,post,HO,72,2025-12-24,final,2,False
+V07,post,HO,72,2025-12-24,final,2,False
+V17,post,HO,72,2025-12-24,final,2,False
+V18,post,HO,72,2025-12-24,final,2,False
+V08,post,HO,72,2025-12-24,final,"(2, 60)",False
+V09,post,HO,72,2025-12-24,final,"(3, 30)",False
+V12,post,HO,72,2025-12-24,final,2,False
+V13,post,HO,72,2025-12-24,final,"(3, 30)",False
+V01,post,HO,73,2026-01-23,final,1,False
+V02,post,HO,73,2026-01-23,final,2,False
+V03,post,HO,73,2026-01-23,final,2,False
+V04,post,HO,73,2026-01-23,final,2,False
+V05,post,HO,73,2026-01-23,final,2,False
+V06,post,HO,73,2026-01-23,final,2,False
+V07,post,HO,73,2026-01-23,final,2,False
+V17,post,HO,73,2026-01-23,final,2,False
+V18,post,HO,73,2026-01-23,final,2,False
+V08,post,HO,73,2026-01-23,final,"(2, 60)",False
+V09,post,HO,73,2026-01-23,final,"(3, 30)",False
+V12,post,HO,73,2026-01-23,final,2,False
+V13,post,HO,73,2026-01-23,final,"(3, 30)",False
+V01,post,HO,74,2026-02-20,final,1,False
+V02,post,HO,74,2026-02-20,final,2,False
+V03,post,HO,74,2026-02-20,final,2,False
+V04,post,HO,74,2026-02-20,final,2,False
+V05,post,HO,74,2026-02-20,final,2,False
+V06,post,HO,74,2026-02-20,final,2,False
+V07,post,HO,74,2026-02-20,final,2,False
+V17,post,HO,74,2026-02-20,final,2,False
+V18,post,HO,74,2026-02-20,final,2,False
+V08,post,HO,74,2026-02-20,final,"(2, 60)",False
+V09,post,HO,74,2026-02-20,final,"(3, 30)",False
+V12,post,HO,74,2026-02-20,final,2,False
+V13,post,HO,74,2026-02-20,final,"(3, 30)",False
+V01,post,HO,75,2026-03-23,final,1,False
+V02,post,HO,75,2026-03-23,final,2,False
+V03,post,HO,75,2026-03-23,final,2,False
+V04,post,HO,75,2026-03-23,final,2,False
+V05,post,HO,75,2026-03-23,final,2,False
+V06,post,HO,75,2026-03-23,final,2,False
+V07,post,HO,75,2026-03-23,final,2,False
+V17,post,HO,75,2026-03-23,final,2,False
+V18,post,HO,75,2026-03-23,final,2,False
+V08,post,HO,75,2026-03-23,final,"(2, 60)",False
+V09,post,HO,75,2026-03-23,final,"(3, 30)",False
+V12,post,HO,75,2026-03-23,final,2,False
+V13,post,HO,75,2026-03-23,final,"(3, 30)",False
+V01,post,LO,72,2025-12-24,final,1,False
+V02,post,LO,72,2025-12-24,final,3,False
+V03,post,LO,72,2025-12-24,final,3,False
+V04,post,LO,72,2025-12-24,final,3,False
+V05,post,LO,72,2025-12-24,final,3,False
+V06,post,LO,72,2025-12-24,final,3,False
+V07,post,LO,72,2025-12-24,final,3,False
+V17,post,LO,72,2025-12-24,final,3,False
+V18,post,LO,72,2025-12-24,final,3,False
+V08,post,LO,72,2025-12-24,final,"(2, 30)",False
+V09,post,LO,72,2025-12-24,final,"(2, 30)",False
+V12,post,LO,72,2025-12-24,final,2,False
+V13,post,LO,72,2025-12-24,final,"(2, 120)",False
+V01,post,LO,73,2026-01-23,final,1,False
+V02,post,LO,73,2026-01-23,final,3,False
+V03,post,LO,73,2026-01-23,final,3,False
+V04,post,LO,73,2026-01-23,final,0,True
+V05,post,LO,73,2026-01-23,final,3,False
+V06,post,LO,73,2026-01-23,final,3,False
+V07,post,LO,73,2026-01-23,final,0,True
+V17,post,LO,73,2026-01-23,final,3,False
+V18,post,LO,73,2026-01-23,final,0,True
+V08,post,LO,73,2026-01-23,final,"(2, 30)",False
+V09,post,LO,73,2026-01-23,final,"(2, 30)",False
+V12,post,LO,73,2026-01-23,final,2,False
+V13,post,LO,73,2026-01-23,final,"(2, 120)",False
+V01,post,LO,74,2026-02-20,final,1,False
+V02,post,LO,74,2026-02-20,final,3,False
+V03,post,LO,74,2026-02-20,final,3,False
+V04,post,LO,74,2026-02-20,final,0,True
+V05,post,LO,74,2026-02-20,final,3,False
+V06,post,LO,74,2026-02-20,final,3,False
+V07,post,LO,74,2026-02-20,final,0,True
+V17,post,LO,74,2026-02-20,final,3,False
+V18,post,LO,74,2026-02-20,final,0,True
+V08,post,LO,74,2026-02-20,final,"(2, 30)",False
+V09,post,LO,74,2026-02-20,final,"(2, 30)",False
+V12,post,LO,74,2026-02-20,final,2,False
+V13,post,LO,74,2026-02-20,final,"(2, 120)",False
+V01,post,LO,75,2026-03-23,final,1,False
+V02,post,LO,75,2026-03-23,final,3,False
+V03,post,LO,75,2026-03-23,final,3,False
+V04,post,LO,75,2026-03-23,final,0,True
+V05,post,LO,75,2026-03-23,final,3,False
+V06,post,LO,75,2026-03-23,final,3,False
+V07,post,LO,75,2026-03-23,final,0,True
+V17,post,LO,75,2026-03-23,final,3,False
+V18,post,LO,75,2026-03-23,final,3,False
+V08,post,LO,75,2026-03-23,final,"(2, 30)",False
+V09,post,LO,75,2026-03-23,final,"(2, 30)",False
+V12,post,LO,75,2026-03-23,final,2,False
+V13,post,LO,75,2026-03-23,final,"(2, 120)",False
+V01,pre,H,68,2025-08-28,final,1,False
+V02,pre,H,68,2025-08-28,final,2,False
+V03,pre,H,68,2025-08-28,final,3,False
+V04,pre,H,68,2025-08-28,final,2,False
+V05,pre,H,68,2025-08-28,final,2,False
+V06,pre,H,68,2025-08-28,final,3,False
+V07,pre,H,68,2025-08-28,final,2,False
+V17,pre,H,68,2025-08-28,final,3,False
+V18,pre,H,68,2025-08-28,final,2,False
+V08,pre,H,68,2025-08-28,final,"(3, 30)",False
+V09,pre,H,68,2025-08-28,final,"(3, 30)",False
+V12,pre,H,68,2025-08-28,final,2,False
+V13,pre,H,68,2025-08-28,final,"(2, 30)",False
+V01,pre,H,69,2025-09-25,final,1,False
+V02,pre,H,69,2025-09-25,final,2,False
+V03,pre,H,69,2025-09-25,final,2,False
+V04,pre,H,69,2025-09-25,final,2,False
+V05,pre,H,69,2025-09-25,final,0,True
+V06,pre,H,69,2025-09-25,final,0,True
+V07,pre,H,69,2025-09-25,final,2,False
+V17,pre,H,69,2025-09-25,final,2,False
+V18,pre,H,69,2025-09-25,final,2,False
+V08,pre,H,69,2025-09-25,final,"(3, 30)",False
+V09,pre,H,69,2025-09-25,final,"(3, 30)",False
+V12,pre,H,69,2025-09-25,final,2,False
+V13,pre,H,69,2025-09-25,final,"(2, 30)",False
+V01,pre,H,70,2025-10-28,final,1,False
+V02,pre,H,70,2025-10-28,final,2,False
+V03,pre,H,70,2025-10-28,final,0,True
+V04,pre,H,70,2025-10-28,final,2,False
+V05,pre,H,70,2025-10-28,final,0,True
+V06,pre,H,70,2025-10-28,final,0,True
+V07,pre,H,70,2025-10-28,final,2,False
+V17,pre,H,70,2025-10-28,final,0,True
+V18,pre,H,70,2025-10-28,final,2,False
+V08,pre,H,70,2025-10-28,final,"(3, 30)",False
+V09,pre,H,70,2025-10-28,final,"(3, 30)",False
+V12,pre,H,70,2025-10-28,final,2,False
+V13,pre,H,70,2025-10-28,final,"(2, 30)",False
+V01,pre,H,71,2025-11-26,final,1,False
+V02,pre,H,71,2025-11-26,final,2,False
+V03,pre,H,71,2025-11-26,final,0,True
+V04,pre,H,71,2025-11-26,final,2,False
+V05,pre,H,71,2025-11-26,final,0,True
+V06,pre,H,71,2025-11-26,final,0,True
+V07,pre,H,71,2025-11-26,final,0,True
+V17,pre,H,71,2025-11-26,final,0,True
+V18,pre,H,71,2025-11-26,final,2,False
+V08,pre,H,71,2025-11-26,final,"(3, 30)",False
+V09,pre,H,71,2025-11-26,final,"(3, 30)",False
+V12,pre,H,71,2025-11-26,final,2,False
+V13,pre,H,71,2025-11-26,final,"(2, 30)",False
+V01,pre,L,68,2025-08-28,final,1,False
+V02,pre,L,68,2025-08-28,final,2,False
+V03,pre,L,68,2025-08-28,final,2,False
+V04,pre,L,68,2025-08-28,final,3,False
+V05,pre,L,68,2025-08-28,final,3,False
+V06,pre,L,68,2025-08-28,final,2,False
+V07,pre,L,68,2025-08-28,final,3,False
+V17,pre,L,68,2025-08-28,final,2,False
+V18,pre,L,68,2025-08-28,final,3,False
+V08,pre,L,68,2025-08-28,final,"(2, 30)",False
+V09,pre,L,68,2025-08-28,final,"(3, 30)",False
+V12,pre,L,68,2025-08-28,final,2,False
+V13,pre,L,68,2025-08-28,final,"(2, 60)",False
+V01,pre,L,69,2025-09-25,final,1,False
+V02,pre,L,69,2025-09-25,final,2,False
+V03,pre,L,69,2025-09-25,final,2,False
+V04,pre,L,69,2025-09-25,final,3,False
+V05,pre,L,69,2025-09-25,final,3,False
+V06,pre,L,69,2025-09-25,final,2,False
+V07,pre,L,69,2025-09-25,final,3,False
+V17,pre,L,69,2025-09-25,final,2,False
+V18,pre,L,69,2025-09-25,final,3,False
+V08,pre,L,69,2025-09-25,final,"(2, 30)",False
+V09,pre,L,69,2025-09-25,final,"(3, 30)",False
+V12,pre,L,69,2025-09-25,final,2,False
+V13,pre,L,69,2025-09-25,final,"(2, 60)",False
+V01,pre,L,70,2025-10-28,final,1,False
+V02,pre,L,70,2025-10-28,final,2,False
+V03,pre,L,70,2025-10-28,final,2,False
+V04,pre,L,70,2025-10-28,final,3,False
+V05,pre,L,70,2025-10-28,final,3,False
+V06,pre,L,70,2025-10-28,final,2,False
+V07,pre,L,70,2025-10-28,final,3,False
+V17,pre,L,70,2025-10-28,final,2,False
+V18,pre,L,70,2025-10-28,final,2,False
+V08,pre,L,70,2025-10-28,final,"(2, 30)",False
+V09,pre,L,70,2025-10-28,final,"(3, 30)",False
+V12,pre,L,70,2025-10-28,final,2,False
+V13,pre,L,70,2025-10-28,final,"(2, 60)",False
+V01,pre,L,71,2025-11-26,final,1,False
+V02,pre,L,71,2025-11-26,final,2,False
+V03,pre,L,71,2025-11-26,final,2,False
+V04,pre,L,71,2025-11-26,final,3,False
+V05,pre,L,71,2025-11-26,final,3,False
+V06,pre,L,71,2025-11-26,final,2,False
+V07,pre,L,71,2025-11-26,final,3,False
+V17,pre,L,71,2025-11-26,final,2,False
+V18,pre,L,71,2025-11-26,final,2,False
+V08,pre,L,71,2025-11-26,final,"(2, 30)",False
+V09,pre,L,71,2025-11-26,final,"(3, 30)",False
+V12,pre,L,71,2025-11-26,final,2,False
+V13,pre,L,71,2025-11-26,final,"(2, 60)",False
+V01,post,HO,68,2025-08-28,final,1,False
+V02,post,HO,68,2025-08-28,final,2,False
+V03,post,HO,68,2025-08-28,final,2,False
+V04,post,HO,68,2025-08-28,final,2,False
+V05,post,HO,68,2025-08-28,final,2,False
+V06,post,HO,68,2025-08-28,final,2,False
+V07,post,HO,68,2025-08-28,final,2,False
+V17,post,HO,68,2025-08-28,final,2,False
+V18,post,HO,68,2025-08-28,final,2,False
+V08,post,HO,68,2025-08-28,final,"(2, 60)",False
+V09,post,HO,68,2025-08-28,final,"(2, 30)",False
+V12,post,HO,68,2025-08-28,final,2,False
+V13,post,HO,68,2025-08-28,final,"(2, 120)",False
+V01,post,HO,69,2025-09-25,final,1,False
+V02,post,HO,69,2025-09-25,final,2,False
+V03,post,HO,69,2025-09-25,final,2,False
+V04,post,HO,69,2025-09-25,final,2,False
+V05,post,HO,69,2025-09-25,final,2,False
+V06,post,HO,69,2025-09-25,final,2,False
+V07,post,HO,69,2025-09-25,final,2,False
+V17,post,HO,69,2025-09-25,final,2,False
+V18,post,HO,69,2025-09-25,final,2,False
+V08,post,HO,69,2025-09-25,final,"(2, 60)",False
+V09,post,HO,69,2025-09-25,final,"(2, 30)",False
+V12,post,HO,69,2025-09-25,final,2,False
+V13,post,HO,69,2025-09-25,final,"(2, 120)",False
+V01,post,HO,70,2025-10-28,final,1,False
+V02,post,HO,70,2025-10-28,final,2,False
+V03,post,HO,70,2025-10-28,final,2,False
+V04,post,HO,70,2025-10-28,final,2,False
+V05,post,HO,70,2025-10-28,final,2,False
+V06,post,HO,70,2025-10-28,final,2,False
+V07,post,HO,70,2025-10-28,final,2,False
+V17,post,HO,70,2025-10-28,final,2,False
+V18,post,HO,70,2025-10-28,final,2,False
+V08,post,HO,70,2025-10-28,final,"(2, 60)",False
+V09,post,HO,70,2025-10-28,final,"(2, 30)",False
+V12,post,HO,70,2025-10-28,final,2,False
+V13,post,HO,70,2025-10-28,final,"(2, 120)",False
+V01,post,HO,71,2025-11-26,final,1,False
+V02,post,HO,71,2025-11-26,final,2,False
+V03,post,HO,71,2025-11-26,final,2,False
+V04,post,HO,71,2025-11-26,final,2,False
+V05,post,HO,71,2025-11-26,final,2,False
+V06,post,HO,71,2025-11-26,final,2,False
+V07,post,HO,71,2025-11-26,final,2,False
+V17,post,HO,71,2025-11-26,final,2,False
+V18,post,HO,71,2025-11-26,final,2,False
+V08,post,HO,71,2025-11-26,final,"(2, 60)",False
+V09,post,HO,71,2025-11-26,final,"(2, 30)",False
+V12,post,HO,71,2025-11-26,final,2,False
+V13,post,HO,71,2025-11-26,final,"(2, 120)",False
+V01,post,LO,68,2025-08-28,final,1,False
+V02,post,LO,68,2025-08-28,final,3,False
+V03,post,LO,68,2025-08-28,final,3,False
+V04,post,LO,68,2025-08-28,final,3,False
+V05,post,LO,68,2025-08-28,final,3,False
+V06,post,LO,68,2025-08-28,final,3,False
+V07,post,LO,68,2025-08-28,final,3,False
+V17,post,LO,68,2025-08-28,final,3,False
+V18,post,LO,68,2025-08-28,final,3,False
+V08,post,LO,68,2025-08-28,final,"(3, 30)",False
+V09,post,LO,68,2025-08-28,final,"(2, 30)",False
+V12,post,LO,68,2025-08-28,final,2,False
+V13,post,LO,68,2025-08-28,final,"(2, 120)",False
+V01,post,LO,69,2025-09-25,final,1,False
+V02,post,LO,69,2025-09-25,final,3,False
+V03,post,LO,69,2025-09-25,final,3,False
+V04,post,LO,69,2025-09-25,final,3,False
+V05,post,LO,69,2025-09-25,final,3,False
+V06,post,LO,69,2025-09-25,final,3,False
+V07,post,LO,69,2025-09-25,final,3,False
+V17,post,LO,69,2025-09-25,final,3,False
+V18,post,LO,69,2025-09-25,final,3,False
+V08,post,LO,69,2025-09-25,final,"(3, 30)",False
+V09,post,LO,69,2025-09-25,final,"(2, 30)",False
+V12,post,LO,69,2025-09-25,final,2,False
+V13,post,LO,69,2025-09-25,final,"(2, 120)",False
+V01,post,LO,70,2025-10-28,final,1,False
+V02,post,LO,70,2025-10-28,final,3,False
+V03,post,LO,70,2025-10-28,final,3,False
+V04,post,LO,70,2025-10-28,final,3,False
+V05,post,LO,70,2025-10-28,final,3,False
+V06,post,LO,70,2025-10-28,final,3,False
+V07,post,LO,70,2025-10-28,final,3,False
+V17,post,LO,70,2025-10-28,final,3,False
+V18,post,LO,70,2025-10-28,final,3,False
+V08,post,LO,70,2025-10-28,final,"(3, 30)",False
+V09,post,LO,70,2025-10-28,final,"(2, 30)",False
+V12,post,LO,70,2025-10-28,final,2,False
+V13,post,LO,70,2025-10-28,final,"(2, 120)",False
+V01,post,LO,71,2025-11-26,final,1,False
+V02,post,LO,71,2025-11-26,final,3,False
+V03,post,LO,71,2025-11-26,final,3,False
+V04,post,LO,71,2025-11-26,final,0,True
+V05,post,LO,71,2025-11-26,final,3,False
+V06,post,LO,71,2025-11-26,final,3,False
+V07,post,LO,71,2025-11-26,final,3,False
+V17,post,LO,71,2025-11-26,final,3,False
+V18,post,LO,71,2025-11-26,final,3,False
+V08,post,LO,71,2025-11-26,final,"(3, 30)",False
+V09,post,LO,71,2025-11-26,final,"(2, 30)",False
+V12,post,LO,71,2025-11-26,final,2,False
+V13,post,LO,71,2025-11-26,final,"(2, 120)",False
+V01,pre,H,64,2025-05-06,val,1,False
+V02,pre,H,64,2025-05-06,val,2,False
+V03,pre,H,64,2025-05-06,val,2,False
+V04,pre,H,64,2025-05-06,val,2,False
+V05,pre,H,64,2025-05-06,val,2,False
+V06,pre,H,64,2025-05-06,val,2,False
+V07,pre,H,64,2025-05-06,val,2,False
+V18,pre,H,64,2025-05-06,val,2,False
+V08,pre,H,64,2025-05-06,val,"(3, 60)",False
+V09,pre,H,64,2025-05-06,val,"(2, 60)",False
+V12,pre,H,64,2025-05-06,val,3,False
+V13,pre,H,64,2025-05-06,val,"(2, 60)",False
+V01,pre,H,65,2025-06-03,val,1,False
+V02,pre,H,65,2025-06-03,val,2,False
+V03,pre,H,65,2025-06-03,val,2,False
+V04,pre,H,65,2025-06-03,val,2,False
+V05,pre,H,65,2025-06-03,val,2,False
+V06,pre,H,65,2025-06-03,val,2,False
+V07,pre,H,65,2025-06-03,val,2,False
+V17,pre,H,65,2025-06-03,val,2,False
+V18,pre,H,65,2025-06-03,val,2,False
+V08,pre,H,65,2025-06-03,val,"(3, 60)",False
+V09,pre,H,65,2025-06-03,val,"(2, 60)",False
+V12,pre,H,65,2025-06-03,val,3,False
+V13,pre,H,65,2025-06-03,val,"(2, 60)",False
+V01,pre,H,66,2025-07-01,final,1,False
+V02,pre,H,66,2025-07-01,final,2,False
+V03,pre,H,66,2025-07-01,final,2,False
+V04,pre,H,66,2025-07-01,final,2,False
+V05,pre,H,66,2025-07-01,final,2,False
+V06,pre,H,66,2025-07-01,final,2,False
+V07,pre,H,66,2025-07-01,final,2,False
+V17,pre,H,66,2025-07-01,final,2,False
+V18,pre,H,66,2025-07-01,final,2,False
+V08,pre,H,66,2025-07-01,final,"(3, 60)",False
+V09,pre,H,66,2025-07-01,final,"(2, 60)",False
+V12,pre,H,66,2025-07-01,final,2,False
+V13,pre,H,66,2025-07-01,final,"(2, 60)",False
+V01,pre,H,67,2025-07-29,final,1,False
+V02,pre,H,67,2025-07-29,final,2,False
+V03,pre,H,67,2025-07-29,final,2,False
+V04,pre,H,67,2025-07-29,final,2,False
+V05,pre,H,67,2025-07-29,final,2,False
+V06,pre,H,67,2025-07-29,final,2,False
+V07,pre,H,67,2025-07-29,final,2,False
+V17,pre,H,67,2025-07-29,final,2,False
+V18,pre,H,67,2025-07-29,final,2,False
+V08,pre,H,67,2025-07-29,final,"(3, 60)",False
+V09,pre,H,67,2025-07-29,final,"(2, 60)",False
+V12,pre,H,67,2025-07-29,final,2,False
+V13,pre,H,67,2025-07-29,final,"(2, 60)",False
+V01,pre,L,64,2025-05-06,val,1,False
+V02,pre,L,64,2025-05-06,val,2,False
+V03,pre,L,64,2025-05-06,val,2,False
+V04,pre,L,64,2025-05-06,val,2,False
+V05,pre,L,64,2025-05-06,val,3,False
+V06,pre,L,64,2025-05-06,val,2,False
+V07,pre,L,64,2025-05-06,val,2,False
+V18,pre,L,64,2025-05-06,val,2,False
+V08,pre,L,64,2025-05-06,val,"(3, 60)",False
+V09,pre,L,64,2025-05-06,val,"(3, 30)",False
+V12,pre,L,64,2025-05-06,val,2,False
+V13,pre,L,64,2025-05-06,val,"(2, 60)",False
+V01,pre,L,65,2025-06-03,val,1,False
+V02,pre,L,65,2025-06-03,val,2,False
+V03,pre,L,65,2025-06-03,val,2,False
+V04,pre,L,65,2025-06-03,val,2,False
+V05,pre,L,65,2025-06-03,val,3,False
+V06,pre,L,65,2025-06-03,val,2,False
+V07,pre,L,65,2025-06-03,val,2,False
+V17,pre,L,65,2025-06-03,val,2,False
+V18,pre,L,65,2025-06-03,val,2,False
+V08,pre,L,65,2025-06-03,val,"(3, 60)",False
+V09,pre,L,65,2025-06-03,val,"(3, 30)",False
+V12,pre,L,65,2025-06-03,val,2,False
+V13,pre,L,65,2025-06-03,val,"(2, 60)",False
+V01,pre,L,66,2025-07-01,final,1,False
+V02,pre,L,66,2025-07-01,final,2,False
+V03,pre,L,66,2025-07-01,final,2,False
+V04,pre,L,66,2025-07-01,final,2,False
+V05,pre,L,66,2025-07-01,final,2,False
+V06,pre,L,66,2025-07-01,final,2,False
+V07,pre,L,66,2025-07-01,final,2,False
+V17,pre,L,66,2025-07-01,final,2,False
+V18,pre,L,66,2025-07-01,final,2,False
+V08,pre,L,66,2025-07-01,final,"(3, 60)",False
+V09,pre,L,66,2025-07-01,final,"(3, 30)",False
+V12,pre,L,66,2025-07-01,final,2,False
+V13,pre,L,66,2025-07-01,final,"(2, 60)",False
+V01,pre,L,67,2025-07-29,final,1,False
+V02,pre,L,67,2025-07-29,final,2,False
+V03,pre,L,67,2025-07-29,final,2,False
+V04,pre,L,67,2025-07-29,final,2,False
+V05,pre,L,67,2025-07-29,final,3,False
+V06,pre,L,67,2025-07-29,final,2,False
+V07,pre,L,67,2025-07-29,final,3,False
+V17,pre,L,67,2025-07-29,final,2,False
+V18,pre,L,67,2025-07-29,final,3,False
+V08,pre,L,67,2025-07-29,final,"(3, 60)",False
+V09,pre,L,67,2025-07-29,final,"(3, 30)",False
+V12,pre,L,67,2025-07-29,final,2,False
+V13,pre,L,67,2025-07-29,final,"(2, 60)",False
+V01,post,HO,64,2025-05-06,val,1,False
+V02,post,HO,64,2025-05-06,val,2,False
+V03,post,HO,64,2025-05-06,val,2,False
+V04,post,HO,64,2025-05-06,val,2,False
+V05,post,HO,64,2025-05-06,val,2,False
+V06,post,HO,64,2025-05-06,val,2,False
+V07,post,HO,64,2025-05-06,val,2,False
+V18,post,HO,64,2025-05-06,val,2,False
+V08,post,HO,64,2025-05-06,val,"(2, 60)",False
+V09,post,HO,64,2025-05-06,val,"(3, 30)",False
+V12,post,HO,64,2025-05-06,val,2,False
+V13,post,HO,64,2025-05-06,val,"(2, 120)",False
+V01,post,HO,65,2025-06-03,val,1,False
+V02,post,HO,65,2025-06-03,val,2,False
+V03,post,HO,65,2025-06-03,val,2,False
+V04,post,HO,65,2025-06-03,val,2,False
+V05,post,HO,65,2025-06-03,val,2,False
+V06,post,HO,65,2025-06-03,val,2,False
+V07,post,HO,65,2025-06-03,val,2,False
+V17,post,HO,65,2025-06-03,val,2,False
+V18,post,HO,65,2025-06-03,val,2,False
+V08,post,HO,65,2025-06-03,val,"(2, 60)",False
+V09,post,HO,65,2025-06-03,val,"(3, 30)",False
+V12,post,HO,65,2025-06-03,val,2,False
+V13,post,HO,65,2025-06-03,val,"(2, 120)",False
+V01,post,HO,66,2025-07-01,final,1,False
+V02,post,HO,66,2025-07-01,final,2,False
+V03,post,HO,66,2025-07-01,final,2,False
+V04,post,HO,66,2025-07-01,final,2,False
+V05,post,HO,66,2025-07-01,final,2,False
+V06,post,HO,66,2025-07-01,final,2,False
+V07,post,HO,66,2025-07-01,final,2,False
+V17,post,HO,66,2025-07-01,final,2,False
+V18,post,HO,66,2025-07-01,final,2,False
+V08,post,HO,66,2025-07-01,final,"(2, 60)",False
+V09,post,HO,66,2025-07-01,final,"(3, 30)",False
+V12,post,HO,66,2025-07-01,final,2,False
+V13,post,HO,66,2025-07-01,final,"(2, 120)",False
+V01,post,HO,67,2025-07-29,final,1,False
+V02,post,HO,67,2025-07-29,final,2,False
+V03,post,HO,67,2025-07-29,final,2,False
+V04,post,HO,67,2025-07-29,final,2,False
+V05,post,HO,67,2025-07-29,final,2,False
+V06,post,HO,67,2025-07-29,final,2,False
+V07,post,HO,67,2025-07-29,final,2,False
+V17,post,HO,67,2025-07-29,final,2,False
+V18,post,HO,67,2025-07-29,final,2,False
+V08,post,HO,67,2025-07-29,final,"(2, 60)",False
+V09,post,HO,67,2025-07-29,final,"(3, 30)",False
+V12,post,HO,67,2025-07-29,final,2,False
+V13,post,HO,67,2025-07-29,final,"(2, 120)",False
+V01,post,LO,64,2025-05-06,val,2,False
+V02,post,LO,64,2025-05-06,val,2,False
+V03,post,LO,64,2025-05-06,val,3,False
+V04,post,LO,64,2025-05-06,val,3,False
+V05,post,LO,64,2025-05-06,val,3,False
+V06,post,LO,64,2025-05-06,val,2,False
+V07,post,LO,64,2025-05-06,val,3,False
+V18,post,LO,64,2025-05-06,val,3,False
+V08,post,LO,64,2025-05-06,val,"(2, 60)",False
+V09,post,LO,64,2025-05-06,val,"(2, 30)",False
+V12,post,LO,64,2025-05-06,val,2,False
+V13,post,LO,64,2025-05-06,val,"(2, 60)",False
+V01,post,LO,65,2025-06-03,val,2,False
+V02,post,LO,65,2025-06-03,val,2,False
+V03,post,LO,65,2025-06-03,val,3,False
+V04,post,LO,65,2025-06-03,val,3,False
+V05,post,LO,65,2025-06-03,val,3,False
+V06,post,LO,65,2025-06-03,val,2,False
+V07,post,LO,65,2025-06-03,val,3,False
+V17,post,LO,65,2025-06-03,val,3,False
+V18,post,LO,65,2025-06-03,val,3,False
+V08,post,LO,65,2025-06-03,val,"(2, 60)",False
+V09,post,LO,65,2025-06-03,val,"(2, 30)",False
+V12,post,LO,65,2025-06-03,val,2,False
+V13,post,LO,65,2025-06-03,val,"(2, 60)",False
+V01,post,LO,66,2025-07-01,final,1,False
+V02,post,LO,66,2025-07-01,final,2,False
+V03,post,LO,66,2025-07-01,final,3,False
+V04,post,LO,66,2025-07-01,final,3,False
+V05,post,LO,66,2025-07-01,final,3,False
+V06,post,LO,66,2025-07-01,final,2,False
+V07,post,LO,66,2025-07-01,final,3,False
+V17,post,LO,66,2025-07-01,final,3,False
+V18,post,LO,66,2025-07-01,final,3,False
+V08,post,LO,66,2025-07-01,final,"(2, 60)",False
+V09,post,LO,66,2025-07-01,final,"(2, 30)",False
+V12,post,LO,66,2025-07-01,final,2,False
+V13,post,LO,66,2025-07-01,final,"(2, 60)",False
+V01,post,LO,67,2025-07-29,final,1,False
+V02,post,LO,67,2025-07-29,final,2,False
+V03,post,LO,67,2025-07-29,final,3,False
+V04,post,LO,67,2025-07-29,final,3,False
+V05,post,LO,67,2025-07-29,final,3,False
+V06,post,LO,67,2025-07-29,final,2,False
+V07,post,LO,67,2025-07-29,final,3,False
+V17,post,LO,67,2025-07-29,final,3,False
+V18,post,LO,67,2025-07-29,final,3,False
+V08,post,LO,67,2025-07-29,final,"(2, 60)",False
+V09,post,LO,67,2025-07-29,final,"(2, 30)",False
+V12,post,LO,67,2025-07-29,final,2,False
+V13,post,LO,67,2025-07-29,final,"(2, 60)",False
+V01,pre,H,60,2025-01-06,val,1,False
+V02,pre,H,60,2025-01-06,val,2,False
+V03,pre,H,60,2025-01-06,val,2,False
+V04,pre,H,60,2025-01-06,val,2,False
+V05,pre,H,60,2025-01-06,val,0,True
+V06,pre,H,60,2025-01-06,val,2,False
+V07,pre,H,60,2025-01-06,val,2,False
+V18,pre,H,60,2025-01-06,val,2,False
+V08,pre,H,60,2025-01-06,val,"(3, 30)",False
+V09,pre,H,60,2025-01-06,val,"(3, 30)",False
+V12,pre,H,60,2025-01-06,val,3,False
+V13,pre,H,60,2025-01-06,val,"(2, 30)",False
+V01,pre,H,61,2025-02-01,val,1,False
+V02,pre,H,61,2025-02-01,val,2,False
+V03,pre,H,61,2025-02-01,val,2,False
+V04,pre,H,61,2025-02-01,val,2,False
+V05,pre,H,61,2025-02-01,val,0,True
+V06,pre,H,61,2025-02-01,val,2,False
+V07,pre,H,61,2025-02-01,val,2,False
+V18,pre,H,61,2025-02-01,val,2,False
+V08,pre,H,61,2025-02-01,val,"(3, 30)",False
+V09,pre,H,61,2025-02-01,val,"(3, 30)",False
+V12,pre,H,61,2025-02-01,val,2,False
+V13,pre,H,61,2025-02-01,val,"(2, 30)",False
+V01,pre,H,62,2025-03-03,val,1,False
+V02,pre,H,62,2025-03-03,val,2,False
+V03,pre,H,62,2025-03-03,val,2,False
+V04,pre,H,62,2025-03-03,val,2,False
+V05,pre,H,62,2025-03-03,val,0,True
+V06,pre,H,62,2025-03-03,val,2,False
+V07,pre,H,62,2025-03-03,val,2,False
+V18,pre,H,62,2025-03-03,val,2,False
+V08,pre,H,62,2025-03-03,val,"(3, 30)",False
+V09,pre,H,62,2025-03-03,val,"(3, 30)",False
+V12,pre,H,62,2025-03-03,val,3,False
+V13,pre,H,62,2025-03-03,val,"(2, 30)",False
+V01,pre,H,63,2025-04-02,val,1,False
+V02,pre,H,63,2025-04-02,val,2,False
+V03,pre,H,63,2025-04-02,val,2,False
+V04,pre,H,63,2025-04-02,val,2,False
+V05,pre,H,63,2025-04-02,val,2,False
+V06,pre,H,63,2025-04-02,val,2,False
+V07,pre,H,63,2025-04-02,val,2,False
+V18,pre,H,63,2025-04-02,val,2,False
+V08,pre,H,63,2025-04-02,val,"(3, 30)",False
+V09,pre,H,63,2025-04-02,val,"(3, 30)",False
+V12,pre,H,63,2025-04-02,val,3,False
+V13,pre,H,63,2025-04-02,val,"(2, 30)",False
+V01,pre,L,60,2025-01-06,val,1,False
+V02,pre,L,60,2025-01-06,val,2,False
+V03,pre,L,60,2025-01-06,val,2,False
+V04,pre,L,60,2025-01-06,val,3,False
+V05,pre,L,60,2025-01-06,val,1,False
+V06,pre,L,60,2025-01-06,val,2,False
+V07,pre,L,60,2025-01-06,val,2,False
+V18,pre,L,60,2025-01-06,val,2,False
+V08,pre,L,60,2025-01-06,val,"(3, 30)",False
+V09,pre,L,60,2025-01-06,val,"(3, 30)",False
+V12,pre,L,60,2025-01-06,val,2,False
+V13,pre,L,60,2025-01-06,val,"(2, 30)",False
+V01,pre,L,61,2025-02-01,val,1,False
+V02,pre,L,61,2025-02-01,val,2,False
+V03,pre,L,61,2025-02-01,val,2,False
+V04,pre,L,61,2025-02-01,val,3,False
+V05,pre,L,61,2025-02-01,val,2,False
+V06,pre,L,61,2025-02-01,val,2,False
+V07,pre,L,61,2025-02-01,val,3,False
+V18,pre,L,61,2025-02-01,val,3,False
+V08,pre,L,61,2025-02-01,val,"(3, 30)",False
+V09,pre,L,61,2025-02-01,val,"(3, 30)",False
+V12,pre,L,61,2025-02-01,val,2,False
+V13,pre,L,61,2025-02-01,val,"(2, 30)",False
+V01,pre,L,62,2025-03-03,val,1,False
+V02,pre,L,62,2025-03-03,val,2,False
+V03,pre,L,62,2025-03-03,val,2,False
+V04,pre,L,62,2025-03-03,val,2,False
+V05,pre,L,62,2025-03-03,val,2,False
+V06,pre,L,62,2025-03-03,val,2,False
+V07,pre,L,62,2025-03-03,val,3,False
+V18,pre,L,62,2025-03-03,val,3,False
+V08,pre,L,62,2025-03-03,val,"(3, 30)",False
+V09,pre,L,62,2025-03-03,val,"(3, 30)",False
+V12,pre,L,62,2025-03-03,val,2,False
+V13,pre,L,62,2025-03-03,val,"(2, 30)",False
+V01,pre,L,63,2025-04-02,val,1,False
+V02,pre,L,63,2025-04-02,val,2,False
+V03,pre,L,63,2025-04-02,val,2,False
+V04,pre,L,63,2025-04-02,val,2,False
+V05,pre,L,63,2025-04-02,val,2,False
+V06,pre,L,63,2025-04-02,val,2,False
+V07,pre,L,63,2025-04-02,val,3,False
+V18,pre,L,63,2025-04-02,val,2,False
+V08,pre,L,63,2025-04-02,val,"(3, 30)",False
+V09,pre,L,63,2025-04-02,val,"(3, 30)",False
+V12,pre,L,63,2025-04-02,val,2,False
+V13,pre,L,63,2025-04-02,val,"(2, 30)",False
+V01,post,HO,60,2025-01-06,val,1,False
+V02,post,HO,60,2025-01-06,val,2,False
+V03,post,HO,60,2025-01-06,val,2,False
+V04,post,HO,60,2025-01-06,val,2,False
+V05,post,HO,60,2025-01-06,val,2,False
+V06,post,HO,60,2025-01-06,val,1,False
+V07,post,HO,60,2025-01-06,val,2,False
+V18,post,HO,60,2025-01-06,val,2,False
+V08,post,HO,60,2025-01-06,val,"(3, 30)",False
+V09,post,HO,60,2025-01-06,val,"(2, 30)",False
+V12,post,HO,60,2025-01-06,val,2,False
+V13,post,HO,60,2025-01-06,val,"(3, 30)",False
+V01,post,HO,61,2025-02-01,val,1,False
+V02,post,HO,61,2025-02-01,val,2,False
+V03,post,HO,61,2025-02-01,val,2,False
+V04,post,HO,61,2025-02-01,val,2,False
+V05,post,HO,61,2025-02-01,val,2,False
+V06,post,HO,61,2025-02-01,val,2,False
+V07,post,HO,61,2025-02-01,val,2,False
+V18,post,HO,61,2025-02-01,val,2,False
+V08,post,HO,61,2025-02-01,val,"(3, 30)",False
+V09,post,HO,61,2025-02-01,val,"(2, 30)",False
+V12,post,HO,61,2025-02-01,val,2,False
+V13,post,HO,61,2025-02-01,val,"(3, 30)",False
+V01,post,HO,62,2025-03-03,val,1,False
+V02,post,HO,62,2025-03-03,val,2,False
+V03,post,HO,62,2025-03-03,val,2,False
+V04,post,HO,62,2025-03-03,val,2,False
+V05,post,HO,62,2025-03-03,val,2,False
+V06,post,HO,62,2025-03-03,val,2,False
+V07,post,HO,62,2025-03-03,val,2,False
+V18,post,HO,62,2025-03-03,val,2,False
+V08,post,HO,62,2025-03-03,val,"(3, 30)",False
+V09,post,HO,62,2025-03-03,val,"(2, 30)",False
+V12,post,HO,62,2025-03-03,val,2,False
+V13,post,HO,62,2025-03-03,val,"(3, 30)",False
+V01,post,HO,63,2025-04-02,val,1,False
+V02,post,HO,63,2025-04-02,val,2,False
+V03,post,HO,63,2025-04-02,val,2,False
+V04,post,HO,63,2025-04-02,val,2,False
+V05,post,HO,63,2025-04-02,val,2,False
+V06,post,HO,63,2025-04-02,val,2,False
+V07,post,HO,63,2025-04-02,val,2,False
+V18,post,HO,63,2025-04-02,val,2,False
+V08,post,HO,63,2025-04-02,val,"(3, 30)",False
+V09,post,HO,63,2025-04-02,val,"(2, 30)",False
+V12,post,HO,63,2025-04-02,val,2,False
+V13,post,HO,63,2025-04-02,val,"(3, 30)",False
+V01,post,LO,60,2025-01-06,val,1,False
+V02,post,LO,60,2025-01-06,val,2,False
+V03,post,LO,60,2025-01-06,val,2,False
+V04,post,LO,60,2025-01-06,val,0,True
+V05,post,LO,60,2025-01-06,val,2,False
+V06,post,LO,60,2025-01-06,val,2,False
+V07,post,LO,60,2025-01-06,val,3,False
+V18,post,LO,60,2025-01-06,val,3,False
+V08,post,LO,60,2025-01-06,val,"(2, 60)",False
+V09,post,LO,60,2025-01-06,val,"(2, 30)",False
+V12,post,LO,60,2025-01-06,val,2,False
+V13,post,LO,60,2025-01-06,val,"(2, 60)",False
+V01,post,LO,61,2025-02-01,val,1,False
+V02,post,LO,61,2025-02-01,val,2,False
+V03,post,LO,61,2025-02-01,val,2,False
+V04,post,LO,61,2025-02-01,val,0,True
+V05,post,LO,61,2025-02-01,val,3,False
+V06,post,LO,61,2025-02-01,val,2,False
+V07,post,LO,61,2025-02-01,val,0,True
+V18,post,LO,61,2025-02-01,val,3,False
+V08,post,LO,61,2025-02-01,val,"(2, 60)",False
+V09,post,LO,61,2025-02-01,val,"(2, 30)",False
+V12,post,LO,61,2025-02-01,val,2,False
+V13,post,LO,61,2025-02-01,val,"(2, 60)",False
+V01,post,LO,62,2025-03-03,val,2,False
+V02,post,LO,62,2025-03-03,val,2,False
+V03,post,LO,62,2025-03-03,val,2,False
+V04,post,LO,62,2025-03-03,val,0,True
+V05,post,LO,62,2025-03-03,val,3,False
+V06,post,LO,62,2025-03-03,val,2,False
+V07,post,LO,62,2025-03-03,val,3,False
+V18,post,LO,62,2025-03-03,val,3,False
+V08,post,LO,62,2025-03-03,val,"(2, 60)",False
+V09,post,LO,62,2025-03-03,val,"(2, 30)",False
+V12,post,LO,62,2025-03-03,val,2,False
+V13,post,LO,62,2025-03-03,val,"(2, 60)",False
+V01,post,LO,63,2025-04-02,val,3,False
+V02,post,LO,63,2025-04-02,val,2,False
+V03,post,LO,63,2025-04-02,val,2,False
+V04,post,LO,63,2025-04-02,val,3,False
+V05,post,LO,63,2025-04-02,val,3,False
+V06,post,LO,63,2025-04-02,val,2,False
+V07,post,LO,63,2025-04-02,val,3,False
+V18,post,LO,63,2025-04-02,val,3,False
+V08,post,LO,63,2025-04-02,val,"(2, 60)",False
+V09,post,LO,63,2025-04-02,val,"(2, 30)",False
+V12,post,LO,63,2025-04-02,val,2,False
+V13,post,LO,63,2025-04-02,val,"(2, 60)",False
+V01,pre,H,56,2024-09-09,val,1,False
+V02,pre,H,56,2024-09-09,val,2,False
+V03,pre,H,56,2024-09-09,val,2,False
+V04,pre,H,56,2024-09-09,val,2,False
+V05,pre,H,56,2024-09-09,val,2,False
+V06,pre,H,56,2024-09-09,val,2,False
+V07,pre,H,56,2024-09-09,val,2,False
+V18,pre,H,56,2024-09-09,val,2,False
+V08,pre,H,56,2024-09-09,val,"(3, 60)",False
+V09,pre,H,56,2024-09-09,val,"(2, 60)",False
+V12,pre,H,56,2024-09-09,val,3,False
+V13,pre,H,56,2024-09-09,val,"(2, 30)",False
+V01,pre,H,57,2024-10-08,val,1,False
+V02,pre,H,57,2024-10-08,val,2,False
+V03,pre,H,57,2024-10-08,val,2,False
+V04,pre,H,57,2024-10-08,val,2,False
+V05,pre,H,57,2024-10-08,val,0,True
+V06,pre,H,57,2024-10-08,val,2,False
+V07,pre,H,57,2024-10-08,val,0,True
+V18,pre,H,57,2024-10-08,val,2,False
+V08,pre,H,57,2024-10-08,val,"(3, 60)",False
+V09,pre,H,57,2024-10-08,val,"(2, 60)",False
+V12,pre,H,57,2024-10-08,val,3,False
+V13,pre,H,57,2024-10-08,val,"(2, 30)",False
+V01,pre,H,58,2024-11-06,val,1,False
+V02,pre,H,58,2024-11-06,val,2,False
+V03,pre,H,58,2024-11-06,val,2,False
+V04,pre,H,58,2024-11-06,val,2,False
+V05,pre,H,58,2024-11-06,val,0,True
+V06,pre,H,58,2024-11-06,val,2,False
+V07,pre,H,58,2024-11-06,val,2,False
+V18,pre,H,58,2024-11-06,val,2,False
+V08,pre,H,58,2024-11-06,val,"(3, 60)",False
+V09,pre,H,58,2024-11-06,val,"(2, 60)",False
+V12,pre,H,58,2024-11-06,val,3,False
+V13,pre,H,58,2024-11-06,val,"(2, 30)",False
+V01,pre,H,59,2024-12-06,val,1,False
+V02,pre,H,59,2024-12-06,val,2,False
+V03,pre,H,59,2024-12-06,val,2,False
+V04,pre,H,59,2024-12-06,val,2,False
+V05,pre,H,59,2024-12-06,val,0,True
+V06,pre,H,59,2024-12-06,val,2,False
+V07,pre,H,59,2024-12-06,val,2,False
+V18,pre,H,59,2024-12-06,val,2,False
+V08,pre,H,59,2024-12-06,val,"(3, 60)",False
+V09,pre,H,59,2024-12-06,val,"(2, 60)",False
+V12,pre,H,59,2024-12-06,val,3,False
+V13,pre,H,59,2024-12-06,val,"(2, 30)",False
+V01,pre,L,56,2024-09-09,val,1,False
+V02,pre,L,56,2024-09-09,val,2,False
+V03,pre,L,56,2024-09-09,val,2,False
+V04,pre,L,56,2024-09-09,val,2,False
+V05,pre,L,56,2024-09-09,val,1,False
+V06,pre,L,56,2024-09-09,val,2,False
+V07,pre,L,56,2024-09-09,val,2,False
+V18,pre,L,56,2024-09-09,val,1,False
+V08,pre,L,56,2024-09-09,val,"(3, 30)",False
+V09,pre,L,56,2024-09-09,val,"(2, 60)",False
+V12,pre,L,56,2024-09-09,val,2,False
+V13,pre,L,56,2024-09-09,val,"(2, 60)",False
+V01,pre,L,57,2024-10-08,val,1,False
+V02,pre,L,57,2024-10-08,val,2,False
+V03,pre,L,57,2024-10-08,val,2,False
+V04,pre,L,57,2024-10-08,val,2,False
+V05,pre,L,57,2024-10-08,val,2,False
+V06,pre,L,57,2024-10-08,val,2,False
+V07,pre,L,57,2024-10-08,val,2,False
+V18,pre,L,57,2024-10-08,val,2,False
+V08,pre,L,57,2024-10-08,val,"(3, 30)",False
+V09,pre,L,57,2024-10-08,val,"(2, 60)",False
+V12,pre,L,57,2024-10-08,val,2,False
+V13,pre,L,57,2024-10-08,val,"(2, 60)",False
+V01,pre,L,58,2024-11-06,val,1,False
+V02,pre,L,58,2024-11-06,val,2,False
+V03,pre,L,58,2024-11-06,val,2,False
+V04,pre,L,58,2024-11-06,val,2,False
+V05,pre,L,58,2024-11-06,val,2,False
+V06,pre,L,58,2024-11-06,val,2,False
+V07,pre,L,58,2024-11-06,val,2,False
+V18,pre,L,58,2024-11-06,val,2,False
+V08,pre,L,58,2024-11-06,val,"(3, 30)",False
+V09,pre,L,58,2024-11-06,val,"(2, 60)",False
+V12,pre,L,58,2024-11-06,val,2,False
+V13,pre,L,58,2024-11-06,val,"(2, 60)",False
+V01,pre,L,59,2024-12-06,val,1,False
+V02,pre,L,59,2024-12-06,val,2,False
+V03,pre,L,59,2024-12-06,val,2,False
+V04,pre,L,59,2024-12-06,val,2,False
+V05,pre,L,59,2024-12-06,val,1,False
+V06,pre,L,59,2024-12-06,val,2,False
+V07,pre,L,59,2024-12-06,val,2,False
+V18,pre,L,59,2024-12-06,val,2,False
+V08,pre,L,59,2024-12-06,val,"(3, 30)",False
+V09,pre,L,59,2024-12-06,val,"(2, 60)",False
+V12,pre,L,59,2024-12-06,val,2,False
+V13,pre,L,59,2024-12-06,val,"(2, 60)",False
+V01,post,HO,56,2024-09-09,val,0,True
+V02,post,HO,56,2024-09-09,val,2,False
+V03,post,HO,56,2024-09-09,val,0,True
+V04,post,HO,56,2024-09-09,val,2,False
+V05,post,HO,56,2024-09-09,val,0,True
+V06,post,HO,56,2024-09-09,val,2,False
+V07,post,HO,56,2024-09-09,val,2,False
+V18,post,HO,56,2024-09-09,val,2,False
+V08,post,HO,56,2024-09-09,val,"(3, 30)",False
+V09,post,HO,56,2024-09-09,val,"(2, 60)",False
+V12,post,HO,56,2024-09-09,val,0,True
+V13,post,HO,56,2024-09-09,val,"(3, 60)",False
+V01,post,HO,57,2024-10-08,val,0,True
+V02,post,HO,57,2024-10-08,val,2,False
+V03,post,HO,57,2024-10-08,val,0,True
+V04,post,HO,57,2024-10-08,val,2,False
+V05,post,HO,57,2024-10-08,val,0,True
+V06,post,HO,57,2024-10-08,val,1,False
+V07,post,HO,57,2024-10-08,val,0,True
+V18,post,HO,57,2024-10-08,val,2,False
+V08,post,HO,57,2024-10-08,val,"(3, 30)",False
+V09,post,HO,57,2024-10-08,val,"(2, 60)",False
+V12,post,HO,57,2024-10-08,val,3,False
+V13,post,HO,57,2024-10-08,val,"(3, 60)",False
+V01,post,HO,58,2024-11-06,val,1,False
+V02,post,HO,58,2024-11-06,val,2,False
+V03,post,HO,58,2024-11-06,val,0,True
+V04,post,HO,58,2024-11-06,val,2,False
+V05,post,HO,58,2024-11-06,val,0,True
+V06,post,HO,58,2024-11-06,val,1,False
+V07,post,HO,58,2024-11-06,val,0,True
+V18,post,HO,58,2024-11-06,val,2,False
+V08,post,HO,58,2024-11-06,val,"(3, 30)",False
+V09,post,HO,58,2024-11-06,val,"(2, 60)",False
+V12,post,HO,58,2024-11-06,val,2,False
+V13,post,HO,58,2024-11-06,val,"(3, 60)",False
+V01,post,HO,59,2024-12-06,val,1,False
+V02,post,HO,59,2024-12-06,val,2,False
+V03,post,HO,59,2024-12-06,val,2,False
+V04,post,HO,59,2024-12-06,val,2,False
+V05,post,HO,59,2024-12-06,val,0,True
+V06,post,HO,59,2024-12-06,val,1,False
+V07,post,HO,59,2024-12-06,val,2,False
+V18,post,HO,59,2024-12-06,val,2,False
+V08,post,HO,59,2024-12-06,val,"(3, 30)",False
+V09,post,HO,59,2024-12-06,val,"(2, 60)",False
+V12,post,HO,59,2024-12-06,val,2,False
+V13,post,HO,59,2024-12-06,val,"(3, 60)",False
+V01,post,LO,56,2024-09-09,val,3,False
+V02,post,LO,56,2024-09-09,val,2,False
+V03,post,LO,56,2024-09-09,val,2,False
+V04,post,LO,56,2024-09-09,val,3,False
+V05,post,LO,56,2024-09-09,val,2,False
+V06,post,LO,56,2024-09-09,val,2,False
+V07,post,LO,56,2024-09-09,val,2,False
+V18,post,LO,56,2024-09-09,val,3,False
+V08,post,LO,56,2024-09-09,val,"(2, 60)",False
+V09,post,LO,56,2024-09-09,val,"(2, 30)",False
+V12,post,LO,56,2024-09-09,val,2,False
+V13,post,LO,56,2024-09-09,val,"(3, 60)",False
+V01,post,LO,57,2024-10-08,val,0,True
+V02,post,LO,57,2024-10-08,val,2,False
+V03,post,LO,57,2024-10-08,val,2,False
+V04,post,LO,57,2024-10-08,val,0,True
+V05,post,LO,57,2024-10-08,val,2,False
+V06,post,LO,57,2024-10-08,val,2,False
+V07,post,LO,57,2024-10-08,val,2,False
+V18,post,LO,57,2024-10-08,val,3,False
+V08,post,LO,57,2024-10-08,val,"(2, 60)",False
+V09,post,LO,57,2024-10-08,val,"(2, 30)",False
+V12,post,LO,57,2024-10-08,val,2,False
+V13,post,LO,57,2024-10-08,val,"(3, 60)",False
+V01,post,LO,58,2024-11-06,val,2,False
+V02,post,LO,58,2024-11-06,val,2,False
+V03,post,LO,58,2024-11-06,val,2,False
+V04,post,LO,58,2024-11-06,val,0,True
+V05,post,LO,58,2024-11-06,val,3,False
+V06,post,LO,58,2024-11-06,val,2,False
+V07,post,LO,58,2024-11-06,val,3,False
+V18,post,LO,58,2024-11-06,val,3,False
+V08,post,LO,58,2024-11-06,val,"(2, 60)",False
+V09,post,LO,58,2024-11-06,val,"(2, 30)",False
+V12,post,LO,58,2024-11-06,val,2,False
+V13,post,LO,58,2024-11-06,val,"(3, 60)",False
+V01,post,LO,59,2024-12-06,val,1,False
+V02,post,LO,59,2024-12-06,val,2,False
+V03,post,LO,59,2024-12-06,val,2,False
+V04,post,LO,59,2024-12-06,val,3,False
+V05,post,LO,59,2024-12-06,val,2,False
+V06,post,LO,59,2024-12-06,val,2,False
+V07,post,LO,59,2024-12-06,val,2,False
+V18,post,LO,59,2024-12-06,val,3,False
+V08,post,LO,59,2024-12-06,val,"(2, 60)",False
+V09,post,LO,59,2024-12-06,val,"(2, 30)",False
+V12,post,LO,59,2024-12-06,val,2,False
+V13,post,LO,59,2024-12-06,val,"(3, 60)",False
+V01,pre,H,52,2024-05-14,dev,1,False
+V02,pre,H,52,2024-05-14,dev,3,False
+V03,pre,H,52,2024-05-14,dev,0,True
+V04,pre,H,52,2024-05-14,dev,0,True
+V05,pre,H,52,2024-05-14,dev,0,True
+V06,pre,H,52,2024-05-14,dev,2,False
+V07,pre,H,52,2024-05-14,dev,0,True
+V18,pre,H,52,2024-05-14,dev,2,False
+V08,pre,H,52,2024-05-14,dev,"(2, 60)",False
+V09,pre,H,52,2024-05-14,dev,"(2, 60)",False
+V12,pre,H,52,2024-05-14,dev,3,False
+V13,pre,H,52,2024-05-14,dev,"(3, 30)",False
+V01,pre,H,53,2024-06-12,dev,1,False
+V02,pre,H,53,2024-06-12,dev,3,False
+V03,pre,H,53,2024-06-12,dev,0,True
+V04,pre,H,53,2024-06-12,dev,2,False
+V05,pre,H,53,2024-06-12,dev,0,True
+V06,pre,H,53,2024-06-12,dev,2,False
+V07,pre,H,53,2024-06-12,dev,0,True
+V18,pre,H,53,2024-06-12,dev,2,False
+V08,pre,H,53,2024-06-12,dev,"(2, 60)",False
+V09,pre,H,53,2024-06-12,dev,"(2, 60)",False
+V12,pre,H,53,2024-06-12,dev,3,False
+V13,pre,H,53,2024-06-12,dev,"(3, 30)",False
+V01,pre,H,54,2024-07-11,val,1,False
+V02,pre,H,54,2024-07-11,val,2,False
+V03,pre,H,54,2024-07-11,val,2,False
+V04,pre,H,54,2024-07-11,val,2,False
+V05,pre,H,54,2024-07-11,val,2,False
+V06,pre,H,54,2024-07-11,val,2,False
+V07,pre,H,54,2024-07-11,val,2,False
+V18,pre,H,54,2024-07-11,val,2,False
+V08,pre,H,54,2024-07-11,val,"(2, 60)",False
+V09,pre,H,54,2024-07-11,val,"(2, 60)",False
+V12,pre,H,54,2024-07-11,val,3,False
+V13,pre,H,54,2024-07-11,val,"(3, 30)",False
+V01,pre,H,55,2024-08-09,val,1,False
+V02,pre,H,55,2024-08-09,val,2,False
+V03,pre,H,55,2024-08-09,val,2,False
+V04,pre,H,55,2024-08-09,val,2,False
+V05,pre,H,55,2024-08-09,val,2,False
+V06,pre,H,55,2024-08-09,val,2,False
+V07,pre,H,55,2024-08-09,val,2,False
+V18,pre,H,55,2024-08-09,val,2,False
+V08,pre,H,55,2024-08-09,val,"(2, 60)",False
+V09,pre,H,55,2024-08-09,val,"(2, 60)",False
+V12,pre,H,55,2024-08-09,val,3,False
+V13,pre,H,55,2024-08-09,val,"(3, 30)",False
+V01,pre,L,52,2024-05-14,dev,1,False
+V02,pre,L,52,2024-05-14,dev,2,False
+V03,pre,L,52,2024-05-14,dev,2,False
+V04,pre,L,52,2024-05-14,dev,2,False
+V05,pre,L,52,2024-05-14,dev,2,False
+V06,pre,L,52,2024-05-14,dev,2,False
+V07,pre,L,52,2024-05-14,dev,2,False
+V18,pre,L,52,2024-05-14,dev,2,False
+V08,pre,L,52,2024-05-14,dev,"(2, 30)",False
+V09,pre,L,52,2024-05-14,dev,"(2, 30)",False
+V12,pre,L,52,2024-05-14,dev,2,False
+V13,pre,L,52,2024-05-14,dev,"(2, 120)",False
+V01,pre,L,53,2024-06-12,dev,1,False
+V02,pre,L,53,2024-06-12,dev,2,False
+V03,pre,L,53,2024-06-12,dev,2,False
+V04,pre,L,53,2024-06-12,dev,2,False
+V05,pre,L,53,2024-06-12,dev,3,False
+V06,pre,L,53,2024-06-12,dev,2,False
+V07,pre,L,53,2024-06-12,dev,2,False
+V18,pre,L,53,2024-06-12,dev,2,False
+V08,pre,L,53,2024-06-12,dev,"(2, 30)",False
+V09,pre,L,53,2024-06-12,dev,"(2, 30)",False
+V12,pre,L,53,2024-06-12,dev,2,False
+V13,pre,L,53,2024-06-12,dev,"(2, 120)",False
+V01,pre,L,54,2024-07-11,val,1,False
+V02,pre,L,54,2024-07-11,val,2,False
+V03,pre,L,54,2024-07-11,val,2,False
+V04,pre,L,54,2024-07-11,val,2,False
+V05,pre,L,54,2024-07-11,val,2,False
+V06,pre,L,54,2024-07-11,val,2,False
+V07,pre,L,54,2024-07-11,val,2,False
+V18,pre,L,54,2024-07-11,val,1,False
+V08,pre,L,54,2024-07-11,val,"(2, 30)",False
+V09,pre,L,54,2024-07-11,val,"(2, 30)",False
+V12,pre,L,54,2024-07-11,val,2,False
+V13,pre,L,54,2024-07-11,val,"(2, 120)",False
+V01,pre,L,55,2024-08-09,val,1,False
+V02,pre,L,55,2024-08-09,val,2,False
+V03,pre,L,55,2024-08-09,val,2,False
+V04,pre,L,55,2024-08-09,val,2,False
+V05,pre,L,55,2024-08-09,val,2,False
+V06,pre,L,55,2024-08-09,val,2,False
+V07,pre,L,55,2024-08-09,val,2,False
+V18,pre,L,55,2024-08-09,val,1,False
+V08,pre,L,55,2024-08-09,val,"(2, 30)",False
+V09,pre,L,55,2024-08-09,val,"(2, 30)",False
+V12,pre,L,55,2024-08-09,val,2,False
+V13,pre,L,55,2024-08-09,val,"(2, 120)",False
+V01,post,HO,52,2024-05-14,dev,0,True
+V02,post,HO,52,2024-05-14,dev,2,False
+V03,post,HO,52,2024-05-14,dev,2,False
+V04,post,HO,52,2024-05-14,dev,2,False
+V05,post,HO,52,2024-05-14,dev,2,False
+V06,post,HO,52,2024-05-14,dev,2,False
+V07,post,HO,52,2024-05-14,dev,2,False
+V18,post,HO,52,2024-05-14,dev,2,False
+V08,post,HO,52,2024-05-14,dev,"(2, 120)",False
+V09,post,HO,52,2024-05-14,dev,"(2, 60)",False
+V12,post,HO,52,2024-05-14,dev,0,True
+V13,post,HO,52,2024-05-14,dev,"(2, 60)",False
+V01,post,HO,53,2024-06-12,dev,0,True
+V02,post,HO,53,2024-06-12,dev,2,False
+V03,post,HO,53,2024-06-12,dev,2,False
+V04,post,HO,53,2024-06-12,dev,2,False
+V05,post,HO,53,2024-06-12,dev,2,False
+V06,post,HO,53,2024-06-12,dev,2,False
+V07,post,HO,53,2024-06-12,dev,1,False
+V18,post,HO,53,2024-06-12,dev,2,False
+V08,post,HO,53,2024-06-12,dev,"(2, 120)",False
+V09,post,HO,53,2024-06-12,dev,"(2, 60)",False
+V12,post,HO,53,2024-06-12,dev,0,True
+V13,post,HO,53,2024-06-12,dev,"(2, 60)",False
+V01,post,HO,54,2024-07-11,val,0,True
+V02,post,HO,54,2024-07-11,val,2,False
+V03,post,HO,54,2024-07-11,val,2,False
+V04,post,HO,54,2024-07-11,val,2,False
+V05,post,HO,54,2024-07-11,val,2,False
+V06,post,HO,54,2024-07-11,val,2,False
+V07,post,HO,54,2024-07-11,val,2,False
+V18,post,HO,54,2024-07-11,val,2,False
+V08,post,HO,54,2024-07-11,val,"(2, 120)",False
+V09,post,HO,54,2024-07-11,val,"(2, 60)",False
+V12,post,HO,54,2024-07-11,val,3,False
+V13,post,HO,54,2024-07-11,val,"(2, 60)",False
+V01,post,HO,55,2024-08-09,val,0,True
+V02,post,HO,55,2024-08-09,val,2,False
+V03,post,HO,55,2024-08-09,val,2,False
+V04,post,HO,55,2024-08-09,val,2,False
+V05,post,HO,55,2024-08-09,val,2,False
+V06,post,HO,55,2024-08-09,val,2,False
+V07,post,HO,55,2024-08-09,val,2,False
+V18,post,HO,55,2024-08-09,val,2,False
+V08,post,HO,55,2024-08-09,val,"(2, 120)",False
+V09,post,HO,55,2024-08-09,val,"(2, 60)",False
+V12,post,HO,55,2024-08-09,val,0,True
+V13,post,HO,55,2024-08-09,val,"(2, 60)",False
+V01,post,LO,52,2024-05-14,dev,2,False
+V02,post,LO,52,2024-05-14,dev,2,False
+V03,post,LO,52,2024-05-14,dev,2,False
+V04,post,LO,52,2024-05-14,dev,0,True
+V05,post,LO,52,2024-05-14,dev,3,False
+V06,post,LO,52,2024-05-14,dev,2,False
+V07,post,LO,52,2024-05-14,dev,3,False
+V18,post,LO,52,2024-05-14,dev,3,False
+V08,post,LO,52,2024-05-14,dev,"(2, 60)",False
+V09,post,LO,52,2024-05-14,dev,"(2, 30)",False
+V12,post,LO,52,2024-05-14,dev,1,False
+V13,post,LO,52,2024-05-14,dev,"(2, 60)",False
+V01,post,LO,53,2024-06-12,dev,2,False
+V02,post,LO,53,2024-06-12,dev,2,False
+V03,post,LO,53,2024-06-12,dev,3,False
+V04,post,LO,53,2024-06-12,dev,0,True
+V05,post,LO,53,2024-06-12,dev,3,False
+V06,post,LO,53,2024-06-12,dev,2,False
+V07,post,LO,53,2024-06-12,dev,3,False
+V18,post,LO,53,2024-06-12,dev,3,False
+V08,post,LO,53,2024-06-12,dev,"(2, 60)",False
+V09,post,LO,53,2024-06-12,dev,"(2, 30)",False
+V12,post,LO,53,2024-06-12,dev,2,False
+V13,post,LO,53,2024-06-12,dev,"(2, 60)",False
+V01,post,LO,54,2024-07-11,val,1,False
+V02,post,LO,54,2024-07-11,val,2,False
+V03,post,LO,54,2024-07-11,val,3,False
+V04,post,LO,54,2024-07-11,val,3,False
+V05,post,LO,54,2024-07-11,val,3,False
+V06,post,LO,54,2024-07-11,val,2,False
+V07,post,LO,54,2024-07-11,val,3,False
+V18,post,LO,54,2024-07-11,val,3,False
+V08,post,LO,54,2024-07-11,val,"(2, 60)",False
+V09,post,LO,54,2024-07-11,val,"(2, 30)",False
+V12,post,LO,54,2024-07-11,val,1,False
+V13,post,LO,54,2024-07-11,val,"(2, 60)",False
+V01,post,LO,55,2024-08-09,val,1,False
+V02,post,LO,55,2024-08-09,val,2,False
+V03,post,LO,55,2024-08-09,val,2,False
+V04,post,LO,55,2024-08-09,val,3,False
+V05,post,LO,55,2024-08-09,val,2,False
+V06,post,LO,55,2024-08-09,val,2,False
+V07,post,LO,55,2024-08-09,val,2,False
+V18,post,LO,55,2024-08-09,val,3,False
+V08,post,LO,55,2024-08-09,val,"(2, 60)",False
+V09,post,LO,55,2024-08-09,val,"(2, 30)",False
+V12,post,LO,55,2024-08-09,val,2,False
+V13,post,LO,55,2024-08-09,val,"(2, 60)",False
+V01,pre,H,48,2024-01-12,dev,1,False
+V02,pre,H,48,2024-01-12,dev,3,False
+V03,pre,H,48,2024-01-12,dev,0,True
+V04,pre,H,48,2024-01-12,dev,0,True
+V05,pre,H,48,2024-01-12,dev,0,True
+V06,pre,H,48,2024-01-12,dev,0,True
+V07,pre,H,48,2024-01-12,dev,0,True
+V18,pre,H,48,2024-01-12,dev,1,False
+V08,pre,H,48,2024-01-12,dev,"(3, 30)",False
+V09,pre,H,48,2024-01-12,dev,"(3, 30)",False
+V12,pre,H,48,2024-01-12,dev,3,False
+V13,pre,H,48,2024-01-12,dev,None,True
+V01,pre,H,49,2024-02-12,dev,1,False
+V02,pre,H,49,2024-02-12,dev,3,False
+V03,pre,H,49,2024-02-12,dev,0,True
+V04,pre,H,49,2024-02-12,dev,0,True
+V05,pre,H,49,2024-02-12,dev,0,True
+V06,pre,H,49,2024-02-12,dev,0,True
+V07,pre,H,49,2024-02-12,dev,0,True
+V18,pre,H,49,2024-02-12,dev,1,False
+V08,pre,H,49,2024-02-12,dev,"(3, 30)",False
+V09,pre,H,49,2024-02-12,dev,"(3, 30)",False
+V12,pre,H,49,2024-02-12,dev,3,False
+V13,pre,H,49,2024-02-12,dev,None,True
+V01,pre,H,50,2024-03-12,dev,1,False
+V02,pre,H,50,2024-03-12,dev,2,False
+V03,pre,H,50,2024-03-12,dev,0,True
+V04,pre,H,50,2024-03-12,dev,0,True
+V05,pre,H,50,2024-03-12,dev,0,True
+V06,pre,H,50,2024-03-12,dev,0,True
+V07,pre,H,50,2024-03-12,dev,0,True
+V18,pre,H,50,2024-03-12,dev,2,False
+V08,pre,H,50,2024-03-12,dev,"(3, 30)",False
+V09,pre,H,50,2024-03-12,dev,"(3, 30)",False
+V12,pre,H,50,2024-03-12,dev,3,False
+V13,pre,H,50,2024-03-12,dev,None,True
+V01,pre,H,51,2024-04-12,dev,1,False
+V02,pre,H,51,2024-04-12,dev,3,False
+V03,pre,H,51,2024-04-12,dev,0,True
+V04,pre,H,51,2024-04-12,dev,0,True
+V05,pre,H,51,2024-04-12,dev,0,True
+V06,pre,H,51,2024-04-12,dev,0,True
+V07,pre,H,51,2024-04-12,dev,0,True
+V18,pre,H,51,2024-04-12,dev,2,False
+V08,pre,H,51,2024-04-12,dev,"(3, 30)",False
+V09,pre,H,51,2024-04-12,dev,"(3, 30)",False
+V12,pre,H,51,2024-04-12,dev,3,False
+V13,pre,H,51,2024-04-12,dev,None,True
+V01,pre,L,48,2024-01-12,dev,1,False
+V02,pre,L,48,2024-01-12,dev,2,False
+V03,pre,L,48,2024-01-12,dev,2,False
+V04,pre,L,48,2024-01-12,dev,2,False
+V05,pre,L,48,2024-01-12,dev,2,False
+V06,pre,L,48,2024-01-12,dev,2,False
+V07,pre,L,48,2024-01-12,dev,2,False
+V18,pre,L,48,2024-01-12,dev,2,False
+V08,pre,L,48,2024-01-12,dev,"(2, 60)",False
+V09,pre,L,48,2024-01-12,dev,"(2, 60)",False
+V12,pre,L,48,2024-01-12,dev,2,False
+V13,pre,L,48,2024-01-12,dev,"(2, 60)",False
+V01,pre,L,49,2024-02-12,dev,1,False
+V02,pre,L,49,2024-02-12,dev,2,False
+V03,pre,L,49,2024-02-12,dev,2,False
+V04,pre,L,49,2024-02-12,dev,2,False
+V05,pre,L,49,2024-02-12,dev,2,False
+V06,pre,L,49,2024-02-12,dev,2,False
+V07,pre,L,49,2024-02-12,dev,2,False
+V18,pre,L,49,2024-02-12,dev,2,False
+V08,pre,L,49,2024-02-12,dev,"(2, 60)",False
+V09,pre,L,49,2024-02-12,dev,"(2, 60)",False
+V12,pre,L,49,2024-02-12,dev,2,False
+V13,pre,L,49,2024-02-12,dev,"(2, 60)",False
+V01,pre,L,50,2024-03-12,dev,1,False
+V02,pre,L,50,2024-03-12,dev,2,False
+V03,pre,L,50,2024-03-12,dev,2,False
+V04,pre,L,50,2024-03-12,dev,2,False
+V05,pre,L,50,2024-03-12,dev,2,False
+V06,pre,L,50,2024-03-12,dev,2,False
+V07,pre,L,50,2024-03-12,dev,2,False
+V18,pre,L,50,2024-03-12,dev,2,False
+V08,pre,L,50,2024-03-12,dev,"(2, 60)",False
+V09,pre,L,50,2024-03-12,dev,"(2, 60)",False
+V12,pre,L,50,2024-03-12,dev,2,False
+V13,pre,L,50,2024-03-12,dev,"(2, 60)",False
+V01,pre,L,51,2024-04-12,dev,1,False
+V02,pre,L,51,2024-04-12,dev,2,False
+V03,pre,L,51,2024-04-12,dev,2,False
+V04,pre,L,51,2024-04-12,dev,2,False
+V05,pre,L,51,2024-04-12,dev,2,False
+V06,pre,L,51,2024-04-12,dev,2,False
+V07,pre,L,51,2024-04-12,dev,2,False
+V18,pre,L,51,2024-04-12,dev,2,False
+V08,pre,L,51,2024-04-12,dev,"(2, 60)",False
+V09,pre,L,51,2024-04-12,dev,"(2, 60)",False
+V12,pre,L,51,2024-04-12,dev,2,False
+V13,pre,L,51,2024-04-12,dev,"(2, 60)",False
+V01,post,HO,48,2024-01-12,dev,0,True
+V02,post,HO,48,2024-01-12,dev,2,False
+V03,post,HO,48,2024-01-12,dev,2,False
+V04,post,HO,48,2024-01-12,dev,2,False
+V05,post,HO,48,2024-01-12,dev,0,True
+V06,post,HO,48,2024-01-12,dev,2,False
+V07,post,HO,48,2024-01-12,dev,2,False
+V18,post,HO,48,2024-01-12,dev,2,False
+V08,post,HO,48,2024-01-12,dev,"(2, 60)",False
+V09,post,HO,48,2024-01-12,dev,"(3, 60)",False
+V12,post,HO,48,2024-01-12,dev,0,True
+V13,post,HO,48,2024-01-12,dev,None,True
+V01,post,HO,49,2024-02-12,dev,0,True
+V02,post,HO,49,2024-02-12,dev,2,False
+V03,post,HO,49,2024-02-12,dev,2,False
+V04,post,HO,49,2024-02-12,dev,2,False
+V05,post,HO,49,2024-02-12,dev,2,False
+V06,post,HO,49,2024-02-12,dev,2,False
+V07,post,HO,49,2024-02-12,dev,1,False
+V18,post,HO,49,2024-02-12,dev,2,False
+V08,post,HO,49,2024-02-12,dev,"(2, 60)",False
+V09,post,HO,49,2024-02-12,dev,"(3, 60)",False
+V12,post,HO,49,2024-02-12,dev,0,True
+V13,post,HO,49,2024-02-12,dev,None,True
+V01,post,HO,50,2024-03-12,dev,0,True
+V02,post,HO,50,2024-03-12,dev,2,False
+V03,post,HO,50,2024-03-12,dev,2,False
+V04,post,HO,50,2024-03-12,dev,2,False
+V05,post,HO,50,2024-03-12,dev,2,False
+V06,post,HO,50,2024-03-12,dev,2,False
+V07,post,HO,50,2024-03-12,dev,1,False
+V18,post,HO,50,2024-03-12,dev,2,False
+V08,post,HO,50,2024-03-12,dev,"(2, 60)",False
+V09,post,HO,50,2024-03-12,dev,"(3, 60)",False
+V12,post,HO,50,2024-03-12,dev,0,True
+V13,post,HO,50,2024-03-12,dev,None,True
+V01,post,HO,51,2024-04-12,dev,0,True
+V02,post,HO,51,2024-04-12,dev,2,False
+V03,post,HO,51,2024-04-12,dev,2,False
+V04,post,HO,51,2024-04-12,dev,2,False
+V05,post,HO,51,2024-04-12,dev,2,False
+V06,post,HO,51,2024-04-12,dev,2,False
+V07,post,HO,51,2024-04-12,dev,2,False
+V18,post,HO,51,2024-04-12,dev,2,False
+V08,post,HO,51,2024-04-12,dev,"(2, 60)",False
+V09,post,HO,51,2024-04-12,dev,"(3, 60)",False
+V12,post,HO,51,2024-04-12,dev,0,True
+V13,post,HO,51,2024-04-12,dev,None,True
+V01,post,LO,48,2024-01-12,dev,2,False
+V02,post,LO,48,2024-01-12,dev,2,False
+V03,post,LO,48,2024-01-12,dev,3,False
+V04,post,LO,48,2024-01-12,dev,3,False
+V05,post,LO,48,2024-01-12,dev,3,False
+V06,post,LO,48,2024-01-12,dev,2,False
+V07,post,LO,48,2024-01-12,dev,3,False
+V18,post,LO,48,2024-01-12,dev,3,False
+V08,post,LO,48,2024-01-12,dev,"(2, 60)",False
+V09,post,LO,48,2024-01-12,dev,"(2, 30)",False
+V12,post,LO,48,2024-01-12,dev,2,False
+V13,post,LO,48,2024-01-12,dev,"(2, 60)",False
+V01,post,LO,49,2024-02-12,dev,2,False
+V02,post,LO,49,2024-02-12,dev,2,False
+V03,post,LO,49,2024-02-12,dev,3,False
+V04,post,LO,49,2024-02-12,dev,3,False
+V05,post,LO,49,2024-02-12,dev,3,False
+V06,post,LO,49,2024-02-12,dev,2,False
+V07,post,LO,49,2024-02-12,dev,3,False
+V18,post,LO,49,2024-02-12,dev,3,False
+V08,post,LO,49,2024-02-12,dev,"(2, 60)",False
+V09,post,LO,49,2024-02-12,dev,"(2, 30)",False
+V12,post,LO,49,2024-02-12,dev,2,False
+V13,post,LO,49,2024-02-12,dev,"(2, 60)",False
+V01,post,LO,50,2024-03-12,dev,2,False
+V02,post,LO,50,2024-03-12,dev,2,False
+V03,post,LO,50,2024-03-12,dev,2,False
+V04,post,LO,50,2024-03-12,dev,3,False
+V05,post,LO,50,2024-03-12,dev,3,False
+V06,post,LO,50,2024-03-12,dev,2,False
+V07,post,LO,50,2024-03-12,dev,3,False
+V18,post,LO,50,2024-03-12,dev,3,False
+V08,post,LO,50,2024-03-12,dev,"(2, 60)",False
+V09,post,LO,50,2024-03-12,dev,"(2, 30)",False
+V12,post,LO,50,2024-03-12,dev,2,False
+V13,post,LO,50,2024-03-12,dev,"(2, 60)",False
+V01,post,LO,51,2024-04-12,dev,2,False
+V02,post,LO,51,2024-04-12,dev,2,False
+V03,post,LO,51,2024-04-12,dev,2,False
+V04,post,LO,51,2024-04-12,dev,3,False
+V05,post,LO,51,2024-04-12,dev,3,False
+V06,post,LO,51,2024-04-12,dev,2,False
+V07,post,LO,51,2024-04-12,dev,3,False
+V18,post,LO,51,2024-04-12,dev,3,False
+V08,post,LO,51,2024-04-12,dev,"(2, 60)",False
+V09,post,LO,51,2024-04-12,dev,"(2, 30)",False
+V12,post,LO,51,2024-04-12,dev,2,False
+V13,post,LO,51,2024-04-12,dev,"(2, 60)",False
+V01,pre,H,44,2023-09-14,dev,1,False
+V02,pre,H,44,2023-09-14,dev,3,False
+V03,pre,H,44,2023-09-14,dev,0,True
+V04,pre,H,44,2023-09-14,dev,0,True
+V05,pre,H,44,2023-09-14,dev,0,True
+V06,pre,H,44,2023-09-14,dev,0,True
+V07,pre,H,44,2023-09-14,dev,0,True
+V18,pre,H,44,2023-09-14,dev,2,False
+V08,pre,H,44,2023-09-14,dev,"(3, 30)",False
+V09,pre,H,44,2023-09-14,dev,"(3, 30)",False
+V12,pre,H,44,2023-09-14,dev,3,False
+V13,pre,H,44,2023-09-14,dev,None,True
+V01,pre,H,45,2023-10-16,dev,1,False
+V02,pre,H,45,2023-10-16,dev,3,False
+V03,pre,H,45,2023-10-16,dev,0,True
+V04,pre,H,45,2023-10-16,dev,0,True
+V05,pre,H,45,2023-10-16,dev,0,True
+V06,pre,H,45,2023-10-16,dev,0,True
+V07,pre,H,45,2023-10-16,dev,0,True
+V18,pre,H,45,2023-10-16,dev,2,False
+V08,pre,H,45,2023-10-16,dev,"(3, 30)",False
+V09,pre,H,45,2023-10-16,dev,"(3, 30)",False
+V12,pre,H,45,2023-10-16,dev,3,False
+V13,pre,H,45,2023-10-16,dev,None,True
+V01,pre,H,46,2023-11-15,dev,1,False
+V02,pre,H,46,2023-11-15,dev,3,False
+V03,pre,H,46,2023-11-15,dev,0,True
+V04,pre,H,46,2023-11-15,dev,0,True
+V05,pre,H,46,2023-11-15,dev,0,True
+V06,pre,H,46,2023-11-15,dev,0,True
+V07,pre,H,46,2023-11-15,dev,0,True
+V18,pre,H,46,2023-11-15,dev,2,False
+V08,pre,H,46,2023-11-15,dev,"(3, 30)",False
+V09,pre,H,46,2023-11-15,dev,"(3, 30)",False
+V12,pre,H,46,2023-11-15,dev,3,False
+V13,pre,H,46,2023-11-15,dev,None,True
+V01,pre,H,47,2023-12-14,dev,1,False
+V02,pre,H,47,2023-12-14,dev,3,False
+V03,pre,H,47,2023-12-14,dev,0,True
+V04,pre,H,47,2023-12-14,dev,0,True
+V05,pre,H,47,2023-12-14,dev,0,True
+V06,pre,H,47,2023-12-14,dev,0,True
+V07,pre,H,47,2023-12-14,dev,0,True
+V18,pre,H,47,2023-12-14,dev,2,False
+V08,pre,H,47,2023-12-14,dev,"(3, 30)",False
+V09,pre,H,47,2023-12-14,dev,"(3, 30)",False
+V12,pre,H,47,2023-12-14,dev,3,False
+V13,pre,H,47,2023-12-14,dev,None,True
+V01,pre,L,44,2023-09-14,dev,1,False
+V02,pre,L,44,2023-09-14,dev,2,False
+V03,pre,L,44,2023-09-14,dev,2,False
+V04,pre,L,44,2023-09-14,dev,3,False
+V05,pre,L,44,2023-09-14,dev,2,False
+V06,pre,L,44,2023-09-14,dev,2,False
+V07,pre,L,44,2023-09-14,dev,2,False
+V18,pre,L,44,2023-09-14,dev,2,False
+V08,pre,L,44,2023-09-14,dev,"(2, 30)",False
+V09,pre,L,44,2023-09-14,dev,"(2, 30)",False
+V12,pre,L,44,2023-09-14,dev,2,False
+V13,pre,L,44,2023-09-14,dev,"(2, 60)",False
+V01,pre,L,45,2023-10-16,dev,2,False
+V02,pre,L,45,2023-10-16,dev,2,False
+V03,pre,L,45,2023-10-16,dev,2,False
+V04,pre,L,45,2023-10-16,dev,2,False
+V05,pre,L,45,2023-10-16,dev,2,False
+V06,pre,L,45,2023-10-16,dev,2,False
+V07,pre,L,45,2023-10-16,dev,2,False
+V18,pre,L,45,2023-10-16,dev,2,False
+V08,pre,L,45,2023-10-16,dev,"(2, 30)",False
+V09,pre,L,45,2023-10-16,dev,"(2, 30)",False
+V12,pre,L,45,2023-10-16,dev,2,False
+V13,pre,L,45,2023-10-16,dev,"(2, 60)",False
+V01,pre,L,46,2023-11-15,dev,2,False
+V02,pre,L,46,2023-11-15,dev,2,False
+V03,pre,L,46,2023-11-15,dev,2,False
+V04,pre,L,46,2023-11-15,dev,2,False
+V05,pre,L,46,2023-11-15,dev,2,False
+V06,pre,L,46,2023-11-15,dev,2,False
+V07,pre,L,46,2023-11-15,dev,2,False
+V18,pre,L,46,2023-11-15,dev,2,False
+V08,pre,L,46,2023-11-15,dev,"(2, 30)",False
+V09,pre,L,46,2023-11-15,dev,"(2, 30)",False
+V12,pre,L,46,2023-11-15,dev,2,False
+V13,pre,L,46,2023-11-15,dev,"(2, 60)",False
+V01,pre,L,47,2023-12-14,dev,1,False
+V02,pre,L,47,2023-12-14,dev,2,False
+V03,pre,L,47,2023-12-14,dev,2,False
+V04,pre,L,47,2023-12-14,dev,2,False
+V05,pre,L,47,2023-12-14,dev,2,False
+V06,pre,L,47,2023-12-14,dev,2,False
+V07,pre,L,47,2023-12-14,dev,2,False
+V18,pre,L,47,2023-12-14,dev,2,False
+V08,pre,L,47,2023-12-14,dev,"(2, 30)",False
+V09,pre,L,47,2023-12-14,dev,"(2, 30)",False
+V12,pre,L,47,2023-12-14,dev,2,False
+V13,pre,L,47,2023-12-14,dev,"(2, 60)",False
+V01,post,HO,44,2023-09-14,dev,0,True
+V02,post,HO,44,2023-09-14,dev,3,False
+V03,post,HO,44,2023-09-14,dev,0,True
+V04,post,HO,44,2023-09-14,dev,0,True
+V05,post,HO,44,2023-09-14,dev,0,True
+V06,post,HO,44,2023-09-14,dev,0,True
+V07,post,HO,44,2023-09-14,dev,0,True
+V18,post,HO,44,2023-09-14,dev,0,True
+V08,post,HO,44,2023-09-14,dev,"(3, 30)",False
+V09,post,HO,44,2023-09-14,dev,"(2, 60)",False
+V12,post,HO,44,2023-09-14,dev,3,False
+V13,post,HO,44,2023-09-14,dev,None,True
+V01,post,HO,45,2023-10-16,dev,0,True
+V02,post,HO,45,2023-10-16,dev,2,False
+V03,post,HO,45,2023-10-16,dev,0,True
+V04,post,HO,45,2023-10-16,dev,0,True
+V05,post,HO,45,2023-10-16,dev,0,True
+V06,post,HO,45,2023-10-16,dev,0,True
+V07,post,HO,45,2023-10-16,dev,0,True
+V18,post,HO,45,2023-10-16,dev,0,True
+V08,post,HO,45,2023-10-16,dev,"(3, 30)",False
+V09,post,HO,45,2023-10-16,dev,"(2, 60)",False
+V12,post,HO,45,2023-10-16,dev,3,False
+V13,post,HO,45,2023-10-16,dev,None,True
+V01,post,HO,46,2023-11-15,dev,0,True
+V02,post,HO,46,2023-11-15,dev,2,False
+V03,post,HO,46,2023-11-15,dev,0,True
+V04,post,HO,46,2023-11-15,dev,0,True
+V05,post,HO,46,2023-11-15,dev,0,True
+V06,post,HO,46,2023-11-15,dev,0,True
+V07,post,HO,46,2023-11-15,dev,0,True
+V18,post,HO,46,2023-11-15,dev,0,True
+V08,post,HO,46,2023-11-15,dev,"(3, 30)",False
+V09,post,HO,46,2023-11-15,dev,"(2, 60)",False
+V12,post,HO,46,2023-11-15,dev,0,True
+V13,post,HO,46,2023-11-15,dev,None,True
+V01,post,HO,47,2023-12-14,dev,0,True
+V02,post,HO,47,2023-12-14,dev,2,False
+V03,post,HO,47,2023-12-14,dev,0,True
+V04,post,HO,47,2023-12-14,dev,2,False
+V05,post,HO,47,2023-12-14,dev,0,True
+V06,post,HO,47,2023-12-14,dev,2,False
+V07,post,HO,47,2023-12-14,dev,2,False
+V18,post,HO,47,2023-12-14,dev,2,False
+V08,post,HO,47,2023-12-14,dev,"(3, 30)",False
+V09,post,HO,47,2023-12-14,dev,"(2, 60)",False
+V12,post,HO,47,2023-12-14,dev,0,True
+V13,post,HO,47,2023-12-14,dev,None,True
+V01,post,LO,44,2023-09-14,dev,2,False
+V02,post,LO,44,2023-09-14,dev,2,False
+V03,post,LO,44,2023-09-14,dev,2,False
+V04,post,LO,44,2023-09-14,dev,3,False
+V05,post,LO,44,2023-09-14,dev,3,False
+V06,post,LO,44,2023-09-14,dev,2,False
+V07,post,LO,44,2023-09-14,dev,3,False
+V18,post,LO,44,2023-09-14,dev,3,False
+V08,post,LO,44,2023-09-14,dev,"(2, 60)",False
+V09,post,LO,44,2023-09-14,dev,"(2, 30)",False
+V12,post,LO,44,2023-09-14,dev,2,False
+V13,post,LO,44,2023-09-14,dev,"(2, 60)",False
+V01,post,LO,45,2023-10-16,dev,2,False
+V02,post,LO,45,2023-10-16,dev,2,False
+V03,post,LO,45,2023-10-16,dev,2,False
+V04,post,LO,45,2023-10-16,dev,3,False
+V05,post,LO,45,2023-10-16,dev,3,False
+V06,post,LO,45,2023-10-16,dev,2,False
+V07,post,LO,45,2023-10-16,dev,3,False
+V18,post,LO,45,2023-10-16,dev,3,False
+V08,post,LO,45,2023-10-16,dev,"(2, 60)",False
+V09,post,LO,45,2023-10-16,dev,"(2, 30)",False
+V12,post,LO,45,2023-10-16,dev,2,False
+V13,post,LO,45,2023-10-16,dev,"(2, 60)",False
+V01,post,LO,46,2023-11-15,dev,2,False
+V02,post,LO,46,2023-11-15,dev,2,False
+V03,post,LO,46,2023-11-15,dev,3,False
+V04,post,LO,46,2023-11-15,dev,3,False
+V05,post,LO,46,2023-11-15,dev,3,False
+V06,post,LO,46,2023-11-15,dev,3,False
+V07,post,LO,46,2023-11-15,dev,3,False
+V18,post,LO,46,2023-11-15,dev,3,False
+V08,post,LO,46,2023-11-15,dev,"(2, 60)",False
+V09,post,LO,46,2023-11-15,dev,"(2, 30)",False
+V12,post,LO,46,2023-11-15,dev,2,False
+V13,post,LO,46,2023-11-15,dev,"(2, 60)",False
+V01,post,LO,47,2023-12-14,dev,2,False
+V02,post,LO,47,2023-12-14,dev,2,False
+V03,post,LO,47,2023-12-14,dev,3,False
+V04,post,LO,47,2023-12-14,dev,3,False
+V05,post,LO,47,2023-12-14,dev,3,False
+V06,post,LO,47,2023-12-14,dev,2,False
+V07,post,LO,47,2023-12-14,dev,2,False
+V18,post,LO,47,2023-12-14,dev,3,False
+V08,post,LO,47,2023-12-14,dev,"(2, 60)",False
+V09,post,LO,47,2023-12-14,dev,"(2, 30)",False
+V12,post,LO,47,2023-12-14,dev,2,False
+V13,post,LO,47,2023-12-14,dev,"(2, 60)",False
+V01,pre,H,40,2023-05-23,dev,2,False
+V02,pre,H,40,2023-05-23,dev,3,False
+V03,pre,H,40,2023-05-23,dev,0,True
+V04,pre,H,40,2023-05-23,dev,0,True
+V05,pre,H,40,2023-05-23,dev,0,True
+V06,pre,H,40,2023-05-23,dev,0,True
+V07,pre,H,40,2023-05-23,dev,0,True
+V18,pre,H,40,2023-05-23,dev,3,False
+V08,pre,H,40,2023-05-23,dev,"(2, 30)",False
+V09,pre,H,40,2023-05-23,dev,"(2, 30)",False
+V12,pre,H,40,2023-05-23,dev,3,False
+V13,pre,H,40,2023-05-23,dev,"(2, 30)",False
+V01,pre,H,41,2023-06-20,dev,1,False
+V02,pre,H,41,2023-06-20,dev,3,False
+V03,pre,H,41,2023-06-20,dev,0,True
+V04,pre,H,41,2023-06-20,dev,0,True
+V05,pre,H,41,2023-06-20,dev,0,True
+V06,pre,H,41,2023-06-20,dev,0,True
+V07,pre,H,41,2023-06-20,dev,0,True
+V18,pre,H,41,2023-06-20,dev,3,False
+V08,pre,H,41,2023-06-20,dev,"(2, 30)",False
+V09,pre,H,41,2023-06-20,dev,"(2, 30)",False
+V12,pre,H,41,2023-06-20,dev,3,False
+V13,pre,H,41,2023-06-20,dev,"(2, 30)",False
+V01,pre,H,42,2023-07-19,dev,1,False
+V02,pre,H,42,2023-07-19,dev,3,False
+V03,pre,H,42,2023-07-19,dev,0,True
+V04,pre,H,42,2023-07-19,dev,0,True
+V05,pre,H,42,2023-07-19,dev,0,True
+V06,pre,H,42,2023-07-19,dev,0,True
+V07,pre,H,42,2023-07-19,dev,0,True
+V18,pre,H,42,2023-07-19,dev,3,False
+V08,pre,H,42,2023-07-19,dev,"(2, 30)",False
+V09,pre,H,42,2023-07-19,dev,"(2, 30)",False
+V12,pre,H,42,2023-07-19,dev,3,False
+V13,pre,H,42,2023-07-19,dev,"(2, 30)",False
+V01,pre,H,43,2023-08-17,dev,1,False
+V02,pre,H,43,2023-08-17,dev,3,False
+V03,pre,H,43,2023-08-17,dev,0,True
+V04,pre,H,43,2023-08-17,dev,0,True
+V05,pre,H,43,2023-08-17,dev,0,True
+V06,pre,H,43,2023-08-17,dev,0,True
+V07,pre,H,43,2023-08-17,dev,0,True
+V18,pre,H,43,2023-08-17,dev,2,False
+V08,pre,H,43,2023-08-17,dev,"(2, 30)",False
+V09,pre,H,43,2023-08-17,dev,"(2, 30)",False
+V12,pre,H,43,2023-08-17,dev,3,False
+V13,pre,H,43,2023-08-17,dev,"(2, 30)",False
+V01,pre,L,40,2023-05-23,dev,1,False
+V02,pre,L,40,2023-05-23,dev,2,False
+V03,pre,L,40,2023-05-23,dev,2,False
+V04,pre,L,40,2023-05-23,dev,2,False
+V05,pre,L,40,2023-05-23,dev,2,False
+V06,pre,L,40,2023-05-23,dev,2,False
+V07,pre,L,40,2023-05-23,dev,2,False
+V18,pre,L,40,2023-05-23,dev,2,False
+V08,pre,L,40,2023-05-23,dev,"(2, 120)",False
+V09,pre,L,40,2023-05-23,dev,"(2, 60)",False
+V12,pre,L,40,2023-05-23,dev,2,False
+V13,pre,L,40,2023-05-23,dev,"(2, 60)",False
+V01,pre,L,41,2023-06-20,dev,1,False
+V02,pre,L,41,2023-06-20,dev,2,False
+V03,pre,L,41,2023-06-20,dev,2,False
+V04,pre,L,41,2023-06-20,dev,2,False
+V05,pre,L,41,2023-06-20,dev,2,False
+V06,pre,L,41,2023-06-20,dev,2,False
+V07,pre,L,41,2023-06-20,dev,2,False
+V18,pre,L,41,2023-06-20,dev,2,False
+V08,pre,L,41,2023-06-20,dev,"(2, 120)",False
+V09,pre,L,41,2023-06-20,dev,"(2, 60)",False
+V12,pre,L,41,2023-06-20,dev,2,False
+V13,pre,L,41,2023-06-20,dev,"(2, 60)",False
+V01,pre,L,42,2023-07-19,dev,1,False
+V02,pre,L,42,2023-07-19,dev,2,False
+V03,pre,L,42,2023-07-19,dev,2,False
+V04,pre,L,42,2023-07-19,dev,2,False
+V05,pre,L,42,2023-07-19,dev,2,False
+V06,pre,L,42,2023-07-19,dev,2,False
+V07,pre,L,42,2023-07-19,dev,2,False
+V18,pre,L,42,2023-07-19,dev,2,False
+V08,pre,L,42,2023-07-19,dev,"(2, 120)",False
+V09,pre,L,42,2023-07-19,dev,"(2, 60)",False
+V12,pre,L,42,2023-07-19,dev,2,False
+V13,pre,L,42,2023-07-19,dev,"(2, 60)",False
+V01,pre,L,43,2023-08-17,dev,1,False
+V02,pre,L,43,2023-08-17,dev,2,False
+V03,pre,L,43,2023-08-17,dev,2,False
+V04,pre,L,43,2023-08-17,dev,2,False
+V05,pre,L,43,2023-08-17,dev,2,False
+V06,pre,L,43,2023-08-17,dev,2,False
+V07,pre,L,43,2023-08-17,dev,2,False
+V18,pre,L,43,2023-08-17,dev,2,False
+V08,pre,L,43,2023-08-17,dev,"(2, 120)",False
+V09,pre,L,43,2023-08-17,dev,"(2, 60)",False
+V12,pre,L,43,2023-08-17,dev,2,False
+V13,pre,L,43,2023-08-17,dev,"(2, 60)",False
+V01,post,HO,40,2023-05-23,dev,0,True
+V02,post,HO,40,2023-05-23,dev,0,True
+V03,post,HO,40,2023-05-23,dev,2,False
+V04,post,HO,40,2023-05-23,dev,0,True
+V05,post,HO,40,2023-05-23,dev,0,True
+V06,post,HO,40,2023-05-23,dev,2,False
+V07,post,HO,40,2023-05-23,dev,0,True
+V18,post,HO,40,2023-05-23,dev,0,True
+V08,post,HO,40,2023-05-23,dev,"(2, 30)",False
+V09,post,HO,40,2023-05-23,dev,"(2, 60)",False
+V12,post,HO,40,2023-05-23,dev,3,False
+V13,post,HO,40,2023-05-23,dev,None,True
+V01,post,HO,41,2023-06-20,dev,0,True
+V02,post,HO,41,2023-06-20,dev,3,False
+V03,post,HO,41,2023-06-20,dev,0,True
+V04,post,HO,41,2023-06-20,dev,0,True
+V05,post,HO,41,2023-06-20,dev,0,True
+V06,post,HO,41,2023-06-20,dev,2,False
+V07,post,HO,41,2023-06-20,dev,0,True
+V18,post,HO,41,2023-06-20,dev,0,True
+V08,post,HO,41,2023-06-20,dev,"(2, 30)",False
+V09,post,HO,41,2023-06-20,dev,"(2, 60)",False
+V12,post,HO,41,2023-06-20,dev,3,False
+V13,post,HO,41,2023-06-20,dev,None,True
+V01,post,HO,42,2023-07-19,dev,0,True
+V02,post,HO,42,2023-07-19,dev,3,False
+V03,post,HO,42,2023-07-19,dev,0,True
+V04,post,HO,42,2023-07-19,dev,0,True
+V05,post,HO,42,2023-07-19,dev,0,True
+V06,post,HO,42,2023-07-19,dev,0,True
+V07,post,HO,42,2023-07-19,dev,0,True
+V18,post,HO,42,2023-07-19,dev,0,True
+V08,post,HO,42,2023-07-19,dev,"(2, 30)",False
+V09,post,HO,42,2023-07-19,dev,"(2, 60)",False
+V12,post,HO,42,2023-07-19,dev,0,True
+V13,post,HO,42,2023-07-19,dev,None,True
+V01,post,HO,43,2023-08-17,dev,0,True
+V02,post,HO,43,2023-08-17,dev,3,False
+V03,post,HO,43,2023-08-17,dev,0,True
+V04,post,HO,43,2023-08-17,dev,0,True
+V05,post,HO,43,2023-08-17,dev,0,True
+V06,post,HO,43,2023-08-17,dev,0,True
+V07,post,HO,43,2023-08-17,dev,0,True
+V18,post,HO,43,2023-08-17,dev,0,True
+V08,post,HO,43,2023-08-17,dev,"(2, 30)",False
+V09,post,HO,43,2023-08-17,dev,"(2, 60)",False
+V12,post,HO,43,2023-08-17,dev,3,False
+V13,post,HO,43,2023-08-17,dev,None,True
+V01,post,LO,40,2023-05-23,dev,1,False
+V02,post,LO,40,2023-05-23,dev,2,False
+V03,post,LO,40,2023-05-23,dev,2,False
+V04,post,LO,40,2023-05-23,dev,0,True
+V05,post,LO,40,2023-05-23,dev,2,False
+V06,post,LO,40,2023-05-23,dev,3,False
+V07,post,LO,40,2023-05-23,dev,3,False
+V18,post,LO,40,2023-05-23,dev,3,False
+V08,post,LO,40,2023-05-23,dev,"(2, 60)",False
+V09,post,LO,40,2023-05-23,dev,"(2, 60)",False
+V12,post,LO,40,2023-05-23,dev,3,False
+V13,post,LO,40,2023-05-23,dev,"(3, 60)",False
+V01,post,LO,41,2023-06-20,dev,1,False
+V02,post,LO,41,2023-06-20,dev,2,False
+V03,post,LO,41,2023-06-20,dev,2,False
+V04,post,LO,41,2023-06-20,dev,3,False
+V05,post,LO,41,2023-06-20,dev,2,False
+V06,post,LO,41,2023-06-20,dev,2,False
+V07,post,LO,41,2023-06-20,dev,2,False
+V18,post,LO,41,2023-06-20,dev,2,False
+V08,post,LO,41,2023-06-20,dev,"(2, 60)",False
+V09,post,LO,41,2023-06-20,dev,"(2, 60)",False
+V12,post,LO,41,2023-06-20,dev,2,False
+V13,post,LO,41,2023-06-20,dev,"(3, 60)",False
+V01,post,LO,42,2023-07-19,dev,1,False
+V02,post,LO,42,2023-07-19,dev,2,False
+V03,post,LO,42,2023-07-19,dev,2,False
+V04,post,LO,42,2023-07-19,dev,3,False
+V05,post,LO,42,2023-07-19,dev,3,False
+V06,post,LO,42,2023-07-19,dev,2,False
+V07,post,LO,42,2023-07-19,dev,2,False
+V18,post,LO,42,2023-07-19,dev,2,False
+V08,post,LO,42,2023-07-19,dev,"(2, 60)",False
+V09,post,LO,42,2023-07-19,dev,"(2, 60)",False
+V12,post,LO,42,2023-07-19,dev,2,False
+V13,post,LO,42,2023-07-19,dev,"(3, 60)",False
+V01,post,LO,43,2023-08-17,dev,1,False
+V02,post,LO,43,2023-08-17,dev,2,False
+V03,post,LO,43,2023-08-17,dev,2,False
+V04,post,LO,43,2023-08-17,dev,3,False
+V05,post,LO,43,2023-08-17,dev,3,False
+V06,post,LO,43,2023-08-17,dev,2,False
+V07,post,LO,43,2023-08-17,dev,2,False
+V18,post,LO,43,2023-08-17,dev,2,False
+V08,post,LO,43,2023-08-17,dev,"(2, 60)",False
+V09,post,LO,43,2023-08-17,dev,"(2, 60)",False
+V12,post,LO,43,2023-08-17,dev,2,False
+V13,post,LO,43,2023-08-17,dev,"(3, 60)",False
+V01,pre,H,36,2023-01-20,dev,0,True
+V02,pre,H,36,2023-01-20,dev,3,False
+V03,pre,H,36,2023-01-20,dev,0,True
+V04,pre,H,36,2023-01-20,dev,0,True
+V05,pre,H,36,2023-01-20,dev,0,True
+V06,pre,H,36,2023-01-20,dev,0,True
+V07,pre,H,36,2023-01-20,dev,0,True
+V18,pre,H,36,2023-01-20,dev,3,False
+V08,pre,H,36,2023-01-20,dev,"(3, 30)",False
+V09,pre,H,36,2023-01-20,dev,None,True
+V12,pre,H,36,2023-01-20,dev,3,False
+V13,pre,H,36,2023-01-20,dev,None,True
+V01,pre,H,37,2023-02-20,dev,3,False
+V02,pre,H,37,2023-02-20,dev,3,False
+V03,pre,H,37,2023-02-20,dev,0,True
+V04,pre,H,37,2023-02-20,dev,0,True
+V05,pre,H,37,2023-02-20,dev,0,True
+V06,pre,H,37,2023-02-20,dev,0,True
+V07,pre,H,37,2023-02-20,dev,0,True
+V18,pre,H,37,2023-02-20,dev,3,False
+V08,pre,H,37,2023-02-20,dev,"(3, 30)",False
+V09,pre,H,37,2023-02-20,dev,None,True
+V12,pre,H,37,2023-02-20,dev,3,False
+V13,pre,H,37,2023-02-20,dev,None,True
+V01,pre,H,38,2023-03-21,dev,3,False
+V02,pre,H,38,2023-03-21,dev,3,False
+V03,pre,H,38,2023-03-21,dev,0,True
+V04,pre,H,38,2023-03-21,dev,0,True
+V05,pre,H,38,2023-03-21,dev,0,True
+V06,pre,H,38,2023-03-21,dev,0,True
+V07,pre,H,38,2023-03-21,dev,0,True
+V18,pre,H,38,2023-03-21,dev,3,False
+V08,pre,H,38,2023-03-21,dev,"(3, 30)",False
+V09,pre,H,38,2023-03-21,dev,None,True
+V12,pre,H,38,2023-03-21,dev,3,False
+V13,pre,H,38,2023-03-21,dev,None,True
+V01,pre,H,39,2023-04-24,dev,3,False
+V02,pre,H,39,2023-04-24,dev,3,False
+V03,pre,H,39,2023-04-24,dev,0,True
+V04,pre,H,39,2023-04-24,dev,0,True
+V05,pre,H,39,2023-04-24,dev,0,True
+V06,pre,H,39,2023-04-24,dev,0,True
+V07,pre,H,39,2023-04-24,dev,0,True
+V18,pre,H,39,2023-04-24,dev,3,False
+V08,pre,H,39,2023-04-24,dev,"(3, 30)",False
+V09,pre,H,39,2023-04-24,dev,None,True
+V12,pre,H,39,2023-04-24,dev,0,True
+V13,pre,H,39,2023-04-24,dev,None,True
+V01,pre,L,36,2023-01-20,dev,1,False
+V02,pre,L,36,2023-01-20,dev,2,False
+V03,pre,L,36,2023-01-20,dev,2,False
+V04,pre,L,36,2023-01-20,dev,2,False
+V05,pre,L,36,2023-01-20,dev,2,False
+V06,pre,L,36,2023-01-20,dev,2,False
+V07,pre,L,36,2023-01-20,dev,2,False
+V18,pre,L,36,2023-01-20,dev,2,False
+V08,pre,L,36,2023-01-20,dev,"(2, 60)",False
+V09,pre,L,36,2023-01-20,dev,"(2, 60)",False
+V12,pre,L,36,2023-01-20,dev,3,False
+V13,pre,L,36,2023-01-20,dev,"(3, 60)",False
+V01,pre,L,37,2023-02-20,dev,1,False
+V02,pre,L,37,2023-02-20,dev,2,False
+V03,pre,L,37,2023-02-20,dev,2,False
+V04,pre,L,37,2023-02-20,dev,2,False
+V05,pre,L,37,2023-02-20,dev,2,False
+V06,pre,L,37,2023-02-20,dev,2,False
+V07,pre,L,37,2023-02-20,dev,2,False
+V18,pre,L,37,2023-02-20,dev,2,False
+V08,pre,L,37,2023-02-20,dev,"(2, 60)",False
+V09,pre,L,37,2023-02-20,dev,"(2, 60)",False
+V12,pre,L,37,2023-02-20,dev,2,False
+V13,pre,L,37,2023-02-20,dev,"(3, 60)",False
+V01,pre,L,38,2023-03-21,dev,1,False
+V02,pre,L,38,2023-03-21,dev,2,False
+V03,pre,L,38,2023-03-21,dev,2,False
+V04,pre,L,38,2023-03-21,dev,2,False
+V05,pre,L,38,2023-03-21,dev,2,False
+V06,pre,L,38,2023-03-21,dev,2,False
+V07,pre,L,38,2023-03-21,dev,2,False
+V18,pre,L,38,2023-03-21,dev,2,False
+V08,pre,L,38,2023-03-21,dev,"(2, 60)",False
+V09,pre,L,38,2023-03-21,dev,"(2, 60)",False
+V12,pre,L,38,2023-03-21,dev,3,False
+V13,pre,L,38,2023-03-21,dev,"(3, 60)",False
+V01,pre,L,39,2023-04-24,dev,1,False
+V02,pre,L,39,2023-04-24,dev,2,False
+V03,pre,L,39,2023-04-24,dev,2,False
+V04,pre,L,39,2023-04-24,dev,2,False
+V05,pre,L,39,2023-04-24,dev,2,False
+V06,pre,L,39,2023-04-24,dev,2,False
+V07,pre,L,39,2023-04-24,dev,2,False
+V18,pre,L,39,2023-04-24,dev,2,False
+V08,pre,L,39,2023-04-24,dev,"(2, 60)",False
+V09,pre,L,39,2023-04-24,dev,"(2, 60)",False
+V12,pre,L,39,2023-04-24,dev,3,False
+V13,pre,L,39,2023-04-24,dev,"(3, 60)",False
+V01,post,HO,36,2023-01-20,dev,0,True
+V02,post,HO,36,2023-01-20,dev,0,True
+V03,post,HO,36,2023-01-20,dev,0,True
+V04,post,HO,36,2023-01-20,dev,0,True
+V05,post,HO,36,2023-01-20,dev,0,True
+V06,post,HO,36,2023-01-20,dev,0,True
+V07,post,HO,36,2023-01-20,dev,0,True
+V18,post,HO,36,2023-01-20,dev,0,True
+V08,post,HO,36,2023-01-20,dev,"(2, 60)",False
+V09,post,HO,36,2023-01-20,dev,None,True
+V12,post,HO,36,2023-01-20,dev,0,True
+V13,post,HO,36,2023-01-20,dev,None,True
+V01,post,HO,37,2023-02-20,dev,0,True
+V02,post,HO,37,2023-02-20,dev,0,True
+V03,post,HO,37,2023-02-20,dev,0,True
+V04,post,HO,37,2023-02-20,dev,0,True
+V05,post,HO,37,2023-02-20,dev,0,True
+V06,post,HO,37,2023-02-20,dev,0,True
+V07,post,HO,37,2023-02-20,dev,0,True
+V18,post,HO,37,2023-02-20,dev,0,True
+V08,post,HO,37,2023-02-20,dev,"(2, 60)",False
+V09,post,HO,37,2023-02-20,dev,None,True
+V12,post,HO,37,2023-02-20,dev,0,True
+V13,post,HO,37,2023-02-20,dev,None,True
+V01,post,HO,38,2023-03-21,dev,0,True
+V02,post,HO,38,2023-03-21,dev,0,True
+V03,post,HO,38,2023-03-21,dev,0,True
+V04,post,HO,38,2023-03-21,dev,0,True
+V05,post,HO,38,2023-03-21,dev,0,True
+V06,post,HO,38,2023-03-21,dev,0,True
+V07,post,HO,38,2023-03-21,dev,0,True
+V18,post,HO,38,2023-03-21,dev,0,True
+V08,post,HO,38,2023-03-21,dev,"(2, 60)",False
+V09,post,HO,38,2023-03-21,dev,None,True
+V12,post,HO,38,2023-03-21,dev,0,True
+V13,post,HO,38,2023-03-21,dev,None,True
+V01,post,HO,39,2023-04-24,dev,0,True
+V02,post,HO,39,2023-04-24,dev,0,True
+V03,post,HO,39,2023-04-24,dev,2,False
+V04,post,HO,39,2023-04-24,dev,0,True
+V05,post,HO,39,2023-04-24,dev,0,True
+V06,post,HO,39,2023-04-24,dev,2,False
+V07,post,HO,39,2023-04-24,dev,0,True
+V18,post,HO,39,2023-04-24,dev,0,True
+V08,post,HO,39,2023-04-24,dev,"(2, 60)",False
+V09,post,HO,39,2023-04-24,dev,None,True
+V12,post,HO,39,2023-04-24,dev,0,True
+V13,post,HO,39,2023-04-24,dev,None,True
+V01,post,LO,36,2023-01-20,dev,1,False
+V02,post,LO,36,2023-01-20,dev,2,False
+V03,post,LO,36,2023-01-20,dev,2,False
+V04,post,LO,36,2023-01-20,dev,0,True
+V05,post,LO,36,2023-01-20,dev,2,False
+V06,post,LO,36,2023-01-20,dev,2,False
+V07,post,LO,36,2023-01-20,dev,2,False
+V18,post,LO,36,2023-01-20,dev,2,False
+V08,post,LO,36,2023-01-20,dev,"(3, 60)",False
+V09,post,LO,36,2023-01-20,dev,"(2, 120)",False
+V12,post,LO,36,2023-01-20,dev,3,False
+V13,post,LO,36,2023-01-20,dev,"(3, 30)",False
+V01,post,LO,37,2023-02-20,dev,1,False
+V02,post,LO,37,2023-02-20,dev,2,False
+V03,post,LO,37,2023-02-20,dev,2,False
+V04,post,LO,37,2023-02-20,dev,3,False
+V05,post,LO,37,2023-02-20,dev,2,False
+V06,post,LO,37,2023-02-20,dev,2,False
+V07,post,LO,37,2023-02-20,dev,3,False
+V18,post,LO,37,2023-02-20,dev,3,False
+V08,post,LO,37,2023-02-20,dev,"(3, 60)",False
+V09,post,LO,37,2023-02-20,dev,"(2, 120)",False
+V12,post,LO,37,2023-02-20,dev,3,False
+V13,post,LO,37,2023-02-20,dev,"(3, 30)",False
+V01,post,LO,38,2023-03-21,dev,1,False
+V02,post,LO,38,2023-03-21,dev,2,False
+V03,post,LO,38,2023-03-21,dev,2,False
+V04,post,LO,38,2023-03-21,dev,0,True
+V05,post,LO,38,2023-03-21,dev,2,False
+V06,post,LO,38,2023-03-21,dev,2,False
+V07,post,LO,38,2023-03-21,dev,3,False
+V18,post,LO,38,2023-03-21,dev,3,False
+V08,post,LO,38,2023-03-21,dev,"(3, 60)",False
+V09,post,LO,38,2023-03-21,dev,"(2, 120)",False
+V12,post,LO,38,2023-03-21,dev,3,False
+V13,post,LO,38,2023-03-21,dev,"(3, 30)",False
+V01,post,LO,39,2023-04-24,dev,1,False
+V02,post,LO,39,2023-04-24,dev,2,False
+V03,post,LO,39,2023-04-24,dev,2,False
+V04,post,LO,39,2023-04-24,dev,0,True
+V05,post,LO,39,2023-04-24,dev,2,False
+V06,post,LO,39,2023-04-24,dev,2,False
+V07,post,LO,39,2023-04-24,dev,2,False
+V18,post,LO,39,2023-04-24,dev,3,False
+V08,post,LO,39,2023-04-24,dev,"(3, 60)",False
+V09,post,LO,39,2023-04-24,dev,"(2, 120)",False
+V12,post,LO,39,2023-04-24,dev,3,False
+V13,post,LO,39,2023-04-24,dev,"(3, 30)",False
+V01,pre,H,32,2022-09-26,dev,3,False
+V02,pre,H,32,2022-09-26,dev,3,False
+V03,pre,H,32,2022-09-26,dev,0,True
+V04,pre,H,32,2022-09-26,dev,0,True
+V05,pre,H,32,2022-09-26,dev,0,True
+V06,pre,H,32,2022-09-26,dev,0,True
+V07,pre,H,32,2022-09-26,dev,0,True
+V18,pre,H,32,2022-09-26,dev,3,False
+V08,pre,H,32,2022-09-26,dev,None,True
+V09,pre,H,32,2022-09-26,dev,None,True
+V12,pre,H,32,2022-09-26,dev,0,True
+V13,pre,H,32,2022-09-26,dev,None,True
+V01,pre,H,33,2022-10-27,dev,3,False
+V02,pre,H,33,2022-10-27,dev,3,False
+V03,pre,H,33,2022-10-27,dev,0,True
+V04,pre,H,33,2022-10-27,dev,0,True
+V05,pre,H,33,2022-10-27,dev,0,True
+V06,pre,H,33,2022-10-27,dev,0,True
+V07,pre,H,33,2022-10-27,dev,0,True
+V18,pre,H,33,2022-10-27,dev,3,False
+V08,pre,H,33,2022-10-27,dev,None,True
+V09,pre,H,33,2022-10-27,dev,None,True
+V12,pre,H,33,2022-10-27,dev,0,True
+V13,pre,H,33,2022-10-27,dev,None,True
+V01,pre,H,34,2022-11-25,dev,3,False
+V02,pre,H,34,2022-11-25,dev,3,False
+V03,pre,H,34,2022-11-25,dev,0,True
+V04,pre,H,34,2022-11-25,dev,0,True
+V05,pre,H,34,2022-11-25,dev,0,True
+V06,pre,H,34,2022-11-25,dev,0,True
+V07,pre,H,34,2022-11-25,dev,0,True
+V18,pre,H,34,2022-11-25,dev,3,False
+V08,pre,H,34,2022-11-25,dev,None,True
+V09,pre,H,34,2022-11-25,dev,None,True
+V12,pre,H,34,2022-11-25,dev,0,True
+V13,pre,H,34,2022-11-25,dev,None,True
+V01,pre,H,35,2022-12-23,dev,0,True
+V02,pre,H,35,2022-12-23,dev,3,False
+V03,pre,H,35,2022-12-23,dev,0,True
+V04,pre,H,35,2022-12-23,dev,0,True
+V05,pre,H,35,2022-12-23,dev,0,True
+V06,pre,H,35,2022-12-23,dev,0,True
+V07,pre,H,35,2022-12-23,dev,0,True
+V18,pre,H,35,2022-12-23,dev,3,False
+V08,pre,H,35,2022-12-23,dev,None,True
+V09,pre,H,35,2022-12-23,dev,None,True
+V12,pre,H,35,2022-12-23,dev,3,False
+V13,pre,H,35,2022-12-23,dev,None,True
+V01,pre,L,32,2022-09-26,dev,1,False
+V02,pre,L,32,2022-09-26,dev,2,False
+V03,pre,L,32,2022-09-26,dev,2,False
+V04,pre,L,32,2022-09-26,dev,3,False
+V05,pre,L,32,2022-09-26,dev,2,False
+V06,pre,L,32,2022-09-26,dev,2,False
+V07,pre,L,32,2022-09-26,dev,2,False
+V18,pre,L,32,2022-09-26,dev,2,False
+V08,pre,L,32,2022-09-26,dev,"(3, 60)",False
+V09,pre,L,32,2022-09-26,dev,"(3, 30)",False
+V12,pre,L,32,2022-09-26,dev,3,False
+V13,pre,L,32,2022-09-26,dev,"(2, 30)",False
+V01,pre,L,33,2022-10-27,dev,1,False
+V02,pre,L,33,2022-10-27,dev,2,False
+V03,pre,L,33,2022-10-27,dev,2,False
+V04,pre,L,33,2022-10-27,dev,2,False
+V05,pre,L,33,2022-10-27,dev,2,False
+V06,pre,L,33,2022-10-27,dev,3,False
+V07,pre,L,33,2022-10-27,dev,2,False
+V18,pre,L,33,2022-10-27,dev,2,False
+V08,pre,L,33,2022-10-27,dev,"(3, 60)",False
+V09,pre,L,33,2022-10-27,dev,"(3, 30)",False
+V12,pre,L,33,2022-10-27,dev,3,False
+V13,pre,L,33,2022-10-27,dev,"(2, 30)",False
+V01,pre,L,34,2022-11-25,dev,1,False
+V02,pre,L,34,2022-11-25,dev,2,False
+V03,pre,L,34,2022-11-25,dev,2,False
+V04,pre,L,34,2022-11-25,dev,2,False
+V05,pre,L,34,2022-11-25,dev,2,False
+V06,pre,L,34,2022-11-25,dev,2,False
+V07,pre,L,34,2022-11-25,dev,2,False
+V18,pre,L,34,2022-11-25,dev,2,False
+V08,pre,L,34,2022-11-25,dev,"(3, 60)",False
+V09,pre,L,34,2022-11-25,dev,"(3, 30)",False
+V12,pre,L,34,2022-11-25,dev,3,False
+V13,pre,L,34,2022-11-25,dev,"(2, 30)",False
+V01,pre,L,35,2022-12-23,dev,1,False
+V02,pre,L,35,2022-12-23,dev,2,False
+V03,pre,L,35,2022-12-23,dev,2,False
+V04,pre,L,35,2022-12-23,dev,2,False
+V05,pre,L,35,2022-12-23,dev,2,False
+V06,pre,L,35,2022-12-23,dev,2,False
+V07,pre,L,35,2022-12-23,dev,2,False
+V18,pre,L,35,2022-12-23,dev,2,False
+V08,pre,L,35,2022-12-23,dev,"(3, 60)",False
+V09,pre,L,35,2022-12-23,dev,"(3, 30)",False
+V12,pre,L,35,2022-12-23,dev,3,False
+V13,pre,L,35,2022-12-23,dev,"(2, 30)",False
+V01,post,HO,32,2022-09-26,dev,0,True
+V02,post,HO,32,2022-09-26,dev,3,False
+V03,post,HO,32,2022-09-26,dev,0,True
+V04,post,HO,32,2022-09-26,dev,0,True
+V05,post,HO,32,2022-09-26,dev,0,True
+V06,post,HO,32,2022-09-26,dev,0,True
+V07,post,HO,32,2022-09-26,dev,0,True
+V18,post,HO,32,2022-09-26,dev,0,True
+V08,post,HO,32,2022-09-26,dev,None,True
+V09,post,HO,32,2022-09-26,dev,None,True
+V12,post,HO,32,2022-09-26,dev,0,True
+V13,post,HO,32,2022-09-26,dev,None,True
+V01,post,HO,33,2022-10-27,dev,0,True
+V02,post,HO,33,2022-10-27,dev,0,True
+V03,post,HO,33,2022-10-27,dev,0,True
+V04,post,HO,33,2022-10-27,dev,0,True
+V05,post,HO,33,2022-10-27,dev,0,True
+V06,post,HO,33,2022-10-27,dev,0,True
+V07,post,HO,33,2022-10-27,dev,0,True
+V18,post,HO,33,2022-10-27,dev,0,True
+V08,post,HO,33,2022-10-27,dev,None,True
+V09,post,HO,33,2022-10-27,dev,None,True
+V12,post,HO,33,2022-10-27,dev,0,True
+V13,post,HO,33,2022-10-27,dev,None,True
+V01,post,HO,34,2022-11-25,dev,0,True
+V02,post,HO,34,2022-11-25,dev,0,True
+V03,post,HO,34,2022-11-25,dev,0,True
+V04,post,HO,34,2022-11-25,dev,0,True
+V05,post,HO,34,2022-11-25,dev,0,True
+V06,post,HO,34,2022-11-25,dev,0,True
+V07,post,HO,34,2022-11-25,dev,0,True
+V18,post,HO,34,2022-11-25,dev,0,True
+V08,post,HO,34,2022-11-25,dev,None,True
+V09,post,HO,34,2022-11-25,dev,None,True
+V12,post,HO,34,2022-11-25,dev,0,True
+V13,post,HO,34,2022-11-25,dev,None,True
+V01,post,HO,35,2022-12-23,dev,0,True
+V02,post,HO,35,2022-12-23,dev,0,True
+V03,post,HO,35,2022-12-23,dev,0,True
+V04,post,HO,35,2022-12-23,dev,0,True
+V05,post,HO,35,2022-12-23,dev,0,True
+V06,post,HO,35,2022-12-23,dev,0,True
+V07,post,HO,35,2022-12-23,dev,0,True
+V18,post,HO,35,2022-12-23,dev,0,True
+V08,post,HO,35,2022-12-23,dev,None,True
+V09,post,HO,35,2022-12-23,dev,None,True
+V12,post,HO,35,2022-12-23,dev,0,True
+V13,post,HO,35,2022-12-23,dev,None,True
+V01,post,LO,32,2022-09-26,dev,1,False
+V02,post,LO,32,2022-09-26,dev,2,False
+V03,post,LO,32,2022-09-26,dev,2,False
+V04,post,LO,32,2022-09-26,dev,0,True
+V05,post,LO,32,2022-09-26,dev,0,True
+V06,post,LO,32,2022-09-26,dev,3,False
+V07,post,LO,32,2022-09-26,dev,0,True
+V18,post,LO,32,2022-09-26,dev,0,True
+V08,post,LO,32,2022-09-26,dev,"(2, 60)",False
+V09,post,LO,32,2022-09-26,dev,"(2, 60)",False
+V12,post,LO,32,2022-09-26,dev,3,False
+V13,post,LO,32,2022-09-26,dev,"(3, 30)",False
+V01,post,LO,33,2022-10-27,dev,1,False
+V02,post,LO,33,2022-10-27,dev,2,False
+V03,post,LO,33,2022-10-27,dev,2,False
+V04,post,LO,33,2022-10-27,dev,0,True
+V05,post,LO,33,2022-10-27,dev,3,False
+V06,post,LO,33,2022-10-27,dev,3,False
+V07,post,LO,33,2022-10-27,dev,0,True
+V18,post,LO,33,2022-10-27,dev,0,True
+V08,post,LO,33,2022-10-27,dev,"(2, 60)",False
+V09,post,LO,33,2022-10-27,dev,"(2, 60)",False
+V12,post,LO,33,2022-10-27,dev,3,False
+V13,post,LO,33,2022-10-27,dev,"(3, 30)",False
+V01,post,LO,34,2022-11-25,dev,1,False
+V02,post,LO,34,2022-11-25,dev,2,False
+V03,post,LO,34,2022-11-25,dev,2,False
+V04,post,LO,34,2022-11-25,dev,0,True
+V05,post,LO,34,2022-11-25,dev,2,False
+V06,post,LO,34,2022-11-25,dev,2,False
+V07,post,LO,34,2022-11-25,dev,0,True
+V18,post,LO,34,2022-11-25,dev,2,False
+V08,post,LO,34,2022-11-25,dev,"(2, 60)",False
+V09,post,LO,34,2022-11-25,dev,"(2, 60)",False
+V12,post,LO,34,2022-11-25,dev,3,False
+V13,post,LO,34,2022-11-25,dev,"(3, 30)",False
+V01,post,LO,35,2022-12-23,dev,1,False
+V02,post,LO,35,2022-12-23,dev,2,False
+V03,post,LO,35,2022-12-23,dev,2,False
+V04,post,LO,35,2022-12-23,dev,0,True
+V05,post,LO,35,2022-12-23,dev,2,False
+V06,post,LO,35,2022-12-23,dev,2,False
+V07,post,LO,35,2022-12-23,dev,2,False
+V18,post,LO,35,2022-12-23,dev,2,False
+V08,post,LO,35,2022-12-23,dev,"(2, 60)",False
+V09,post,LO,35,2022-12-23,dev,"(2, 60)",False
+V12,post,LO,35,2022-12-23,dev,3,False
+V13,post,LO,35,2022-12-23,dev,"(3, 30)",False
+V01,pre,H,28,2022-06-01,dev,0,True
+V02,pre,H,28,2022-06-01,dev,3,False
+V03,pre,H,28,2022-06-01,dev,0,True
+V04,pre,H,28,2022-06-01,dev,0,True
+V05,pre,H,28,2022-06-01,dev,0,True
+V06,pre,H,28,2022-06-01,dev,0,True
+V07,pre,H,28,2022-06-01,dev,0,True
+V18,pre,H,28,2022-06-01,dev,3,False
+V08,pre,H,28,2022-06-01,dev,"(3, 30)",False
+V09,pre,H,28,2022-06-01,dev,None,True
+V12,pre,H,28,2022-06-01,dev,0,True
+V13,pre,H,28,2022-06-01,dev,None,True
+V01,pre,H,29,2022-06-29,dev,3,False
+V02,pre,H,29,2022-06-29,dev,3,False
+V03,pre,H,29,2022-06-29,dev,0,True
+V04,pre,H,29,2022-06-29,dev,0,True
+V05,pre,H,29,2022-06-29,dev,0,True
+V06,pre,H,29,2022-06-29,dev,0,True
+V07,pre,H,29,2022-06-29,dev,0,True
+V18,pre,H,29,2022-06-29,dev,3,False
+V08,pre,H,29,2022-06-29,dev,"(3, 30)",False
+V09,pre,H,29,2022-06-29,dev,None,True
+V12,pre,H,29,2022-06-29,dev,0,True
+V13,pre,H,29,2022-06-29,dev,None,True
+V01,pre,H,30,2022-07-27,dev,3,False
+V02,pre,H,30,2022-07-27,dev,3,False
+V03,pre,H,30,2022-07-27,dev,0,True
+V04,pre,H,30,2022-07-27,dev,0,True
+V05,pre,H,30,2022-07-27,dev,0,True
+V06,pre,H,30,2022-07-27,dev,0,True
+V07,pre,H,30,2022-07-27,dev,0,True
+V18,pre,H,30,2022-07-27,dev,3,False
+V08,pre,H,30,2022-07-27,dev,"(3, 30)",False
+V09,pre,H,30,2022-07-27,dev,None,True
+V12,pre,H,30,2022-07-27,dev,0,True
+V13,pre,H,30,2022-07-27,dev,None,True
+V01,pre,H,31,2022-08-26,dev,0,True
+V02,pre,H,31,2022-08-26,dev,3,False
+V03,pre,H,31,2022-08-26,dev,0,True
+V04,pre,H,31,2022-08-26,dev,0,True
+V05,pre,H,31,2022-08-26,dev,0,True
+V06,pre,H,31,2022-08-26,dev,0,True
+V07,pre,H,31,2022-08-26,dev,0,True
+V18,pre,H,31,2022-08-26,dev,3,False
+V08,pre,H,31,2022-08-26,dev,"(3, 30)",False
+V09,pre,H,31,2022-08-26,dev,None,True
+V12,pre,H,31,2022-08-26,dev,0,True
+V13,pre,H,31,2022-08-26,dev,None,True
+V01,pre,L,28,2022-06-01,dev,1,False
+V02,pre,L,28,2022-06-01,dev,2,False
+V03,pre,L,28,2022-06-01,dev,3,False
+V04,pre,L,28,2022-06-01,dev,3,False
+V05,pre,L,28,2022-06-01,dev,3,False
+V06,pre,L,28,2022-06-01,dev,2,False
+V07,pre,L,28,2022-06-01,dev,3,False
+V18,pre,L,28,2022-06-01,dev,2,False
+V08,pre,L,28,2022-06-01,dev,"(2, 60)",False
+V09,pre,L,28,2022-06-01,dev,"(3, 60)",False
+V12,pre,L,28,2022-06-01,dev,3,False
+V13,pre,L,28,2022-06-01,dev,"(3, 30)",False
+V01,pre,L,29,2022-06-29,dev,1,False
+V02,pre,L,29,2022-06-29,dev,2,False
+V03,pre,L,29,2022-06-29,dev,2,False
+V04,pre,L,29,2022-06-29,dev,3,False
+V05,pre,L,29,2022-06-29,dev,2,False
+V06,pre,L,29,2022-06-29,dev,2,False
+V07,pre,L,29,2022-06-29,dev,2,False
+V18,pre,L,29,2022-06-29,dev,2,False
+V08,pre,L,29,2022-06-29,dev,"(2, 60)",False
+V09,pre,L,29,2022-06-29,dev,"(3, 60)",False
+V12,pre,L,29,2022-06-29,dev,0,True
+V13,pre,L,29,2022-06-29,dev,"(3, 30)",False
+V01,pre,L,30,2022-07-27,dev,1,False
+V02,pre,L,30,2022-07-27,dev,2,False
+V03,pre,L,30,2022-07-27,dev,2,False
+V04,pre,L,30,2022-07-27,dev,2,False
+V05,pre,L,30,2022-07-27,dev,2,False
+V06,pre,L,30,2022-07-27,dev,2,False
+V07,pre,L,30,2022-07-27,dev,2,False
+V18,pre,L,30,2022-07-27,dev,2,False
+V08,pre,L,30,2022-07-27,dev,"(2, 60)",False
+V09,pre,L,30,2022-07-27,dev,"(3, 60)",False
+V12,pre,L,30,2022-07-27,dev,3,False
+V13,pre,L,30,2022-07-27,dev,"(3, 30)",False
+V01,pre,L,31,2022-08-26,dev,1,False
+V02,pre,L,31,2022-08-26,dev,2,False
+V03,pre,L,31,2022-08-26,dev,2,False
+V04,pre,L,31,2022-08-26,dev,2,False
+V05,pre,L,31,2022-08-26,dev,2,False
+V06,pre,L,31,2022-08-26,dev,2,False
+V07,pre,L,31,2022-08-26,dev,2,False
+V18,pre,L,31,2022-08-26,dev,2,False
+V08,pre,L,31,2022-08-26,dev,"(2, 60)",False
+V09,pre,L,31,2022-08-26,dev,"(3, 60)",False
+V12,pre,L,31,2022-08-26,dev,3,False
+V13,pre,L,31,2022-08-26,dev,"(3, 30)",False
+V01,post,HO,28,2022-06-01,dev,0,True
+V02,post,HO,28,2022-06-01,dev,3,False
+V03,post,HO,28,2022-06-01,dev,0,True
+V04,post,HO,28,2022-06-01,dev,0,True
+V05,post,HO,28,2022-06-01,dev,0,True
+V06,post,HO,28,2022-06-01,dev,0,True
+V07,post,HO,28,2022-06-01,dev,0,True
+V18,post,HO,28,2022-06-01,dev,0,True
+V08,post,HO,28,2022-06-01,dev,"(3, 30)",False
+V09,post,HO,28,2022-06-01,dev,None,True
+V12,post,HO,28,2022-06-01,dev,0,True
+V13,post,HO,28,2022-06-01,dev,None,True
+V01,post,HO,29,2022-06-29,dev,0,True
+V02,post,HO,29,2022-06-29,dev,3,False
+V03,post,HO,29,2022-06-29,dev,0,True
+V04,post,HO,29,2022-06-29,dev,0,True
+V05,post,HO,29,2022-06-29,dev,0,True
+V06,post,HO,29,2022-06-29,dev,0,True
+V07,post,HO,29,2022-06-29,dev,0,True
+V18,post,HO,29,2022-06-29,dev,0,True
+V08,post,HO,29,2022-06-29,dev,"(3, 30)",False
+V09,post,HO,29,2022-06-29,dev,None,True
+V12,post,HO,29,2022-06-29,dev,0,True
+V13,post,HO,29,2022-06-29,dev,None,True
+V01,post,HO,30,2022-07-27,dev,0,True
+V02,post,HO,30,2022-07-27,dev,0,True
+V03,post,HO,30,2022-07-27,dev,0,True
+V04,post,HO,30,2022-07-27,dev,0,True
+V05,post,HO,30,2022-07-27,dev,0,True
+V06,post,HO,30,2022-07-27,dev,0,True
+V07,post,HO,30,2022-07-27,dev,0,True
+V18,post,HO,30,2022-07-27,dev,0,True
+V08,post,HO,30,2022-07-27,dev,"(3, 30)",False
+V09,post,HO,30,2022-07-27,dev,None,True
+V12,post,HO,30,2022-07-27,dev,0,True
+V13,post,HO,30,2022-07-27,dev,None,True
+V01,post,HO,31,2022-08-26,dev,0,True
+V02,post,HO,31,2022-08-26,dev,3,False
+V03,post,HO,31,2022-08-26,dev,0,True
+V04,post,HO,31,2022-08-26,dev,0,True
+V05,post,HO,31,2022-08-26,dev,0,True
+V06,post,HO,31,2022-08-26,dev,0,True
+V07,post,HO,31,2022-08-26,dev,0,True
+V18,post,HO,31,2022-08-26,dev,0,True
+V08,post,HO,31,2022-08-26,dev,"(3, 30)",False
+V09,post,HO,31,2022-08-26,dev,None,True
+V12,post,HO,31,2022-08-26,dev,0,True
+V13,post,HO,31,2022-08-26,dev,None,True
+V01,post,LO,28,2022-06-01,dev,1,False
+V02,post,LO,28,2022-06-01,dev,3,False
+V03,post,LO,28,2022-06-01,dev,3,False
+V04,post,LO,28,2022-06-01,dev,0,True
+V05,post,LO,28,2022-06-01,dev,3,False
+V06,post,LO,28,2022-06-01,dev,3,False
+V07,post,LO,28,2022-06-01,dev,0,True
+V18,post,LO,28,2022-06-01,dev,3,False
+V08,post,LO,28,2022-06-01,dev,"(2, 60)",False
+V09,post,LO,28,2022-06-01,dev,"(2, 60)",False
+V12,post,LO,28,2022-06-01,dev,3,False
+V13,post,LO,28,2022-06-01,dev,"(3, 30)",False
+V01,post,LO,29,2022-06-29,dev,1,False
+V02,post,LO,29,2022-06-29,dev,2,False
+V03,post,LO,29,2022-06-29,dev,2,False
+V04,post,LO,29,2022-06-29,dev,0,True
+V05,post,LO,29,2022-06-29,dev,3,False
+V06,post,LO,29,2022-06-29,dev,3,False
+V07,post,LO,29,2022-06-29,dev,3,False
+V18,post,LO,29,2022-06-29,dev,3,False
+V08,post,LO,29,2022-06-29,dev,"(2, 60)",False
+V09,post,LO,29,2022-06-29,dev,"(2, 60)",False
+V12,post,LO,29,2022-06-29,dev,3,False
+V13,post,LO,29,2022-06-29,dev,"(3, 30)",False
+V01,post,LO,30,2022-07-27,dev,1,False
+V02,post,LO,30,2022-07-27,dev,2,False
+V03,post,LO,30,2022-07-27,dev,2,False
+V04,post,LO,30,2022-07-27,dev,0,True
+V05,post,LO,30,2022-07-27,dev,3,False
+V06,post,LO,30,2022-07-27,dev,2,False
+V07,post,LO,30,2022-07-27,dev,2,False
+V18,post,LO,30,2022-07-27,dev,2,False
+V08,post,LO,30,2022-07-27,dev,"(2, 60)",False
+V09,post,LO,30,2022-07-27,dev,"(2, 60)",False
+V12,post,LO,30,2022-07-27,dev,3,False
+V13,post,LO,30,2022-07-27,dev,"(3, 30)",False
+V01,post,LO,31,2022-08-26,dev,1,False
+V02,post,LO,31,2022-08-26,dev,2,False
+V03,post,LO,31,2022-08-26,dev,2,False
+V04,post,LO,31,2022-08-26,dev,0,True
+V05,post,LO,31,2022-08-26,dev,2,False
+V06,post,LO,31,2022-08-26,dev,3,False
+V07,post,LO,31,2022-08-26,dev,2,False
+V18,post,LO,31,2022-08-26,dev,2,False
+V08,post,LO,31,2022-08-26,dev,"(2, 60)",False
+V09,post,LO,31,2022-08-26,dev,"(2, 60)",False
+V12,post,LO,31,2022-08-26,dev,3,False
+V13,post,LO,31,2022-08-26,dev,"(3, 30)",False
+V01,pre,H,24,2022-02-02,dev,0,True
+V02,pre,H,24,2022-02-02,dev,0,True
+V03,pre,H,24,2022-02-02,dev,0,True
+V04,pre,H,24,2022-02-02,dev,0,True
+V05,pre,H,24,2022-02-02,dev,0,True
+V06,pre,H,24,2022-02-02,dev,0,True
+V07,pre,H,24,2022-02-02,dev,0,True
+V18,pre,H,24,2022-02-02,dev,0,True
+V08,pre,H,24,2022-02-02,dev,None,True
+V09,pre,H,24,2022-02-02,dev,None,True
+V12,pre,H,24,2022-02-02,dev,0,True
+V13,pre,H,24,2022-02-02,dev,None,True
+V01,pre,H,25,2022-03-03,dev,0,True
+V02,pre,H,25,2022-03-03,dev,0,True
+V03,pre,H,25,2022-03-03,dev,0,True
+V04,pre,H,25,2022-03-03,dev,0,True
+V05,pre,H,25,2022-03-03,dev,0,True
+V06,pre,H,25,2022-03-03,dev,0,True
+V07,pre,H,25,2022-03-03,dev,0,True
+V18,pre,H,25,2022-03-03,dev,0,True
+V08,pre,H,25,2022-03-03,dev,None,True
+V09,pre,H,25,2022-03-03,dev,None,True
+V12,pre,H,25,2022-03-03,dev,0,True
+V13,pre,H,25,2022-03-03,dev,None,True
+V01,pre,H,26,2022-04-01,dev,3,False
+V02,pre,H,26,2022-04-01,dev,3,False
+V03,pre,H,26,2022-04-01,dev,0,True
+V04,pre,H,26,2022-04-01,dev,0,True
+V05,pre,H,26,2022-04-01,dev,0,True
+V06,pre,H,26,2022-04-01,dev,0,True
+V07,pre,H,26,2022-04-01,dev,0,True
+V18,pre,H,26,2022-04-01,dev,0,True
+V08,pre,H,26,2022-04-01,dev,None,True
+V09,pre,H,26,2022-04-01,dev,None,True
+V12,pre,H,26,2022-04-01,dev,0,True
+V13,pre,H,26,2022-04-01,dev,None,True
+V01,pre,H,27,2022-05-04,dev,0,True
+V02,pre,H,27,2022-05-04,dev,0,True
+V03,pre,H,27,2022-05-04,dev,0,True
+V04,pre,H,27,2022-05-04,dev,0,True
+V05,pre,H,27,2022-05-04,dev,0,True
+V06,pre,H,27,2022-05-04,dev,0,True
+V07,pre,H,27,2022-05-04,dev,0,True
+V18,pre,H,27,2022-05-04,dev,0,True
+V08,pre,H,27,2022-05-04,dev,None,True
+V09,pre,H,27,2022-05-04,dev,None,True
+V12,pre,H,27,2022-05-04,dev,0,True
+V13,pre,H,27,2022-05-04,dev,None,True
+V01,pre,L,24,2022-02-02,dev,1,False
+V02,pre,L,24,2022-02-02,dev,3,False
+V03,pre,L,24,2022-02-02,dev,3,False
+V04,pre,L,24,2022-02-02,dev,0,True
+V05,pre,L,24,2022-02-02,dev,2,False
+V06,pre,L,24,2022-02-02,dev,3,False
+V07,pre,L,24,2022-02-02,dev,3,False
+V18,pre,L,24,2022-02-02,dev,2,False
+V08,pre,L,24,2022-02-02,dev,"(3, 60)",False
+V09,pre,L,24,2022-02-02,dev,"(2, 60)",False
+V12,pre,L,24,2022-02-02,dev,3,False
+V13,pre,L,24,2022-02-02,dev,"(3, 30)",False
+V01,pre,L,25,2022-03-03,dev,1,False
+V02,pre,L,25,2022-03-03,dev,3,False
+V03,pre,L,25,2022-03-03,dev,3,False
+V04,pre,L,25,2022-03-03,dev,0,True
+V05,pre,L,25,2022-03-03,dev,3,False
+V06,pre,L,25,2022-03-03,dev,3,False
+V07,pre,L,25,2022-03-03,dev,0,True
+V18,pre,L,25,2022-03-03,dev,2,False
+V08,pre,L,25,2022-03-03,dev,"(3, 60)",False
+V09,pre,L,25,2022-03-03,dev,"(2, 60)",False
+V12,pre,L,25,2022-03-03,dev,3,False
+V13,pre,L,25,2022-03-03,dev,"(3, 30)",False
+V01,pre,L,26,2022-04-01,dev,1,False
+V02,pre,L,26,2022-04-01,dev,3,False
+V03,pre,L,26,2022-04-01,dev,3,False
+V04,pre,L,26,2022-04-01,dev,3,False
+V05,pre,L,26,2022-04-01,dev,3,False
+V06,pre,L,26,2022-04-01,dev,3,False
+V07,pre,L,26,2022-04-01,dev,3,False
+V18,pre,L,26,2022-04-01,dev,3,False
+V08,pre,L,26,2022-04-01,dev,"(3, 60)",False
+V09,pre,L,26,2022-04-01,dev,"(2, 60)",False
+V12,pre,L,26,2022-04-01,dev,3,False
+V13,pre,L,26,2022-04-01,dev,"(3, 30)",False
+V01,pre,L,27,2022-05-04,dev,1,False
+V02,pre,L,27,2022-05-04,dev,3,False
+V03,pre,L,27,2022-05-04,dev,3,False
+V04,pre,L,27,2022-05-04,dev,3,False
+V05,pre,L,27,2022-05-04,dev,3,False
+V06,pre,L,27,2022-05-04,dev,3,False
+V07,pre,L,27,2022-05-04,dev,3,False
+V18,pre,L,27,2022-05-04,dev,2,False
+V08,pre,L,27,2022-05-04,dev,"(3, 60)",False
+V09,pre,L,27,2022-05-04,dev,"(2, 60)",False
+V12,pre,L,27,2022-05-04,dev,3,False
+V13,pre,L,27,2022-05-04,dev,"(3, 30)",False
+V01,post,HO,24,2022-02-02,dev,0,True
+V02,post,HO,24,2022-02-02,dev,0,True
+V03,post,HO,24,2022-02-02,dev,0,True
+V04,post,HO,24,2022-02-02,dev,0,True
+V05,post,HO,24,2022-02-02,dev,0,True
+V06,post,HO,24,2022-02-02,dev,0,True
+V07,post,HO,24,2022-02-02,dev,0,True
+V18,post,HO,24,2022-02-02,dev,0,True
+V08,post,HO,24,2022-02-02,dev,None,True
+V09,post,HO,24,2022-02-02,dev,None,True
+V12,post,HO,24,2022-02-02,dev,0,True
+V13,post,HO,24,2022-02-02,dev,None,True
+V01,post,HO,25,2022-03-03,dev,0,True
+V02,post,HO,25,2022-03-03,dev,0,True
+V03,post,HO,25,2022-03-03,dev,0,True
+V04,post,HO,25,2022-03-03,dev,0,True
+V05,post,HO,25,2022-03-03,dev,0,True
+V06,post,HO,25,2022-03-03,dev,0,True
+V07,post,HO,25,2022-03-03,dev,0,True
+V18,post,HO,25,2022-03-03,dev,0,True
+V08,post,HO,25,2022-03-03,dev,None,True
+V09,post,HO,25,2022-03-03,dev,None,True
+V12,post,HO,25,2022-03-03,dev,0,True
+V13,post,HO,25,2022-03-03,dev,None,True
+V01,post,HO,26,2022-04-01,dev,0,True
+V02,post,HO,26,2022-04-01,dev,3,False
+V03,post,HO,26,2022-04-01,dev,3,False
+V04,post,HO,26,2022-04-01,dev,0,True
+V05,post,HO,26,2022-04-01,dev,0,True
+V06,post,HO,26,2022-04-01,dev,0,True
+V07,post,HO,26,2022-04-01,dev,0,True
+V18,post,HO,26,2022-04-01,dev,0,True
+V08,post,HO,26,2022-04-01,dev,None,True
+V09,post,HO,26,2022-04-01,dev,None,True
+V12,post,HO,26,2022-04-01,dev,0,True
+V13,post,HO,26,2022-04-01,dev,None,True
+V01,post,HO,27,2022-05-04,dev,0,True
+V02,post,HO,27,2022-05-04,dev,0,True
+V03,post,HO,27,2022-05-04,dev,0,True
+V04,post,HO,27,2022-05-04,dev,0,True
+V05,post,HO,27,2022-05-04,dev,0,True
+V06,post,HO,27,2022-05-04,dev,0,True
+V07,post,HO,27,2022-05-04,dev,0,True
+V18,post,HO,27,2022-05-04,dev,0,True
+V08,post,HO,27,2022-05-04,dev,None,True
+V09,post,HO,27,2022-05-04,dev,None,True
+V12,post,HO,27,2022-05-04,dev,0,True
+V13,post,HO,27,2022-05-04,dev,None,True
+V01,post,LO,24,2022-02-02,dev,1,False
+V02,post,LO,24,2022-02-02,dev,3,False
+V03,post,LO,24,2022-02-02,dev,0,True
+V04,post,LO,24,2022-02-02,dev,0,True
+V05,post,LO,24,2022-02-02,dev,0,True
+V06,post,LO,24,2022-02-02,dev,0,True
+V07,post,LO,24,2022-02-02,dev,0,True
+V18,post,LO,24,2022-02-02,dev,0,True
+V08,post,LO,24,2022-02-02,dev,"(3, 30)",False
+V09,post,LO,24,2022-02-02,dev,"(2, 60)",False
+V12,post,LO,24,2022-02-02,dev,3,False
+V13,post,LO,24,2022-02-02,dev,"(3, 30)",False
+V01,post,LO,25,2022-03-03,dev,1,False
+V02,post,LO,25,2022-03-03,dev,3,False
+V03,post,LO,25,2022-03-03,dev,0,True
+V04,post,LO,25,2022-03-03,dev,0,True
+V05,post,LO,25,2022-03-03,dev,0,True
+V06,post,LO,25,2022-03-03,dev,0,True
+V07,post,LO,25,2022-03-03,dev,0,True
+V18,post,LO,25,2022-03-03,dev,0,True
+V08,post,LO,25,2022-03-03,dev,"(3, 30)",False
+V09,post,LO,25,2022-03-03,dev,"(2, 60)",False
+V12,post,LO,25,2022-03-03,dev,0,True
+V13,post,LO,25,2022-03-03,dev,"(3, 30)",False
+V01,post,LO,26,2022-04-01,dev,1,False
+V02,post,LO,26,2022-04-01,dev,3,False
+V03,post,LO,26,2022-04-01,dev,0,True
+V04,post,LO,26,2022-04-01,dev,0,True
+V05,post,LO,26,2022-04-01,dev,0,True
+V06,post,LO,26,2022-04-01,dev,0,True
+V07,post,LO,26,2022-04-01,dev,0,True
+V18,post,LO,26,2022-04-01,dev,0,True
+V08,post,LO,26,2022-04-01,dev,"(3, 30)",False
+V09,post,LO,26,2022-04-01,dev,"(2, 60)",False
+V12,post,LO,26,2022-04-01,dev,0,True
+V13,post,LO,26,2022-04-01,dev,"(3, 30)",False
+V01,post,LO,27,2022-05-04,dev,1,False
+V02,post,LO,27,2022-05-04,dev,3,False
+V03,post,LO,27,2022-05-04,dev,0,True
+V04,post,LO,27,2022-05-04,dev,0,True
+V05,post,LO,27,2022-05-04,dev,3,False
+V06,post,LO,27,2022-05-04,dev,0,True
+V07,post,LO,27,2022-05-04,dev,0,True
+V18,post,LO,27,2022-05-04,dev,0,True
+V08,post,LO,27,2022-05-04,dev,"(3, 30)",False
+V09,post,LO,27,2022-05-04,dev,"(2, 60)",False
+V12,post,LO,27,2022-05-04,dev,3,False
+V13,post,LO,27,2022-05-04,dev,"(3, 30)",False
+V01,pre,H,20,2021-10-06,dev,0,True
+V02,pre,H,20,2021-10-06,dev,0,True
+V03,pre,H,20,2021-10-06,dev,0,True
+V04,pre,H,20,2021-10-06,dev,0,True
+V05,pre,H,20,2021-10-06,dev,0,True
+V06,pre,H,20,2021-10-06,dev,0,True
+V07,pre,H,20,2021-10-06,dev,0,True
+V18,pre,H,20,2021-10-06,dev,0,True
+V08,pre,H,20,2021-10-06,dev,None,True
+V09,pre,H,20,2021-10-06,dev,None,True
+V12,pre,H,20,2021-10-06,dev,0,True
+V13,pre,H,20,2021-10-06,dev,None,True
+V01,pre,H,21,2021-11-08,dev,0,True
+V02,pre,H,21,2021-11-08,dev,0,True
+V03,pre,H,21,2021-11-08,dev,0,True
+V04,pre,H,21,2021-11-08,dev,0,True
+V05,pre,H,21,2021-11-08,dev,0,True
+V06,pre,H,21,2021-11-08,dev,0,True
+V07,pre,H,21,2021-11-08,dev,0,True
+V18,pre,H,21,2021-11-08,dev,0,True
+V08,pre,H,21,2021-11-08,dev,None,True
+V09,pre,H,21,2021-11-08,dev,None,True
+V12,pre,H,21,2021-11-08,dev,0,True
+V13,pre,H,21,2021-11-08,dev,None,True
+V01,pre,H,22,2021-12-07,dev,0,True
+V02,pre,H,22,2021-12-07,dev,0,True
+V03,pre,H,22,2021-12-07,dev,0,True
+V04,pre,H,22,2021-12-07,dev,0,True
+V05,pre,H,22,2021-12-07,dev,0,True
+V06,pre,H,22,2021-12-07,dev,0,True
+V07,pre,H,22,2021-12-07,dev,0,True
+V18,pre,H,22,2021-12-07,dev,0,True
+V08,pre,H,22,2021-12-07,dev,None,True
+V09,pre,H,22,2021-12-07,dev,None,True
+V12,pre,H,22,2021-12-07,dev,0,True
+V13,pre,H,22,2021-12-07,dev,None,True
+V01,pre,H,23,2022-01-04,dev,0,True
+V02,pre,H,23,2022-01-04,dev,0,True
+V03,pre,H,23,2022-01-04,dev,0,True
+V04,pre,H,23,2022-01-04,dev,0,True
+V05,pre,H,23,2022-01-04,dev,0,True
+V06,pre,H,23,2022-01-04,dev,0,True
+V07,pre,H,23,2022-01-04,dev,0,True
+V18,pre,H,23,2022-01-04,dev,0,True
+V08,pre,H,23,2022-01-04,dev,None,True
+V09,pre,H,23,2022-01-04,dev,None,True
+V12,pre,H,23,2022-01-04,dev,0,True
+V13,pre,H,23,2022-01-04,dev,None,True
+V01,pre,L,20,2021-10-06,dev,1,False
+V02,pre,L,20,2021-10-06,dev,3,False
+V03,pre,L,20,2021-10-06,dev,0,True
+V04,pre,L,20,2021-10-06,dev,0,True
+V05,pre,L,20,2021-10-06,dev,0,True
+V06,pre,L,20,2021-10-06,dev,0,True
+V07,pre,L,20,2021-10-06,dev,0,True
+V18,pre,L,20,2021-10-06,dev,3,False
+V08,pre,L,20,2021-10-06,dev,"(2, 30)",False
+V09,pre,L,20,2021-10-06,dev,"(2, 60)",False
+V12,pre,L,20,2021-10-06,dev,0,True
+V13,pre,L,20,2021-10-06,dev,None,True
+V01,pre,L,21,2021-11-08,dev,0,True
+V02,pre,L,21,2021-11-08,dev,3,False
+V03,pre,L,21,2021-11-08,dev,3,False
+V04,pre,L,21,2021-11-08,dev,0,True
+V05,pre,L,21,2021-11-08,dev,0,True
+V06,pre,L,21,2021-11-08,dev,3,False
+V07,pre,L,21,2021-11-08,dev,0,True
+V18,pre,L,21,2021-11-08,dev,3,False
+V08,pre,L,21,2021-11-08,dev,"(2, 30)",False
+V09,pre,L,21,2021-11-08,dev,"(2, 60)",False
+V12,pre,L,21,2021-11-08,dev,0,True
+V13,pre,L,21,2021-11-08,dev,None,True
+V01,pre,L,22,2021-12-07,dev,0,True
+V02,pre,L,22,2021-12-07,dev,3,False
+V03,pre,L,22,2021-12-07,dev,3,False
+V04,pre,L,22,2021-12-07,dev,0,True
+V05,pre,L,22,2021-12-07,dev,2,False
+V06,pre,L,22,2021-12-07,dev,3,False
+V07,pre,L,22,2021-12-07,dev,0,True
+V18,pre,L,22,2021-12-07,dev,3,False
+V08,pre,L,22,2021-12-07,dev,"(2, 30)",False
+V09,pre,L,22,2021-12-07,dev,"(2, 60)",False
+V12,pre,L,22,2021-12-07,dev,0,True
+V13,pre,L,22,2021-12-07,dev,None,True
+V01,pre,L,23,2022-01-04,dev,1,False
+V02,pre,L,23,2022-01-04,dev,3,False
+V03,pre,L,23,2022-01-04,dev,3,False
+V04,pre,L,23,2022-01-04,dev,0,True
+V05,pre,L,23,2022-01-04,dev,2,False
+V06,pre,L,23,2022-01-04,dev,3,False
+V07,pre,L,23,2022-01-04,dev,0,True
+V18,pre,L,23,2022-01-04,dev,2,False
+V08,pre,L,23,2022-01-04,dev,"(2, 30)",False
+V09,pre,L,23,2022-01-04,dev,"(2, 60)",False
+V12,pre,L,23,2022-01-04,dev,0,True
+V13,pre,L,23,2022-01-04,dev,None,True
+V01,post,HO,20,2021-10-06,dev,0,True
+V02,post,HO,20,2021-10-06,dev,0,True
+V03,post,HO,20,2021-10-06,dev,0,True
+V04,post,HO,20,2021-10-06,dev,0,True
+V05,post,HO,20,2021-10-06,dev,0,True
+V06,post,HO,20,2021-10-06,dev,0,True
+V07,post,HO,20,2021-10-06,dev,0,True
+V18,post,HO,20,2021-10-06,dev,0,True
+V08,post,HO,20,2021-10-06,dev,None,True
+V09,post,HO,20,2021-10-06,dev,None,True
+V12,post,HO,20,2021-10-06,dev,0,True
+V13,post,HO,20,2021-10-06,dev,None,True
+V01,post,HO,21,2021-11-08,dev,0,True
+V02,post,HO,21,2021-11-08,dev,0,True
+V03,post,HO,21,2021-11-08,dev,0,True
+V04,post,HO,21,2021-11-08,dev,0,True
+V05,post,HO,21,2021-11-08,dev,0,True
+V06,post,HO,21,2021-11-08,dev,0,True
+V07,post,HO,21,2021-11-08,dev,0,True
+V18,post,HO,21,2021-11-08,dev,0,True
+V08,post,HO,21,2021-11-08,dev,None,True
+V09,post,HO,21,2021-11-08,dev,None,True
+V12,post,HO,21,2021-11-08,dev,0,True
+V13,post,HO,21,2021-11-08,dev,None,True
+V01,post,HO,22,2021-12-07,dev,0,True
+V02,post,HO,22,2021-12-07,dev,0,True
+V03,post,HO,22,2021-12-07,dev,0,True
+V04,post,HO,22,2021-12-07,dev,0,True
+V05,post,HO,22,2021-12-07,dev,0,True
+V06,post,HO,22,2021-12-07,dev,0,True
+V07,post,HO,22,2021-12-07,dev,0,True
+V18,post,HO,22,2021-12-07,dev,0,True
+V08,post,HO,22,2021-12-07,dev,None,True
+V09,post,HO,22,2021-12-07,dev,None,True
+V12,post,HO,22,2021-12-07,dev,0,True
+V13,post,HO,22,2021-12-07,dev,None,True
+V01,post,HO,23,2022-01-04,dev,0,True
+V02,post,HO,23,2022-01-04,dev,0,True
+V03,post,HO,23,2022-01-04,dev,0,True
+V04,post,HO,23,2022-01-04,dev,0,True
+V05,post,HO,23,2022-01-04,dev,0,True
+V06,post,HO,23,2022-01-04,dev,0,True
+V07,post,HO,23,2022-01-04,dev,0,True
+V18,post,HO,23,2022-01-04,dev,0,True
+V08,post,HO,23,2022-01-04,dev,None,True
+V09,post,HO,23,2022-01-04,dev,None,True
+V12,post,HO,23,2022-01-04,dev,0,True
+V13,post,HO,23,2022-01-04,dev,None,True
+V01,post,LO,20,2021-10-06,dev,1,False
+V02,post,LO,20,2021-10-06,dev,3,False
+V03,post,LO,20,2021-10-06,dev,0,True
+V04,post,LO,20,2021-10-06,dev,0,True
+V05,post,LO,20,2021-10-06,dev,0,True
+V06,post,LO,20,2021-10-06,dev,0,True
+V07,post,LO,20,2021-10-06,dev,0,True
+V18,post,LO,20,2021-10-06,dev,0,True
+V08,post,LO,20,2021-10-06,dev,"(3, 30)",False
+V09,post,LO,20,2021-10-06,dev,"(3, 60)",False
+V12,post,LO,20,2021-10-06,dev,3,False
+V13,post,LO,20,2021-10-06,dev,"(2, 30)",False
+V01,post,LO,21,2021-11-08,dev,1,False
+V02,post,LO,21,2021-11-08,dev,3,False
+V03,post,LO,21,2021-11-08,dev,0,True
+V04,post,LO,21,2021-11-08,dev,0,True
+V05,post,LO,21,2021-11-08,dev,0,True
+V06,post,LO,21,2021-11-08,dev,0,True
+V07,post,LO,21,2021-11-08,dev,0,True
+V18,post,LO,21,2021-11-08,dev,0,True
+V08,post,LO,21,2021-11-08,dev,"(3, 30)",False
+V09,post,LO,21,2021-11-08,dev,"(3, 60)",False
+V12,post,LO,21,2021-11-08,dev,3,False
+V13,post,LO,21,2021-11-08,dev,"(2, 30)",False
+V01,post,LO,22,2021-12-07,dev,1,False
+V02,post,LO,22,2021-12-07,dev,3,False
+V03,post,LO,22,2021-12-07,dev,0,True
+V04,post,LO,22,2021-12-07,dev,0,True
+V05,post,LO,22,2021-12-07,dev,0,True
+V06,post,LO,22,2021-12-07,dev,0,True
+V07,post,LO,22,2021-12-07,dev,0,True
+V18,post,LO,22,2021-12-07,dev,0,True
+V08,post,LO,22,2021-12-07,dev,"(3, 30)",False
+V09,post,LO,22,2021-12-07,dev,"(3, 60)",False
+V12,post,LO,22,2021-12-07,dev,3,False
+V13,post,LO,22,2021-12-07,dev,"(2, 30)",False
+V01,post,LO,23,2022-01-04,dev,1,False
+V02,post,LO,23,2022-01-04,dev,3,False
+V03,post,LO,23,2022-01-04,dev,0,True
+V04,post,LO,23,2022-01-04,dev,0,True
+V05,post,LO,23,2022-01-04,dev,0,True
+V06,post,LO,23,2022-01-04,dev,0,True
+V07,post,LO,23,2022-01-04,dev,0,True
+V18,post,LO,23,2022-01-04,dev,0,True
+V08,post,LO,23,2022-01-04,dev,"(3, 30)",False
+V09,post,LO,23,2022-01-04,dev,"(3, 60)",False
+V12,post,LO,23,2022-01-04,dev,3,False
+V13,post,LO,23,2022-01-04,dev,"(2, 30)",False
+V01,pre,H,16,2021-06-11,dev,0,True
+V02,pre,H,16,2021-06-11,dev,0,True
+V03,pre,H,16,2021-06-11,dev,0,True
+V04,pre,H,16,2021-06-11,dev,0,True
+V05,pre,H,16,2021-06-11,dev,0,True
+V06,pre,H,16,2021-06-11,dev,0,True
+V07,pre,H,16,2021-06-11,dev,0,True
+V18,pre,H,16,2021-06-11,dev,0,True
+V08,pre,H,16,2021-06-11,dev,None,True
+V09,pre,H,16,2021-06-11,dev,None,True
+V12,pre,H,16,2021-06-11,dev,0,True
+V13,pre,H,16,2021-06-11,dev,None,True
+V01,pre,H,17,2021-07-09,dev,1,False
+V02,pre,H,17,2021-07-09,dev,0,True
+V03,pre,H,17,2021-07-09,dev,0,True
+V04,pre,H,17,2021-07-09,dev,0,True
+V05,pre,H,17,2021-07-09,dev,0,True
+V06,pre,H,17,2021-07-09,dev,0,True
+V07,pre,H,17,2021-07-09,dev,0,True
+V18,pre,H,17,2021-07-09,dev,0,True
+V08,pre,H,17,2021-07-09,dev,None,True
+V09,pre,H,17,2021-07-09,dev,None,True
+V12,pre,H,17,2021-07-09,dev,0,True
+V13,pre,H,17,2021-07-09,dev,None,True
+V01,pre,H,18,2021-08-09,dev,3,False
+V02,pre,H,18,2021-08-09,dev,0,True
+V03,pre,H,18,2021-08-09,dev,0,True
+V04,pre,H,18,2021-08-09,dev,0,True
+V05,pre,H,18,2021-08-09,dev,0,True
+V06,pre,H,18,2021-08-09,dev,0,True
+V07,pre,H,18,2021-08-09,dev,0,True
+V18,pre,H,18,2021-08-09,dev,0,True
+V08,pre,H,18,2021-08-09,dev,None,True
+V09,pre,H,18,2021-08-09,dev,None,True
+V12,pre,H,18,2021-08-09,dev,0,True
+V13,pre,H,18,2021-08-09,dev,None,True
+V01,pre,H,19,2021-09-07,dev,0,True
+V02,pre,H,19,2021-09-07,dev,0,True
+V03,pre,H,19,2021-09-07,dev,0,True
+V04,pre,H,19,2021-09-07,dev,0,True
+V05,pre,H,19,2021-09-07,dev,0,True
+V06,pre,H,19,2021-09-07,dev,0,True
+V07,pre,H,19,2021-09-07,dev,0,True
+V18,pre,H,19,2021-09-07,dev,0,True
+V08,pre,H,19,2021-09-07,dev,None,True
+V09,pre,H,19,2021-09-07,dev,None,True
+V12,pre,H,19,2021-09-07,dev,0,True
+V13,pre,H,19,2021-09-07,dev,None,True
+V01,pre,L,16,2021-06-11,dev,0,True
+V02,pre,L,16,2021-06-11,dev,3,False
+V03,pre,L,16,2021-06-11,dev,0,True
+V04,pre,L,16,2021-06-11,dev,0,True
+V05,pre,L,16,2021-06-11,dev,0,True
+V06,pre,L,16,2021-06-11,dev,0,True
+V07,pre,L,16,2021-06-11,dev,0,True
+V18,pre,L,16,2021-06-11,dev,0,True
+V08,pre,L,16,2021-06-11,dev,"(2, 30)",False
+V09,pre,L,16,2021-06-11,dev,None,True
+V12,pre,L,16,2021-06-11,dev,3,False
+V13,pre,L,16,2021-06-11,dev,None,True
+V01,pre,L,17,2021-07-09,dev,1,False
+V02,pre,L,17,2021-07-09,dev,0,True
+V03,pre,L,17,2021-07-09,dev,0,True
+V04,pre,L,17,2021-07-09,dev,0,True
+V05,pre,L,17,2021-07-09,dev,0,True
+V06,pre,L,17,2021-07-09,dev,0,True
+V07,pre,L,17,2021-07-09,dev,0,True
+V18,pre,L,17,2021-07-09,dev,0,True
+V08,pre,L,17,2021-07-09,dev,"(2, 30)",False
+V09,pre,L,17,2021-07-09,dev,None,True
+V12,pre,L,17,2021-07-09,dev,3,False
+V13,pre,L,17,2021-07-09,dev,None,True
+V01,pre,L,18,2021-08-09,dev,1,False
+V02,pre,L,18,2021-08-09,dev,3,False
+V03,pre,L,18,2021-08-09,dev,0,True
+V04,pre,L,18,2021-08-09,dev,0,True
+V05,pre,L,18,2021-08-09,dev,0,True
+V06,pre,L,18,2021-08-09,dev,0,True
+V07,pre,L,18,2021-08-09,dev,0,True
+V18,pre,L,18,2021-08-09,dev,2,False
+V08,pre,L,18,2021-08-09,dev,"(2, 30)",False
+V09,pre,L,18,2021-08-09,dev,None,True
+V12,pre,L,18,2021-08-09,dev,3,False
+V13,pre,L,18,2021-08-09,dev,None,True
+V01,pre,L,19,2021-09-07,dev,1,False
+V02,pre,L,19,2021-09-07,dev,3,False
+V03,pre,L,19,2021-09-07,dev,0,True
+V04,pre,L,19,2021-09-07,dev,0,True
+V05,pre,L,19,2021-09-07,dev,0,True
+V06,pre,L,19,2021-09-07,dev,0,True
+V07,pre,L,19,2021-09-07,dev,0,True
+V18,pre,L,19,2021-09-07,dev,0,True
+V08,pre,L,19,2021-09-07,dev,"(2, 30)",False
+V09,pre,L,19,2021-09-07,dev,None,True
+V12,pre,L,19,2021-09-07,dev,0,True
+V13,pre,L,19,2021-09-07,dev,None,True
+V01,post,HO,16,2021-06-11,dev,0,True
+V02,post,HO,16,2021-06-11,dev,0,True
+V03,post,HO,16,2021-06-11,dev,0,True
+V04,post,HO,16,2021-06-11,dev,0,True
+V05,post,HO,16,2021-06-11,dev,0,True
+V06,post,HO,16,2021-06-11,dev,0,True
+V07,post,HO,16,2021-06-11,dev,0,True
+V18,post,HO,16,2021-06-11,dev,0,True
+V08,post,HO,16,2021-06-11,dev,None,True
+V09,post,HO,16,2021-06-11,dev,None,True
+V12,post,HO,16,2021-06-11,dev,0,True
+V13,post,HO,16,2021-06-11,dev,None,True
+V01,post,HO,17,2021-07-09,dev,0,True
+V02,post,HO,17,2021-07-09,dev,0,True
+V03,post,HO,17,2021-07-09,dev,0,True
+V04,post,HO,17,2021-07-09,dev,0,True
+V05,post,HO,17,2021-07-09,dev,0,True
+V06,post,HO,17,2021-07-09,dev,0,True
+V07,post,HO,17,2021-07-09,dev,0,True
+V18,post,HO,17,2021-07-09,dev,0,True
+V08,post,HO,17,2021-07-09,dev,None,True
+V09,post,HO,17,2021-07-09,dev,None,True
+V12,post,HO,17,2021-07-09,dev,0,True
+V13,post,HO,17,2021-07-09,dev,None,True
+V01,post,HO,18,2021-08-09,dev,0,True
+V02,post,HO,18,2021-08-09,dev,0,True
+V03,post,HO,18,2021-08-09,dev,0,True
+V04,post,HO,18,2021-08-09,dev,0,True
+V05,post,HO,18,2021-08-09,dev,0,True
+V06,post,HO,18,2021-08-09,dev,0,True
+V07,post,HO,18,2021-08-09,dev,0,True
+V18,post,HO,18,2021-08-09,dev,0,True
+V08,post,HO,18,2021-08-09,dev,None,True
+V09,post,HO,18,2021-08-09,dev,None,True
+V12,post,HO,18,2021-08-09,dev,0,True
+V13,post,HO,18,2021-08-09,dev,None,True
+V01,post,HO,19,2021-09-07,dev,0,True
+V02,post,HO,19,2021-09-07,dev,0,True
+V03,post,HO,19,2021-09-07,dev,0,True
+V04,post,HO,19,2021-09-07,dev,0,True
+V05,post,HO,19,2021-09-07,dev,0,True
+V06,post,HO,19,2021-09-07,dev,0,True
+V07,post,HO,19,2021-09-07,dev,0,True
+V18,post,HO,19,2021-09-07,dev,0,True
+V08,post,HO,19,2021-09-07,dev,None,True
+V09,post,HO,19,2021-09-07,dev,None,True
+V12,post,HO,19,2021-09-07,dev,0,True
+V13,post,HO,19,2021-09-07,dev,None,True
+V01,post,LO,16,2021-06-11,dev,1,False
+V02,post,LO,16,2021-06-11,dev,3,False
+V03,post,LO,16,2021-06-11,dev,0,True
+V04,post,LO,16,2021-06-11,dev,0,True
+V05,post,LO,16,2021-06-11,dev,0,True
+V06,post,LO,16,2021-06-11,dev,0,True
+V07,post,LO,16,2021-06-11,dev,0,True
+V18,post,LO,16,2021-06-11,dev,0,True
+V08,post,LO,16,2021-06-11,dev,"(3, 30)",False
+V09,post,LO,16,2021-06-11,dev,"(3, 60)",False
+V12,post,LO,16,2021-06-11,dev,3,False
+V13,post,LO,16,2021-06-11,dev,"(3, 30)",False
+V01,post,LO,17,2021-07-09,dev,1,False
+V02,post,LO,17,2021-07-09,dev,3,False
+V03,post,LO,17,2021-07-09,dev,0,True
+V04,post,LO,17,2021-07-09,dev,0,True
+V05,post,LO,17,2021-07-09,dev,0,True
+V06,post,LO,17,2021-07-09,dev,0,True
+V07,post,LO,17,2021-07-09,dev,0,True
+V18,post,LO,17,2021-07-09,dev,0,True
+V08,post,LO,17,2021-07-09,dev,"(3, 30)",False
+V09,post,LO,17,2021-07-09,dev,"(3, 60)",False
+V12,post,LO,17,2021-07-09,dev,3,False
+V13,post,LO,17,2021-07-09,dev,"(3, 30)",False
+V01,post,LO,18,2021-08-09,dev,1,False
+V02,post,LO,18,2021-08-09,dev,3,False
+V03,post,LO,18,2021-08-09,dev,0,True
+V04,post,LO,18,2021-08-09,dev,0,True
+V05,post,LO,18,2021-08-09,dev,0,True
+V06,post,LO,18,2021-08-09,dev,0,True
+V07,post,LO,18,2021-08-09,dev,0,True
+V18,post,LO,18,2021-08-09,dev,0,True
+V08,post,LO,18,2021-08-09,dev,"(3, 30)",False
+V09,post,LO,18,2021-08-09,dev,"(3, 60)",False
+V12,post,LO,18,2021-08-09,dev,3,False
+V13,post,LO,18,2021-08-09,dev,"(3, 30)",False
+V01,post,LO,19,2021-09-07,dev,1,False
+V02,post,LO,19,2021-09-07,dev,3,False
+V03,post,LO,19,2021-09-07,dev,0,True
+V04,post,LO,19,2021-09-07,dev,0,True
+V05,post,LO,19,2021-09-07,dev,0,True
+V06,post,LO,19,2021-09-07,dev,0,True
+V07,post,LO,19,2021-09-07,dev,0,True
+V18,post,LO,19,2021-09-07,dev,0,True
+V08,post,LO,19,2021-09-07,dev,"(3, 30)",False
+V09,post,LO,19,2021-09-07,dev,"(3, 60)",False
+V12,post,LO,19,2021-09-07,dev,3,False
+V13,post,LO,19,2021-09-07,dev,"(3, 30)",False
+V01,pre,H,12,2021-02-11,dev,0,True
+V02,pre,H,12,2021-02-11,dev,0,True
+V03,pre,H,12,2021-02-11,dev,0,True
+V04,pre,H,12,2021-02-11,dev,0,True
+V05,pre,H,12,2021-02-11,dev,0,True
+V06,pre,H,12,2021-02-11,dev,0,True
+V07,pre,H,12,2021-02-11,dev,0,True
+V18,pre,H,12,2021-02-11,dev,0,True
+V08,pre,H,12,2021-02-11,dev,None,True
+V09,pre,H,12,2021-02-11,dev,None,True
+V12,pre,H,12,2021-02-11,dev,0,True
+V13,pre,H,12,2021-02-11,dev,None,True
+V01,pre,H,13,2021-03-12,dev,0,True
+V02,pre,H,13,2021-03-12,dev,0,True
+V03,pre,H,13,2021-03-12,dev,0,True
+V04,pre,H,13,2021-03-12,dev,0,True
+V05,pre,H,13,2021-03-12,dev,0,True
+V06,pre,H,13,2021-03-12,dev,0,True
+V07,pre,H,13,2021-03-12,dev,0,True
+V18,pre,H,13,2021-03-12,dev,0,True
+V08,pre,H,13,2021-03-12,dev,None,True
+V09,pre,H,13,2021-03-12,dev,None,True
+V12,pre,H,13,2021-03-12,dev,0,True
+V13,pre,H,13,2021-03-12,dev,None,True
+V01,pre,H,14,2021-04-13,dev,0,True
+V02,pre,H,14,2021-04-13,dev,0,True
+V03,pre,H,14,2021-04-13,dev,0,True
+V04,pre,H,14,2021-04-13,dev,0,True
+V05,pre,H,14,2021-04-13,dev,0,True
+V06,pre,H,14,2021-04-13,dev,0,True
+V07,pre,H,14,2021-04-13,dev,0,True
+V18,pre,H,14,2021-04-13,dev,0,True
+V08,pre,H,14,2021-04-13,dev,None,True
+V09,pre,H,14,2021-04-13,dev,None,True
+V12,pre,H,14,2021-04-13,dev,0,True
+V13,pre,H,14,2021-04-13,dev,None,True
+V01,pre,H,15,2021-05-14,dev,0,True
+V02,pre,H,15,2021-05-14,dev,0,True
+V03,pre,H,15,2021-05-14,dev,0,True
+V04,pre,H,15,2021-05-14,dev,0,True
+V05,pre,H,15,2021-05-14,dev,0,True
+V06,pre,H,15,2021-05-14,dev,0,True
+V07,pre,H,15,2021-05-14,dev,0,True
+V18,pre,H,15,2021-05-14,dev,0,True
+V08,pre,H,15,2021-05-14,dev,None,True
+V09,pre,H,15,2021-05-14,dev,None,True
+V12,pre,H,15,2021-05-14,dev,0,True
+V13,pre,H,15,2021-05-14,dev,None,True
+V01,pre,L,12,2021-02-11,dev,0,True
+V02,pre,L,12,2021-02-11,dev,0,True
+V03,pre,L,12,2021-02-11,dev,0,True
+V04,pre,L,12,2021-02-11,dev,0,True
+V05,pre,L,12,2021-02-11,dev,0,True
+V06,pre,L,12,2021-02-11,dev,0,True
+V07,pre,L,12,2021-02-11,dev,0,True
+V18,pre,L,12,2021-02-11,dev,0,True
+V08,pre,L,12,2021-02-11,dev,"(3, 30)",False
+V09,pre,L,12,2021-02-11,dev,None,True
+V12,pre,L,12,2021-02-11,dev,3,False
+V13,pre,L,12,2021-02-11,dev,"(2, 30)",False
+V01,pre,L,13,2021-03-12,dev,0,True
+V02,pre,L,13,2021-03-12,dev,0,True
+V03,pre,L,13,2021-03-12,dev,0,True
+V04,pre,L,13,2021-03-12,dev,0,True
+V05,pre,L,13,2021-03-12,dev,0,True
+V06,pre,L,13,2021-03-12,dev,0,True
+V07,pre,L,13,2021-03-12,dev,0,True
+V18,pre,L,13,2021-03-12,dev,0,True
+V08,pre,L,13,2021-03-12,dev,"(3, 30)",False
+V09,pre,L,13,2021-03-12,dev,None,True
+V12,pre,L,13,2021-03-12,dev,0,True
+V13,pre,L,13,2021-03-12,dev,"(2, 30)",False
+V01,pre,L,14,2021-04-13,dev,0,True
+V02,pre,L,14,2021-04-13,dev,0,True
+V03,pre,L,14,2021-04-13,dev,0,True
+V04,pre,L,14,2021-04-13,dev,0,True
+V05,pre,L,14,2021-04-13,dev,0,True
+V06,pre,L,14,2021-04-13,dev,0,True
+V07,pre,L,14,2021-04-13,dev,0,True
+V18,pre,L,14,2021-04-13,dev,0,True
+V08,pre,L,14,2021-04-13,dev,"(3, 30)",False
+V09,pre,L,14,2021-04-13,dev,None,True
+V12,pre,L,14,2021-04-13,dev,3,False
+V13,pre,L,14,2021-04-13,dev,"(2, 30)",False
+V01,pre,L,15,2021-05-14,dev,0,True
+V02,pre,L,15,2021-05-14,dev,3,False
+V03,pre,L,15,2021-05-14,dev,0,True
+V04,pre,L,15,2021-05-14,dev,0,True
+V05,pre,L,15,2021-05-14,dev,0,True
+V06,pre,L,15,2021-05-14,dev,0,True
+V07,pre,L,15,2021-05-14,dev,0,True
+V18,pre,L,15,2021-05-14,dev,0,True
+V08,pre,L,15,2021-05-14,dev,"(3, 30)",False
+V09,pre,L,15,2021-05-14,dev,None,True
+V12,pre,L,15,2021-05-14,dev,3,False
+V13,pre,L,15,2021-05-14,dev,"(2, 30)",False
+V01,post,HO,12,2021-02-11,dev,2,False
+V02,post,HO,12,2021-02-11,dev,0,True
+V03,post,HO,12,2021-02-11,dev,0,True
+V04,post,HO,12,2021-02-11,dev,0,True
+V05,post,HO,12,2021-02-11,dev,0,True
+V06,post,HO,12,2021-02-11,dev,0,True
+V07,post,HO,12,2021-02-11,dev,0,True
+V18,post,HO,12,2021-02-11,dev,0,True
+V08,post,HO,12,2021-02-11,dev,None,True
+V09,post,HO,12,2021-02-11,dev,None,True
+V12,post,HO,12,2021-02-11,dev,0,True
+V13,post,HO,12,2021-02-11,dev,None,True
+V01,post,HO,13,2021-03-12,dev,3,False
+V02,post,HO,13,2021-03-12,dev,0,True
+V03,post,HO,13,2021-03-12,dev,0,True
+V04,post,HO,13,2021-03-12,dev,0,True
+V05,post,HO,13,2021-03-12,dev,0,True
+V06,post,HO,13,2021-03-12,dev,0,True
+V07,post,HO,13,2021-03-12,dev,0,True
+V18,post,HO,13,2021-03-12,dev,0,True
+V08,post,HO,13,2021-03-12,dev,None,True
+V09,post,HO,13,2021-03-12,dev,None,True
+V12,post,HO,13,2021-03-12,dev,0,True
+V13,post,HO,13,2021-03-12,dev,None,True
+V01,post,HO,14,2021-04-13,dev,0,True
+V02,post,HO,14,2021-04-13,dev,0,True
+V03,post,HO,14,2021-04-13,dev,0,True
+V04,post,HO,14,2021-04-13,dev,0,True
+V05,post,HO,14,2021-04-13,dev,0,True
+V06,post,HO,14,2021-04-13,dev,0,True
+V07,post,HO,14,2021-04-13,dev,0,True
+V18,post,HO,14,2021-04-13,dev,0,True
+V08,post,HO,14,2021-04-13,dev,None,True
+V09,post,HO,14,2021-04-13,dev,None,True
+V12,post,HO,14,2021-04-13,dev,0,True
+V13,post,HO,14,2021-04-13,dev,None,True
+V01,post,HO,15,2021-05-14,dev,3,False
+V02,post,HO,15,2021-05-14,dev,0,True
+V03,post,HO,15,2021-05-14,dev,0,True
+V04,post,HO,15,2021-05-14,dev,0,True
+V05,post,HO,15,2021-05-14,dev,0,True
+V06,post,HO,15,2021-05-14,dev,0,True
+V07,post,HO,15,2021-05-14,dev,0,True
+V18,post,HO,15,2021-05-14,dev,0,True
+V08,post,HO,15,2021-05-14,dev,None,True
+V09,post,HO,15,2021-05-14,dev,None,True
+V12,post,HO,15,2021-05-14,dev,0,True
+V13,post,HO,15,2021-05-14,dev,None,True
+V01,post,LO,12,2021-02-11,dev,0,True
+V02,post,LO,12,2021-02-11,dev,3,False
+V03,post,LO,12,2021-02-11,dev,0,True
+V04,post,LO,12,2021-02-11,dev,0,True
+V05,post,LO,12,2021-02-11,dev,0,True
+V06,post,LO,12,2021-02-11,dev,0,True
+V07,post,LO,12,2021-02-11,dev,0,True
+V18,post,LO,12,2021-02-11,dev,0,True
+V08,post,LO,12,2021-02-11,dev,"(3, 30)",False
+V09,post,LO,12,2021-02-11,dev,None,True
+V12,post,LO,12,2021-02-11,dev,3,False
+V13,post,LO,12,2021-02-11,dev,"(2, 60)",False
+V01,post,LO,13,2021-03-12,dev,0,True
+V02,post,LO,13,2021-03-12,dev,3,False
+V03,post,LO,13,2021-03-12,dev,0,True
+V04,post,LO,13,2021-03-12,dev,0,True
+V05,post,LO,13,2021-03-12,dev,0,True
+V06,post,LO,13,2021-03-12,dev,0,True
+V07,post,LO,13,2021-03-12,dev,0,True
+V18,post,LO,13,2021-03-12,dev,0,True
+V08,post,LO,13,2021-03-12,dev,"(3, 30)",False
+V09,post,LO,13,2021-03-12,dev,None,True
+V12,post,LO,13,2021-03-12,dev,3,False
+V13,post,LO,13,2021-03-12,dev,"(2, 60)",False
+V01,post,LO,14,2021-04-13,dev,0,True
+V02,post,LO,14,2021-04-13,dev,0,True
+V03,post,LO,14,2021-04-13,dev,0,True
+V04,post,LO,14,2021-04-13,dev,0,True
+V05,post,LO,14,2021-04-13,dev,0,True
+V06,post,LO,14,2021-04-13,dev,0,True
+V07,post,LO,14,2021-04-13,dev,0,True
+V18,post,LO,14,2021-04-13,dev,0,True
+V08,post,LO,14,2021-04-13,dev,"(3, 30)",False
+V09,post,LO,14,2021-04-13,dev,None,True
+V12,post,LO,14,2021-04-13,dev,3,False
+V13,post,LO,14,2021-04-13,dev,"(2, 60)",False
+V01,post,LO,15,2021-05-14,dev,1,False
+V02,post,LO,15,2021-05-14,dev,0,True
+V03,post,LO,15,2021-05-14,dev,0,True
+V04,post,LO,15,2021-05-14,dev,0,True
+V05,post,LO,15,2021-05-14,dev,0,True
+V06,post,LO,15,2021-05-14,dev,0,True
+V07,post,LO,15,2021-05-14,dev,0,True
+V18,post,LO,15,2021-05-14,dev,0,True
+V08,post,LO,15,2021-05-14,dev,"(3, 30)",False
+V09,post,LO,15,2021-05-14,dev,None,True
+V12,post,LO,15,2021-05-14,dev,3,False
+V13,post,LO,15,2021-05-14,dev,"(2, 60)",False
+V01,pre,H,8,2020-10-16,dev,3,False
+V02,pre,H,8,2020-10-16,dev,0,True
+V03,pre,H,8,2020-10-16,dev,0,True
+V04,pre,H,8,2020-10-16,dev,0,True
+V05,pre,H,8,2020-10-16,dev,0,True
+V06,pre,H,8,2020-10-16,dev,0,True
+V07,pre,H,8,2020-10-16,dev,0,True
+V18,pre,H,8,2020-10-16,dev,0,True
+V08,pre,H,8,2020-10-16,dev,None,True
+V09,pre,H,8,2020-10-16,dev,None,True
+V12,pre,H,8,2020-10-16,dev,0,True
+V13,pre,H,8,2020-10-16,dev,None,True
+V01,pre,H,9,2020-11-13,dev,0,True
+V02,pre,H,9,2020-11-13,dev,0,True
+V03,pre,H,9,2020-11-13,dev,0,True
+V04,pre,H,9,2020-11-13,dev,0,True
+V05,pre,H,9,2020-11-13,dev,0,True
+V06,pre,H,9,2020-11-13,dev,0,True
+V07,pre,H,9,2020-11-13,dev,0,True
+V18,pre,H,9,2020-11-13,dev,0,True
+V08,pre,H,9,2020-11-13,dev,None,True
+V09,pre,H,9,2020-11-13,dev,None,True
+V12,pre,H,9,2020-11-13,dev,0,True
+V13,pre,H,9,2020-11-13,dev,None,True
+V01,pre,H,10,2020-12-15,dev,0,True
+V02,pre,H,10,2020-12-15,dev,0,True
+V03,pre,H,10,2020-12-15,dev,0,True
+V04,pre,H,10,2020-12-15,dev,0,True
+V05,pre,H,10,2020-12-15,dev,0,True
+V06,pre,H,10,2020-12-15,dev,0,True
+V07,pre,H,10,2020-12-15,dev,0,True
+V18,pre,H,10,2020-12-15,dev,3,False
+V08,pre,H,10,2020-12-15,dev,None,True
+V09,pre,H,10,2020-12-15,dev,None,True
+V12,pre,H,10,2020-12-15,dev,0,True
+V13,pre,H,10,2020-12-15,dev,None,True
+V01,pre,H,11,2021-01-13,dev,0,True
+V02,pre,H,11,2021-01-13,dev,0,True
+V03,pre,H,11,2021-01-13,dev,0,True
+V04,pre,H,11,2021-01-13,dev,0,True
+V05,pre,H,11,2021-01-13,dev,0,True
+V06,pre,H,11,2021-01-13,dev,0,True
+V07,pre,H,11,2021-01-13,dev,0,True
+V18,pre,H,11,2021-01-13,dev,3,False
+V08,pre,H,11,2021-01-13,dev,None,True
+V09,pre,H,11,2021-01-13,dev,None,True
+V12,pre,H,11,2021-01-13,dev,0,True
+V13,pre,H,11,2021-01-13,dev,None,True
+V01,pre,L,8,2020-10-16,dev,3,False
+V02,pre,L,8,2020-10-16,dev,3,False
+V03,pre,L,8,2020-10-16,dev,3,False
+V04,pre,L,8,2020-10-16,dev,0,True
+V05,pre,L,8,2020-10-16,dev,0,True
+V06,pre,L,8,2020-10-16,dev,0,True
+V07,pre,L,8,2020-10-16,dev,0,True
+V18,pre,L,8,2020-10-16,dev,3,False
+V08,pre,L,8,2020-10-16,dev,None,True
+V09,pre,L,8,2020-10-16,dev,None,True
+V12,pre,L,8,2020-10-16,dev,3,False
+V13,pre,L,8,2020-10-16,dev,"(2, 120)",False
+V01,pre,L,9,2020-11-13,dev,3,False
+V02,pre,L,9,2020-11-13,dev,3,False
+V03,pre,L,9,2020-11-13,dev,0,True
+V04,pre,L,9,2020-11-13,dev,0,True
+V05,pre,L,9,2020-11-13,dev,0,True
+V06,pre,L,9,2020-11-13,dev,0,True
+V07,pre,L,9,2020-11-13,dev,0,True
+V18,pre,L,9,2020-11-13,dev,3,False
+V08,pre,L,9,2020-11-13,dev,None,True
+V09,pre,L,9,2020-11-13,dev,None,True
+V12,pre,L,9,2020-11-13,dev,0,True
+V13,pre,L,9,2020-11-13,dev,"(2, 120)",False
+V01,pre,L,10,2020-12-15,dev,3,False
+V02,pre,L,10,2020-12-15,dev,0,True
+V03,pre,L,10,2020-12-15,dev,0,True
+V04,pre,L,10,2020-12-15,dev,0,True
+V05,pre,L,10,2020-12-15,dev,0,True
+V06,pre,L,10,2020-12-15,dev,0,True
+V07,pre,L,10,2020-12-15,dev,0,True
+V18,pre,L,10,2020-12-15,dev,0,True
+V08,pre,L,10,2020-12-15,dev,None,True
+V09,pre,L,10,2020-12-15,dev,None,True
+V12,pre,L,10,2020-12-15,dev,3,False
+V13,pre,L,10,2020-12-15,dev,"(2, 120)",False
+V01,pre,L,11,2021-01-13,dev,0,True
+V02,pre,L,11,2021-01-13,dev,0,True
+V03,pre,L,11,2021-01-13,dev,0,True
+V04,pre,L,11,2021-01-13,dev,0,True
+V05,pre,L,11,2021-01-13,dev,0,True
+V06,pre,L,11,2021-01-13,dev,0,True
+V07,pre,L,11,2021-01-13,dev,0,True
+V18,pre,L,11,2021-01-13,dev,0,True
+V08,pre,L,11,2021-01-13,dev,None,True
+V09,pre,L,11,2021-01-13,dev,None,True
+V12,pre,L,11,2021-01-13,dev,3,False
+V13,pre,L,11,2021-01-13,dev,"(2, 120)",False
+V01,post,HO,8,2020-10-16,dev,0,True
+V02,post,HO,8,2020-10-16,dev,0,True
+V03,post,HO,8,2020-10-16,dev,0,True
+V04,post,HO,8,2020-10-16,dev,0,True
+V05,post,HO,8,2020-10-16,dev,0,True
+V06,post,HO,8,2020-10-16,dev,0,True
+V07,post,HO,8,2020-10-16,dev,0,True
+V18,post,HO,8,2020-10-16,dev,0,True
+V08,post,HO,8,2020-10-16,dev,None,True
+V09,post,HO,8,2020-10-16,dev,None,True
+V12,post,HO,8,2020-10-16,dev,0,True
+V13,post,HO,8,2020-10-16,dev,None,True
+V01,post,HO,9,2020-11-13,dev,0,True
+V02,post,HO,9,2020-11-13,dev,0,True
+V03,post,HO,9,2020-11-13,dev,0,True
+V04,post,HO,9,2020-11-13,dev,0,True
+V05,post,HO,9,2020-11-13,dev,0,True
+V06,post,HO,9,2020-11-13,dev,0,True
+V07,post,HO,9,2020-11-13,dev,0,True
+V18,post,HO,9,2020-11-13,dev,0,True
+V08,post,HO,9,2020-11-13,dev,None,True
+V09,post,HO,9,2020-11-13,dev,None,True
+V12,post,HO,9,2020-11-13,dev,0,True
+V13,post,HO,9,2020-11-13,dev,None,True
+V01,post,HO,10,2020-12-15,dev,2,False
+V02,post,HO,10,2020-12-15,dev,0,True
+V03,post,HO,10,2020-12-15,dev,0,True
+V04,post,HO,10,2020-12-15,dev,0,True
+V05,post,HO,10,2020-12-15,dev,0,True
+V06,post,HO,10,2020-12-15,dev,0,True
+V07,post,HO,10,2020-12-15,dev,0,True
+V18,post,HO,10,2020-12-15,dev,0,True
+V08,post,HO,10,2020-12-15,dev,None,True
+V09,post,HO,10,2020-12-15,dev,None,True
+V12,post,HO,10,2020-12-15,dev,0,True
+V13,post,HO,10,2020-12-15,dev,None,True
+V01,post,HO,11,2021-01-13,dev,2,False
+V02,post,HO,11,2021-01-13,dev,0,True
+V03,post,HO,11,2021-01-13,dev,0,True
+V04,post,HO,11,2021-01-13,dev,0,True
+V05,post,HO,11,2021-01-13,dev,0,True
+V06,post,HO,11,2021-01-13,dev,0,True
+V07,post,HO,11,2021-01-13,dev,0,True
+V18,post,HO,11,2021-01-13,dev,0,True
+V08,post,HO,11,2021-01-13,dev,None,True
+V09,post,HO,11,2021-01-13,dev,None,True
+V12,post,HO,11,2021-01-13,dev,0,True
+V13,post,HO,11,2021-01-13,dev,None,True
+V01,post,LO,8,2020-10-16,dev,0,True
+V02,post,LO,8,2020-10-16,dev,3,False
+V03,post,LO,8,2020-10-16,dev,3,False
+V04,post,LO,8,2020-10-16,dev,3,False
+V05,post,LO,8,2020-10-16,dev,3,False
+V06,post,LO,8,2020-10-16,dev,3,False
+V07,post,LO,8,2020-10-16,dev,3,False
+V18,post,LO,8,2020-10-16,dev,3,False
+V08,post,LO,8,2020-10-16,dev,"(3, 120)",False
+V09,post,LO,8,2020-10-16,dev,"(2, 120)",False
+V12,post,LO,8,2020-10-16,dev,3,False
+V13,post,LO,8,2020-10-16,dev,"(2, 120)",False
+V01,post,LO,9,2020-11-13,dev,0,True
+V02,post,LO,9,2020-11-13,dev,3,False
+V03,post,LO,9,2020-11-13,dev,3,False
+V04,post,LO,9,2020-11-13,dev,3,False
+V05,post,LO,9,2020-11-13,dev,3,False
+V06,post,LO,9,2020-11-13,dev,3,False
+V07,post,LO,9,2020-11-13,dev,3,False
+V18,post,LO,9,2020-11-13,dev,3,False
+V08,post,LO,9,2020-11-13,dev,"(3, 120)",False
+V09,post,LO,9,2020-11-13,dev,"(2, 120)",False
+V12,post,LO,9,2020-11-13,dev,3,False
+V13,post,LO,9,2020-11-13,dev,"(2, 120)",False
+V01,post,LO,10,2020-12-15,dev,0,True
+V02,post,LO,10,2020-12-15,dev,3,False
+V03,post,LO,10,2020-12-15,dev,0,True
+V04,post,LO,10,2020-12-15,dev,0,True
+V05,post,LO,10,2020-12-15,dev,0,True
+V06,post,LO,10,2020-12-15,dev,0,True
+V07,post,LO,10,2020-12-15,dev,0,True
+V18,post,LO,10,2020-12-15,dev,0,True
+V08,post,LO,10,2020-12-15,dev,"(3, 120)",False
+V09,post,LO,10,2020-12-15,dev,"(2, 120)",False
+V12,post,LO,10,2020-12-15,dev,3,False
+V13,post,LO,10,2020-12-15,dev,"(2, 120)",False
+V01,post,LO,11,2021-01-13,dev,0,True
+V02,post,LO,11,2021-01-13,dev,3,False
+V03,post,LO,11,2021-01-13,dev,0,True
+V04,post,LO,11,2021-01-13,dev,0,True
+V05,post,LO,11,2021-01-13,dev,0,True
+V06,post,LO,11,2021-01-13,dev,0,True
+V07,post,LO,11,2021-01-13,dev,0,True
+V18,post,LO,11,2021-01-13,dev,0,True
+V08,post,LO,11,2021-01-13,dev,"(3, 120)",False
+V09,post,LO,11,2021-01-13,dev,"(2, 120)",False
+V12,post,LO,11,2021-01-13,dev,3,False
+V13,post,LO,11,2021-01-13,dev,"(2, 120)",False
+V01,pre,H,4,2020-06-25,dev,3,False
+V02,pre,H,4,2020-06-25,dev,0,True
+V03,pre,H,4,2020-06-25,dev,0,True
+V04,pre,H,4,2020-06-25,dev,0,True
+V05,pre,H,4,2020-06-25,dev,0,True
+V06,pre,H,4,2020-06-25,dev,0,True
+V07,pre,H,4,2020-06-25,dev,0,True
+V18,pre,H,4,2020-06-25,dev,0,True
+V08,pre,H,4,2020-06-25,dev,None,True
+V09,pre,H,4,2020-06-25,dev,None,True
+V12,pre,H,4,2020-06-25,dev,0,True
+V13,pre,H,4,2020-06-25,dev,"(2, 30)",False
+V01,pre,H,5,2020-07-23,dev,0,True
+V02,pre,H,5,2020-07-23,dev,0,True
+V03,pre,H,5,2020-07-23,dev,0,True
+V04,pre,H,5,2020-07-23,dev,0,True
+V05,pre,H,5,2020-07-23,dev,0,True
+V06,pre,H,5,2020-07-23,dev,0,True
+V07,pre,H,5,2020-07-23,dev,0,True
+V18,pre,H,5,2020-07-23,dev,3,False
+V08,pre,H,5,2020-07-23,dev,None,True
+V09,pre,H,5,2020-07-23,dev,None,True
+V12,pre,H,5,2020-07-23,dev,3,False
+V13,pre,H,5,2020-07-23,dev,"(2, 30)",False
+V01,pre,H,6,2020-08-20,dev,0,True
+V02,pre,H,6,2020-08-20,dev,0,True
+V03,pre,H,6,2020-08-20,dev,0,True
+V04,pre,H,6,2020-08-20,dev,0,True
+V05,pre,H,6,2020-08-20,dev,0,True
+V06,pre,H,6,2020-08-20,dev,0,True
+V07,pre,H,6,2020-08-20,dev,0,True
+V18,pre,H,6,2020-08-20,dev,3,False
+V08,pre,H,6,2020-08-20,dev,None,True
+V09,pre,H,6,2020-08-20,dev,None,True
+V12,pre,H,6,2020-08-20,dev,0,True
+V13,pre,H,6,2020-08-20,dev,"(2, 30)",False
+V01,pre,H,7,2020-09-17,dev,3,False
+V02,pre,H,7,2020-09-17,dev,0,True
+V03,pre,H,7,2020-09-17,dev,0,True
+V04,pre,H,7,2020-09-17,dev,0,True
+V05,pre,H,7,2020-09-17,dev,0,True
+V06,pre,H,7,2020-09-17,dev,0,True
+V07,pre,H,7,2020-09-17,dev,0,True
+V18,pre,H,7,2020-09-17,dev,0,True
+V08,pre,H,7,2020-09-17,dev,None,True
+V09,pre,H,7,2020-09-17,dev,None,True
+V12,pre,H,7,2020-09-17,dev,0,True
+V13,pre,H,7,2020-09-17,dev,"(2, 30)",False
+V01,pre,L,4,2020-06-25,dev,3,False
+V02,pre,L,4,2020-06-25,dev,3,False
+V03,pre,L,4,2020-06-25,dev,3,False
+V04,pre,L,4,2020-06-25,dev,3,False
+V05,pre,L,4,2020-06-25,dev,3,False
+V06,pre,L,4,2020-06-25,dev,3,False
+V07,pre,L,4,2020-06-25,dev,3,False
+V18,pre,L,4,2020-06-25,dev,3,False
+V08,pre,L,4,2020-06-25,dev,"(2, 30)",False
+V09,pre,L,4,2020-06-25,dev,None,True
+V12,pre,L,4,2020-06-25,dev,0,True
+V13,pre,L,4,2020-06-25,dev,None,True
+V01,pre,L,5,2020-07-23,dev,3,False
+V02,pre,L,5,2020-07-23,dev,3,False
+V03,pre,L,5,2020-07-23,dev,3,False
+V04,pre,L,5,2020-07-23,dev,3,False
+V05,pre,L,5,2020-07-23,dev,3,False
+V06,pre,L,5,2020-07-23,dev,3,False
+V07,pre,L,5,2020-07-23,dev,3,False
+V18,pre,L,5,2020-07-23,dev,3,False
+V08,pre,L,5,2020-07-23,dev,"(2, 30)",False
+V09,pre,L,5,2020-07-23,dev,None,True
+V12,pre,L,5,2020-07-23,dev,0,True
+V13,pre,L,5,2020-07-23,dev,None,True
+V01,pre,L,6,2020-08-20,dev,0,True
+V02,pre,L,6,2020-08-20,dev,0,True
+V03,pre,L,6,2020-08-20,dev,0,True
+V04,pre,L,6,2020-08-20,dev,0,True
+V05,pre,L,6,2020-08-20,dev,0,True
+V06,pre,L,6,2020-08-20,dev,0,True
+V07,pre,L,6,2020-08-20,dev,0,True
+V18,pre,L,6,2020-08-20,dev,3,False
+V08,pre,L,6,2020-08-20,dev,"(2, 30)",False
+V09,pre,L,6,2020-08-20,dev,None,True
+V12,pre,L,6,2020-08-20,dev,3,False
+V13,pre,L,6,2020-08-20,dev,None,True
+V01,pre,L,7,2020-09-17,dev,3,False
+V02,pre,L,7,2020-09-17,dev,3,False
+V03,pre,L,7,2020-09-17,dev,3,False
+V04,pre,L,7,2020-09-17,dev,0,True
+V05,pre,L,7,2020-09-17,dev,3,False
+V06,pre,L,7,2020-09-17,dev,3,False
+V07,pre,L,7,2020-09-17,dev,0,True
+V18,pre,L,7,2020-09-17,dev,3,False
+V08,pre,L,7,2020-09-17,dev,"(2, 30)",False
+V09,pre,L,7,2020-09-17,dev,None,True
+V12,pre,L,7,2020-09-17,dev,3,False
+V13,pre,L,7,2020-09-17,dev,None,True
+V01,post,HO,4,2020-06-25,dev,0,True
+V02,post,HO,4,2020-06-25,dev,0,True
+V03,post,HO,4,2020-06-25,dev,0,True
+V04,post,HO,4,2020-06-25,dev,0,True
+V05,post,HO,4,2020-06-25,dev,0,True
+V06,post,HO,4,2020-06-25,dev,0,True
+V07,post,HO,4,2020-06-25,dev,0,True
+V18,post,HO,4,2020-06-25,dev,0,True
+V08,post,HO,4,2020-06-25,dev,None,True
+V09,post,HO,4,2020-06-25,dev,None,True
+V12,post,HO,4,2020-06-25,dev,0,True
+V13,post,HO,4,2020-06-25,dev,"(2, 30)",False
+V01,post,HO,5,2020-07-23,dev,2,False
+V02,post,HO,5,2020-07-23,dev,0,True
+V03,post,HO,5,2020-07-23,dev,0,True
+V04,post,HO,5,2020-07-23,dev,0,True
+V05,post,HO,5,2020-07-23,dev,0,True
+V06,post,HO,5,2020-07-23,dev,0,True
+V07,post,HO,5,2020-07-23,dev,0,True
+V18,post,HO,5,2020-07-23,dev,0,True
+V08,post,HO,5,2020-07-23,dev,None,True
+V09,post,HO,5,2020-07-23,dev,None,True
+V12,post,HO,5,2020-07-23,dev,0,True
+V13,post,HO,5,2020-07-23,dev,"(2, 30)",False
+V01,post,HO,6,2020-08-20,dev,0,True
+V02,post,HO,6,2020-08-20,dev,0,True
+V03,post,HO,6,2020-08-20,dev,0,True
+V04,post,HO,6,2020-08-20,dev,0,True
+V05,post,HO,6,2020-08-20,dev,0,True
+V06,post,HO,6,2020-08-20,dev,0,True
+V07,post,HO,6,2020-08-20,dev,0,True
+V18,post,HO,6,2020-08-20,dev,0,True
+V08,post,HO,6,2020-08-20,dev,None,True
+V09,post,HO,6,2020-08-20,dev,None,True
+V12,post,HO,6,2020-08-20,dev,0,True
+V13,post,HO,6,2020-08-20,dev,"(2, 30)",False
+V01,post,HO,7,2020-09-17,dev,0,True
+V02,post,HO,7,2020-09-17,dev,0,True
+V03,post,HO,7,2020-09-17,dev,0,True
+V04,post,HO,7,2020-09-17,dev,0,True
+V05,post,HO,7,2020-09-17,dev,0,True
+V06,post,HO,7,2020-09-17,dev,0,True
+V07,post,HO,7,2020-09-17,dev,0,True
+V18,post,HO,7,2020-09-17,dev,0,True
+V08,post,HO,7,2020-09-17,dev,None,True
+V09,post,HO,7,2020-09-17,dev,None,True
+V12,post,HO,7,2020-09-17,dev,0,True
+V13,post,HO,7,2020-09-17,dev,"(2, 30)",False
+V01,post,LO,4,2020-06-25,dev,0,True
+V02,post,LO,4,2020-06-25,dev,3,False
+V03,post,LO,4,2020-06-25,dev,3,False
+V04,post,LO,4,2020-06-25,dev,3,False
+V05,post,LO,4,2020-06-25,dev,3,False
+V06,post,LO,4,2020-06-25,dev,3,False
+V07,post,LO,4,2020-06-25,dev,3,False
+V18,post,LO,4,2020-06-25,dev,3,False
+V08,post,LO,4,2020-06-25,dev,"(2, 30)",False
+V09,post,LO,4,2020-06-25,dev,"(2, 120)",False
+V12,post,LO,4,2020-06-25,dev,3,False
+V13,post,LO,4,2020-06-25,dev,None,True
+V01,post,LO,5,2020-07-23,dev,0,True
+V02,post,LO,5,2020-07-23,dev,3,False
+V03,post,LO,5,2020-07-23,dev,3,False
+V04,post,LO,5,2020-07-23,dev,3,False
+V05,post,LO,5,2020-07-23,dev,3,False
+V06,post,LO,5,2020-07-23,dev,3,False
+V07,post,LO,5,2020-07-23,dev,3,False
+V18,post,LO,5,2020-07-23,dev,3,False
+V08,post,LO,5,2020-07-23,dev,"(2, 30)",False
+V09,post,LO,5,2020-07-23,dev,"(2, 120)",False
+V12,post,LO,5,2020-07-23,dev,0,True
+V13,post,LO,5,2020-07-23,dev,None,True
+V01,post,LO,6,2020-08-20,dev,0,True
+V02,post,LO,6,2020-08-20,dev,3,False
+V03,post,LO,6,2020-08-20,dev,3,False
+V04,post,LO,6,2020-08-20,dev,3,False
+V05,post,LO,6,2020-08-20,dev,3,False
+V06,post,LO,6,2020-08-20,dev,3,False
+V07,post,LO,6,2020-08-20,dev,0,True
+V18,post,LO,6,2020-08-20,dev,3,False
+V08,post,LO,6,2020-08-20,dev,"(2, 30)",False
+V09,post,LO,6,2020-08-20,dev,"(2, 120)",False
+V12,post,LO,6,2020-08-20,dev,3,False
+V13,post,LO,6,2020-08-20,dev,None,True
+V01,post,LO,7,2020-09-17,dev,0,True
+V02,post,LO,7,2020-09-17,dev,3,False
+V03,post,LO,7,2020-09-17,dev,3,False
+V04,post,LO,7,2020-09-17,dev,3,False
+V05,post,LO,7,2020-09-17,dev,3,False
+V06,post,LO,7,2020-09-17,dev,3,False
+V07,post,LO,7,2020-09-17,dev,3,False
+V18,post,LO,7,2020-09-17,dev,3,False
+V08,post,LO,7,2020-09-17,dev,"(2, 30)",False
+V09,post,LO,7,2020-09-17,dev,"(2, 120)",False
+V12,post,LO,7,2020-09-17,dev,3,False
+V13,post,LO,7,2020-09-17,dev,None,True
+V01,pre,H,0,2020-02-25,dev,1,False
+V02,pre,H,0,2020-02-25,dev,0,True
+V03,pre,H,0,2020-02-25,dev,0,True
+V04,pre,H,0,2020-02-25,dev,0,True
+V05,pre,H,0,2020-02-25,dev,0,True
+V06,pre,H,0,2020-02-25,dev,3,False
+V07,pre,H,0,2020-02-25,dev,0,True
+V18,pre,H,0,2020-02-25,dev,0,True
+V08,pre,H,0,2020-02-25,dev,"(2, 30)",False
+V09,pre,H,0,2020-02-25,dev,None,True
+V12,pre,H,0,2020-02-25,dev,0,True
+V13,pre,H,0,2020-02-25,dev,None,True
+V01,pre,H,1,2020-03-25,dev,3,False
+V02,pre,H,1,2020-03-25,dev,0,True
+V03,pre,H,1,2020-03-25,dev,0,True
+V04,pre,H,1,2020-03-25,dev,0,True
+V05,pre,H,1,2020-03-25,dev,0,True
+V06,pre,H,1,2020-03-25,dev,0,True
+V07,pre,H,1,2020-03-25,dev,0,True
+V18,pre,H,1,2020-03-25,dev,0,True
+V08,pre,H,1,2020-03-25,dev,"(2, 30)",False
+V09,pre,H,1,2020-03-25,dev,None,True
+V12,pre,H,1,2020-03-25,dev,0,True
+V13,pre,H,1,2020-03-25,dev,None,True
+V01,pre,H,2,2020-04-28,dev,2,False
+V02,pre,H,2,2020-04-28,dev,0,True
+V03,pre,H,2,2020-04-28,dev,0,True
+V04,pre,H,2,2020-04-28,dev,0,True
+V05,pre,H,2,2020-04-28,dev,0,True
+V06,pre,H,2,2020-04-28,dev,0,True
+V07,pre,H,2,2020-04-28,dev,0,True
+V18,pre,H,2,2020-04-28,dev,0,True
+V08,pre,H,2,2020-04-28,dev,"(2, 30)",False
+V09,pre,H,2,2020-04-28,dev,None,True
+V12,pre,H,2,2020-04-28,dev,0,True
+V13,pre,H,2,2020-04-28,dev,None,True
+V01,pre,H,3,2020-05-28,dev,3,False
+V02,pre,H,3,2020-05-28,dev,0,True
+V03,pre,H,3,2020-05-28,dev,0,True
+V04,pre,H,3,2020-05-28,dev,0,True
+V05,pre,H,3,2020-05-28,dev,0,True
+V06,pre,H,3,2020-05-28,dev,0,True
+V07,pre,H,3,2020-05-28,dev,0,True
+V18,pre,H,3,2020-05-28,dev,0,True
+V08,pre,H,3,2020-05-28,dev,"(2, 30)",False
+V09,pre,H,3,2020-05-28,dev,None,True
+V12,pre,H,3,2020-05-28,dev,3,False
+V13,pre,H,3,2020-05-28,dev,None,True
+V01,pre,L,0,2020-02-25,dev,0,True
+V02,pre,L,0,2020-02-25,dev,0,True
+V03,pre,L,0,2020-02-25,dev,0,True
+V04,pre,L,0,2020-02-25,dev,0,True
+V05,pre,L,0,2020-02-25,dev,0,True
+V06,pre,L,0,2020-02-25,dev,0,True
+V07,pre,L,0,2020-02-25,dev,0,True
+V18,pre,L,0,2020-02-25,dev,0,True
+V08,pre,L,0,2020-02-25,dev,None,True
+V09,pre,L,0,2020-02-25,dev,None,True
+V12,pre,L,0,2020-02-25,dev,0,True
+V13,pre,L,0,2020-02-25,dev,None,True
+V01,pre,L,1,2020-03-25,dev,3,False
+V02,pre,L,1,2020-03-25,dev,3,False
+V03,pre,L,1,2020-03-25,dev,3,False
+V04,pre,L,1,2020-03-25,dev,3,False
+V05,pre,L,1,2020-03-25,dev,3,False
+V06,pre,L,1,2020-03-25,dev,3,False
+V07,pre,L,1,2020-03-25,dev,3,False
+V18,pre,L,1,2020-03-25,dev,3,False
+V08,pre,L,1,2020-03-25,dev,None,True
+V09,pre,L,1,2020-03-25,dev,None,True
+V12,pre,L,1,2020-03-25,dev,0,True
+V13,pre,L,1,2020-03-25,dev,None,True
+V01,pre,L,2,2020-04-28,dev,3,False
+V02,pre,L,2,2020-04-28,dev,3,False
+V03,pre,L,2,2020-04-28,dev,3,False
+V04,pre,L,2,2020-04-28,dev,3,False
+V05,pre,L,2,2020-04-28,dev,3,False
+V06,pre,L,2,2020-04-28,dev,3,False
+V07,pre,L,2,2020-04-28,dev,3,False
+V18,pre,L,2,2020-04-28,dev,3,False
+V08,pre,L,2,2020-04-28,dev,None,True
+V09,pre,L,2,2020-04-28,dev,None,True
+V12,pre,L,2,2020-04-28,dev,0,True
+V13,pre,L,2,2020-04-28,dev,None,True
+V01,pre,L,3,2020-05-28,dev,0,True
+V02,pre,L,3,2020-05-28,dev,0,True
+V03,pre,L,3,2020-05-28,dev,0,True
+V04,pre,L,3,2020-05-28,dev,3,False
+V05,pre,L,3,2020-05-28,dev,3,False
+V06,pre,L,3,2020-05-28,dev,3,False
+V07,pre,L,3,2020-05-28,dev,0,True
+V18,pre,L,3,2020-05-28,dev,3,False
+V08,pre,L,3,2020-05-28,dev,None,True
+V09,pre,L,3,2020-05-28,dev,None,True
+V12,pre,L,3,2020-05-28,dev,0,True
+V13,pre,L,3,2020-05-28,dev,None,True
+V01,post,HO,0,2020-02-25,dev,2,False
+V02,post,HO,0,2020-02-25,dev,0,True
+V03,post,HO,0,2020-02-25,dev,0,True
+V04,post,HO,0,2020-02-25,dev,0,True
+V05,post,HO,0,2020-02-25,dev,0,True
+V06,post,HO,0,2020-02-25,dev,0,True
+V07,post,HO,0,2020-02-25,dev,0,True
+V18,post,HO,0,2020-02-25,dev,0,True
+V08,post,HO,0,2020-02-25,dev,None,True
+V09,post,HO,0,2020-02-25,dev,None,True
+V12,post,HO,0,2020-02-25,dev,0,True
+V13,post,HO,0,2020-02-25,dev,None,True
+V01,post,HO,1,2020-03-25,dev,0,True
+V02,post,HO,1,2020-03-25,dev,0,True
+V03,post,HO,1,2020-03-25,dev,0,True
+V04,post,HO,1,2020-03-25,dev,0,True
+V05,post,HO,1,2020-03-25,dev,0,True
+V06,post,HO,1,2020-03-25,dev,0,True
+V07,post,HO,1,2020-03-25,dev,0,True
+V18,post,HO,1,2020-03-25,dev,0,True
+V08,post,HO,1,2020-03-25,dev,None,True
+V09,post,HO,1,2020-03-25,dev,None,True
+V12,post,HO,1,2020-03-25,dev,0,True
+V13,post,HO,1,2020-03-25,dev,None,True
+V01,post,HO,2,2020-04-28,dev,0,True
+V02,post,HO,2,2020-04-28,dev,0,True
+V03,post,HO,2,2020-04-28,dev,0,True
+V04,post,HO,2,2020-04-28,dev,0,True
+V05,post,HO,2,2020-04-28,dev,0,True
+V06,post,HO,2,2020-04-28,dev,0,True
+V07,post,HO,2,2020-04-28,dev,0,True
+V18,post,HO,2,2020-04-28,dev,0,True
+V08,post,HO,2,2020-04-28,dev,None,True
+V09,post,HO,2,2020-04-28,dev,None,True
+V12,post,HO,2,2020-04-28,dev,0,True
+V13,post,HO,2,2020-04-28,dev,None,True
+V01,post,HO,3,2020-05-28,dev,0,True
+V02,post,HO,3,2020-05-28,dev,0,True
+V03,post,HO,3,2020-05-28,dev,0,True
+V04,post,HO,3,2020-05-28,dev,0,True
+V05,post,HO,3,2020-05-28,dev,0,True
+V06,post,HO,3,2020-05-28,dev,0,True
+V07,post,HO,3,2020-05-28,dev,0,True
+V18,post,HO,3,2020-05-28,dev,0,True
+V08,post,HO,3,2020-05-28,dev,None,True
+V09,post,HO,3,2020-05-28,dev,None,True
+V12,post,HO,3,2020-05-28,dev,0,True
+V13,post,HO,3,2020-05-28,dev,None,True
+V01,post,LO,0,2020-02-25,dev,0,True
+V02,post,LO,0,2020-02-25,dev,0,True
+V03,post,LO,0,2020-02-25,dev,0,True
+V04,post,LO,0,2020-02-25,dev,0,True
+V05,post,LO,0,2020-02-25,dev,0,True
+V06,post,LO,0,2020-02-25,dev,0,True
+V07,post,LO,0,2020-02-25,dev,0,True
+V18,post,LO,0,2020-02-25,dev,0,True
+V08,post,LO,0,2020-02-25,dev,None,True
+V09,post,LO,0,2020-02-25,dev,None,True
+V12,post,LO,0,2020-02-25,dev,3,False
+V13,post,LO,0,2020-02-25,dev,None,True
+V01,post,LO,1,2020-03-25,dev,0,True
+V02,post,LO,1,2020-03-25,dev,3,False
+V03,post,LO,1,2020-03-25,dev,3,False
+V04,post,LO,1,2020-03-25,dev,3,False
+V05,post,LO,1,2020-03-25,dev,3,False
+V06,post,LO,1,2020-03-25,dev,3,False
+V07,post,LO,1,2020-03-25,dev,3,False
+V18,post,LO,1,2020-03-25,dev,3,False
+V08,post,LO,1,2020-03-25,dev,None,True
+V09,post,LO,1,2020-03-25,dev,None,True
+V12,post,LO,1,2020-03-25,dev,3,False
+V13,post,LO,1,2020-03-25,dev,None,True
+V01,post,LO,2,2020-04-28,dev,0,True
+V02,post,LO,2,2020-04-28,dev,3,False
+V03,post,LO,2,2020-04-28,dev,3,False
+V04,post,LO,2,2020-04-28,dev,3,False
+V05,post,LO,2,2020-04-28,dev,3,False
+V06,post,LO,2,2020-04-28,dev,3,False
+V07,post,LO,2,2020-04-28,dev,3,False
+V18,post,LO,2,2020-04-28,dev,3,False
+V08,post,LO,2,2020-04-28,dev,None,True
+V09,post,LO,2,2020-04-28,dev,None,True
+V12,post,LO,2,2020-04-28,dev,3,False
+V13,post,LO,2,2020-04-28,dev,None,True
+V01,post,LO,3,2020-05-28,dev,0,True
+V02,post,LO,3,2020-05-28,dev,3,False
+V03,post,LO,3,2020-05-28,dev,3,False
+V04,post,LO,3,2020-05-28,dev,3,False
+V05,post,LO,3,2020-05-28,dev,3,False
+V06,post,LO,3,2020-05-28,dev,3,False
+V07,post,LO,3,2020-05-28,dev,3,False
+V18,post,LO,3,2020-05-28,dev,3,False
+V08,post,LO,3,2020-05-28,dev,None,True
+V09,post,LO,3,2020-05-28,dev,None,True
+V12,post,LO,3,2020-05-28,dev,3,False
+V13,post,LO,3,2020-05-28,dev,None,True

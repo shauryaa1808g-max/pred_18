@@ -1,0 +1,114 @@
+[
+{
+"item": "Typical miss of the best guess, before the open",
+"result": "High ₹43, low ₹48 (half the time within ₹34 / ₹32); 'price stays' would miss by ₹63 / ₹61",
+"sample": "320 sessions, 1 Jul 2025 to 15 Oct 2026",
+"status": "tested",
+"caveat": "Out of sample; independent check reproduced it from the raw files"
+},
+{
+"item": "Typical miss once the official open is known (09:08)",
+"result": "High ₹35, low ₹37; pinball loss 23% lower than before the open (Holm p < 0.001)",
+"sample": "320 sessions; 52 since the closing auction (same direction)",
+"status": "tested",
+"caveat": "The gain comes from the open's level, not from the gap's size or sign (those added nothing, Holm p >= 0.48)"
+},
+{
+"item": "Do the bands hold?",
+"result": "90% bands held 90.3% (high) and 88.8% (low); the after-open high band is really a 19-in-20 band (the open is the high on about 4% of days)",
+"sample": "320 sessions",
+"status": "tested",
+"caveat": "Wording fixed after the independent check"
+},
+{
+"item": "Since the closing auction began",
+"result": "50% bands held only about 40% of the time; the real high fell below its own 5% line on 15% of days (8 of 52)",
+"sample": "52 sessions",
+"status": "caution",
+"caveat": "Small sample, suggestive; the high is the shakier of the two numbers"
+},
+{
+"item": "Any extra variable (gap, weekday, range model, Garman-Klass)",
+"result": "None beat the project baseline; the volatility model helps the high against raw history, ties for the low",
+"sample": "34 variant-target pairs, Holm-corrected",
+"status": "not_found",
+"caveat": "Gain is in the band shape, not the best guess"
+},
+{
+"item": "More parameters (study D): India VIX, US overnight, Indian market and peers, BSE own history, calendar, option-implied volatility",
+"result": "None made the high or low more precise: 0 of 46 variant-target pairs passed the pre-fixed rule. Best pair: pre-open high 2.4% lower loss, typical miss ₹41.8 against ₹42.7. After the open, adding inputs made the low worse (typical miss ₹38.6 against ₹37.4)",
+"sample": "320 sessions; 46 pairs, Holm-corrected",
+"status": "not_found",
+"caveat": "A true gain of 1% to 3% (₹0.4 to ₹1.3) can be neither confirmed nor excluded; independent check found no look-ahead"
+},
+{
+"item": "Flexible models (study E): quantile regression, boosting, forest, conformal, stacks on the same inputs",
+"result": "0 of 72 pairs passed; no eligible variant gained more than 1.5%; every variant within about ₹1.5 of the baseline's typical miss",
+"sample": "320 sessions; 72 pairs, Holm-corrected",
+"status": "not_found",
+"caveat": "Reads as 'no gain shown' (power about 23% against a true 2% gain), not 'no gain exists'"
+},
+{
+"item": "Comparable past days (study G, 'watch the past to shape the future')",
+"result": "0 of 172 pairs passed. The median of the five most similar past days misses by ₹46 / ₹52 / ₹41 / ₹42 against ₹43 / ₹48 / ₹35 / ₹37 for the model: worse",
+"sample": "320 sessions; 172 pairs; 80 nearest days are only about 27 separate episodes",
+"status": "not_found",
+"caveat": "The context adds nothing beyond the volatility the model already uses"
+},
+{
+"item": "One lead, not a finding: the S&P 500's last session shifting the whole pre-open range",
+"result": "About 2% to 3% lower loss in two studies, in the same direction; not significant after correcting for the number of things tried (Holm 0.25 to 1.0)",
+"sample": "320 sessions; chosen after looking, so optimistic",
+"status": "caution",
+"caveat": "Not used in any forecast; needs forward testing before use"
+},
+{
+"item": "Live running high and low: do the printed bands hold?",
+"result": "Final high / low 'half the time' bands held 54% / 57%; 'nine times in ten' held 88% / 88%",
+"sample": "39 sessions, 8 checkpoints each (strongly dependent)",
+"status": "tested",
+"caveat": "Real uncertainty is about +-16 points on a 50% cell; the tool ignores the official open, so the high floor can be a few rupees low"
+},
+{
+"item": "'The high is already in' probability",
+"result": "Conservative: stated 62% was followed by 81% (15-minute data) and 61% by 72% (hourly)",
+"sample": "167 and 918 states",
+"status": "tested",
+"caveat": "Fails in the 90-100% bin (stated 97.5%, observed 91.3%, two sessions)"
+},
+{
+"item": "The live tool's 'another Rs X-Y is typical' line and 'chance of at least Rs 5/10/20/40'",
+"result": "The typical-extension line contained the real extension only 33-36% of the time (intended 50%); the chance of a given extension runs 4-9 points too high",
+"sample": "80 high and 141 low extension states",
+"status": "caution",
+"caveat": "Do not rely on these two lines"
+},
+{
+"item": "Yahoo against the NSE official high and low",
+"result": "Official high above Yahoo's by ₹0.2 typically (mean 0.9, 95th percentile 4.0); official low below by ₹0.7 (mean 1.1, 95th percentile 3.9)",
+"sample": "39 sessions of 15-minute bars",
+"status": "tested",
+"caveat": "A few rupees either way; on gap-open days the official open can sit outside every Yahoo bar"
+},
+{
+"item": "Trade a limit buy at the estimated low, exit at the close",
+"result": "Lost ₹14 a share net of a 0.10% round-trip cost (85 fills of 320)",
+"sample": "320 sessions",
+"status": "not_found",
+"caveat": "The level is reached as often as promised (26.6%) but the price does not turn there"
+},
+{
+"item": "Trade a limit sell at the estimated high, exit at the close",
+"result": "Lost ₹9.9 a share net of cost (78 fills of 320)",
+"sample": "320 sessions",
+"status": "not_found",
+"caveat": "Same: reached 24.4% of days against 25% promised"
+},
+{
+"item": "Follow a break of the first-hour range to the close",
+"result": "+0.47% a trade in one six-month window, +0.04% after, -0.14% since the closing auction",
+"sample": "daily and hourly history",
+"status": "not_found",
+"caveat": "Looks like an edge in one window, then fades; not usable"
+}
+]

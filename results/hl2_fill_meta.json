@@ -1,0 +1,20 @@
+{
+ "retrieved_utc": "2026-10-16T08:12:54+00:00",
+ "last_session_requested": "2026-10-15",
+ "rows": {
+  "index": 3,
+  "iv": 3,
+  "breadth": 2,
+  "delivery": 3,
+  "us_last": "2026-10-15",
+  "usdinr": 2506
+ },
+ "sources": {
+  "index": "nsearchives ind_close_all",
+  "iv": "NSE F&O UDiFF bhavcopy via src/options_iv.day_iv",
+  "delivery": "nsearchives sec_bhavdata_full",
+  "us": "Yahoo chart ^GSPC ^VIX",
+  "usdinr": "api.frankfurter.app (ECB reference rates)",
+  "breadth_peers": "data/raw/udiff local zips"
+ }
+}

@@ -1,0 +1,28 @@
+[
+{
+"record": "v1",
+"version": "1.0",
+"p0": 3375.4,
+"close_p05": 3246.83,
+"close_p25": 3322.33,
+"close_median": 3375.4,
+"close_p75": 3428.83,
+"close_p95": 3507.94,
+"sigma_r_pct": 2.478,
+"range_median_pct": 2.86,
+"p_up": 0.5
+},
+{
+"record": "v2",
+"version": "2.0",
+"p0": 3375.4,
+"close_p05": 3245.1,
+"close_p25": 3320.56,
+"close_median": 3373.6,
+"close_p75": 3427.0,
+"close_p95": 3506.07,
+"sigma_r_pct": 2.478,
+"range_median_pct": 2.86,
+"p_up": 0.486
+}
+]

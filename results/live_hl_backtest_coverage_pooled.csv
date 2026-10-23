@@ -1,0 +1,437 @@
+sample,target,window,variant,band,side,level,n_sessions,n_checkpoints,pooled_coverage,boot95_lo,boot95_hi,mean_within_session_hit_corr
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),M1,upto,high,0.5,39,8,0.34294871794871795,0.23076923076923078,0.4583333333333333,0.5281735351127888
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),M1,upto,low,0.5,39,8,0.3974358974358974,0.2948717948717949,0.5,0.3870555819623077
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),M1,upto,high,0.9,39,8,0.7115384615384616,0.6153846153846154,0.7981570512820516,0.3774386267089446
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),M1,upto,low,0.9,39,8,0.7467948717948718,0.6474358974358975,0.8397435897435898,0.4376614707513406
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),M1,central,high,0.5,39,8,0.5160256410256411,0.4166666666666667,0.6089743589743589,0.3133422759361781
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),M1,central,low,0.5,39,8,0.483974358974359,0.38461538461538464,0.5833333333333334,0.3413434277998374
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),M1,central,high,0.9,39,8,0.7628205128205128,0.6730769230769231,0.842948717948718,0.3891850318907913
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),M1,central,low,0.9,39,8,0.8205128205128205,0.7403846153846154,0.8910256410256411,0.32933990519144946
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),M1c,upto,high,0.5,39,8,0.5352564102564102,0.41346153846153844,0.6506410256410257,0.5109847286499541
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),M1c,upto,low,0.5,39,8,0.5705128205128205,0.4551282051282051,0.6827724358974362,0.5120947990547497
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),M1c,upto,high,0.9,39,8,0.8782051282051282,0.7980769230769231,0.9487179487179487,0.4989055839966678
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),M1c,upto,low,0.9,39,8,0.875,0.8012820512820513,0.9423076923076923,0.37110312319397254
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),M0,upto,high,0.5,39,8,0.3173076923076923,0.20192307692307693,0.4391025641025641,0.59570406115982
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),M0,upto,low,0.5,39,8,0.3814102564102564,0.27884615384615385,0.483974358974359,0.38179263931375124
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),M0,upto,high,0.9,39,8,0.6826923076923077,0.5865384615384616,0.7724358974358975,0.3619963116698474
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),M0,upto,low,0.9,39,8,0.7083333333333334,0.6057692307692307,0.8076923076923077,0.4544587397494375
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),M0,central,high,0.5,39,8,0.5064102564102564,0.40697115384615384,0.6025641025641025,0.3255518932906324
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),M0,central,low,0.5,39,8,0.47115384615384615,0.3685897435897436,0.5737179487179487,0.35383043616573884
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),M0,central,high,0.9,39,8,0.7467948717948718,0.657051282051282,0.8269230769230769,0.38269737078934574
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),M0,central,low,0.9,39,8,0.7916666666666666,0.7051282051282052,0.8717948717948718,0.3634966000493737
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B3,upto,high,0.5,39,8,0.3301282051282051,0.21794871794871795,0.44871794871794873,0.5418599561894767
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B3,upto,low,0.5,39,8,0.3942307692307692,0.28846153846153844,0.5,0.41430155813296193
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B3,upto,high,0.9,39,8,0.7083333333333334,0.6153846153846154,0.7948717948717948,0.3677744631829008
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B3,upto,low,0.9,39,8,0.7339743589743589,0.6410256410256411,0.8205128205128205,0.4024141766088577
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B3,central,high,0.5,39,8,0.5192307692307693,0.4166666666666667,0.6153846153846154,0.32867703443624613
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B3,central,low,0.5,39,8,0.4807692307692308,0.3782051282051282,0.5833333333333334,0.36406606257948393
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B3,central,high,0.9,39,8,0.75,0.6633814102564103,0.8301282051282052,0.40483134269915366
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B3,central,low,0.9,39,8,0.8076923076923077,0.7275641025641025,0.8782051282051282,0.3111715687710211
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B3c,upto,high,0.5,39,8,0.5384615384615384,0.4166666666666667,0.6538461538461539,0.5011938783509612
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B3c,upto,low,0.5,39,8,0.5673076923076923,0.44871794871794873,0.6826923076923077,0.5256942221317749
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B3c,upto,high,0.9,39,8,0.8846153846153846,0.8076121794871796,0.9519230769230769,0.4681025665955022
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B3c,upto,low,0.9,39,8,0.8653846153846154,0.7852564102564102,0.9391025641025641,0.4359334572372919
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B2,upto,high,0.5,39,8,0.5,0.3814102564102564,0.6153846153846154,0.4802631578947366
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B2,upto,low,0.5,39,8,0.5032051282051282,0.391025641025641,0.6185897435897436,0.4527255639097741
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B2,upto,high,0.9,39,8,0.8846153846153846,0.7980769230769231,0.9551282051282052,0.5972454843078624
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B2,upto,low,0.9,39,8,0.875,0.7883814102564103,0.9487179487179487,0.5687592095549869
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B2,central,high,0.5,39,8,0.5096153846153846,0.40384615384615385,0.6153846153846154,0.3919130910444029
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B2,central,low,0.5,39,8,0.47435897435897434,0.3782051282051282,0.5641826923076926,0.26213414176091293
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B2,central,high,0.9,39,8,0.9198717948717948,0.8557692307692307,0.9711538461538461,0.4346631582891539
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B2,central,low,0.9,39,8,0.8878205128205128,0.8269230769230769,0.9455128205128205,0.3034503486321594
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B4,upto,high,0.5,39,8,0.25961538461538464,0.15384615384615385,0.3782051282051282,0.627325173828203
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B4,upto,low,0.5,39,8,0.28525641025641024,0.19230769230769232,0.38461538461538464,0.3974368332213043
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B4,upto,high,0.9,39,8,0.6666666666666666,0.5704326923076923,0.7564102564102564,0.37701026869363385
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B4,upto,low,0.9,39,8,0.6762820512820513,0.5833333333333334,0.7628205128205128,0.3644876238686857
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B4,central,high,0.5,39,8,0.3782051282051282,0.2692307692307692,0.48717948717948717,0.44894861950786175
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B4,central,low,0.5,39,8,0.3782051282051282,0.27884615384615385,0.4775641025641026,0.3809588484608984
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B4,central,high,0.9,39,8,0.7980769230769231,0.717948717948718,0.8685897435897436,0.35843837313920934
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B4,central,low,0.9,39,8,0.7403846153846154,0.657051282051282,0.8141826923076926,0.29269155171409916
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B4c,upto,high,0.5,39,8,0.47435897435897434,0.34615384615384615,0.6025641025641025,0.6239243325695462
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B4c,upto,low,0.5,39,8,0.4967948717948718,0.3814102564102564,0.6153846153846154,0.5084915602460709
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B4c,upto,high,0.9,39,8,0.8878205128205128,0.8141025641025641,0.9519230769230769,0.4427974156794222
+15min LOO nested,official NSE final H/L,All 39 sessions (all in Final and post-closing-auction),B4c,upto,low,0.9,39,8,0.8717948717948718,0.7980769230769231,0.9391025641025641,0.37486500754315993
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,M1,upto,high,0.5,31,8,0.2782258064516129,0.16532258064516128,0.40725806451612906,0.5338455665959716
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,M1,upto,low,0.5,31,8,0.4274193548387097,0.31451612903225806,0.5443548387096774,0.3554609972366597
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,M1,upto,high,0.9,31,8,0.6774193548387096,0.5725806451612904,0.7862903225806451,0.3667995125184643
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,M1,upto,low,0.9,31,8,0.7419354838709677,0.6290322580645161,0.8467741935483871,0.44411615463008075
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,M1,central,high,0.5,31,8,0.4879032258064516,0.3790322580645161,0.6008064516129032,0.3285529997462078
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,M1,central,low,0.5,31,8,0.4959677419354839,0.38306451612903225,0.6048387096774194,0.3254882998300394
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,M1,central,high,0.9,31,8,0.7338709677419355,0.6290322580645161,0.8307459677419359,0.3871527972805217
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,M1,central,low,0.9,31,8,0.8185483870967742,0.7298387096774194,0.8991935483870968,0.3381831342997757
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,M1c,upto,high,0.5,31,8,0.5040322580645161,0.3709677419354839,0.6411290322580645,0.5305559271117508
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,M1c,upto,low,0.5,31,8,0.6129032258064516,0.4838709677419355,0.7419354838709677,0.4938106998852731
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,M1c,upto,high,0.9,31,8,0.8669354838709677,0.7701612903225806,0.9516129032258065,0.4885482131674395
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,M1c,upto,low,0.9,31,8,0.8911290322580645,0.8064516129032258,0.9637096774193549,
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,M0,upto,high,0.5,31,8,0.25,0.1369959677419355,0.38306451612903225,0.6189968768716057
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,M0,upto,low,0.5,31,8,0.4112903225806452,0.3024193548387097,0.5241935483870968,0.3342736380663575
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,M0,upto,high,0.9,31,8,0.6451612903225806,0.5443548387096774,0.7540322580645161,0.33104207652945034
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,M0,upto,low,0.9,31,8,0.717741935483871,0.6048387096774194,0.8266129032258065,0.4357737551009656
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,M0,central,high,0.5,31,8,0.4717741935483871,0.3629032258064516,0.5806451612903226,0.3197430814731987
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,M0,central,low,0.5,31,8,0.4879032258064516,0.375,0.6008064516129032,0.3424737661803468
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,M0,central,high,0.9,31,8,0.7137096774193549,0.6129032258064516,0.8145161290322581,0.37798323842520626
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,M0,central,low,0.9,31,8,0.7903225806451613,0.6895161290322581,0.8790322580645161,0.38399141674555076
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B3,upto,high,0.5,31,8,0.2620967741935484,0.1532258064516129,0.3911290322580645,0.5501675924747673
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B3,upto,low,0.5,31,8,0.4274193548387097,0.31451612903225806,0.5443548387096774,0.3724871946590705
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B3,upto,high,0.9,31,8,0.6693548387096774,0.5685483870967742,0.7701612903225806,0.3491735516416811
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B3,upto,low,0.9,31,8,0.7298387096774194,0.6209677419354839,0.8306451612903226,0.4216077856519182
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B3,central,high,0.5,31,8,0.49193548387096775,0.3829637096774194,0.6048387096774194,0.3483574197581147
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B3,central,low,0.5,31,8,0.4838709677419355,0.375,0.592741935483871,0.3278324910238952
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B3,central,high,0.9,31,8,0.717741935483871,0.6169354838709677,0.8185483870967742,0.40273502439679415
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B3,central,low,0.9,31,8,0.8104838709677419,0.7217741935483871,0.8870967741935484,0.3176070540555726
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B3c,upto,high,0.5,31,8,0.5080645161290323,0.375,0.6451612903225806,0.5197111108484883
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B3c,upto,low,0.5,31,8,0.6088709677419355,0.4798387096774194,0.7419354838709677,0.514372519129858
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B3c,upto,high,0.9,31,8,0.8709677419354839,0.778125,0.9516129032258065,0.4782183251616579
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B3c,upto,low,0.9,31,8,0.8790322580645161,0.7862903225806451,0.9596774193548387,0.48516361892596466
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B2,upto,high,0.5,31,8,0.4879032258064516,0.3588709677419355,0.6209677419354839,0.4833183047642117
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B2,upto,low,0.5,31,8,0.4838709677419355,0.3547379032258065,0.6209677419354839,0.5090947726383824
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B2,upto,high,0.9,31,8,0.8629032258064516,0.7580645161290323,0.9516129032258065,0.6134047700731052
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B2,upto,low,0.9,31,8,0.842741935483871,0.7419354838709677,0.9354838709677419,0.5523632262072492
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B2,central,high,0.5,31,8,0.5282258064516129,0.4112903225806452,0.6451612903225806,0.3668162209800999
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B2,central,low,0.5,31,8,0.45161290322580644,0.35080645161290325,0.5524193548387096,0.2527954849091141
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B2,central,high,0.9,31,8,0.9112903225806451,0.8346774193548387,0.9717741935483871,0.4750090974554006
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B2,central,low,0.9,31,8,0.875,0.8024193548387096,0.9395161290322581,0.2853231403399599
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B4,upto,high,0.5,31,8,0.1935483870967742,0.09274193548387097,0.3146169354838713,0.6290429430540857
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B4,upto,low,0.5,31,8,0.29838709677419356,0.1975806451612903,0.4112903225806452,0.36704659493903086
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B4,upto,high,0.9,31,8,0.6290322580645161,0.5282258064516129,0.7338709677419355,0.31705930427306966
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B4,upto,low,0.9,31,8,0.6693548387096774,0.5645161290322581,0.7701612903225806,0.36327233925525604
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B4,central,high,0.5,31,8,0.3185483870967742,0.21370967741935484,0.43951612903225806,0.4518757826505815
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B4,central,low,0.5,31,8,0.3951612903225806,0.2862903225806452,0.5080645161290323,0.3661984016422373
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B4,central,high,0.9,31,8,0.7701612903225806,0.6733870967741935,0.8588709677419355,0.36225842403414005
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B4,central,low,0.9,31,8,0.7379032258064516,0.6451612903225806,0.8266129032258065,0.29325671150421373
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B4c,upto,high,0.5,31,8,0.4314516129032258,0.2903225806451613,0.5766129032258065,0.6371415338846795
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B4c,upto,low,0.5,31,8,0.5282258064516129,0.39919354838709675,0.6653225806451613,0.5044332557580529
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B4c,upto,high,0.9,31,8,0.875,0.782258064516129,0.9516129032258065,0.44653458423455
+15min LOO nested,official NSE final H/L,31 sessions that have a 15:15 bar,B4c,upto,low,0.9,31,8,0.8870967741935484,0.8064516129032258,0.9596774193548387,0.38697481228111863
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),M1,upto,high,0.5,39,8,0.8173076923076923,0.7147435897435898,0.9102564102564102,0.639340114409954
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),M1,upto,low,0.5,39,8,0.7467948717948718,0.6410256410256411,0.842948717948718,0.543577570584348
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),M1,upto,high,0.9,39,8,0.9166666666666666,0.842948717948718,0.9743589743589743,0.5760971900262596
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),M1,upto,low,0.9,39,8,0.9102564102564102,0.8461538461538461,0.967948717948718,
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),M1,central,high,0.5,39,8,0.8205128205128205,0.7339743589743589,0.8974358974358975,0.43045367081414876
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),M1,central,low,0.5,39,8,0.7435897435897436,0.6602564102564102,0.8237179487179487,0.28708515945348484
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),M1,central,high,0.9,39,8,0.9391025641025641,0.875,0.9871794871794872,0.5635662927329588
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),M1,central,low,0.9,39,8,0.9423076923076923,0.8942307692307693,0.9807692307692307,
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),M0,upto,high,0.5,39,8,0.8173076923076923,0.7147435897435898,0.9102564102564102,0.639340114409954
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),M0,upto,low,0.5,39,8,0.7435897435897436,0.6378205128205128,0.8397435897435898,0.5282112731986282
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),M0,upto,high,0.9,39,8,0.9102564102564102,0.8397435897435898,0.9711538461538461,0.5583512684061981
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),M0,upto,low,0.9,39,8,0.9102564102564102,0.8461538461538461,0.967948717948718,
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),M0,central,high,0.5,39,8,0.8237179487179487,0.7371794871794872,0.9006410256410257,0.4416409651704099
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),M0,central,low,0.5,39,8,0.7403846153846154,0.6538461538461539,0.8205128205128205,0.29195051172754566
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),M0,central,high,0.9,39,8,0.9391025641025641,0.875,0.9871794871794872,0.5635662927329588
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),M0,central,low,0.9,39,8,0.9423076923076923,0.8942307692307693,0.9807692307692307,
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B3,upto,high,0.5,39,8,0.8141025641025641,0.7146634615384616,0.907051282051282,0.6265351690211045
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B3,upto,low,0.5,39,8,0.7467948717948718,0.6410256410256411,0.842948717948718,0.5336128777422587
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B3,upto,high,0.9,39,8,0.9230769230769231,0.8525641025641025,0.9807692307692307,0.5630443560584112
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B3,upto,low,0.9,39,8,0.9006410256410257,0.830048076923077,0.9615384615384616,0.4794660819682649
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B3,central,high,0.5,39,8,0.8269230769230769,0.7403846153846154,0.9006410256410257,0.4498526608608107
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B3,central,low,0.5,39,8,0.7467948717948718,0.6602564102564102,0.8269230769230769,0.3171516702965476
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B3,central,high,0.9,39,8,0.9391025641025641,0.875,0.9871794871794872,0.5635662927329588
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B3,central,low,0.9,39,8,0.9391025641025641,0.8910256410256411,0.9807692307692307,
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B2,upto,high,0.5,39,8,0.7435897435897436,0.6346153846153846,0.8493589743589743,0.6413969617484897
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B2,upto,low,0.5,39,8,0.6089743589743589,0.483974358974359,0.7339743589743589,0.6264305078829502
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B2,upto,high,0.9,39,8,0.8942307692307693,0.8076923076923077,0.9647435897435898,0.6400815251675578
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B2,upto,low,0.9,39,8,0.8782051282051282,0.7916666666666666,0.9519230769230769,0.5619097630478066
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B2,central,high,0.5,39,8,0.7948717948717948,0.6858974358974359,0.8942307692307693,0.6742860326418256
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B2,central,low,0.5,39,8,0.717948717948718,0.6089743589743589,0.8141826923076926,0.5254271299955823
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B2,central,high,0.9,39,8,0.9262820512820513,0.8589743589743589,0.9807692307692307,0.51233366333004
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B2,central,low,0.9,39,8,0.9294871794871795,0.875,0.9775641025641025,0.35722579599391185
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B4,upto,high,0.5,39,8,0.782051282051282,0.6762820512820513,0.8814102564102564,0.6356990676129091
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B4,upto,low,0.5,39,8,0.6794871794871795,0.564022435897436,0.7948717948717948,0.6015636361021107
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B4,upto,high,0.9,39,8,0.9006410256410257,0.8204326923076923,0.967948717948718,0.6455377242751779
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B4,upto,low,0.9,39,8,0.9006410256410257,0.8269230769230769,0.9647435897435898,0.4784546408591118
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B4,central,high,0.5,39,8,0.8237179487179487,0.7275641025641025,0.9102564102564102,0.5831063720184504
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B4,central,low,0.5,39,8,0.7211538461538461,0.6217147435897437,0.8141025641025641,0.4369235671268702
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B4,central,high,0.9,39,8,0.9358974358974359,0.8717948717948718,0.9839743589743589,0.5416276354682146
+15min LOO nested,Yahoo-bars final H/L,All 39 sessions (all in Final and post-closing-auction),B4,central,low,0.9,39,8,0.9262820512820513,0.8717948717948718,0.9711538461538461,0.3028621329646054
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,M1,upto,high,0.5,31,8,0.8346774193548387,0.7217741935483871,0.9354838709677419,0.6312273054963823
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,M1,upto,low,0.5,31,8,0.7137096774193549,0.592741935483871,0.8346774193548387,0.5695301631543942
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,M1,upto,high,0.9,31,8,0.9153225806451613,0.8346774193548387,0.9798387096774194,0.6047495067802099
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,M1,upto,low,0.9,31,8,0.8911290322580645,0.8064516129032258,0.9637096774193549,
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,M1,central,high,0.5,31,8,0.842741935483871,0.75,0.9233870967741935,0.4543227972864644
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,M1,central,low,0.5,31,8,0.7137096774193549,0.6169354838709677,0.8064516129032258,0.2940880545772444
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,M1,central,high,0.9,31,8,0.9354838709677419,0.8629032258064516,0.9919354838709677,0.6534567690298111
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,M1,central,low,0.9,31,8,0.9274193548387096,0.870866935483871,0.9758064516129032,
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,M0,upto,high,0.5,31,8,0.8346774193548387,0.7217741935483871,0.9354838709677419,0.6312273054963823
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,M0,upto,low,0.5,31,8,0.7096774193548387,0.5887096774193549,0.8306451612903226,0.5518231900361532
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,M0,upto,high,0.9,31,8,0.907258064516129,0.8266129032258065,0.9758064516129032,0.5848724179765031
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,M0,upto,low,0.9,31,8,0.8911290322580645,0.8064516129032258,0.9637096774193549,
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,M0,central,high,0.5,31,8,0.8467741935483871,0.75,0.9314516129032258,0.46767166459939336
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,M0,central,low,0.5,31,8,0.7096774193548387,0.6088709677419355,0.8025201612903229,0.3002554814181589
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,M0,central,high,0.9,31,8,0.9354838709677419,0.8629032258064516,0.9919354838709677,0.6534567690298111
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,M0,central,low,0.9,31,8,0.9274193548387096,0.870866935483871,0.9758064516129032,
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B3,upto,high,0.5,31,8,0.8306451612903226,0.717741935483871,0.9314516129032258,0.6171060881138971
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B3,upto,low,0.5,31,8,0.7137096774193549,0.5887096774193549,0.8346774193548387,0.5601852789973985
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B3,upto,high,0.9,31,8,0.9233870967741935,0.8467741935483871,0.9838709677419355,0.5980575086516559
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B3,upto,low,0.9,31,8,0.8790322580645161,0.7862903225806451,0.9596774193548387,0.48516361892596466
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B3,central,high,0.5,31,8,0.8548387096774194,0.7620967741935484,0.9354838709677419,0.5059053514346746
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B3,central,low,0.5,31,8,0.717741935483871,0.6209677419354839,0.8104838709677419,0.3298805983607121
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B3,central,high,0.9,31,8,0.9354838709677419,0.8629032258064516,0.9919354838709677,0.6534567690298111
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B3,central,low,0.9,31,8,0.9233870967741935,0.8629032258064516,0.9717741935483871,
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B2,upto,high,0.5,31,8,0.7701612903225806,0.6411290322580645,0.8911290322580645,0.6814845787106389
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B2,upto,low,0.5,31,8,0.5483870967741935,0.4153225806451613,0.6935483870967742,0.6087395512310787
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B2,upto,high,0.9,31,8,0.875,0.7701612903225806,0.9637096774193549,0.6813776054827253
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B2,upto,low,0.9,31,8,0.8467741935483871,0.7459677419354839,0.9395161290322581,0.5459067472361857
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B2,central,high,0.5,31,8,0.7983870967741935,0.6733870967741935,0.9112903225806451,0.6731576411127306
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B2,central,low,0.5,31,8,0.6814516129032258,0.5524193548387096,0.8024193548387096,0.5372574143605147
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B2,central,high,0.9,31,8,0.9153225806451613,0.8346774193548387,0.9758064516129032,0.5496280276489843
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B2,central,low,0.9,31,8,0.9112903225806451,0.842741935483871,0.9717741935483871,0.3446101029572604
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B4,upto,high,0.5,31,8,0.7983870967741935,0.6774193548387096,0.907258064516129,0.6359879767577168
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B4,upto,low,0.5,31,8,0.6370967741935484,0.5,0.7741935483870968,0.6194568705235629
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B4,upto,high,0.9,31,8,0.9032258064516129,0.8185483870967742,0.9717741935483871,0.5971228433407693
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B4,upto,low,0.9,31,8,0.875,0.7862903225806451,0.9556451612903226,0.4655988976208319
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B4,central,high,0.5,31,8,0.8346774193548387,0.7258064516129032,0.9314516129032258,0.6121489658130074
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B4,central,low,0.5,31,8,0.6814516129032258,0.5685483870967742,0.7943548387096774,0.4486897780635566
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B4,central,high,0.9,31,8,0.9314516129032258,0.8548387096774194,0.9879032258064516,0.6220344020967569
+15min LOO nested,Yahoo-bars final H/L,31 sessions that have a 15:15 bar,B4,central,low,0.9,31,8,0.907258064516129,0.842741935483871,0.9637096774193549,0.2891935049235996
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",M1,upto,high,0.5,123,6,0.7276422764227642,0.6625677506775068,0.7899728997289973,0.65389821075639
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",M1,upto,low,0.5,123,6,0.7479674796747967,0.6788617886178862,0.8089430894308943,0.6707302377717741
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",M1,upto,high,0.9,123,6,0.9281842818428184,0.8943089430894309,0.9579945799457995,0.4008889116120438
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",M1,upto,low,0.9,123,6,0.8970189701897019,0.8523035230352304,0.9349593495934959,0.4946733625455657
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",M1,central,high,0.5,123,6,0.7872628726287263,0.7316734417344174,0.8373983739837398,0.4614782186359111
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",M1,central,low,0.5,123,6,0.7818428184281843,0.7222222222222222,0.8346883468834688,0.48190792353796374
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",M1,central,high,0.9,123,6,0.9607046070460704,0.9363143631436315,0.981029810298103,0.38239281291083
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",M1,central,low,0.9,123,6,0.9336043360433605,0.8983739837398373,0.9634146341463414,0.4656551328928974
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",M0,upto,high,0.5,123,6,0.7466124661246613,0.6829268292682927,0.8062330623306233,0.6176231339830023
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",M0,upto,low,0.5,123,6,0.7655826558265583,0.6978319783197832,0.8252032520325203,0.6378861173915253
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",M0,upto,high,0.9,123,6,0.948509485094851,0.9214092140921409,0.9715447154471545,0.3387966652575729
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",M0,upto,low,0.9,123,6,0.9281842818428184,0.8902439024390244,0.959349593495935,0.45251846978269017
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",M0,central,high,0.5,123,6,0.8238482384823849,0.7750677506775068,0.8685636856368564,0.3717541802185251
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",M0,central,low,0.5,123,6,0.7967479674796748,0.7411924119241192,0.8455284552845529,0.4439483372552745
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",M0,central,high,0.9,123,6,0.978319783197832,0.9579945799457995,0.9932249322493225,0.5075651750075687
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",M0,central,low,0.9,123,6,0.964769647696477,0.940379403794038,0.9837737127371275,0.37264288061774514
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B3,upto,high,0.5,123,6,0.7425474254742548,0.6802168021680217,0.8021680216802168,0.5929598955643961
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B3,upto,low,0.5,123,6,0.7574525745257452,0.6910569105691057,0.8171070460704608,0.6424377945628993
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B3,upto,high,0.9,123,6,0.9390243902439024,0.9092140921409214,0.964769647696477,0.40574256696222305
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B3,upto,low,0.9,123,6,0.9159891598915989,0.8753387533875339,0.9498644986449865,0.462686342738513
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B3,central,high,0.5,123,6,0.7981029810298103,0.7439024390243902,0.8468834688346883,0.45100371199665207
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B3,central,low,0.5,123,6,0.7981029810298103,0.7439024390243902,0.8468834688346883,0.4407855662844129
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B3,central,high,0.9,123,6,0.9728997289972899,0.9539295392953929,0.987838753387534,
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B3,central,low,0.9,123,6,0.943089430894309,0.9119241192411924,0.9701897018970189,
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B2,upto,high,0.5,123,6,0.6707317073170732,0.6002710027100271,0.7384823848238482,0.7017364954556362
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B2,upto,low,0.5,123,6,0.6720867208672087,0.5989159891598916,0.7425474254742548,0.7086064311985072
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B2,upto,high,0.9,123,6,0.8590785907859079,0.8116531165311653,0.9037940379403794,0.4455374357285463
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B2,upto,low,0.9,123,6,0.9119241192411924,0.8712737127371274,0.94579945799458,0.44765205360058663
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B2,central,high,0.5,123,6,0.7520325203252033,0.6869918699186992,0.8130420054200543,0.6489843174471426
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B2,central,low,0.5,123,6,0.7710027100271003,0.7046070460704607,0.8306233062330624,0.6643783884672534
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B2,central,high,0.9,123,6,0.9254742547425474,0.8888888888888888,0.9566395663956639,0.41911386753216323
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B2,central,low,0.9,123,6,0.9634146341463414,0.9417344173441734,0.981029810298103,0.20834275691099524
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B4,upto,high,0.5,123,6,0.7262872628726287,0.6598915989159891,0.7872628726287263,0.646996354795985
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B4,upto,low,0.5,123,6,0.7466124661246613,0.6761517615176151,0.8102981029810298,0.6711875514462368
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B4,upto,high,0.9,123,6,0.9336043360433605,0.9010840108401084,0.960738482384824,0.3812246960932259
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B4,upto,low,0.9,123,6,0.9444444444444444,0.9105691056910569,0.9715447154471545,0.4705661119641068
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B4,central,high,0.5,123,6,0.7818428184281843,0.7235772357723578,0.8360433604336044,0.5212889045353015
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B4,central,low,0.5,123,6,0.8197831978319783,0.7655826558265583,0.8672086720867209,0.4524519774575338
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B4,central,high,0.9,123,6,0.967479674796748,0.943089430894309,0.986449864498645,0.46732964282587497
+hourly walk-forward,Yahoo hourly-bars final H/L,"Validation (scored, before 2025-07-01)",B4,central,low,0.9,123,6,0.9796747967479674,0.9634146341463414,0.9919037940379405,
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),M1,upto,high,0.5,306,6,0.7728758169934641,0.7336601307189542,0.8099128540305011,0.6373126952988445
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),M1,upto,low,0.5,306,6,0.7603485838779956,0.7238425925925925,0.7968409586056645,0.5526125290006905
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),M1,upto,high,0.9,306,6,0.9335511982570807,0.9123093681917211,0.9531726579520697,0.4347816270996781
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),M1,upto,low,0.9,306,6,0.9340958605664488,0.9133986928104575,0.9531590413943355,0.3811854963905334
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),M1,central,high,0.5,306,6,0.8262527233115469,0.7962962962962963,0.8545751633986928,0.3907866135873964
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),M1,central,low,0.5,306,6,0.8142701525054467,0.7843137254901961,0.843681917211329,0.34771901350584317
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),M1,central,high,0.9,306,6,0.9537037037037037,0.9368191721132898,0.9689542483660131,0.36866121011460506
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),M1,central,low,0.9,306,6,0.9509803921568627,0.9340958605664488,0.9673202614379085,0.3694283198851457
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),M0,upto,high,0.5,306,6,0.7908496732026143,0.7527233115468409,0.8262527233115469,0.6178513077411648
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),M0,upto,low,0.5,306,6,0.7870370370370371,0.7521650326797386,0.8213507625272332,0.5335784995318197
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),M0,upto,high,0.9,306,6,0.9504357298474946,0.9330065359477124,0.9667755991285403,0.37406953373168883
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),M0,upto,low,0.9,306,6,0.94880174291939,0.9308142701525054,0.9656862745098039,0.38972808764231726
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),M0,central,high,0.5,306,6,0.8447712418300654,0.8186274509803921,0.8698257080610022,0.2931053926202722
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),M0,central,low,0.5,306,6,0.8273420479302832,0.7990059912854031,0.8545751633986928,0.31255585043895845
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),M0,central,high,0.9,306,6,0.9694989106753813,0.9547930283224401,0.9825708061002179,0.3867059298460291
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),M0,central,low,0.9,306,6,0.9694989106753813,0.9553376906318083,0.9825708061002179,0.37791984720609645
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B3,upto,high,0.5,306,6,0.7810457516339869,0.7434640522875817,0.8164488017429193,0.5983944380413092
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B3,upto,low,0.5,306,6,0.7734204793028322,0.738562091503268,0.8082788671023965,0.5075897656483414
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B3,upto,high,0.9,306,6,0.9384531590413944,0.9188453159041394,0.9564270152505446,
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B3,upto,low,0.9,306,6,0.9384531590413944,0.9183006535947712,0.9564406318082789,0.4158507573261716
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B3,central,high,0.5,306,6,0.8322440087145969,0.803921568627451,0.8594771241830066,0.3298039215505641
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B3,central,low,0.5,306,6,0.8186274509803921,0.789760348583878,0.8464052287581699,0.31347444253827
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B3,central,high,0.9,306,6,0.9607843137254902,0.9444444444444444,0.9749591503267975,
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B3,central,low,0.9,306,6,0.9553376906318083,0.9379084967320261,0.9711328976034859,0.40555085096298504
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B2,upto,high,0.5,306,6,0.7080610021786492,0.6666666666666666,0.7483660130718954,0.6639461239845817
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B2,upto,low,0.5,306,6,0.6459694989106753,0.602927559912854,0.6895424836601307,0.6510071616438488
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B2,upto,high,0.9,306,6,0.9106753812636166,0.8856209150326797,0.9340958605664488,0.4728206683597262
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B2,upto,low,0.9,306,6,0.9215686274509803,0.8986928104575164,0.9433551198257081,0.47318412296881945
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B2,central,high,0.5,306,6,0.7908496732026143,0.7532543572984749,0.8273420479302832,0.6317289272606676
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B2,central,low,0.5,306,6,0.7854030501089324,0.7494553376906318,0.8202614379084967,0.5343808919648281
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B2,central,high,0.9,306,6,0.9553376906318083,0.9389978213507625,0.9705882352941176,0.37723008562555405
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B2,central,low,0.9,306,6,0.9678649237472767,0.9547930283224401,0.9803921568627451,0.297482128940039
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B4,upto,high,0.5,306,6,0.7647058823529411,0.7249455337690632,0.8022875816993464,0.6430785149758673
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B4,upto,low,0.5,306,6,0.7608932461873639,0.7238562091503268,0.7973856209150327,0.5550096425136405
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B4,upto,high,0.9,306,6,0.9504357298474946,0.9324618736383442,0.9667755991285403,0.38561128955342044
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B4,upto,low,0.9,306,6,0.9575163398692811,0.940631808278867,0.9727668845315904,0.4023708133352527
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B4,central,high,0.5,306,6,0.8387799564270153,0.8088235294117647,0.8660130718954249,0.39906635356565273
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B4,central,low,0.5,306,6,0.8376906318082789,0.8088099128540305,0.8654684095860566,0.363727371693428
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B4,central,high,0.9,306,6,0.971677559912854,0.9575163398692811,0.9842047930283224,0.4046291129265754
+hourly walk-forward,Yahoo hourly-bars final H/L,Final (2025-07-01 on),B4,central,low,0.9,306,6,0.9809368191721133,0.9705882352941176,0.9901960784313726,0.24365031247046964
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),M1,upto,high,0.5,43,6,0.8255813953488372,0.7325581395348837,0.9108527131782945,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),M1,upto,low,0.5,43,6,0.7209302325581395,0.6201550387596899,0.813953488372093,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),M1,upto,high,0.9,43,6,0.9302325581395349,0.8682170542635659,0.9806201550387597,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),M1,upto,low,0.9,43,6,0.8875968992248062,0.810077519379845,0.9534883720930233,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),M1,central,high,0.5,43,6,0.8643410852713178,0.7868217054263565,0.9302325581395349,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),M1,central,low,0.5,43,6,0.7364341085271318,0.6472868217054264,0.8217054263565892,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),M1,central,high,0.9,43,6,0.9496124031007752,0.8953488372093024,0.9883720930232558,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),M1,central,low,0.9,43,6,0.9069767441860465,0.8410852713178295,0.9612403100775194,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),M0,upto,high,0.5,43,6,0.8410852713178295,0.751937984496124,0.9224806201550387,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),M0,upto,low,0.5,43,6,0.7596899224806202,0.6627906976744186,0.8488372093023255,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),M0,upto,high,0.9,43,6,0.9457364341085271,0.8914728682170543,0.9883720930232558,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),M0,upto,low,0.9,43,6,0.8992248062015504,0.8294573643410853,0.9612403100775194,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),M0,central,high,0.5,43,6,0.8837209302325582,0.8138565891472869,0.9457364341085271,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),M0,central,low,0.5,43,6,0.7403100775193798,0.6550387596899225,0.8217054263565892,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),M0,central,high,0.9,43,6,0.9612403100775194,0.9069767441860465,1.0,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),M0,central,low,0.9,43,6,0.9418604651162791,0.8875968992248062,0.9844961240310077,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B3,upto,high,0.5,43,6,0.8255813953488372,0.7325581395348837,0.9108527131782945,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B3,upto,low,0.5,43,6,0.7170542635658915,0.6162790697674418,0.810077519379845,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B3,upto,high,0.9,43,6,0.9186046511627907,0.8527131782945736,0.9728682170542635,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B3,upto,low,0.9,43,6,0.8875968992248062,0.810077519379845,0.9534883720930233,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B3,central,high,0.5,43,6,0.8565891472868217,0.7790697674418605,0.9263565891472868,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B3,central,low,0.5,43,6,0.7364341085271318,0.6472868217054264,0.8217054263565892,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B3,central,high,0.9,43,6,0.937984496124031,0.8798449612403101,0.9844961240310077,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B3,central,low,0.9,43,6,0.8992248062015504,0.8294573643410853,0.9573643410852714,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B2,upto,high,0.5,43,6,0.7868217054263565,0.686046511627907,0.8798449612403101,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B2,upto,low,0.5,43,6,0.5658914728682171,0.46511627906976744,0.6705426356589147,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B2,upto,high,0.9,43,6,0.9186046511627907,0.8488372093023255,0.9767441860465116,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B2,upto,low,0.9,43,6,0.8682170542635659,0.7829457364341085,0.9418604651162791,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B2,central,high,0.5,43,6,0.8449612403100775,0.7558139534883721,0.9224806201550387,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B2,central,low,0.5,43,6,0.7635658914728682,0.6627906976744186,0.8527131782945736,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B2,central,high,0.9,43,6,0.9418604651162791,0.8875968992248062,0.9844961240310077,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B2,central,low,0.9,43,6,0.9341085271317829,0.8837209302325582,0.9767441860465116,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B4,upto,high,0.5,43,6,0.8217054263565892,0.7286821705426356,0.9069767441860465,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B4,upto,low,0.5,43,6,0.7209302325581395,0.6201550387596899,0.813953488372093,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B4,upto,high,0.9,43,6,0.9496124031007752,0.8953488372093024,0.9883720930232558,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B4,upto,low,0.9,43,6,0.9263565891472868,0.8643410852713178,0.9728682170542635,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B4,central,high,0.5,43,6,0.8682170542635659,0.7945736434108527,0.9341085271317829,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B4,central,low,0.5,43,6,0.7596899224806202,0.6666666666666666,0.8449612403100775,0.3700623150199532
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B4,central,high,0.9,43,6,0.9612403100775194,0.9069767441860465,1.0,
+hourly walk-forward,Yahoo hourly-bars final H/L,Post-closing-auction (2026-08-03 on),B4,central,low,0.9,43,6,0.9689922480620154,0.937984496124031,0.9922480620155039,
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,M1,upto,high,0.5,429,6,0.7599067599067599,0.7253302253302253,0.7913752913752914,0.6428025608998725
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,M1,upto,low,0.5,429,6,0.7567987567987567,0.7245532245532246,0.7882672882672883,0.5884141032483954
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,M1,upto,high,0.9,429,6,0.932012432012432,0.9145299145299145,0.9483294483294483,0.4230414472287155
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,M1,upto,low,0.9,429,6,0.9234654234654235,0.9048174048174048,0.9417249417249417,0.4278408188773895
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,M1,central,high,0.5,429,6,0.815073815073815,0.7886557886557887,0.8399475524475525,0.41292218730434505
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,M1,central,low,0.5,429,6,0.804972804972805,0.7781662781662781,0.8302253302253302,0.3910602194271606
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,M1,central,high,0.9,429,6,0.9557109557109557,0.9421134421134422,0.9685314685314685,0.36325947196192016
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,M1,central,low,0.9,429,6,0.945998445998446,0.9300699300699301,0.9607614607614607,0.4038024156242883
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,M0,upto,high,0.5,429,6,0.7781662781662781,0.7447552447552448,0.8092463092463092,0.6182947943118957
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,M0,upto,low,0.5,429,6,0.7808857808857809,0.7498057498057498,0.8108003108003108,0.566344302950349
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,M0,upto,high,0.9,429,6,0.9498834498834499,0.9355089355089355,0.9634809634809635,0.3583156890658853
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,M0,upto,low,0.9,429,6,0.9428904428904429,0.9261849261849262,0.958041958041958,0.41416179673121295
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,M0,central,high,0.5,429,6,0.8387723387723388,0.8162393162393162,0.8601398601398601,0.3146243344202977
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,M0,central,low,0.5,429,6,0.8185703185703186,0.7937062937062938,0.8422688422688422,0.3548841353293341
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,M0,central,high,0.9,429,6,0.972027972027972,0.9607614607614607,0.9821386946386946,0.403006287980718
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,M0,central,low,0.9,429,6,0.9681429681429682,0.9549339549339549,0.9790209790209791,0.3727047386099255
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B3,upto,high,0.5,429,6,0.77000777000777,0.7373737373737373,0.7999222999222999,0.5970332529407553
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B3,upto,low,0.5,429,6,0.7688422688422688,0.7381507381507382,0.7983682983682984,0.5518751053044614
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B3,upto,high,0.9,429,6,0.9386169386169386,0.921911421911422,0.9537684537684538,0.40194634294032133
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B3,upto,low,0.9,429,6,0.932012432012432,0.9145299145299145,0.9491064491064491,0.4320272899293896
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B3,central,high,0.5,429,6,0.8224553224553225,0.7975912975912975,0.8457653457653458,0.36958027866774307
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B3,central,low,0.5,429,6,0.8127428127428128,0.7874902874902875,0.8372280497280498,0.34801815353591814
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B3,central,high,0.9,429,6,0.9642579642579643,0.9522047397047397,0.9755244755244755,
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B3,central,low,0.9,429,6,0.9518259518259519,0.9366744366744367,0.9654234654234655,0.39742589123125904
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B2,upto,high,0.5,429,6,0.6973581973581974,0.660440947940948,0.7311674436674437,0.6754686168803127
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B2,upto,low,0.5,429,6,0.6534576534576535,0.6173174048174048,0.6891996891996892,0.6670521908921864
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B2,upto,high,0.9,429,6,0.8958818958818959,0.8737373737373737,0.9168609168609169,0.4655489967077216
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B2,upto,low,0.9,429,6,0.9188034188034188,0.8986013986013986,0.9378399378399378,0.4658318828106233
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B2,central,high,0.5,429,6,0.7797202797202797,0.7466977466977467,0.8108003108003108,0.6369307304630955
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B2,central,low,0.5,429,6,0.7812742812742812,0.7498057498057498,0.811965811965812,0.5725592367789106
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B2,central,high,0.9,429,6,0.9467754467754468,0.9316239316239316,0.9607614607614607,0.39491355800965067
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B2,central,low,0.9,429,6,0.9665889665889665,0.9549339549339549,0.9766899766899767,0.26914488060300634
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B4,upto,high,0.5,429,6,0.7536907536907537,0.7183372183372183,0.7855574980574981,0.644414855759454
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B4,upto,low,0.5,429,6,0.7567987567987567,0.7249417249417249,0.7882770007770008,0.59022841875148
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B4,upto,high,0.9,429,6,0.9456099456099456,0.9304584304584305,0.95998445998446,0.38096469077277084
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B4,upto,low,0.9,429,6,0.9537684537684538,0.9382284382284383,0.9673659673659674,0.4249244979168883
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B4,central,high,0.5,429,6,0.8224553224553225,0.796037296037296,0.8473193473193473,0.4390238701040374
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B4,central,low,0.5,429,6,0.8325563325563325,0.8076825951825952,0.8562548562548562,0.3888842619243761
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B4,central,high,0.9,429,6,0.9704739704739704,0.9584304584304584,0.980963480963481,0.4086078743993086
+hourly walk-forward,Yahoo hourly-bars final H/L,All scored,B4,central,low,0.9,429,6,0.9805749805749806,0.9716394716394716,0.9879564879564879,0.23708505962776918
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M1,upto,high,0.5,19,8,0.3026315789473684,0.1513157894736842,0.46710526315789475,0.5349400461425844
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M1,upto,low,0.5,19,8,0.3881578947368421,0.25,0.5328947368421053,0.34189277796945283
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M1,upto,high,0.9,19,8,0.6776315789473685,0.5328947368421053,0.8092105263157895,0.3306014285379151
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M1,upto,low,0.9,19,8,0.7236842105263158,0.5921052631578947,0.8486842105263158,0.379516594743606
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M1,central,high,0.5,19,8,0.47368421052631576,0.3355263157894737,0.6118421052631579,0.2985306826145693
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M1,central,low,0.5,19,8,0.4473684210526316,0.3223684210526316,0.5789473684210527,0.24990202437559056
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M1,central,high,0.9,19,8,0.756578947368421,0.6381578947368421,0.868421052631579,0.24880482539055393
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M1,central,low,0.9,19,8,0.7894736842105263,0.6644736842105263,0.9013157894736842,0.3615574190026747
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M1c,upto,high,0.5,19,8,0.5394736842105263,0.3618421052631579,0.7105263157894737,0.5761077002017211
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M1c,upto,low,0.5,19,8,0.5592105263157895,0.3881578947368421,0.7236842105263158,0.5266015130042276
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M1c,upto,high,0.9,19,8,0.8486842105263158,0.7302631578947368,0.9473684210526315,0.36021618396920524
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M1c,upto,low,0.9,19,8,0.875,0.7697368421052632,0.9671052631578947,0.3274178674070721
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M0,upto,high,0.5,19,8,0.28289473684210525,0.13815789473684212,0.4475328947368427,0.5503385156660762
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M0,upto,low,0.5,19,8,0.39473684210526316,0.25,0.5526315789473685,0.3878029607863488
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M0,upto,high,0.9,19,8,0.6644736842105263,0.5263157894736842,0.7960526315789473,0.3179739842963941
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M0,upto,low,0.9,19,8,0.7039473684210527,0.5723684210526315,0.8289473684210527,0.34725220003046176
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M0,central,high,0.5,19,8,0.48026315789473684,0.3355263157894737,0.625,0.34203930896396123
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M0,central,low,0.5,19,8,0.4144736842105263,0.2894736842105263,0.5460526315789473,0.2652689131744807
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M0,central,high,0.9,19,8,0.75,0.631578947368421,0.8618421052631579,0.2581086266016264
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M0,central,low,0.9,19,8,0.7894736842105263,0.6776315789473685,0.8947368421052632,0.28367591796025887
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B3,upto,high,0.5,19,8,0.3026315789473684,0.15789473684210525,0.46710526315789475,0.5073904542503699
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B3,upto,low,0.5,19,8,0.3618421052631579,0.2236842105263158,0.5131578947368421,0.3864576934859123
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B3,upto,high,0.9,19,8,0.6776315789473685,0.5394736842105263,0.8026315789473685,0.3055625452237668
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B3,upto,low,0.9,19,8,0.6973684210526315,0.5657894736842105,0.8223684210526315,0.3384802692792072
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B3,central,high,0.5,19,8,0.48026315789473684,0.34210526315789475,0.625,0.3213909272648357
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B3,central,low,0.5,19,8,0.4276315789473684,0.3026315789473684,0.5526315789473685,0.23315570887409257
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B3,central,high,0.9,19,8,0.756578947368421,0.631578947368421,0.868421052631579,
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B3,central,low,0.9,19,8,0.7894736842105263,0.6644736842105263,0.8949013157894743,0.37023531095319634
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B3c,upto,high,0.5,19,8,0.5328947368421053,0.35526315789473684,0.7039473684210527,0.589780350776819
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B3c,upto,low,0.5,19,8,0.5460526315789473,0.375,0.7105263157894737,0.5272664097118115
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B3c,upto,high,0.9,19,8,0.8552631578947368,0.7368421052631579,0.9539473684210527,0.38512063242770944
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B3c,upto,low,0.9,19,8,0.868421052631579,0.75,0.9671052631578947,0.41807329450806113
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B2,upto,high,0.5,19,8,0.4276315789473684,0.2565789473684211,0.5986842105263158,0.5358654392891398
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B2,upto,low,0.5,19,8,0.5592105263157895,0.40789473684210525,0.7039473684210527,0.37349601105124347
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B2,upto,high,0.9,19,8,0.7960526315789473,0.6513157894736842,0.9210526315789473,0.47576242817314446
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B2,upto,low,0.9,19,8,0.8881578947368421,0.7894736842105263,0.9671052631578947,0.3353299468594389
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B2,central,high,0.5,19,8,0.39473684210526316,0.24342105263157895,0.5657894736842105,0.49690474731979195
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B2,central,low,0.5,19,8,0.4342105263157895,0.3026315789473684,0.5657894736842105,0.2832155477471468
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B2,central,high,0.9,19,8,0.881578947368421,0.7828947368421053,0.9605263157894737,0.3313898542669999
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B2,central,low,0.9,19,8,0.8552631578947368,0.7631578947368421,0.9407894736842105,0.23357636447907834
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B4,upto,high,0.5,19,8,0.21710526315789475,0.08552631578947369,0.375,0.5523447634052597
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B4,upto,low,0.5,19,8,0.3157894736842105,0.17763157894736842,0.46710526315789475,0.45052709089146364
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B4,upto,high,0.9,19,8,0.506578947368421,0.3684210526315789,0.6447368421052632,0.3061201787401047
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B4,upto,low,0.9,19,8,0.7039473684210527,0.5921052631578947,0.8092105263157895,0.23539571935600606
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B4,central,high,0.5,19,8,0.28289473684210525,0.13815789473684212,0.45394736842105265,0.5599002499746903
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B4,central,low,0.5,19,8,0.34868421052631576,0.21052631578947367,0.4934210526315789,0.3473754687840897
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B4,central,high,0.9,19,8,0.6513157894736842,0.5131578947368421,0.7828947368421053,0.2941708244642704
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B4,central,low,0.9,19,8,0.7368421052631579,0.625,0.8421052631578947,0.2831682010575999
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B4c,upto,high,0.5,19,8,0.4407894736842105,0.2565789473684211,0.618421052631579,0.6819834078736574
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B4c,upto,low,0.5,19,8,0.506578947368421,0.32894736842105265,0.6907894736842105,0.5958179300227721
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B4c,upto,high,0.9,19,8,0.8421052631578947,0.7236842105263158,0.9407894736842105,0.33222919470663764
+15min chronological (past sessions only),official NSE final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B4c,upto,low,0.9,19,8,0.9013157894736842,0.8157894736842105,0.9736842105263158,0.2803998592934451
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M1,upto,high,0.5,19,8,0.7368421052631579,0.5657894736842105,0.881578947368421,0.61473872314566
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M1,upto,low,0.5,19,8,0.7171052631578947,0.5657894736842105,0.8552631578947368,0.4785749464889911
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M1,upto,high,0.9,19,8,0.881578947368421,0.7763157894736842,0.9671052631578947,0.35441106253250115
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M1,upto,low,0.9,19,8,0.8881578947368421,0.7828947368421053,0.9802631578947368,
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M1,central,high,0.5,19,8,0.7697368421052632,0.631578947368421,0.8881578947368421,0.4104214052042035
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M1,central,low,0.5,19,8,0.7236842105263158,0.5986842105263158,0.8421052631578947,0.30391598315797935
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M1,central,high,0.9,19,8,0.9210526315789473,0.8421052631578947,0.9868421052631579,0.27361321489523327
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M1,central,low,0.9,19,8,0.9276315789473685,0.8421052631578947,1.0,
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M0,upto,high,0.5,19,8,0.7302631578947368,0.5657894736842105,0.875,0.5964424361885942
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M0,upto,low,0.5,19,8,0.7368421052631579,0.5855263157894737,0.875,0.4987903849395349
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M0,upto,high,0.9,19,8,0.875,0.7697368421052632,0.9605263157894737,0.3580405017844807
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M0,upto,low,0.9,19,8,0.9013157894736842,0.809046052631579,0.9868421052631579,
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M0,central,high,0.5,19,8,0.7763157894736842,0.6381578947368421,0.8947368421052632,0.44230238441309444
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M0,central,low,0.5,19,8,0.7105263157894737,0.5855263157894737,0.8289473684210527,0.3133606304665673
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M0,central,high,0.9,19,8,0.9276315789473685,0.8552631578947368,0.9868421052631579,0.2166206345699631
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",M0,central,low,0.9,19,8,0.9539473684210527,0.8947368421052632,1.0,
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B3,upto,high,0.5,19,8,0.7368421052631579,0.5657894736842105,0.881578947368421,0.61473872314566
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B3,upto,low,0.5,19,8,0.7039473684210527,0.5394736842105263,0.8552631578947368,0.5479154854552657
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B3,upto,high,0.9,19,8,0.8881578947368421,0.7828947368421053,0.9736842105263158,0.3993788457982303
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B3,upto,low,0.9,19,8,0.875,0.756578947368421,0.9736842105263158,0.469965722212124
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B3,central,high,0.5,19,8,0.7763157894736842,0.6381578947368421,0.8881578947368421,0.4611857235630179
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B3,central,low,0.5,19,8,0.7105263157894737,0.5921052631578947,0.8223684210526315,0.2692332762001722
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B3,central,high,0.9,19,8,0.9342105263157895,0.8618421052631579,0.993421052631579,
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B3,central,low,0.9,19,8,0.9210526315789473,0.8289473684210527,1.0,
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B2,upto,high,0.5,19,8,0.6447368421052632,0.47368421052631576,0.8026315789473685,0.6131747393878518
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B2,upto,low,0.5,19,8,0.5921052631578947,0.4276315789473684,0.75,0.5493067943613427
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B2,upto,high,0.9,19,8,0.7828947368421053,0.618421052631579,0.9212171052631585,0.6550610773211039
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B2,upto,low,0.9,19,8,0.8947368421052632,0.8026315789473685,0.9736842105263158,0.3237914859252668
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B2,central,high,0.5,19,8,0.6842105263157895,0.5,0.8486842105263158,0.6743831955414539
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B2,central,low,0.5,19,8,0.7302631578947368,0.5526315789473685,0.881578947368421,0.5696752154184952
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B2,central,high,0.9,19,8,0.868421052631579,0.7629934210526317,0.9605263157894737,0.31942074224172406
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B2,central,low,0.9,19,8,0.9407894736842105,0.868421052631579,1.0,
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B4,upto,high,0.5,19,8,0.6842105263157895,0.5131578947368421,0.8355263157894737,0.5895282019850226
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B4,upto,low,0.5,19,8,0.6776315789473685,0.506578947368421,0.8355263157894737,0.6029837051587139
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B4,upto,high,0.9,19,8,0.8355263157894737,0.7039473684210527,0.9473684210526315,0.4876210250114556
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B4,upto,low,0.9,19,8,0.9210526315789473,0.8419407894736842,0.993421052631579,0.329489410183479
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B4,central,high,0.5,19,8,0.7302631578947368,0.5657894736842105,0.875,0.5956747726908607
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B4,central,low,0.5,19,8,0.6776315789473685,0.5328947368421053,0.8157894736842105,0.40079567370860486
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B4,central,high,0.9,19,8,0.881578947368421,0.7828947368421053,0.9605263157894737,0.30165461686045664
+15min chronological (past sessions only),Yahoo-bars final H/L,"chronological, scored 2026-09-18 .. 2026-10-15",B4,central,low,0.9,19,8,0.9407894736842105,0.881578947368421,0.993421052631579,
