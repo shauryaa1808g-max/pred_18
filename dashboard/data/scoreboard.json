@@ -1,15 +1,15 @@
 [
 {
 "kind": "summary",
-"scored_sessions": 4,
-"open_miss_rs": 11.8,
-"open_miss_unchanged_rs": 11.8,
-"close_miss_rs": 49.1,
-"close_miss_unchanged_rs": 49.1,
-"lean_right": 2,
-"lean_n": 4,
-"pt1_trades": 4,
-"pt1_avg_net_pct": 1.424,
+"scored_sessions": 5,
+"open_miss_rs": 10.5,
+"open_miss_unchanged_rs": 10.5,
+"close_miss_rs": 46.1,
+"close_miss_unchanged_rs": 46.1,
+"lean_right": 3,
+"lean_n": 5,
+"pt1_trades": 5,
+"pt1_avg_net_pct": 1.359,
 "pt2_trades": 0,
 "pt2_avg_net_pct": null,
 "note": "Running totals over all scored sessions."
@@ -64,6 +64,19 @@
 "lean": "up",
 "lean_hit": "yes",
 "pt1_net_pct": -0.65,
+"pt2_net_pct": null
+},
+{
+"kind": "day",
+"date": "2026-10-23",
+"open": 3270.0,
+"close": 3230.8,
+"open_miss_rs": 5.0,
+"close_miss_rs": -34.2,
+"close_inside_90": "yes",
+"lean": "down",
+"lean_hit": "yes",
+"pt1_net_pct": 1.1,
 "pt2_net_pct": null
 }
 ]
