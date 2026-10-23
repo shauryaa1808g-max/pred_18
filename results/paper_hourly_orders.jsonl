@@ -108,3 +108,8 @@
 {"id": "2026-10-23_10:12_R-C", "date": "2026-10-23", "placed_at": "10:12", "window_start": "10:12", "window_end": "11:12", "rule": "R-C", "P": 3208.7, "H_star": 3217.5, "L_star": 3198.5}
 {"id": "2026-10-23_10:12_R-D", "date": "2026-10-23", "placed_at": "10:12", "window_start": "10:12", "window_end": "11:12", "rule": "R-D", "P": 3208.7, "H_star": 3217.5, "L_star": 3198.5}
 {"id": "2026-10-23_10:12_R-E", "date": "2026-10-23", "placed_at": "10:12", "window_start": "10:12", "window_end": "11:12", "rule": "R-E", "P": 3208.7, "H_star": 3217.5, "L_star": 3198.5}
+{"id": "2026-10-23_11:15_R-A", "date": "2026-10-23", "placed_at": "11:15", "window_start": "11:15", "window_end": "12:15", "rule": "R-A", "P": 3217.8, "H_star": 3226.7, "L_star": 3207.4}
+{"id": "2026-10-23_11:15_R-B", "date": "2026-10-23", "placed_at": "11:15", "window_start": "11:15", "window_end": "12:15", "rule": "R-B", "P": 3217.8, "H_star": 3226.7, "L_star": 3207.4}
+{"id": "2026-10-23_11:15_R-C", "date": "2026-10-23", "placed_at": "11:15", "window_start": "11:15", "window_end": "12:15", "rule": "R-C", "P": 3217.8, "H_star": 3226.7, "L_star": 3207.4}
+{"id": "2026-10-23_11:15_R-D", "date": "2026-10-23", "placed_at": "11:15", "window_start": "11:15", "window_end": "12:15", "rule": "R-D", "P": 3217.8, "H_star": 3226.7, "L_star": 3207.4}
+{"id": "2026-10-23_11:15_R-E", "date": "2026-10-23", "placed_at": "11:15", "window_start": "11:15", "window_end": "12:15", "rule": "R-E", "P": 3217.8, "H_star": 3226.7, "L_star": 3207.4}
