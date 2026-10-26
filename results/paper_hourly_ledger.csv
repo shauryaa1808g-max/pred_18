@@ -149,3 +149,8 @@ id,date,window,rule,P,H_star,L_star,exit_close,how,net_pct,source
 2026-10-26_12:05_R-C,2026-10-26,12:05-13:05,R-C,3369.0,3377.0,3359.6,3364.1,target,0.137,Yahoo 1-minute bars (unofficial)
 2026-10-26_12:05_R-D,2026-10-26,12:05-13:05,R-D,3369.0,3377.0,3359.6,3364.1,stop,-0.337,Yahoo 1-minute bars (unofficial)
 2026-10-26_12:05_R-E,2026-10-26,12:05-13:05,R-E,3369.0,3377.0,3359.6,3364.1,hour end,-0.245,Yahoo 1-minute bars (unofficial)
+2026-10-26_13:13_R-A,2026-10-26,13:13-14:13,R-A,3359.6,3371.1,3346.1,3378.0,no fill,,Yahoo 1-minute bars (unofficial)
+2026-10-26_13:13_R-B,2026-10-26,13:13-14:13,R-B,3359.6,3371.1,3346.1,3378.0,filled,-0.305,Yahoo 1-minute bars (unofficial)
+2026-10-26_13:13_R-C,2026-10-26,13:13-14:13,R-C,3359.6,3371.1,3346.1,3378.0,target,0.242,Yahoo 1-minute bars (unofficial)
+2026-10-26_13:13_R-D,2026-10-26,13:13-14:13,R-D,3359.6,3371.1,3346.1,3378.0,stop,-0.442,Yahoo 1-minute bars (unofficial)
+2026-10-26_13:13_R-E,2026-10-26,13:13-14:13,R-E,3359.6,3371.1,3346.1,3378.0,hour end,0.448,Yahoo 1-minute bars (unofficial)
