@@ -331,7 +331,7 @@ def pre_open() -> None:
             lines.append(f"NSE pre-open: no order data for today yet (the page still shows {t}). It opens 09:00; the price is fixed when order entry closes at a random moment between 09:08 and 09:10 (since 7 Sep 2026); no page at all on a holiday.")
         else:
             lbl = {"FINAL": "FINAL = the official opening price", "NO_PRICE": "NOT DISCOVERED: the open will be the first trade"}.get(st, "INDICATIVE: can still change until NSE closes order entry, between 09:08 and 09:10")
-            px = float(p["finalPrice"]) if st == "FINAL" else float(p["IEP"])
+            px = float(p["IEP"])                                   # the equilibrium price, also when FINAL: the finalPrice field held the previous close on 26 Oct (official open = IEP)
             lines.append(f"NSE pre-open price at {t[-8:]}: Rs {px:,.1f} ({lbl}); buy orders {int(p['totalBuyQuantity']):,} vs sell orders {int(p['totalSellQuantity']):,} (shares).")
     except SystemExit as e:                        # noqa: BLE001
         lines.append(f"NSE pre-open could not be read ({e}).")

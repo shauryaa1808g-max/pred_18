@@ -92,7 +92,7 @@ def _rows_nse() -> list[dict]:
             st = s.get("status") or PO.status(s, now)
             fin = st == "FINAL"
             out.append({"date": day, "time_ist": t[-8:], "kind": "nse_preopen", "source": f, "open_pin": float(p["prevClose"]),
-                        "nse_status": st, "nse_price": float(p["finalPrice"]) if fin else float(p["IEP"]), "nse_buy_qty": int(p["totalBuyQuantity"]), "nse_sell_qty": int(p["totalSellQuantity"]),
+                        "nse_status": st, "nse_price": float(p["IEP"]), "nse_buy_qty": int(p["totalBuyQuantity"]), "nse_sell_qty": int(p["totalSellQuantity"]),
                         "note": "open_pin = previous close; the NSE price is the open itself only when nse_status is FINAL"})
     return out
 
@@ -180,6 +180,8 @@ def _attach_scores(rows: list[dict]) -> None:
                 r["open_error_rs"] = _r(o["open"] - r["open_pin"], 1); r["open_in50"] = _in(o["open"], r["open_50_lo"], r["open_50_hi"]); r["open_in90"] = _in(o["open"], r["open_90_lo"], r["open_90_hi"])
             if r["kind"] == "nse_preopen" and r["nse_status"] == "FINAL":
                 r["open_error_rs"] = _r(o["open"] - r["nse_price"], 1)
+            if r["kind"] == "day_high_low_after_open" and r.get("open_pin") not in ("", None) and abs(float(r["open_pin"]) - o["open"]) > 0.05:
+                r["note"] = (str(r.get("note") or "") + f" DATA CORRECTION: this forecast was built on an open of Rs {float(r['open_pin']):,.1f}, which was NOT the official open (Rs {o['open']:,.1f}); it is kept as logged because it is what was given at the time.").strip()
             if r["kind"].startswith("day_high_low"):
                 r.update({"window_actual_high": o["high"], "window_actual_low": o["low"], "window_high_error_rs": _r(o["high"] - r["high_pin"], 1), "window_low_error_rs": _r(o["low"] - r["low_pin"], 1),
                           "window_high_in50": _in(o["high"], r["high_50_lo"], r["high_50_hi"]), "window_high_in90": _in(o["high"], r["high_90_lo"], r["high_90_hi"]),

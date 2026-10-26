@@ -46,7 +46,7 @@ def status(s: dict, now: dt.datetime | None = None) -> str:
     """FINAL | INDICATIVE | STALE | NO_PRICE for a snapshot returned by fetch().
     STALE: the page is not from today (holiday, weekend, or the new session has not started: the endpoint keeps the last session's page).
     FINAL: finalPrice and finalQuantity are filled (NSE fills them only once the auction has matched; 16 Oct: IEP 3,450 at 09:08:34 with finalPrice 0, finalPrice 3,450 stamped 09:09:00)
-           and the stamp is not before 09:08:00 (the earliest possible random close).
+           and the stamp is not before 09:08:00 (the earliest possible random close).  The PRICE is always the equilibrium price (IEP), never the finalPrice field: on 26 Oct finalPrice held the previous close (3,230.8) while IEP and the official open were 3,213.0.
     NO_PRICE: after 09:15 no price was discovered (the open is then the first trade of the normal market).  Any parsing problem gives INDICATIVE, never FINAL."""
     try:
         p = s["pre"]; t = p["lastUpdateTime"]; now = now or dt.datetime.now(IST)
@@ -66,7 +66,7 @@ def words(s: dict, symbol: str = "BSE", now: dt.datetime | None = None) -> str:
     m, p = s["meta"], s["pre"]; iep = float(p["IEP"]); prev = float(p["prevClose"])
     t = p["lastUpdateTime"]; hhmmss = t[-8:]
     st = status(s, now); final = st == "FINAL"
-    if final: iep = float(p["finalPrice"])
+    fp = float(p.get("finalPrice") or 0)                                  # the opening price is the equilibrium price (IEP): on 26 Oct the finalPrice field held the previous close (3,230.8) while IEP and the official open were 3,213.0
     if st == "STALE":
         return f"{symbol} pre-open: no page for today yet (NSE still shows the page of {t[:11]}): holiday or weekend, or today's pre-open has not started (it opens 09:00).  Nothing to read."
     book = sorted(p["preopen"], key=lambda r: r["price"])
@@ -75,6 +75,8 @@ def words(s: dict, symbol: str = "BSE", now: dt.datetime | None = None) -> str:
              f"Orders waiting: {int(p['totalBuyQuantity']):,} to buy vs {int(p['totalSellQuantity']):,} to sell (shares); matched at the open: {int(p['finalQuantity']):,}.  Book near the price: " + "; ".join(f"{r['price']:.1f}: buy {r['buyQty']:,} / sell {r['sellQty']:,}" for r in near)]
     if final:
         lines.append("This is the official opening price (to within a tick or two): not a forecast.")
+        if abs(fp - iep) > 0.05:
+            lines.append(f"WARNING: NSE's finalPrice field (Rs {fp:,.1f}) differs from the equilibrium price (Rs {iep:,.1f}); the open is read as the equilibrium price (on 26 Oct the field held the previous close while the official open equalled the equilibrium price).")
     return "\n".join(lines)
 
 
