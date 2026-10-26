@@ -1,5 +1,15 @@
 [
 {
+"date": "2026-10-26",
+"preopen_price": 3213.0,
+"previous_close": 3230.8,
+"buy_qty": 22990,
+"sell_qty": 69076,
+"read_at_ist": "09:09:18",
+"official_open": 3213.0,
+"miss_rs": 0.0
+},
+{
 "date": "2026-10-23",
 "preopen_price": 3270.0,
 "previous_close": 3265.0,
