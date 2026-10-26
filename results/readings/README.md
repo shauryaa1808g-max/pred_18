@@ -15,3 +15,6 @@ Columns: `*_pin` = pin-point (median); `*_50_lo/hi` = "half the time" range; `*_
 Scoring columns fill in later: `window_actual_*`, `window_*_error_rs`, `window_*_in50/in90` once the row's own window is over (tables: Yahoo 1-minute high / low from `results/hourly_table_scored.csv`; whole-day rows: the OFFICIAL high / low), and `official_*`, `open_error_rs`, `close_error_rs`, `*_in50/in90` once NSE's official bar is in the repo (about 16:35 IST). Errors are actual minus predicted.
 
 History: the file starts with the 15 and 16 Oct 2026 readings that exist in the logs (the 16 Oct tables before 14:22 were not logged). From Mon 19 Oct every reading is stored when it is given.
+
+## summary.csv
+One row per hour-by-hour table (45 rows so far), only five columns: `date`, `time`, `precise close` (with its typical miss), `this hour's high vs previous prediction`, `this hour's low vs previous prediction`. The cells are cut out of `printed_row` of readings.csv, so they read exactly as printed. Rebuilt with readings.csv after every reading.

@@ -194,6 +194,20 @@ def _attach_scores(rows: list[dict]) -> None:
                           "window_high_in50": bool(m.high_in50), "window_high_in90": bool(m.high_in90), "window_low_in50": bool(m.low_in50), "window_low_in90": bool(m.low_in90)})
 
 
+SUMMARY_COLS = ["date", "time", "precise close", "this hour's high vs previous prediction", "this hour's low vs previous prediction"]
+
+
+def _write_summary(df: pd.DataFrame) -> None:
+    """results/readings/summary.csv: one row per hour-by-hour table, only the columns the user asked for, cells exactly as printed (cut out of `printed_row`)."""
+    rows = []
+    for _, r in df[df.kind == "table"].iterrows():
+        cells = [c.strip() for c in str(r.get("printed_row") or "").strip().strip("|").split("|")]
+        if len(cells) < 7:
+            continue
+        rows.append({"date": r["date"], "time": cells[0], "precise close": cells[1], "this hour's high vs previous prediction": cells[5], "this hour's low vs previous prediction": cells[6]})
+    pd.DataFrame(rows, columns=SUMMARY_COLS).to_csv(OUT / "summary.csv", index=False)
+
+
 def rebuild() -> pd.DataFrame:
     rows = _rows_open_range() + _rows_nse() + _rows_hl() + _rows_table()
     _attach_scores(rows)
@@ -205,6 +219,7 @@ def rebuild() -> pd.DataFrame:
     df.to_csv(OUT / "readings.csv", index=False)
     for d, g in df.groupby("date"):
         g.to_csv(OUT / "by_day" / f"{d}.csv", index=False)
+    _write_summary(df)
     return df
 
 
