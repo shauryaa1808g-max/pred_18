@@ -17,4 +17,4 @@ Scoring columns fill in later: `window_actual_*`, `window_*_error_rs`, `window_*
 History: the file starts with the 15 and 16 Oct 2026 readings that exist in the logs (the 16 Oct tables before 14:22 were not logged). From Mon 19 Oct every reading is stored when it is given.
 
 ## summary.csv
-One row per hour-by-hour table (45 rows so far), only five columns: `date`, `time`, `precise close` (with its typical miss), `this hour's high vs previous prediction`, `this hour's low vs previous prediction`. The cells are cut out of `printed_row` of readings.csv, so they read exactly as printed. Rebuilt with readings.csv after every reading.
+One row per hour-by-hour table, only five columns: `date`, `time`, `precise close` (with its typical miss), `this hour's high vs previous prediction`, `this hour's low vs previous prediction`. The cells are cut out of `printed_row` of readings.csv, so they read exactly as printed. Rebuilt with readings.csv after every reading and again at the 16:45 after-close job, so it is updated every trading day (standing request from the user, 27 Oct 2026).
