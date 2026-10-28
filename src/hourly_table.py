@@ -250,6 +250,11 @@ def build(asof: str | None = None, save: bool = True, vs: str | None = None) -> 
             row["paper"] = {"settled": PH.settle(df_all[df_all.date >= (T - dt.timedelta(days=6)).strftime('%Y-%m-%d')], pd.Timestamp(now), PH.ORDERS, PH.LEDGER), "placed": PH.place(row, PH.ORDERS)}
         except Exception as e:                                    # noqa: BLE001  (never hide a failure: it is printed under the table)
             row["paper"] = {"error": f"{type(e).__name__}: {e}"}
+        try:                                                      # challenger (v2 clone, research/hl/I_challenger.md): its next hour beside the champion's, results/challenger/ only; never printed in the table
+            import challenger as CH
+            row["challenger"] = CH.record(row, S, ev, d1, T, tmin)
+        except Exception as e:                                    # noqa: BLE001  (never hide a failure: it is printed under the table)
+            row["challenger"] = {"error": f"{type(e).__name__}: {e}"}
         Path("results").mkdir(exist_ok=True)
         with open(LOG, "a") as f:
             f.write(json.dumps({**row, "logged_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")}) + "\n")
@@ -284,6 +289,9 @@ def fmt_row(r: dict) -> str:
     pp = r.get("paper")
     if pp:
         foot.append(f"Paper ledger FAILED this time ({pp['error']})." if "error" in pp else f"Paper ledger (src/paper_hourly.py): {pp['placed']} new paper orders placed for this window, {pp['settled']} older orders settled. Backtest verdict: no rule beats doing nothing.")
+    ch = r.get("challenger")
+    if ch and "error" in ch:
+        foot.append(f"Challenger log FAILED this time ({ch['error']}); the table above is the champion's and is unaffected.")
     return head + "\n" + body + "\n" + "\n".join(x for x in foot if x)
 
 
@@ -294,6 +302,15 @@ def peer_forward_update() -> None:
         PF.update()
     except Exception as e:                                                 # noqa: BLE001
         print(f"(forward test H not updated: {type(e).__name__}: {e})")
+
+
+def challenger_update() -> None:
+    """Challenger (v2 clone): score the logged pairs, record the pre-open order book (C2), print the LOCKED lines (src/challenger.py); a problem is printed, never hidden, and never blocks the scoring."""
+    try:
+        import challenger as CH
+        CH.update()
+    except Exception as e:                                                 # noqa: BLE001
+        print(f"(challenger not updated: {type(e).__name__}: {e})")
 
 
 def refresh_readings() -> None:
@@ -359,7 +376,7 @@ if __name__ == "__main__":
         print(f"{len(S)} sessions; leave-one-session-out; next-hour high/low pin-point = median; typical miss in rupees (price stays = P):")
         print(t[["time", "n_sessions", "high_miss_rs", "high_stays_miss_rs", "low_miss_rs", "low_stays_miss_rs", "high_cov50", "high_cov90", "low_cov50", "low_cov90"]].to_string(index=False))
     elif a.score:
-        df_all, _ = LH.get_bars(save=True); print(f"scored {score_logged(df_all, pd.Timestamp.now(tz=IST))} new live predictions"); report(); peer_forward_update(); refresh_readings()
+        df_all, _ = LH.get_bars(save=True); print(f"scored {score_logged(df_all, pd.Timestamp.now(tz=IST))} new live predictions"); report(); peer_forward_update(); challenger_update(); refresh_readings()
     elif a.report:
         report()
     elif a.pre_open:

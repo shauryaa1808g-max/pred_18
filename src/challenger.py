@@ -56,13 +56,34 @@ def scale2(ratio: float, w: float) -> float:
     return float(np.clip((1.0 - w) + w * ratio, CLIP[0], CLIP[1]))
 
 
-def pool_z(S: list[dict], ev: np.ndarray, w: float) -> tuple[np.ndarray, np.ndarray]:
-    """pooled excursions standardised by the SAME scaled sigma the prediction uses (Section 1.1); w = 0 reproduces hourly_table.zpool exactly."""
+def pool_z(S: list[dict], ev: np.ndarray, w: float, dayscale: dict | None = None) -> tuple[np.ndarray, np.ndarray]:
+    """pooled excursions standardised by the SAME scaled sigma the prediction uses (Sections 1.1 and 2); w = 0 and no dayscale reproduce hourly_table.zpool exactly.
+    dayscale = {session date: C3's scale2_d}."""
     ex = HT.excursions(S, ev)
     byd = {s["date"]: s["r"] for s in S}
-    sc = np.array([scale2(ratio_sofar(float(np.nansum(byd[d][:int(k)] ** 2)), ev, int(k)), w) for d, k in zip(ex.date, ex.k)])
+    sc = np.array([scale2(ratio_sofar(float(np.nansum(byd[d][:int(k)] ** 2)), ev, int(k)), w) * (1.0 if dayscale is None else dayscale[d]) for d, k in zip(ex.date, ex.k)])
     sig = ex.sig.values * np.sqrt(sc)
     return (ex.Xh.values / sig), (ex.Xl.values / sig)
+
+
+def sigma_I_map(day: str) -> dict:
+    """C3's ingredient: the daily model's walk-forward S6 sigma of the open-to-close return for every session before `day`, and (key `day`) its forecast for `day` from the sessions before it.  Cached per day."""
+    f = DIR / f"sigmaI_{day}.json"
+    if f.exists():
+        return json.loads(f.read_text())
+    import hl_model as HM
+    d = HM.load_ohlc(pd.Timestamp(day)); t = HM.targets(d); I, gk = t["I"].values, t["gk"].values
+    path = HM.wf_sigmas(I, gk, ("S6",))["S6"]
+    m = {str(x.date()): float(s) for x, s in zip(d.index, path) if np.isfinite(s)}
+    m[day] = float(HM.s6_next(I, gk))
+    DIR.mkdir(parents=True, exist_ok=True); f.write_text(json.dumps(m))
+    return m
+
+
+def day_scales(sI: dict, dates: list[str], w3: float) -> dict:
+    """scale2_d for each date: ratio_d = sI^2 over the mean of sI^2 across `dates` (the sessions of the pool)."""
+    den = float(np.mean([sI[d] ** 2 for d in dates]))
+    return {d: scale2(sI[d] ** 2 / den, w3) for d in dates}
 
 
 def next_hour_v2(P: float, tmin: int, ev: np.ndarray, zh: np.ndarray, zl: np.ndarray, sc2: float) -> dict | None:
@@ -89,26 +110,36 @@ def live_r2(day1: pd.DataFrame, T, m: int) -> float:
     return float(np.sum(r ** 2))
 
 
-def frozen_w() -> float:
+def frozen_w() -> tuple[float, float]:
+    """(w for C1, w3 for C3), frozen in results/challenger/w_frozen.json."""
     if not WFILE.exists():
         raise RuntimeError("w is not frozen yet (results/challenger/w_frozen.json missing)")
-    return float(json.loads(WFILE.read_text())["w"])
+    j = json.loads(WFILE.read_text())
+    return float(j["w"]), float(j["w3"])
 
 
 def record(row: dict, S: list[dict], ev: np.ndarray, day1: pd.DataFrame, T, tmin: int) -> dict:
     """called by hourly_table.build for every LIVE row: compute the challenger's next hour beside the champion's and append both to results/challenger/hourly_log.jsonl."""
-    w = frozen_w()
+    w, w3 = frozen_w()
+    if w == 0 and w3 == 0:                                                       # identical to the champion: nothing to log beside it
+        return {"identical": True, "w": 0.0, "w3": 0.0}
     m = max(0, tmin // 15)
     ratio = ratio_sofar(live_r2(day1, T, m), ev, m)
-    sc2 = scale2(ratio, w)
-    zh, zl = pool_z(S, ev, w)
-    nh2 = next_hour_v2(row["price_now"], tmin, ev, zh, zl, sc2)
+    sc1 = scale2(ratio, w)
+    ds, sc3 = None, 1.0
+    if w3 > 0:                                                                   # C3 (only when its weight is not zero: with w3 = 0 the daily model is not even touched)
+        sI = sigma_I_map(row["date"])
+        den = float(np.mean([sI[s["date"]] ** 2 for s in S]))
+        ds = {s["date"]: scale2(sI[s["date"]] ** 2 / den, w3) for s in S}
+        sc3 = scale2(sI[row["date"]] ** 2 / den, w3)
+    zh, zl = pool_z(S, ev, w, ds)
+    nh2 = next_hour_v2(row["price_now"], tmin, ev, zh, zl, sc1 * sc3)
     DIR.mkdir(parents=True, exist_ok=True)
-    rec = {"date": row["date"], "asof": row["asof"], "price_now": row["price_now"], "w": w, "completed_slots": m, "ratio": round(ratio, 4), "scale2": round(sc2, 4),
+    rec = {"date": row["date"], "asof": row["asof"], "price_now": row["price_now"], "w": w, "w3": w3, "completed_slots": m, "ratio": round(ratio, 4), "scale2": round(sc1 * sc3, 4), "scale2_c1": round(sc1, 4), "scale2_c3": round(sc3, 4),
            "champion": row["next_hour"], "challenger": nh2, "logged_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")}
     with open(LOGF, "a") as f:
         f.write(json.dumps(rec) + "\n")
-    return {"w": w, "scale2": round(sc2, 4)}
+    return {"w": w, "w3": w3, "scale2": round(sc1 * sc3, 4)}
 
 
 # ------------------------------------------------------------------ choosing w (history only; Section 0.3)
@@ -117,20 +148,26 @@ def pinball(pred: np.ndarray, act: float) -> float:
     return float(np.mean(np.maximum(TAUS * e, (TAUS - 1.0) * e)))
 
 
-def fit_w(S: list[dict], grid=GRID) -> pd.DataFrame:
+def fit_w(S: list[dict], grid=GRID, mode: str = "c1", sI: dict | None = None) -> pd.DataFrame:
+    """leave-one-session-out losses for each weight in the grid.  mode 'c1': w = the weight on today's volatility so far; mode 'c3': w = the weight w3 on the daily model's sigma (needs sI = sigma_I_map)."""
     rows = []
     for i, s in enumerate(S):
         others = [x for j, x in enumerate(S) if j != i]
         ev, _ = LN.profile(others)
         ex = HT.excursions([s], ev)
         for w in grid:
-            zh, zl = pool_z(others, ev, w)
+            w1, w3 = (w, 0.0) if mode == "c1" else (0.0, w)
+            ds = None
+            if mode == "c3":                                                    # denominator = the pool's sessions only (the held-out session's own sigma is not in it), as in live use
+                den = float(np.mean([sI[x["date"]] ** 2 for x in others]))
+                ds = {x["date"]: scale2(sI[x["date"]] ** 2 / den, w3) for x in others} | {s["date"]: scale2(sI[s["date"]] ** 2 / den, w3)}
+            zh, zl = pool_z(others, ev, w1, ds)
             qh, ql = np.quantile(zh, TAUS), np.quantile(zl, TAUS)
             for _, r in ex.iterrows():
                 k = int(r.k)
                 if k < 2 or k > 22:
                     continue
-                sc = scale2(ratio_sofar(float(np.nansum(s["r"][:k] ** 2)), ev, k), w)
+                sc = scale2(ratio_sofar(float(np.nansum(s["r"][:k] ** 2)), ev, k), w1) * (1.0 if ds is None else ds[s["date"]])
                 sig = r.sig * math.sqrt(sc)
                 P = r.P
                 ha, la = P * math.exp(r.Xh), P * math.exp(r.Xl)
@@ -193,7 +230,7 @@ def build_dataset() -> pd.DataFrame:
         r = key.get((z["date"], z["asof"]))
         if r is None or z["date"] < FIRST_SESSION or not z.get("challenger") or not z.get("champion"):
             continue
-        out.append({"date": z["date"], "asof": z["asof"], "w": z["w"], "scale2": z["scale2"], "act_high": r.act_high, "act_low": r.act_low,
+        out.append({"date": z["date"], "asof": z["asof"], "w": z["w"], "w3": z.get("w3", 0.0), "scale2": z["scale2"], "act_high": r.act_high, "act_low": r.act_low,
                     "champ_high": z["champion"]["high"]["0.5"], "champ_low": z["champion"]["low"]["0.5"], "chall_high": z["challenger"]["high"]["0.5"], "chall_low": z["challenger"]["low"]["0.5"]})
     d = pd.DataFrame(out)
     if not d.empty:
@@ -246,11 +283,12 @@ def update_c1() -> list[str]:
     lines = []
     d = build_dataset()
     E = eligible_sessions(d)
-    w = frozen_w() if WFILE.exists() else None
+    w, w3 = frozen_w() if WFILE.exists() else (None, None)
+    ident = (w == 0 and w3 == 0)
     n_read = 0 if d.empty else len(d)
     lines.append(f"Challenger (v2 clone, C1 next-hour columns), results LOCKED: {n_read} scored paired readings over {0 if d.empty else d.date.nunique()} session(s); {len(E)} eligible session(s) ({MIN_READINGS}+ scored readings) of the {LOOKS[1]} needed for the first decision "
-                 f"({LOOKS[0]} for the no-harm check; pre-registered, research/hl/I_challenger.md); w = {w}." + (" w = 0: C1 is identical to the champion, nothing to compare." if w == 0 else " No error comparison is printed before the 10-session look."))
-    if w == 0 or len(E) < LOOKS[0]:
+                 f"({LOOKS[0]} for the no-harm check; pre-registered, research/hl/I_challenger.md); w (C1) = {w}, w3 (C3) = {w3}." + (" Both weights are 0: the challenger is identical to the champion, nothing to compare." if ident else " No error comparison is printed before the 10-session look."))
+    if ident or len(E) < LOOKS[0]:
         return lines
     f10 = DIR / "analysis_n10.json"
     if not f10.exists():
@@ -407,17 +445,19 @@ if __name__ == "__main__":
     if a.selftest:
         selftest()
     elif a.fit:
-        S = [s for s in HT.load_sessions() if s["date"] < FIRST_SESSION]
-        F = fit_w(S); w, tab = choose_w(F); DIR.mkdir(parents=True, exist_ok=True)
-        tab.to_csv(FITF); print(f"{len(S)} sessions (through {S[-1]['date']}), {len(F) // len(GRID)} checkpoints per w; pooled mean pinball (rupees) and mean absolute error of the median:"); print(tab.to_string())
-        # spread of the session-level paired difference (for the power note in Section 1)
-        d0 = F[F.w == 0.0].groupby("date")[["ae_high", "ae_low"]].mean(); dw = F[F.w == w].groupby("date")[["ae_high", "ae_low"]].mean()
-        print(f"chosen w = {w}")
-        if w > 0:
-            dd = (d0 - dw); print("session-level paired difference AE(champion) - AE(challenger): mean/sd high %.3f/%.3f, low %.3f/%.3f (rupees, n=%d sessions)" % (dd.ae_high.mean(), dd.ae_high.std(), dd.ae_low.mean(), dd.ae_low.std(), len(dd)))
+        S = [x for x in HT.load_sessions() if x["date"] < FIRST_SESSION]
+        DIR.mkdir(parents=True, exist_ok=True); chosen = {}
+        sI = sigma_I_map(FIRST_SESSION)
+        for mode, key in (("c1", "w"), ("c3", "w3")):
+            F = fit_w(S, mode=mode, sI=sI); w, tab = choose_w(F); chosen[key] = w
+            tab.to_csv(DIR / f"fit_{mode}.csv")
+            print(f"[{mode.upper()}] {len(S)} sessions (through {S[-1]['date']}), {len(F) // len(GRID)} checkpoints per weight; pooled mean pinball (rupees) and mean absolute error of the median:"); print(tab.to_string()); print(f"[{mode.upper()}] chosen weight = {w}")
+            d0 = F[F.w == 0.0].groupby("date")[["ae_high", "ae_low"]].mean(); dw = F[F.w == w].groupby("date")[["ae_high", "ae_low"]].mean()
+            if w > 0:
+                dd = (d0 - dw); print("      session-level paired difference AE(champion) - AE(challenger): mean/sd high %.3f/%.3f, low %.3f/%.3f (rupees, n=%d sessions)" % (dd.ae_high.mean(), dd.ae_high.std(), dd.ae_low.mean(), dd.ae_low.std(), len(dd)))
         if a.write:
             sha = hashlib.sha256(Path("research/hl/I_challenger.md").read_bytes()).hexdigest()
-            WFILE.write_text(json.dumps({"w": w, "grid": list(GRID), "rule": "research/hl/I_challenger.md 0.3: pooled pinball, >=1% better than w=0", "fitted_on_sessions_through": S[-1]["date"], "n_sessions": len(S), "doc_sha256_when_frozen": sha}, indent=1))
-            print(f"w frozen -> {WFILE}")
+            WFILE.write_text(json.dumps({"w": chosen["w"], "w3": chosen["w3"], "grid": list(GRID), "rule": "research/hl/I_challenger.md 0.3 and 2: pooled pinball, >=1% better than weight 0", "fitted_on_sessions_through": S[-1]["date"], "n_sessions": len(S), "doc_sha256_when_frozen": sha}, indent=1))
+            print(f"weights frozen -> {WFILE}")
     elif a.update or a.status:
         update()

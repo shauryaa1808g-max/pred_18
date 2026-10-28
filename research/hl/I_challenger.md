@@ -77,3 +77,9 @@ C3 was added AFTER C1 showed no gain, so it is a replacement candidate chosen wi
 * **Choosing `w3`.**  Exactly as 0.3: grid {0, 0.25, 0.5, 0.75, 1.0}; leave-one-session-out on the same 47 sessions and checkpoints k = 2..22; pooled pinball; `w3 > 0` only if it beats `w3 = 0` by at least 1%; otherwise `w3 = 0` and the challenger is identical to the champion.  In-sample; not evidence.
 * **Forward test.**  Unchanged from 0.4 and 0.5 (same sessions, statistic, looks at 10 / 40 / 60, Holm over high and low, adoption and drop rules), with "challenger" meaning C1 (w = 0) together with C3 at the frozen `w3`.
 * **If both C1 and C3 end at zero weight**, the challenger is identical to the champion for every forecast; the clone is then ready but carries no applied change, only the recording of C2, and the report says so.
+
+### 2.1 Result of the pre-registered fit of C3 (run 28 Oct 2026, same 47 sessions and 971 checkpoints per weight) and the frozen weights
+
+Pooled mean pinball loss (rupees) and gain against `w3 = 0`: w3 = 0: 3.1553 (0%); 0.25: 3.1572 (-0.06%); 0.5: 3.1591 (-0.12%); 0.75: 3.1620 (-0.21%); 1.0: 3.1657 (-0.33%).  The daily model's sigma adds nothing to the next-hour ranges either (slightly worse, monotonically).  **By the rule the chosen value is `w3 = 0`.**
+
+**Frozen: `w = 0` (C1) and `w3 = 0` (C3): the challenger is identical to the champion for every forecast.**  That is the honest result of the history tests: neither idea that could be backtested improves the next-hour columns.  The clone and its machinery (logging beside the champion, the paired test, the locked reports, the synthetic self-test) are in place, so any future candidate needs only its own dated registration and a new frozen weight; the only live content today is C2, the recording of the pre-open order book (forward lead test H_B).  Nothing is logged side by side while both weights are 0.
