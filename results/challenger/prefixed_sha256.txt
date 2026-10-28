@@ -5,3 +5,7 @@ verify later: head -c 8426 research/hl/I_challenger.md | sha256sum
 Section 1.1 appended before any fit (whole file now 9473 bytes), 28 Oct 2026
 sha256 de843719d213688bb6cebe5a91db299338de36066f0fc56bc1b23a6204733d67
 verify later: head -c 9473 research/hl/I_challenger.md | sha256sum
+
+Sections 1.2 and 2 (C3) appended before any C3 fit (whole file now 12265 bytes), 28 Oct 2026
+sha256 807439fdbf03bba127f20b0586bf378b4dd8f988c4efd31f7b76a2997483417e
+verify later: head -c 12265 research/hl/I_challenger.md | sha256sum
