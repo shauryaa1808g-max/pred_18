@@ -58,3 +58,9 @@ Not changed (identical in both, so nothing to compare): the day-ahead and after-
 ### 0.8 Files and code
 
 `src/challenger.py` (C1 prediction, side-by-side logging, C2 book features, forward dataset, locked report, comparison, synthetic self-test), `results/challenger/` (`hourly_log.jsonl`, `book_features.csv`, `compare_dataset.csv`, `prefixed_sha256.txt`).  The analysis code is tested on synthetic data before it may run on forward data.
+
+## 1. Clarifications and the fitted number (written after Section 0, before any fit was run and before the first forward forecast)
+
+### 1.1 Implementation clarification of 0.2 (written 28 Oct 2026, before running the fit in 0.3)
+
+Section 0.2 says the pooled standardised excursions are "unchanged".  Read literally, that would multiply a pool that was standardised by the unscaled sigma by a scaled sigma, which counts the day's volatility twice (once in the pool's spread, once in the scale).  The standard way (filtered historical simulation) is to standardise each pooled excursion by the same scaled sigma that the prediction uses.  **The challenger therefore does that**: every pooled row (session, checkpoint k) is standardised by `sig * sqrt(scale2)` with that row's own `scale2` (from that session's bars before k and the profile).  For `w = 0` all `scale2 = 1`, so the pool and every prediction are exactly the champion's.  This is a clarification made before any fit result existed; Section 0 itself stays as written and is not edited.

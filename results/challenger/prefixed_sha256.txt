@@ -1,3 +1,7 @@
 research/hl/I_challenger.md Section 0 (whole file as first written, 8426 bytes), written Wed 28 Oct 2026 21:26 IST before any challenger forecast
 sha256 42a3f7f070d655988feda28bdfbb00627c013a1014f9fb69ebb8d285d097570f
 verify later: head -c 8426 research/hl/I_challenger.md | sha256sum
+
+Section 1.1 appended before any fit (whole file now 9473 bytes), 28 Oct 2026
+sha256 de843719d213688bb6cebe5a91db299338de36066f0fc56bc1b23a6204733d67
+verify later: head -c 9473 research/hl/I_challenger.md | sha256sum
