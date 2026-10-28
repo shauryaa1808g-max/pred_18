@@ -49,3 +49,5 @@ date,asof,window,mode,pred_high,act_high,pred_low,act_low,high_in50,high_in90,lo
 2026-10-28,10:12,10:12-11:12,live,3465.0,3486.9,3444.6,3444.5,False,True,True,True
 2026-10-28,11:15,11:15-12:15,live,3475.5,3474.4,3455.0,3456.6,True,True,True,True
 2026-10-28,12:05,12:05-13:05,live,3478.5,3507.7,3460.2,3464.1,False,True,True,True
+2026-10-28,13:12,13:12-14:12,live,3518.5,3509.8,3492.9,3477.3,False,True,False,True
+2026-10-28,14:12,14:12-15:12,live,3493.5,3500.0,3469.2,3472.9,True,True,True,True
