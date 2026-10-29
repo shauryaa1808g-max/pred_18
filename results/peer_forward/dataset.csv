@@ -39,3 +39,11 @@ date,asof,price_now,error,bse_move_pct,P_valid,P_move_pct,P_n_ok,S_valid,S_move_
 2026-10-28,14:12,3482.1,,1.184,True,0.134,4,True,0.494,3,-1.05,-0.69,-0.24,ok,ok,ok,ok,ok,ok,ok,3485.0,0.0832,True,False,False,False
 2026-10-28,15:13,3494.1,,1.528,True,0.025,4,True,0.53,3,-1.503,-0.998,-0.257,ok,ok,ok,ok,ok,ok,ok,3485.0,-0.2608,True,False,False,False
 2026-10-28,15:33,3485.0,,1.268,False,,0,False,,0,,,-0.239,stale,ok,stale,stale,stale,stale,ok,3485.0,0.0,True,False,False,False
+2026-10-29,09:41,3522.0,,1.056,True,1.241,4,True,1.068,3,0.185,0.012,0.193,ok,ok,ok,ok,ok,ok,ok,3502.0,-0.5695,True,False,False,False
+2026-10-29,10:11,3513.5,,0.814,True,1.69,4,True,1.587,3,0.876,0.773,0.347,ok,ok,ok,ok,ok,ok,ok,3502.0,-0.3278,True,False,False,False
+2026-10-29,11:16,3516.9,,0.911,True,2.178,4,True,1.888,3,1.267,0.977,0.628,ok,ok,ok,ok,ok,ok,ok,3502.0,-0.4246,True,True,True,True
+2026-10-29,12:05,3515.1,,0.86,True,1.606,4,True,1.658,3,0.746,0.798,0.71,ok,ok,ok,ok,ok,ok,ok,3502.0,-0.3734,True,True,False,False
+2026-10-29,13:13,3490.0,,0.143,True,1.55,4,True,1.192,3,1.407,1.049,0.388,ok,ok,ok,ok,ok,ok,ok,3502.0,0.3432,True,False,False,False
+2026-10-29,14:13,3507.3,,0.638,True,2.213,4,True,1.552,3,1.575,0.914,0.619,ok,ok,ok,ok,ok,ok,ok,3502.0,-0.1512,True,False,False,False
+2026-10-29,15:14,3509.6,,0.703,True,2.533,4,True,2.011,3,1.83,1.308,0.86,ok,ok,ok,ok,ok,ok,ok,3502.0,-0.2168,True,False,False,False
+2026-10-29,15:33,3506.0,,0.601,False,,0,False,,0,,,0.818,stale,ok,stale,stale,stale,stale,ok,3502.0,-0.1142,True,False,False,False
