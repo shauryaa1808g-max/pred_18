@@ -1,0 +1,112 @@
+[
+{
+"date": "2026-10-30",
+"preopen_price": 3490.0,
+"previous_close": 3502.0,
+"buy_qty": 28412,
+"sell_qty": 99231,
+"read_at_ist": "09:09:08",
+"official_open": 3490.0,
+"miss_rs": 0.0
+},
+{
+"date": "2026-10-29",
+"preopen_price": 3490.0,
+"previous_close": 3485.0,
+"buy_qty": 39418,
+"sell_qty": 101645,
+"read_at_ist": "09:08:56",
+"official_open": 3490.0,
+"miss_rs": 0.0
+},
+{
+"date": "2026-10-28",
+"preopen_price": 3440.0,
+"previous_close": 3441.1,
+"buy_qty": 36740,
+"sell_qty": 114467,
+"read_at_ist": "09:09:02",
+"official_open": 3440.0,
+"miss_rs": 0.0
+},
+{
+"date": "2026-10-27",
+"preopen_price": 3379.0,
+"previous_close": 3359.0,
+"buy_qty": 50342,
+"sell_qty": 117599,
+"read_at_ist": "09:09:54",
+"official_open": 3379.0,
+"miss_rs": 0.0
+},
+{
+"date": "2026-10-26",
+"preopen_price": 3213.0,
+"previous_close": 3230.8,
+"buy_qty": 22990,
+"sell_qty": 69076,
+"read_at_ist": "09:09:18",
+"official_open": 3213.0,
+"miss_rs": 0.0
+},
+{
+"date": "2026-10-23",
+"preopen_price": 3270.0,
+"previous_close": 3265.0,
+"buy_qty": 34650,
+"sell_qty": 65049,
+"read_at_ist": "09:09:06",
+"official_open": 3270.0,
+"miss_rs": 0.0
+},
+{
+"date": "2026-10-22",
+"preopen_price": 3247.0,
+"previous_close": 3248.3,
+"buy_qty": 17768,
+"sell_qty": 60699,
+"read_at_ist": "09:08:36",
+"official_open": 3247.0,
+"miss_rs": 0.0
+},
+{
+"date": "2026-10-21",
+"preopen_price": 3360.0,
+"previous_close": 3336.0,
+"buy_qty": 27665,
+"sell_qty": 104549,
+"read_at_ist": "09:08:43",
+"official_open": 3360.0,
+"miss_rs": 0.0
+},
+{
+"date": "2026-10-19",
+"preopen_price": 3363.0,
+"previous_close": 3363.0,
+"buy_qty": 29576,
+"sell_qty": 97242,
+"read_at_ist": "09:09:20",
+"official_open": 3363.0,
+"miss_rs": 0.0
+},
+{
+"date": "2026-10-16",
+"preopen_price": 3450.0,
+"previous_close": 3428.0,
+"buy_qty": 53325,
+"sell_qty": 146269,
+"read_at_ist": "09:09:00",
+"official_open": 3450.0,
+"miss_rs": 0.0
+},
+{
+"date": "2026-10-15",
+"preopen_price": 3342.0,
+"previous_close": 3338.0,
+"buy_qty": 37790,
+"sell_qty": 128936,
+"read_at_ist": "09:09:34",
+"official_open": 3342.0,
+"miss_rs": 0.0
+}
+]

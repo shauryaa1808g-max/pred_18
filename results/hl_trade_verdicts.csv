@@ -1,0 +1,9 @@
+rule,primary_variant,verdict,final_n_trades,final_mean_gross_pct,final_mean_net_pct,final_holm_hac,final_holm_placebo_A,final_holm_placebo_B,cond_final_net_pos_and_holm,cond_placebo_both,cond_val_dev_net_pos,cond_F1_net_pos,cond_cas_not_sig_neg,model_variant_no_placebo
+R1,R1_k1.0,not found,86,-0.3047965681156548,-0.4047965681156549,1.0,1.0,1.0,False,False,False,False,True,False
+R2,R2_k1.0,not found,95,-0.2210114161226756,-0.3210114161226757,1.0,1.0,1.0,False,False,False,False,False,False
+R3,R3_z1.5,not found,45,-0.1853016131064719,-0.285301613106472,1.0,1.0,1.0,False,False,False,False,True,False
+R4,R4a,descriptive,246,0.1391719915505167,0.0391719915505166,1.0,1.0,1.0,False,False,True,True,True,False
+R5,R5_z1.0,not found,56,0.0836390500447665,-0.0163609499552335,1.0,1.0,1.0,False,False,False,False,True,False
+R6,R6_long_s1_t2,not found,320,-0.0587511905447176,-0.1587511905447176,1.0,1.0,1.0,False,False,False,False,True,False
+R7,R7_post_q25,not found,85,-0.3082547851656966,-0.4082547851656967,1.0,1.0,1.0,False,False,False,False,True,True
+R8,R8_post_q75,not found,78,-0.1873695622689501,-0.2873695622689501,1.0,1.0,1.0,False,False,False,False,True,True

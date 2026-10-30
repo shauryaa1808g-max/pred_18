@@ -1,0 +1,14 @@
+[
+{
+"date": "2026-10-14",
+"open": 3375.4,
+"high": 3408.3,
+"low": 3320.0,
+"close": 3338.0,
+"volume": 3001424,
+"r_pct": -1.108,
+"abs_r_over_sigma": 0.45,
+"scenario": "base",
+"source": "NSE CM UDiFF bhavcopy 2026-10-14"
+}
+]

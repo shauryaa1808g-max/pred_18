@@ -1,0 +1,221 @@
+check,date,variant,phase,quantile,live,walk_forward,abs_diff_rs
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_a,pre,H q5,2906.62,2906.617274210052,0.0027257899478172476
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_a,pre,H q25,2921.28,2921.2667513240085,0.013248675991690106
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_a,pre,H q50,2941.86,2941.819221106092,0.04077889390828204
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_a,pre,H q75,2973.87,2969.016449624008,4.853550375991745
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_a,pre,H q95,3064.52,3064.362235503372,0.15776449662780578
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_a,pre,L q5,2806.48,2806.568236461293,0.08823646129303597
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_a,pre,L q25,2846.02,2846.073736712641,0.05373671264123914
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_a,pre,L q50,2873.57,2873.600997112105,0.030997112104614644
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_a,pre,L q75,2891.81,2890.0954007201685,1.7145992798314182
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_a,pre,L q95,2913.65,2909.7617101790343,3.888289820965838
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_a,post,H q5,2919.0,2919.0,0.0
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_a,post,H q25,2934.96,2935.145026121332,0.18502612133215735
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_a,post,H q50,2946.83,2947.774406023443,0.9444060234432072
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_a,post,H q75,2970.86,2972.899153908533,2.0391539085330805
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_a,post,H q95,3040.43,3040.2636282649705,0.16637173502931546
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_a,post,L q5,2803.91,2804.059163280548,0.1491632805482368
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_a,post,L q25,2861.37,2861.446118085187,0.07611808518731777
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_a,post,L q50,2885.37,2886.581982917809,1.2119829178091095
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_a,post,L q75,2899.95,2899.979444696397,0.029444696397149528
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_a,post,L q95,2916.14,2916.147402381807,0.0074023818069690606
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_b,pre,H q5,2904.11,2904.104673822762,0.005326177238202945
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_b,pre,H q25,2920.18,2920.1614714420407,0.018528557959143654
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_b,pre,H q50,2940.25,2940.216780720683,0.033219279317108885
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_b,pre,H q75,2968.6,2966.149261598968,2.4507384010316855
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_b,pre,H q95,3048.04,3047.8952311433195,0.14476885668045725
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_b,pre,L q5,2797.87,2797.964793397693,0.0947933976931381
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_b,pre,L q25,2847.66,2847.7145887699976,0.05458876999773565
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_b,pre,L q50,2873.68,2873.7050573538263,0.025057353826468898
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_b,pre,L q75,2893.32,2892.2944559247326,1.0255440752675895
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_b,pre,L q95,2914.75,2912.411576989131,2.3384230108690645
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_b,post,H q5,2919.0,2919.0,0.0
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_b,post,H q25,2934.02,2934.1682407982657,0.14824079826576053
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_b,post,H q50,2946.9,2947.6471927897924,0.7471927897922797
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_b,post,H q75,2971.58,2973.191286481676,1.6112864816759611
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_b,post,H q95,3038.66,3038.4979643846186,0.16203561538122813
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_b,post,L q5,2802.44,2802.5872910946687,0.147291094668617
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_b,post,L q25,2861.86,2861.934371422841,0.07437142284106812
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_b,post,L q50,2885.65,2886.162234339373,0.5122343393727533
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_b,post,L q75,2901.91,2901.9355201882872,0.025520188287373458
+"analog_forecast(date, open) vs walk-forward row",2025-12-01,B_k80_b,post,L q95,2916.61,2916.611181580605,0.0011815806046797661
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_a,pre,H q5,3275.31,3275.3351223616173,0.025122361617377464
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_a,pre,H q25,3315.4,3315.251788537874,0.14821146212625536
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_a,pre,H q50,3354.68,3354.34924909054,0.33075090945976626
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_a,pre,H q75,3385.29,3387.3030804061164,2.013080406116387
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_a,pre,H q95,3455.04,3454.250021184525,0.789978815475024
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_a,pre,L q5,3157.3,3157.8485280501723,0.5485280501720808
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_a,pre,L q25,3218.9,3219.18134413652,0.28134413651969226
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_a,pre,L q50,3249.3,3250.512315154264,1.212315154263706
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_a,pre,L q75,3277.7,3279.542575547365,1.8425755473649588
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_a,pre,L q95,3300.79,3300.7107772587824,0.07922274121756345
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_a,post,H q5,3305.07,3305.0356656612057,0.03433433879445147
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_a,post,H q25,3328.41,3328.9234122285684,0.5134122285685407
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_a,post,H q50,3351.56,3353.032230040756,1.4722300407561306
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_a,post,H q75,3395.87,3394.1216398948004,1.748360105199481
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_a,post,H q95,3451.64,3442.290861183305,9.349138816694904
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_a,post,L q5,3135.53,3183.214490110299,47.68449011029861
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_a,post,L q25,3239.01,3239.6678345306764,0.6578345306761548
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_a,post,L q50,3268.42,3268.619259139349,0.19925913934912387
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_a,post,L q75,3284.93,3285.026012571097,0.09601257109716244
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_a,post,L q95,3297.56,3297.5760743995666,0.01607439956660528
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_b,pre,H q5,3277.92,3277.942383666312,0.022383666311725392
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_b,pre,H q25,3304.96,3304.8611690000102,0.0988309999897865
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_b,pre,H q50,3331.84,3331.6119417830564,0.22805821694373662
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_b,pre,H q75,3369.3,3369.150203530371,0.1497964696291092
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_b,pre,H q95,3451.21,3450.437704195792,0.77229580420817
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_b,pre,L q5,3140.4,3141.012819792627,0.6128197926268513
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_b,pre,L q25,3214.32,3214.6184419996275,0.2984419996273573
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_b,pre,L q50,3247.02,3247.706314197526,0.6863141975259168
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_b,pre,L q75,3275.25,3276.187408633839,0.9374086338389134
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_b,pre,L q95,3302.16,3302.072535629321,0.08746437067884472
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_b,post,H q5,3302.2,3302.59028480465,0.3902848046500367
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_b,post,H q25,3321.02,3322.210147161996,1.1901471619958102
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_b,post,H q50,3342.77,3344.461045416261,1.691045416261204
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_b,post,H q75,3383.45,3384.2210080962,0.7710080962001484
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_b,post,H q95,3449.8,3445.739227358343,4.060772641656968
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_b,post,L q5,3141.01,3151.284882836111,10.274882836110919
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_b,post,L q25,3226.54,3227.0504419445,0.510441944500144
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_b,post,L q50,3261.53,3261.7763667607333,0.24636676073305352
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_b,post,L q75,3279.82,3279.9454234678474,0.12542346784721303
+"analog_forecast(date, open) vs walk-forward row",2026-09-01,B_k80_b,post,L q95,3296.95,3296.969710029873,0.019710029873294843
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_a,pre,H q5,3371.63,3371.634123274683,0.004123274683024647
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_a,pre,H q25,3405.63,3405.630087824954,8.782495388004463e-05
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_a,pre,H q50,3427.9,3426.1988082597068,1.701191740293325
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_a,pre,H q75,3457.48,3453.839997640431,3.6400023595688253
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_a,pre,H q95,3529.71,3526.211045343152,3.4989546568481273
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_a,pre,L q5,3249.93,3249.945823285126,0.015823285126316478
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_a,pre,L q25,3319.33,3319.339576622145,0.00957662214523225
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_a,pre,L q50,3345.61,3344.8037628610964,0.8062371389037253
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_a,pre,L q75,3366.77,3366.7729713614385,0.0029713614385400433
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_a,pre,L q95,3390.96,3390.9568705054694,0.0031294945306399313
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_a,post,H q5,3378.68,3378.6774648671008,0.002535132899083692
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_a,post,H q25,3399.64,3399.6408406491623,0.0008406491624555201
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_a,post,H q50,3415.6,3415.602109106076,0.0021091060762046254
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_a,post,H q75,3454.98,3454.9822563895304,0.0022563895304301695
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_a,post,H q95,3513.48,3513.4822342032026,0.0022342032025335357
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_a,post,L q5,3250.94,3250.939322803927,0.0006771960729565762
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_a,post,L q25,3313.92,3313.921712003194,0.0017120031939157343
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_a,post,L q50,3341.96,3341.962424467454,0.002424467454147816
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_a,post,L q75,3358.41,3358.409768573398,0.0002314266016583133
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_a,post,L q95,3370.68,3370.682255066742,0.0022550667422365223
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_b,pre,H q5,3368.54,3368.8493569553825,0.3093569553825546
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_b,pre,H q25,3396.83,3397.7070496936003,0.8770496936003838
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_b,pre,H q50,3422.58,3422.9352486400167,0.3552486400167254
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_b,pre,H q75,3460.25,3459.5934902826407,0.6565097173593131
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_b,pre,H q95,3538.41,3537.167219122058,1.242780877941641
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_b,pre,L q5,3229.42,3232.8550450025546,3.4350450025544887
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_b,pre,L q25,3306.8,3308.8935577775187,2.0935577775185266
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_b,pre,L q50,3340.52,3340.9704580006323,0.4504580006323522
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_b,pre,L q75,3366.41,3366.473650992776,0.0636509927762745
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_b,pre,L q95,3394.76,3394.1263619094416,0.6336380905586338
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_b,post,H q5,3376.58,3377.042220924581,0.4622209245812883
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_b,post,H q25,3393.47,3394.838410621951,1.3684106219511705
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_b,post,H q50,3413.59,3414.0380147759706,0.4480147759704778
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_b,post,H q75,3451.05,3451.9273874619644,0.8773874619641902
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_b,post,H q95,3514.87,3514.569140621941,0.30085937805870344
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_b,post,L q5,3224.01,3224.0074933274072,0.0025066725929718814
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_b,post,L q25,3301.03,3301.0268691671367,0.003130832863462274
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_b,post,L q50,3335.84,3335.833779918538,0.006220081462288363
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_b,post,L q75,3355.62,3355.617724189713,0.0022758102868465357
+"analog_forecast(date, open) vs walk-forward row",2026-10-14,B_k80_b,post,L q95,3372.37,3372.368150882926,0.0018491170740162488
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_a,pre,H q5,3310.28,3310.295486064297,0.015486064296965196
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_a,pre,H q25,3357.56,3357.5487444686614,0.011255531338520086
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_a,pre,H q50,3380.56,3378.344617127127,2.2153828728728513
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_a,pre,H q75,3419.16,3419.103464959,0.05653504099973361
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_a,pre,H q95,3484.26,3484.149353311911,0.11064668808921851
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_a,pre,L q5,3202.48,3202.57607439033,0.09607439033015908
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_a,pre,L q25,3271.51,3269.086645838003,2.423354161997395
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_a,pre,L q50,3303.18,3302.239103384049,0.9408966159508054
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_a,pre,L q75,3328.53,3328.2761720864496,0.25382791355059453
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_a,pre,L q95,3359.22,3359.2082391770527,0.011760822947053384
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_a,post,H q5,3342.0,3342.0,0.0
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_a,post,H q25,3357.36,3357.366258677446,0.006258677445657668
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_a,post,H q50,3385.29,3384.350188493641,0.9398115063590922
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_a,post,H q75,3417.59,3414.737262156131,2.852737843869363
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_a,post,H q95,3489.26,3489.2847413933496,0.024741393349358987
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_a,post,L q5,3239.44,3239.417610206608,0.022389793391994317
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_a,post,L q25,3281.44,3284.6128152274428,3.1728152274426975
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_a,post,L q50,3311.71,3312.1579747503547,0.4479747503546605
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_a,post,L q75,3325.73,3326.4440202245737,0.7140202245736873
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_a,post,L q95,3341.66,3341.662854829593,0.002854829593161412
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_b,pre,H q5,3331.56,3329.434370081444,2.1256299185561147
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_b,pre,H q25,3358.1,3358.033769544203,0.06623045579681275
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_b,pre,H q50,3382.19,3381.776678545274,0.41332145472597404
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_b,pre,H q75,3416.94,3417.1031420860827,0.1631420860826438
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_b,pre,H q95,3490.74,3489.981091127277,0.7589088727227136
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_b,pre,L q5,3193.85,3195.390807633288,1.5408076332882956
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_b,pre,L q25,3268.08,3267.4611414232954,0.618858576704497
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_b,pre,L q50,3302.53,3302.178501914695,0.3514980853051384
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_b,pre,L q75,3329.02,3328.8127084124053,0.20729158759468191
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_b,pre,L q95,3358.82,3358.8686527037607,0.04865270376058106
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_b,post,H q5,3342.81,3342.626373739909,0.1836262600909322
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_b,post,H q25,3358.4,3358.1717297192986,0.22827028070150845
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_b,post,H q50,3378.7,3379.888067218348,1.1880672183483512
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_b,post,H q75,3413.24,3413.357600133488,0.11760013348839493
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_b,post,H q95,3476.03,3478.9910773212714,2.9610773212712047
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_b,post,L q5,3199.58,3199.5597776631525,0.020222336847382394
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_b,post,L q25,3271.09,3271.3958325839994,0.30583258399929036
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_b,post,L q50,3304.55,3304.5843290106027,0.03432901060250515
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_b,post,L q75,3323.19,3323.25747471157,0.06747471156995744
+"analog_forecast(date, open) vs walk-forward row",2026-10-15,B_k80_b,post,L q95,3339.53,3339.5333311986337,0.00333119863353204
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_a,pre,H q5,3310.45,3310.4536959081006,0.003695908100780798
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_a,pre,H q25,3324.94,3324.936987527436,0.003012472564023483
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_a,pre,H q50,3362.46,3362.4466483489905,0.013351651009543275
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_a,pre,H q75,3391.82,3391.801967910275,0.01803208972523862
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_a,pre,H q95,3505.65,3505.6029310367467,0.047068963253423135
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_a,pre,L q5,3196.73,3196.7526703651843,0.022670365184239927
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_a,pre,L q25,3253.73,3253.747389482665,0.017389482664839306
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_a,pre,L q50,3278.8,3278.806543182862,0.006543182861605601
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_a,pre,L q75,3308.5,3308.498931943397,0.0010680566028895555
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_a,pre,L q95,3331.75,3331.742287555559,0.007712444441040134
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_a,post,H q5,3317.0,3317.0,0.0
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_a,post,H q25,3332.11,3332.071173571436,0.03882642856433449
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_a,post,H q50,3360.76,3360.6531484029283,0.10685159707190905
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_a,post,H q75,3394.51,3394.3249006343576,0.18509936564259988
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_a,post,H q95,3459.46,3459.119053515382,0.3409464846181436
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_a,post,L q5,3214.13,3214.3722387503926,0.24223875039251652
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_a,post,L q25,3256.44,3256.584216594603,0.14421659460276715
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_a,post,L q50,3284.74,3284.8170420808347,0.07704208083487174
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_a,post,L q75,3298.19,3298.236976655344,0.04697665534376938
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_a,post,L q95,3314.94,3314.943478703293,0.0034787032927852124
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_b,pre,H q5,3305.19,3305.194990263476,0.004990263475974643
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_b,pre,H q25,3327.44,3327.4376588339405,0.0023411660595229478
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_b,pre,H q50,3351.73,3351.7176807705137,0.012319229486365657
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_b,pre,H q75,3385.15,3385.1289759342203,0.021024065779783996
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_b,pre,H q95,3464.39,3464.3564931144865,0.03350688551336134
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_b,pre,L q5,3181.38,3181.414669011908,0.034669011907681124
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_b,pre,L q25,3248.71,3248.726530647623,0.01653064762285794
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_b,pre,L q50,3276.72,3276.7255184600235,0.005518460023722582
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_b,pre,L q75,3304.01,3304.008669252163,0.0013307478370734316
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_b,pre,L q95,3329.58,3329.5753103419606,0.0046896580392967735
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_b,post,H q5,3317.5,3317.4998590561804,0.00014094381958784652
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_b,post,H q25,3332.34,3332.3019107422065,0.038089257793672004
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_b,post,H q50,3354.92,3354.8274427874258,0.09255721257432015
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_b,post,H q75,3387.98,3387.81335248721,0.16664751278995027
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_b,post,H q95,3450.94,3450.6118462002705,0.3281537997295345
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_b,post,L q5,3188.92,3189.2172166550804,0.29721665508031947
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_b,post,L q25,3252.31,3252.458193723917,0.14819372391684738
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_b,post,L q50,3282.06,3282.143211549021,0.08321154902114358
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_b,post,L q75,3298.3,3298.348776896155,0.048776896154777205
+"analog_forecast(date, open) vs walk-forward row",2026-08-19,B_k80_b,post,L q95,3314.38,3314.38175950476,0.0017595047597751545
+"baseline in hl5 result vs hl_model.hl_forecast, 16 Oct",2026-10-16,baseline,pre_open,high q5,3421.15,3421.15,0.0
+"baseline in hl5 result vs hl_model.hl_forecast, 16 Oct",2026-10-16,baseline,pre_open,high q25,3449.38,3449.38,0.0
+"baseline in hl5 result vs hl_model.hl_forecast, 16 Oct",2026-10-16,baseline,pre_open,high q50,3475.01,3475.01,0.0
+"baseline in hl5 result vs hl_model.hl_forecast, 16 Oct",2026-10-16,baseline,pre_open,high q75,3512.63,3512.63,0.0
+"baseline in hl5 result vs hl_model.hl_forecast, 16 Oct",2026-10-16,baseline,pre_open,high q95,3590.57,3590.57,0.0
+"baseline in hl5 result vs hl_model.hl_forecast, 16 Oct",2026-10-16,baseline,pre_open,low q5,3268.73,3268.73,0.0
+"baseline in hl5 result vs hl_model.hl_forecast, 16 Oct",2026-10-16,baseline,pre_open,low q25,3351.83,3351.83,0.0
+"baseline in hl5 result vs hl_model.hl_forecast, 16 Oct",2026-10-16,baseline,pre_open,low q50,3390.07,3390.07,0.0
+"baseline in hl5 result vs hl_model.hl_forecast, 16 Oct",2026-10-16,baseline,pre_open,low q75,3418.79,3418.79,0.0
+"baseline in hl5 result vs hl_model.hl_forecast, 16 Oct",2026-10-16,baseline,pre_open,low q95,3449.85,3449.85,0.0
+"baseline in hl5 result vs hl_model.hl_forecast, 16 Oct",2026-10-16,baseline,post_open,high q5,3450.95,3450.95,0.0
+"baseline in hl5 result vs hl_model.hl_forecast, 16 Oct",2026-10-16,baseline,post_open,high q25,3467.62,3467.62,0.0
+"baseline in hl5 result vs hl_model.hl_forecast, 16 Oct",2026-10-16,baseline,post_open,high q50,3488.48,3488.48,0.0
+"baseline in hl5 result vs hl_model.hl_forecast, 16 Oct",2026-10-16,baseline,post_open,high q75,3526.22,3526.22,0.0
+"baseline in hl5 result vs hl_model.hl_forecast, 16 Oct",2026-10-16,baseline,post_open,high q95,3591.49,3591.49,0.0
+"baseline in hl5 result vs hl_model.hl_forecast, 16 Oct",2026-10-16,baseline,post_open,low q5,3294.26,3294.26,0.0
+"baseline in hl5 result vs hl_model.hl_forecast, 16 Oct",2026-10-16,baseline,post_open,low q25,3373.59,3373.59,0.0
+"baseline in hl5 result vs hl_model.hl_forecast, 16 Oct",2026-10-16,baseline,post_open,low q50,3409.87,3409.87,0.0
+"baseline in hl5 result vs hl_model.hl_forecast, 16 Oct",2026-10-16,baseline,post_open,low q75,3429.64,3429.64,0.0
+"baseline in hl5 result vs hl_model.hl_forecast, 16 Oct",2026-10-16,baseline,post_open,low q95,3447.12,3447.12,0.0

@@ -1,0 +1,76 @@
+{
+ "as_of": "2026-10-17",
+ "note": "availability only; no predictive claim",
+ "items": [
+  {
+   "id": 1,
+   "item": "NSE pre-open market history (IEP path, buy/sell totals, indicative volume)",
+   "reachable": "live snapshot only",
+   "url_pattern": "https://www.nseindia.com/api/market-data-pre-open?key=ALL (cookie warm-up; latest pre-open only; date parameter ignored)",
+   "history": "none free; own log from 2026-10-19; 2 snapshots in repo",
+   "terms": "unofficial NSE site API; NSE Data & Analytics sells feeds (price not found); vendor claims untested",
+   "effort": "S to log; about 5 months to n=100",
+   "verification": "NSE daily-report catalogue (9 CM files) has no pre-open file; MA and PR bhavcopy files checked; date parameter returned identical snapshot"
+  },
+  {
+   "id": 2,
+   "item": "Longer intraday history for BSE",
+   "reachable": "yes",
+   "url_pattern": "https://api.upstox.com/v3/historical-candle/NSE_EQ%7CINE118H01025/minutes/{1|15}/{to}/{from} (one month per request)",
+   "history": "1-min and 15-min from 2022-01-03; 1,187 sessions fetched at 15-min (29,555 bars)",
+   "terms": "docs say bearer token required; endpoint answered without one on 2026-10-17; tolerated not guaranteed; no redistribution; Yahoo: 1-min last 30 days (7-day windows), 15-min 60 sessions, 60-min 730 sessions",
+   "effort": "done",
+   "verification": "daily H/L/O equal NSE official on 347/347 sessions since 2025-05-23; close equal on 52/52 since 2026-08-03; adjusted-era median error 0.02%"
+  },
+  {
+   "id": 3,
+   "item": "India VIX and Nifty intraday history",
+   "reachable": "yes",
+   "url_pattern": "same Upstox endpoint with NSE_INDEX%7CIndia%20VIX / NSE_INDEX%7CNifty%2050 / NSE_INDEX%7CNifty%20Bank",
+   "history": "15-min bars from 2022-01-03: India VIX 29,646 rows and Nifty 50 29,649 rows, 1,187 sessions each (fetched)",
+   "terms": "as above",
+   "effort": "done",
+   "verification": "Nifty 50 2026-10-15 OHLC exact vs NSE ind_close_all file; daily high/low from bars within 0.05 pt on >=99% of 690 sessions 2024-2026 but bars understate the range in 2022-2023 (high below official on 93% / 47% of sessions, ~0.6 pt); VIX open/high/low within 0.005 on 95% of 1,184 sessions, close looser"
+  },
+  {
+   "id": 4,
+   "item": "GIFT Nifty pre-open levels",
+   "reachable": "live field null on Saturday; NSE IX site API reachable, history queries returned no rows",
+   "url_pattern": "https://www.nseindia.com/api/marketStatus (giftnifty, indicativenifty50); https://www.nseix.com/api/historical-derivative?... (anonymous page token)",
+   "history": "none verified",
+   "terms": "NSE IX terms not read; SGX Nifty to GIFT Nifty splice July 2023",
+   "effort": "M to log; history X",
+   "verification": "not verifiable"
+  },
+  {
+   "id": 5,
+   "item": "Option chain history for BSE and F&O expiry calendar",
+   "reachable": "live chain yes (option-chain-v3); history only end-of-day bhavcopy",
+   "url_pattern": "https://www.nseindia.com/api/option-chain-v3?type=Equity&symbol=BSE&expiry=DD-Mon-YYYY ; https://nsearchives.nseindia.com/content/fo/BhavCopy_NSE_FO_0_0_0_YYYYMMDD_F_0000.csv.zip",
+   "history": "464 sessions from 2024-11-29 (BSE F&O listing); expiry: last Thursday to 2025-08-28, last Tuesday from 2025-09-30",
+   "terms": "NSE site terms",
+   "effort": "expiry calendar done; chain logger done",
+   "verification": "3 upcoming expiries on NSE live list match the pattern"
+  },
+  {
+   "id": 6,
+   "item": "Results / board-meeting calendar and index rebalance dates",
+   "reachable": "yes",
+   "url_pattern": "https://www.nseindia.com/api/event-calendar?symbol=BSE ; corporate-board-meetings ; corporate-announcements ; https://niftyindices.com/Press_Release/ind_prsDDMMYYYY.pdf ; https://www.msci.com/eqb/pressreleases/archive/ir_dates.pdf",
+   "history": "47 calendar rows since 2017-02; 18 results dates since 2022; Q2 FY27 board 2026-11-04 confirmed (signed letter 2026-10-13 + NSE feed + NSE calendar); Nifty 50 inclusion effective 2026-09-30 (NSE Indices release 2026-08-10, posted ~20:15 IST); MSCI Nov 2026 review announce 2026-11-11 effective 2026-12-01",
+   "terms": "public exchange filings",
+   "effort": "done",
+   "verification": "7 dates agree with data/results_dates.csv; 19 filing times vs PDF file-name stamps (13 exact, 6 within 62-239 s)"
+  },
+  {
+   "id": 7,
+   "item": "FII/DII daily flows with dates",
+   "reachable": "cash flows latest day only; participant-wise F&O positions with history",
+   "url_pattern": "https://www.nseindia.com/api/fiidiiTradeReact (latest only) ; https://nsearchives.nseindia.com/content/nsccl/fao_participant_{oi|vol}_DDMMYYYY.csv ; https://nsearchives.nseindia.com/content/fo/fii_stats_DD-Mon-YYYY.xls",
+   "history": "participant files exist from at least 2012-01; 20 sessions fetched; posted 18:35-20:29 IST same day",
+   "terms": "public NSE archives",
+   "effort": "participant backfill S; cash flows log from now",
+   "verification": "FII row equals fii_stats on 4 categories x 2 dates; Client+DII+FII+Pro=TOTAL within 1 contract"
+  }
+ ]
+}
