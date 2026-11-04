@@ -1,0 +1,2 @@
+sha256 of the text of research/hl/D_features.md from '## 0. Pre-fixed section' to the end of Section 0 as written at 2026-10-16T08:19:13Z (own record, not an independent timestamp): 1274b181b0e084066db1f05698009441570cf5d84dfcc186ae7ba3ce84c83239
+(the hashed text starts at the heading '## 0. Pre-fixed section' and is 14864 characters long; later sections are appended after it)

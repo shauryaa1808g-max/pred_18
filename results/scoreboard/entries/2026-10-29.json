@@ -1,0 +1,68 @@
+{
+ "target_session": "2026-10-29",
+ "made_at_ist": "2026-10-29T08:34:45+05:30",
+ "data_through": "2026-10-28",
+ "reference_price": 3485.0,
+ "open": {
+  "sigma_pct": 0.7453451903040181,
+  "price": {
+   "q0.025": 3436.04,
+   "q0.05": 3449.13,
+   "q0.1": 3461.65,
+   "q0.25": 3478.58,
+   "q0.5": 3485.0,
+   "q0.75": 3494.43,
+   "q0.9": 3505.14,
+   "q0.95": 3518.37,
+   "q0.975": 3538.77
+  }
+ },
+ "close": {
+  "sigma_pct": 2.2884759955961482,
+  "price": {
+   "q0.025": 3345.28,
+   "q0.05": 3361.82,
+   "q0.1": 3382.5,
+   "q0.25": 3434.72,
+   "q0.5": 3485.0,
+   "q0.75": 3534.87,
+   "q0.9": 3579.32,
+   "q0.95": 3611.71,
+   "q0.975": 3633.3
+  }
+ },
+ "unchanged_benchmark": 3485.0,
+ "lean": {
+  "us_session_used": "2026-10-28",
+  "sp500_return_pct": 0.2764657257428027,
+  "pred_close_to_close_pct": 0.30063563994841547,
+  "pred_open_to_close_pct": -0.112618145444376,
+  "direction_close": "up",
+  "direction_open_to_close": "down",
+  "strongest_20pct_threshold_abs_pct": 0.27337959459433653,
+  "statement": "a lean, not a prediction: close direction about 55% right on 8 years (unstable by year); the open-to-close paper trade earns about zero after costs",
+  "band_note": "bands are unconditional: after a big S&P move the open band is too narrow"
+ },
+ "paper_trades": {
+  "PT1_every_day": {
+   "side": "short",
+   "enter": "official open",
+   "exit": "official close",
+   "round_trip_cost_pct": 0.1
+  },
+  "PT2_strongest_20pct_only": {
+   "side": "none",
+   "enter": "official open",
+   "exit": "official close",
+   "round_trip_cost_pct": 0.1
+  }
+ },
+ "late_entry": false,
+ "force_gap": false,
+ "data_sha256": {
+  "data/processed/bse_daily.csv": "e7939803bac1621419c3fc9d65df7829921a561ccb8d4d9e0f6b6196135eb627",
+  "data/processed/bse_daily_extra.csv": "9e5247fff3dc3ab030b4d32fc00b206482b4d4010bc3086fa4d4533339eb79cc"
+ },
+ "code_commit": "efa2a1b2d7931850f7b206090d8213b513ddcb9f",
+ "code_tree_dirty": true
+}

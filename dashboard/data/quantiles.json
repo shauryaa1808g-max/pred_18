@@ -1,0 +1,434 @@
+[
+{
+"record": "v1",
+"measure": "open",
+"q": 0.025,
+"price": 3315.34
+},
+{
+"record": "v1",
+"measure": "open",
+"q": 0.05,
+"price": 3333.81
+},
+{
+"record": "v1",
+"measure": "open",
+"q": 0.1,
+"price": 3347.93
+},
+{
+"record": "v1",
+"measure": "open",
+"q": 0.25,
+"price": 3368.22
+},
+{
+"record": "v1",
+"measure": "open",
+"q": 0.5,
+"price": 3375.4
+},
+{
+"record": "v1",
+"measure": "open",
+"q": 0.75,
+"price": 3386.68
+},
+{
+"record": "v1",
+"measure": "open",
+"q": 0.9,
+"price": 3398.4
+},
+{
+"record": "v1",
+"measure": "open",
+"q": 0.95,
+"price": 3413.52
+},
+{
+"record": "v1",
+"measure": "open",
+"q": 0.975,
+"price": 3436.84
+},
+{
+"record": "v1",
+"measure": "close",
+"q": 0.025,
+"price": 3228.78
+},
+{
+"record": "v1",
+"measure": "close",
+"q": 0.05,
+"price": 3246.83
+},
+{
+"record": "v1",
+"measure": "close",
+"q": 0.1,
+"price": 3267.41
+},
+{
+"record": "v1",
+"measure": "close",
+"q": 0.25,
+"price": 3322.33
+},
+{
+"record": "v1",
+"measure": "close",
+"q": 0.5,
+"price": 3375.4
+},
+{
+"record": "v1",
+"measure": "close",
+"q": 0.75,
+"price": 3428.83
+},
+{
+"record": "v1",
+"measure": "close",
+"q": 0.9,
+"price": 3475.37
+},
+{
+"record": "v1",
+"measure": "close",
+"q": 0.95,
+"price": 3507.94
+},
+{
+"record": "v1",
+"measure": "close",
+"q": 0.975,
+"price": 3536.48
+},
+{
+"record": "v1",
+"measure": "high",
+"q": 0.025,
+"price": 3356.23
+},
+{
+"record": "v1",
+"measure": "high",
+"q": 0.05,
+"price": 3368.16
+},
+{
+"record": "v1",
+"measure": "high",
+"q": 0.1,
+"price": 3378.89
+},
+{
+"record": "v1",
+"measure": "high",
+"q": 0.25,
+"price": 3397.35
+},
+{
+"record": "v1",
+"measure": "high",
+"q": 0.5,
+"price": 3423.59
+},
+{
+"record": "v1",
+"measure": "high",
+"q": 0.75,
+"price": 3461.57
+},
+{
+"record": "v1",
+"measure": "high",
+"q": 0.9,
+"price": 3504.53
+},
+{
+"record": "v1",
+"measure": "high",
+"q": 0.95,
+"price": 3543.75
+},
+{
+"record": "v1",
+"measure": "high",
+"q": 0.975,
+"price": 3563.18
+},
+{
+"record": "v1",
+"measure": "low",
+"q": 0.025,
+"price": 3181.67
+},
+{
+"record": "v1",
+"measure": "low",
+"q": 0.05,
+"price": 3213.06
+},
+{
+"record": "v1",
+"measure": "low",
+"q": 0.1,
+"price": 3249.16
+},
+{
+"record": "v1",
+"measure": "low",
+"q": 0.25,
+"price": 3297.54
+},
+{
+"record": "v1",
+"measure": "low",
+"q": 0.5,
+"price": 3336.49
+},
+{
+"record": "v1",
+"measure": "low",
+"q": 0.75,
+"price": 3365.97
+},
+{
+"record": "v1",
+"measure": "low",
+"q": 0.9,
+"price": 3388.04
+},
+{
+"record": "v1",
+"measure": "low",
+"q": 0.95,
+"price": 3397.91
+},
+{
+"record": "v1",
+"measure": "low",
+"q": 0.975,
+"price": 3414.98
+},
+{
+"record": "v2",
+"measure": "open",
+"q": 0.025,
+"price": 3313.74
+},
+{
+"record": "v2",
+"measure": "open",
+"q": 0.05,
+"price": 3332.2
+},
+{
+"record": "v2",
+"measure": "open",
+"q": 0.1,
+"price": 3346.32
+},
+{
+"record": "v2",
+"measure": "open",
+"q": 0.25,
+"price": 3366.6
+},
+{
+"record": "v2",
+"measure": "open",
+"q": 0.5,
+"price": 3373.77
+},
+{
+"record": "v2",
+"measure": "open",
+"q": 0.75,
+"price": 3385.05
+},
+{
+"record": "v2",
+"measure": "open",
+"q": 0.9,
+"price": 3396.76
+},
+{
+"record": "v2",
+"measure": "open",
+"q": 0.95,
+"price": 3411.87
+},
+{
+"record": "v2",
+"measure": "open",
+"q": 0.975,
+"price": 3435.18
+},
+{
+"record": "v2",
+"measure": "close",
+"q": 0.025,
+"price": 3227.06
+},
+{
+"record": "v2",
+"measure": "close",
+"q": 0.05,
+"price": 3245.1
+},
+{
+"record": "v2",
+"measure": "close",
+"q": 0.1,
+"price": 3265.67
+},
+{
+"record": "v2",
+"measure": "close",
+"q": 0.25,
+"price": 3320.56
+},
+{
+"record": "v2",
+"measure": "close",
+"q": 0.5,
+"price": 3373.6
+},
+{
+"record": "v2",
+"measure": "close",
+"q": 0.75,
+"price": 3427.0
+},
+{
+"record": "v2",
+"measure": "close",
+"q": 0.9,
+"price": 3473.52
+},
+{
+"record": "v2",
+"measure": "close",
+"q": 0.95,
+"price": 3506.07
+},
+{
+"record": "v2",
+"measure": "close",
+"q": 0.975,
+"price": 3534.59
+},
+{
+"record": "v2",
+"measure": "high",
+"q": 0.025,
+"price": 3354.44
+},
+{
+"record": "v2",
+"measure": "high",
+"q": 0.05,
+"price": 3366.36
+},
+{
+"record": "v2",
+"measure": "high",
+"q": 0.1,
+"price": 3377.09
+},
+{
+"record": "v2",
+"measure": "high",
+"q": 0.25,
+"price": 3395.53
+},
+{
+"record": "v2",
+"measure": "high",
+"q": 0.5,
+"price": 3421.76
+},
+{
+"record": "v2",
+"measure": "high",
+"q": 0.75,
+"price": 3459.72
+},
+{
+"record": "v2",
+"measure": "high",
+"q": 0.9,
+"price": 3502.66
+},
+{
+"record": "v2",
+"measure": "high",
+"q": 0.95,
+"price": 3541.86
+},
+{
+"record": "v2",
+"measure": "high",
+"q": 0.975,
+"price": 3561.28
+},
+{
+"record": "v2",
+"measure": "low",
+"q": 0.025,
+"price": 3179.97
+},
+{
+"record": "v2",
+"measure": "low",
+"q": 0.05,
+"price": 3211.34
+},
+{
+"record": "v2",
+"measure": "low",
+"q": 0.1,
+"price": 3247.43
+},
+{
+"record": "v2",
+"measure": "low",
+"q": 0.25,
+"price": 3295.78
+},
+{
+"record": "v2",
+"measure": "low",
+"q": 0.5,
+"price": 3334.71
+},
+{
+"record": "v2",
+"measure": "low",
+"q": 0.75,
+"price": 3364.17
+},
+{
+"record": "v2",
+"measure": "low",
+"q": 0.9,
+"price": 3386.23
+},
+{
+"record": "v2",
+"measure": "low",
+"q": 0.95,
+"price": 3396.1
+},
+{
+"record": "v2",
+"measure": "low",
+"q": 0.975,
+"price": 3413.16
+}
+]

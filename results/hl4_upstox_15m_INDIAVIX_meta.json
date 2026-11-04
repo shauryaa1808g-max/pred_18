@@ -1,0 +1,479 @@
+{
+ "source": "api.upstox.com v3 historical-candle, instrument NSE_INDEX%7CIndia%20VIX, unauthenticated public GET",
+ "symbol": "India VIX",
+ "interval_minutes": 15,
+ "window": [
+  "2022-01-03",
+  "2026-10-15"
+ ],
+ "rows": 29646,
+ "sessions": 1187,
+ "csv_sha256": "e6a3ba09efc0a76b48758a6ff1e3ab50a2846edf14e2a5dd90bf4842cd384934",
+ "requests": [
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2022-01-31/2022-01-03",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:28:55+00:00",
+   "bytes": 28843,
+   "sha256": "566316dedf2ecd5028fe858bf4f95689864571e1e4aa954601befdc5d5012726",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2022-02-28/2022-02-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:28:59+00:00",
+   "bytes": 28855,
+   "sha256": "0deb4f98fcd0b24f0fbbb4f3e721aaf0414da870a33734fe58b96427b579c815",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2022-03-31/2022-03-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:29:03+00:00",
+   "bytes": 30637,
+   "sha256": "f440a2d316ecd593027727b95bfb28cf91915ed595f12ad5851958ad9751c316",
+   "bars": 531
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2022-04-30/2022-04-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:29:07+00:00",
+   "bytes": 28516,
+   "sha256": "08682eecb20435936452947bc3992d4cddcbd653202d1d547c6f08873774c537",
+   "bars": 494
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2022-05-31/2022-05-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:29:10+00:00",
+   "bytes": 31495,
+   "sha256": "4cb934a8f210d9c2bff903ed28bdaa495b5494ed2723fed128a8d2eed79db848",
+   "bars": 546
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2022-06-30/2022-06-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:29:14+00:00",
+   "bytes": 32967,
+   "sha256": "27098b9036646385c17841df2d4c1833412a986be14febc629ae6fdd535789dd",
+   "bars": 572
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2022-07-31/2022-07-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:29:17+00:00",
+   "bytes": 31220,
+   "sha256": "1eb13789cdcc09566b5c74fe2135ad0593007c1cd7074cbf4d1384d63f1d3bdc",
+   "bars": 541
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2022-08-31/2022-08-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:29:20+00:00",
+   "bytes": 28862,
+   "sha256": "f5ee4691cf1ece31f281d0cf31be066cbbacce3b4a67c23300a8866874696795",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2022-09-30/2022-09-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:29:24+00:00",
+   "bytes": 31726,
+   "sha256": "139a2ca30bd612aa34e7fffc437b9a3cdda4d473e7b37628b70ae1fd849c1877",
+   "bars": 550
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2022-10-31/2022-10-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:29:28+00:00",
+   "bytes": 26182,
+   "sha256": "581db076e91e6f9b7350b46a668dd3b5c1a8079d751bf9e0e5e669987cfbf8a2",
+   "bars": 454
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2022-11-30/2022-11-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:29:32+00:00",
+   "bytes": 30278,
+   "sha256": "2318eb49eb10ef06f1e707435ed6eb739f953c9d42c71de033d3496bbf9c8c38",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2022-12-31/2022-12-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:29:36+00:00",
+   "bytes": 31732,
+   "sha256": "9ae67fcd30920f998c0e181cb1ee69e8af28e487a20ac151ef0e69ae9ea016b7",
+   "bars": 550
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2023-01-31/2023-01-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:29:39+00:00",
+   "bytes": 30291,
+   "sha256": "9c37630494154b6f39c2d2d137676901a9d52031e374b4748646cdd8683734db",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2023-02-28/2023-02-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:29:42+00:00",
+   "bytes": 28841,
+   "sha256": "95b88927e9990c3142b8395d8668da6bf28049333878113980e3f386755c9c2a",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2023-03-31/2023-03-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:29:47+00:00",
+   "bytes": 30286,
+   "sha256": "a4dcb59104eb6693e855f06a676ad5f0d9998fca44da850150625bb1bb04ecfa",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2023-04-30/2023-04-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:29:50+00:00",
+   "bytes": 24496,
+   "sha256": "9d8925b77749a09317cc93818de33677d54e3698e086b009a4ce5366b7fa8fc5",
+   "bars": 425
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2023-05-31/2023-05-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:29:54+00:00",
+   "bytes": 31737,
+   "sha256": "40780babcca325228ac96b93ceba5c2aa5d8f7f209a13795bd792c89b2eb8868",
+   "bars": 550
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2023-06-30/2023-06-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:29:58+00:00",
+   "bytes": 30274,
+   "sha256": "95f33080fa22765da6b60977291b2e3418a114e92a269cd005f12d4c3449d56f",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2023-07-31/2023-07-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:30:02+00:00",
+   "bytes": 30282,
+   "sha256": "0fae35020cf49303ba9c0ab2d1c682c45bddc5a38e47264f42e13fe12113b455",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2023-08-31/2023-08-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:30:06+00:00",
+   "bytes": 31717,
+   "sha256": "682489a66ca8ec55e03b57da290941797829091cb810d06303c7c28782feb8a7",
+   "bars": 550
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2023-09-30/2023-09-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:30:09+00:00",
+   "bytes": 28868,
+   "sha256": "84be41ea71fa931370de93a77bba427eec5278054b95397380d0677930999207",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2023-10-31/2023-10-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:30:13+00:00",
+   "bytes": 28805,
+   "sha256": "a06e653d5cc085be5a91a2f2d6a3d31cdae28c16f031eb2f6b8b1a801cfa4171",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2023-11-30/2023-11-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:30:17+00:00",
+   "bytes": 29057,
+   "sha256": "ce0b861d63a52890680ec8b06f06892ec5e18f0a9651fe0e4668ce716bc51515",
+   "bars": 504
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2023-12-31/2023-12-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:30:20+00:00",
+   "bytes": 28838,
+   "sha256": "0a97575ea3953b5af776e98b516cabccad756b20e05e7d0be6293a0f4245d042",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2024-01-31/2024-01-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:30:24+00:00",
+   "bytes": 31740,
+   "sha256": "8a216c181e8b99f363956205ce7e0c3b34deca11cb0f27ead8c4eabb8e48e15c",
+   "bars": 550
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2024-02-29/2024-02-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:30:27+00:00",
+   "bytes": 30294,
+   "sha256": "80d108c924552acc4af5673adc3c58e9fad693034ee616bca814cc6538fb4c3f",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2024-03-31/2024-03-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:30:31+00:00",
+   "bytes": 26368,
+   "sha256": "a0770dd063e92dbcf31e0c870736f01f180ca2b2c3714f663cb9d8c3ca0a9811",
+   "bars": 457
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2024-04-30/2024-04-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:30:35+00:00",
+   "bytes": 28841,
+   "sha256": "7545845ef2b278991d5e7f47747eb9731c94eb8e21b78370e82570698c655aad",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2024-05-31/2024-05-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:30:39+00:00",
+   "bytes": 30667,
+   "sha256": "2dd0eb14eb768064b876db1cad0f894ead9c71df3e7125357c875147662b293a",
+   "bars": 532
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2024-06-30/2024-06-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:30:42+00:00",
+   "bytes": 27412,
+   "sha256": "3fa8658b57cab87078fc9a6c0e2b6fd6378ceb776af0970e175fa7bedcfb42f4",
+   "bars": 475
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2024-07-31/2024-07-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:30:46+00:00",
+   "bytes": 31725,
+   "sha256": "28289664ab6b5dc525f18ae1e566958d53f6c4d99bc428eb6425241095652b03",
+   "bars": 550
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2024-08-31/2024-08-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:30:50+00:00",
+   "bytes": 30295,
+   "sha256": "9d75bd59c02ebdbfb7b2369e34debce326b6c68d4fb36218c2e0a028c2ba0119",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2024-09-30/2024-09-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:30:54+00:00",
+   "bytes": 30287,
+   "sha256": "b14450823e53c4a189377894798e383fe318a7ae8dc0c562297039ea160dde23",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2024-10-31/2024-10-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:30:57+00:00",
+   "bytes": 31718,
+   "sha256": "c099fe3a9530cf41a0398169cbd1501a14366eeb0ca0a7df8655094d2eb6d55f",
+   "bars": 550
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2024-11-30/2024-11-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:31:01+00:00",
+   "bytes": 26181,
+   "sha256": "ffcf441849bf646a496daf8f70cd4ca39c5e3d8dcfa0e9a45468fd24ca3f84b2",
+   "bars": 454
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2024-12-31/2024-12-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:31:05+00:00",
+   "bytes": 30274,
+   "sha256": "a058a9fc5ecb1a7efff48e625167b5bf8ce1160b96d13b8ad4c2aa4566a2fc1f",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2025-01-31/2025-01-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:31:09+00:00",
+   "bytes": 33178,
+   "sha256": "58c07659dac1d4121dca74541066d9ad249e62676c22460a9321a2abe2a6a43d",
+   "bars": 575
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2025-02-28/2025-02-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:31:13+00:00",
+   "bytes": 28845,
+   "sha256": "94b0a3b0199a667ee65b19c6e0a3a40e0cc178d0e7a11cbeb86855f0fdf5b418",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2025-03-31/2025-03-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:31:16+00:00",
+   "bytes": 27374,
+   "sha256": "cdeaac9e0c5ba30c6c3918bc2886ab251802f02660de5c05c496e4a8f3f7a106",
+   "bars": 475
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2025-04-30/2025-04-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:31:20+00:00",
+   "bytes": 27517,
+   "sha256": "1b1ea716aad26315237c3a28d59f37a753990ac4e02aa7ab36841c67e641ed7f",
+   "bars": 477
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2025-05-31/2025-05-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:31:23+00:00",
+   "bytes": 30539,
+   "sha256": "2891c540e6f89806f6d57a5693e15f1ba4ae27e2b955af93c4f19ee7b384bab9",
+   "bars": 530
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2025-06-30/2025-06-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:31:27+00:00",
+   "bytes": 30280,
+   "sha256": "f659d6027bf9048ae9501c922506e17bb580d2fd6858e4f9c7a2fea086ef0fb5",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2025-07-31/2025-07-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:31:31+00:00",
+   "bytes": 33139,
+   "sha256": "7bc1be226a3926d70dace5139bd106a571c1715a92a6f04cad6bbe6b86d5449d",
+   "bars": 575
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2025-08-31/2025-08-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:31:35+00:00",
+   "bytes": 27411,
+   "sha256": "d1a17b2ef6149c8129c49ded31e8db1324ddfeafa9f5d68702a73d0be4d2d26b",
+   "bars": 475
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2025-09-30/2025-09-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:31:38+00:00",
+   "bytes": 31648,
+   "sha256": "f1bd86a753418ccdccec6ae95b9ba153e4bd429c7d34bb6cc2816f5163aed2d5",
+   "bars": 550
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2025-10-31/2025-10-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:31:41+00:00",
+   "bytes": 29070,
+   "sha256": "594e98559cb1f18623f191bb25b4e6cf5c0b65ea27140a1ac348b332ad7f982a",
+   "bars": 504
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2025-11-30/2025-11-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:31:45+00:00",
+   "bytes": 27395,
+   "sha256": "8f88e065d596fe351ffac1f2f9e4ea28d2b85db24ad45e82739a9d37d842d8e6",
+   "bars": 475
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2025-12-31/2025-12-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:31:49+00:00",
+   "bytes": 30746,
+   "sha256": "6021b00b96916a48d3404b257afad2bbfdd02f0fa78c48e43de9e20ac3ac6a0b",
+   "bars": 550
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2026-01-31/2026-01-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:31:52+00:00",
+   "bytes": 28574,
+   "sha256": "1a5741ca5415a60d335c1ea116bfbd69b3c33bcf2b42f78fb35f676b6cf22392",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2026-02-28/2026-02-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:31:56+00:00",
+   "bytes": 30303,
+   "sha256": "bcddb623d5c7c1051d3821e95677de87175631d5773ddc2079e00a23db69efb5",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2026-03-31/2026-03-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:31:59+00:00",
+   "bytes": 27408,
+   "sha256": "6a32e20c710ddc6b0a7ff70c07c5686ff1c48e6c7f8e955ca5f2eb28a9fbfb3b",
+   "bars": 475
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2026-04-30/2026-04-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:32:03+00:00",
+   "bytes": 28849,
+   "sha256": "662d755bef3c2e957ccb4ca1a9990005cead23be4858e5f50b15bac40dc81d3d",
+   "bars": 500
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2026-05-31/2026-05-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:32:06+00:00",
+   "bytes": 27398,
+   "sha256": "e57efe7117c39f906fbbc8c6923d4b9b16b4bb2938201d2c459b3312ec4d0207",
+   "bars": 475
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2026-06-30/2026-06-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:32:10+00:00",
+   "bytes": 30284,
+   "sha256": "7421af7bd3946eb410bbbae0b10a3419371b1997b780ed5bd4e46baf68691b61",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2026-07-31/2026-07-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:32:14+00:00",
+   "bytes": 33182,
+   "sha256": "cf8d4e30959deb312ee6c12fe4117b865e6ed53911b8ada04e013c5ca368f67b",
+   "bars": 575
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2026-08-31/2026-08-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:32:17+00:00",
+   "bytes": 30273,
+   "sha256": "48bf296645acde346822b8b964fb14977e5b8ca2fe9332732c9b6e0d174aaa81",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2026-09-30/2026-09-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:32:21+00:00",
+   "bytes": 30311,
+   "sha256": "a3865b466df1d1555eb35d2c57e24cd46fbba97cc0ffaa4c58375ab5f3c11dff",
+   "bars": 525
+  },
+  {
+   "url": "https://api.upstox.com/v3/historical-candle/NSE_INDEX%7CIndia%20VIX/minutes/15/2026-10-15/2026-10-01",
+   "http": 200,
+   "retrieved_utc": "2026-10-17T08:32:24+00:00",
+   "bytes": 14443,
+   "sha256": "772464702875b62b8d74b1c1bc6286ec741ad0302c2fd30002312d86a8ca426a",
+   "bars": 250
+  }
+ ],
+ "prices": "as served (BSE: adjusted for later corporate actions; indices unadjusted); volume in shares (indices: 0)"
+}

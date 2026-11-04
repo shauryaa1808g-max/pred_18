@@ -1,0 +1,59 @@
+feature,blocks,timestamp_rule,first_valid,n_non_missing,n_non_missing_final
+lnvix,a,ln India VIX close of session t-1 (NSE index file; value fixed 15:30 IST t-1),2017-02-07,2389,320
+dlnvix,"a,c-loc",ln(VIX t-1 / VIX t-2),2017-02-07,2389,320
+vix_rv_spread,a,"ln(VIX_{t-1}/100/sqrt(252)) - ln(Nifty-50 realised daily vol, 10 sessions to t-1)",2017-02-20,2380,320
+abs_sp,b,"|ln S&P 500| of the last US session dated strictly before the IST date of t (closes 01:30 IST on that date: lag zero); FRED SP500, Yahoo ^GSPC for 13-15 Oct",2017-02-06,2390,320
+lnvixus,b,"ln US VIX close, same date rule (closes ~01:45 IST; lag zero)",2017-02-06,2390,320
+dvixus,"b,b-loc","ln change of US VIX, same date rule",2017-02-06,2390,320
+abs_usdinr,b,"|ln change| of the ECB USD/INR reference rate (14:15 CET fixing, posted 16:00 CET: lag zero), last date strictly before t",2017-02-06,2390,320
+abs_brent,b,"|ln change| Brent (FRED DCOILBRENTEU, EIA: publication lag not provably zero -> value shifted ONE more observation back; > 9 days old = missing)",2017-02-06,2389,319
+abs_dxy,b,"|ln change| broad dollar index (FRED DTWEXBGS, weekly release: shifted one more observation back; > 9 days old = missing)",2017-02-06,2386,316
+abs_us10y,b,"|change| US 10y yield (FRED DGS10, released next day: shifted one more observation back; > 9 days old = missing)",2017-02-06,2390,320
+nifty_lnrange,c,"ln ln(H/L) of Nifty 50, session t-1 (NSE index file)",2017-02-07,2389,320
+nifty_abs,c,|Nifty 50 close-to-close log return| of t-1,2017-02-07,2389,320
+bank_lnrange,c,"ln ln(H/L) of Nifty Bank, session t-1",2017-02-07,2389,320
+br_tails,c,"share of liquid EQ names with |return| >= 5% on t-1 (NSE bhavcopy, ~16:34 IST t-1)",2017-02-07,2389,320
+br_absadv,c,|advancing share - 0.5| on t-1,2017-02-07,2389,320
+peers_lnrange_rel,c,"median over peers (CDSL MCX ANGELONE CAMS IEX KFINTECH NUVAMA MOTILALOFS ANANDRATHI listed at t-1, >= 3) of ln ln(H/L)_{t-1} minus the peer's own 60-session mean to t-1",2017-08-11,2263,320
+mkt_turn_z,c,z-score of ln(total EQ turnover) on t-1 over the 60 sessions to t-1,2017-04-05,2351,320
+lnrange_y,d,ln ln(H/L) of BSE on t-1 (bhavcopy ~16:34 IST t-1),2017-02-07,2389,320
+absgap_y,d,|opening gap| of BSE on t-1 (ln O/P0 of session t-1),2017-02-07,2389,320
+turn_z60,d,z-score of ln BSE turnover on t-1 over 60 sessions to t-1,2017-04-06,2350,320
+deliv_z60,d,z-score of BSE delivery % on t-1 over 60 sessions to t-1 (delivery file ~18:00 IST t-1; NaN before 2019-2020),2019-11-19,1708,320
+pk10_rel,d,"ln Parkinson vol (10 sessions to t-1) - ln sigma_S6,t",2019-02-15,1890,320
+pk20_rel,d,"ln Parkinson vol (20 sessions to t-1) - ln sigma_S6,t",2019-02-15,1890,320
+dist_hi250,"d,d-loc",adjusted ln close t-1 - max adjusted ln high over the 250 sessions to t-1 (<= 0),2017-08-03,2269,320
+dist_lo250,"d,d-loc",adjusted ln close t-1 - min adjusted ln low over the 250 sessions to t-1 (>= 0),2017-08-03,2269,320
+tue,"e,e-loc",weekday of t (known in advance); Monday is the reference,2017-02-06,2390,320
+wed,"e,e-loc",weekday,2017-02-06,2390,320
+thu,"e,e-loc",weekday,2017-02-06,2390,320
+fri,"e,e-loc",weekday,2017-02-06,2390,320
+month_end,"e,e-loc",t is one of the last two weekdays of its calendar month,2017-02-06,2390,320
+post_hol,"e,e-loc",previous session >= 4 calendar days before t (holiday or long weekend),2017-02-06,2390,320
+lniv,s,ln BSE ATM implied vol from NSE F&O settlement prices of t-1 (src/options_iv.py; data from 2024-11-29),2024-12-02,462,319
+iv_skew,s,"IV(OTM put side) - IV(OTM call side) at the two strikes around the future, t-1",2024-12-02,459,319
+iv_rv_spread,s,"ln(IV_{t-1}/sqrt(252)) - ln(BSE realised daily vol, 20 sessions to t-1)",2024-12-02,462,319
+exp_day,s,t is a BSE F&O expiry date (contract expiries read from data/raw/fo_bse + fill; defined from 2024-11-18),2024-11-18,473,320
+results_next,s,"t is the first session after a results announcement (data/results_dates.csv, announced after market on t-1; defined from 2024-11-13; 7 events)",2024-11-13,475,320
+cap_lnrange,s,"ln ln(H/L) of the Nifty Capital Markets index, t-1 (high/low in the index file from 2024-11-11)",2024-11-12,476,320
+absgap_z,o,"|G_t| / sigma_S6,t, capped at 4; G_t = ln(O_t/P0): official open O_t (NSE pre-open auction, final 09:08 IST); sigma known at the t-1 close",2019-02-15,1890,320
+beyond_any,o,O_t above yesterday's high or below yesterday's low (bonus-adjusted),2017-02-08,2388,320
+orel_abs,o,"|position of O_t in yesterday's range - 0.5|, capped at 2",2017-02-08,2388,320
+sp_ret,b-loc,"signed S&P 500 log return, same date rule as abs_sp",2017-02-06,2390,320
+usdinr_ret,b-loc,signed ln change USD/INR (positive = rupee weaker),2017-02-06,2390,320
+brent_ret,b-loc,signed ln change Brent (shifted one more observation),2017-02-06,2389,319
+dxy_ret,b-loc,signed ln change dollar index (shifted),2017-02-06,2386,316
+us10y_chg,b-loc,signed change US 10y (shifted),2017-02-06,2390,320
+nifty_ret,c-loc,Nifty 50 return of t-1,2017-02-07,2389,320
+bank_ret,c-loc,Nifty Bank return of t-1,2017-02-07,2389,320
+br_adv,c-loc,advancing share - 0.5 on t-1,2017-02-07,2389,320
+peers_ret,c-loc,median peer return on t-1 (each clipped to +-15%),2017-07-03,2291,320
+ret1,d-loc,BSE return of t-1,2017-02-07,2389,320
+ret5,d-loc,ln(adjusted close t-1 / close t-6),2017-02-14,2384,320
+ret20,d-loc,ln(adjusted close t-1 / close t-21),2017-03-08,2369,320
+close_loc_c,d-loc,(C-L)/(H-L) of BSE on t-1 minus 0.5,2017-02-07,2389,320
+streak,d-loc,"signed run length of up / down closes to t-1, capped at +-5",2017-02-07,2389,320
+rel_nifty,d-loc,BSE return minus Nifty 50 return on t-1,2017-02-07,2389,320
+gap_z,o-loc,"G_t / sigma_S6,t capped at +-4 (official open, 09:08 IST)",2019-02-15,1890,320
+orel_c,o-loc,"position of O_t in yesterday's range - 0.5, clipped to +-2",2017-02-08,2388,320
+beyond_signed,o-loc,"+1 if O_t above yesterday's high, -1 if below yesterday's low, else 0",2017-02-08,2388,320

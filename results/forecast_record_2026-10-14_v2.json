@@ -1,0 +1,409 @@
+{
+ "stock": "BSE Ltd",
+ "ticker": "NSE:BSE",
+ "isin": "INE118H01025",
+ "currency": "INR",
+ "exchange_tz": "Asia/Kolkata",
+ "target_session": "2026-10-14",
+ "data_last_session": "2026-10-13",
+ "n_sessions": 2388,
+ "reference_price_P0": 3375.4,
+ "reference_price_status": "OFFICIAL NSE close of 2026-10-13 from BhavCopy_NSE_CM_0_0_0_20261013_F_0000.csv.zip (published ~16:34 IST); equals Google Finance / stockanalysis / Yahoo prints",
+ "information_cutoff_ist": "2026-10-13T22:00:00+05:30",
+ "generated_utc": "2026-10-14T15:29:54+00:00",
+ "selected_models": {
+  "R": "S6",
+  "G": "S4",
+  "I": "S6",
+  "rho": "HAR"
+ },
+ "location_model": "L0 (no model passed its pre-registered gate)",
+ "sigma_forecasts_by_model": {
+  "R": {
+   "S0": 0.026074757922961295,
+   "S1": 0.02284910761207192,
+   "S2": 0.026052175572648953,
+   "S3": 0.025910140272050377,
+   "S4": 0.023578646641656067,
+   "S6": 0.024784572662724557
+  },
+  "G": {
+   "S0": 0.011453016099224661,
+   "S1": 0.008272102717673896,
+   "S2": 0.009705142172598671,
+   "S3": 0.009926609048189284,
+   "S4": 0.008823222565295427,
+   "S6": 0.009253681938378522
+  },
+  "I": {
+   "S0": 0.024078571059258265,
+   "S1": 0.02032086820157672,
+   "S2": 0.022539285854299165,
+   "S3": 0.022539685727401566,
+   "S4": 0.02215797150698723,
+   "S6": 0.022347815413310563
+  }
+ },
+ "log_return_quantiles": {
+  "R": {
+   "q0.025": -0.044942735382837495,
+   "q0.05": -0.039368768764765964,
+   "q0.1": -0.03305040195580459,
+   "q0.25": -0.016380999387691626,
+   "q0.5": -0.0005337881355949546,
+   "q0.75": 0.015170702690601718,
+   "q0.9": 0.028654419527188696,
+   "q0.95": 0.037981022131361564,
+   "q0.975": 0.04608477512468837,
+   "sigma": 0.024784572662724557
+  },
+  "G": {
+   "q0.025": -0.018435734330244796,
+   "q0.05": -0.012879617152197612,
+   "q0.1": -0.008653410267272036,
+   "q0.25": -0.002611495920618066,
+   "q0.5": -0.00048215944707019674,
+   "q0.75": 0.002854941916312716,
+   "q0.9": 0.0063093841498990865,
+   "q0.95": 0.010747548727964922,
+   "q0.975": 0.017555912023575173,
+   "sigma": 0.008823222565295427
+  },
+  "I": {
+   "q0.025": -0.04171148828691017,
+   "q0.05": -0.037256585431990154,
+   "q0.1": -0.028494838056895865,
+   "q0.25": -0.014583428126326885,
+   "q0.5": 0.0,
+   "q0.75": 0.013668804690622427,
+   "q0.9": 0.027159505880715133,
+   "q0.95": 0.034423428261391366,
+   "q0.975": 0.04111058890199518,
+   "sigma": 0.022347815413310563
+  },
+  "rho": {
+   "q0.025": 0.014445740869134983,
+   "q0.05": 0.016047815749062715,
+   "q0.1": 0.017645171867595837,
+   "q0.25": 0.0219020470814017,
+   "q0.5": 0.028202990448591928,
+   "q0.75": 0.037790921401215365,
+   "q0.9": 0.04977297690300809,
+   "q0.95": 0.05665825839315378,
+   "q0.975": 0.06710909016449798,
+   "sigma": 0.03610332036109181
+  }
+ },
+ "price_quantiles": {
+  "R": {
+   "q0.025": 3227.06,
+   "q0.05": 3245.1,
+   "q0.1": 3265.67,
+   "q0.25": 3320.56,
+   "q0.5": 3373.6,
+   "q0.75": 3427.0,
+   "q0.9": 3473.52,
+   "q0.95": 3506.07,
+   "q0.975": 3534.59
+  },
+  "G": {
+   "q0.025": 3313.74,
+   "q0.05": 3332.2,
+   "q0.1": 3346.32,
+   "q0.25": 3366.6,
+   "q0.5": 3373.77,
+   "q0.75": 3385.05,
+   "q0.9": 3396.76,
+   "q0.95": 3411.87,
+   "q0.975": 3435.18
+  },
+  "I": {
+   "q0.025": 3237.5,
+   "q0.05": 3251.96,
+   "q0.1": 3280.58,
+   "q0.25": 3326.53,
+   "q0.5": 3375.4,
+   "q0.75": 3421.85,
+   "q0.9": 3468.33,
+   "q0.95": 3493.62,
+   "q0.975": 3517.06
+  },
+  "rho_pct_of_price": {
+   "q0.025": 1.46,
+   "q0.05": 1.62,
+   "q0.1": 1.78,
+   "q0.25": 2.21,
+   "q0.5": 2.86,
+   "q0.75": 3.85,
+   "q0.9": 5.1,
+   "q0.95": 5.83,
+   "q0.975": 6.94
+  }
+ },
+ "ohlc_bootstrap_log_quantiles": {
+  "G": {
+   "q0.025": -0.018709702279927323,
+   "q0.05": -0.011942838845329495,
+   "q0.1": -0.00605752252719099,
+   "q0.25": -0.00010211864365884957,
+   "q0.5": 0.0025390652491007267,
+   "q0.75": 0.005510807053381275,
+   "q0.9": 0.009519631297136176,
+   "q0.95": 0.01489198827341515,
+   "q0.975": 0.02107202736363286
+  },
+  "Hp": {
+   "q0.025": -0.006230479518085008,
+   "q0.05": -0.0026807267599509403,
+   "q0.1": 0.0004997563590958141,
+   "q0.25": 0.005947496922267916,
+   "q0.5": 0.013641507636648625,
+   "q0.75": 0.024674756801782095,
+   "q0.9": 0.03700989599268875,
+   "q0.95": 0.04813813024352859,
+   "q0.975": 0.053606052412437995
+  },
+  "Lp": {
+   "q0.025": -0.05964064156007013,
+   "q0.05": -0.049825268512968764,
+   "q0.1": -0.03865095499714946,
+   "q0.25": -0.023870101490386667,
+   "q0.5": -0.012128777295753722,
+   "q0.75": -0.003331400201293859,
+   "q0.9": 0.0032035022422934522,
+   "q0.95": 0.006113447139343098,
+   "q0.975": 0.011124119033914519
+  },
+  "R": {
+   "q0.025": -0.04280781576312493,
+   "q0.05": -0.03723384914505339,
+   "q0.1": -0.030915482336092016,
+   "q0.25": -0.014246079767979048,
+   "q0.5": 0.0016011314841176206,
+   "q0.75": 0.01730562231031429,
+   "q0.9": 0.03078933914690127,
+   "q0.95": 0.04011594175107414,
+   "q0.975": 0.04821969474440095
+  }
+ },
+ "ohlc_bootstrap_price_quantiles": {
+  "Hp": {
+   "q0.025": 3354.44,
+   "q0.05": 3366.36,
+   "q0.1": 3377.09,
+   "q0.25": 3395.53,
+   "q0.5": 3421.76,
+   "q0.75": 3459.72,
+   "q0.9": 3502.66,
+   "q0.95": 3541.86,
+   "q0.975": 3561.28
+  },
+  "Lp": {
+   "q0.025": 3179.97,
+   "q0.05": 3211.34,
+   "q0.1": 3247.43,
+   "q0.25": 3295.78,
+   "q0.5": 3334.71,
+   "q0.75": 3364.17,
+   "q0.9": 3386.23,
+   "q0.95": 3396.1,
+   "q0.975": 3413.16
+  }
+ },
+ "ohlc_bootstrap_probabilities": {
+  "P(high > P0)": 0.914,
+  "P(low < P0)": 0.8,
+  "P(high > P0*1.02)": 0.368,
+  "P(low < P0*0.98)": 0.292,
+  "P(high>P0*1.03)": 0.19,
+  "P(low<P0*0.97)": 0.174,
+  "n_draws": 500
+ },
+ "probabilities": {
+  "P(close>P0) [shift only; still NOT a validated directional claim]": 0.486,
+  "P(|R|<0.5%)": 0.186,
+  "P(|R|<1%)": 0.34,
+  "P(R>+2%)": 0.182,
+  "P(R<-2%)": 0.208,
+  "P(R>+4%)": 0.044,
+  "P(R<-4%)": 0.048,
+  "note": "probabilities are model-based on the trailing 500 standardised residuals. Interval coverage was TESTED, not proven: selected R model, Final window n=317, 90% coverage 0.918 (Kupiec p=0.27, but power to reject 0.88 is only ~22%); Dev+Val 90% coverage 0.8815 (Kupiec p=0.017); 50% intervals ran narrow in Final (0.464). Tail and centre masses are not separately validated."
+ },
+ "unconditional_up_frequencies": {
+  "share_up_all": 0.47822445561139026,
+  "share_up_last_565": 0.5309734513274337,
+  "share_up_last_60": 0.48333333333333334,
+  "share_up_wednesdays": 0.4875
+ },
+ "implied_vol_crosscheck": {
+  "last_iv_date": "2026-10-12",
+  "iv_atm_annual": 0.3853803405815213,
+  "implied_daily_sigma": 0.02427667955600187,
+  "model_sigma_R": 0.024784572662724557
+ },
+ "code_commit": "cceffac9b62b3a6be2e4f3df6f0e3e01d100704e",
+ "code_tree_dirty": false,
+ "data_sha256": {
+  "data/processed/bse_daily.csv": "e7939803bac1621419c3fc9d65df7829921a561ccb8d4d9e0f6b6196135eb627",
+  "data/processed/index_daily.csv": "8d85dd7b805d1bd8fc1ab95462d1da1090ebbf91f8c59b1b0ad3d77d43ce00cd",
+  "data/corp_actions_verified.csv": "dbcbdb6a7508378f64d493b400f1f84deac6e254865707566420c3fa07c7bc8d"
+ },
+ "last_bar": {
+  "open": 3332.0,
+  "high": 3403.2,
+  "low": 3290.2,
+  "close": 3375.4,
+  "vol": 4119552.0
+ },
+ "forecast_record_version": "2.0",
+ "market_status_at_forecast": "NSE cash market closed (13-Oct-2026 15:30 IST); no pre-open yet; target session 14-Oct-2026 09:15-15:30 IST (pre-open 09:00-09:08); closing price = closing-auction price since 3-Aug-2026",
+ "horizon": "one session: 2026-10-14 (Wed), open gap G, open-to-close I, close-to-close R, high/low vs P0",
+ "method": "Pre-registered (docs/PREREGISTRATION.md, commit 711805d): filtered-historical-simulation quantiles = sigma_t x median-centred trailing-500 standardised residuals; sigma from S6 (geometric blend of GARCH(1,1)-t and HAR on gap^2+Garman-Klass) for R and I, S4 (HAR-GK) for G, HAR for the range; location L0 (median = P0) because no location model passed its gate; high/low from a joint OHLC bootstrap scaled by the S6 sigma (exploratory, evaluated walk-forward). Parameters refit on all sessions through 2026-10-13.",
+ "predictive_value_statement": {
+  "scale/volatility": "Demonstrated against the pre-registered expanding-RMS benchmark (Final window DM p=0.0006) but NOT distinguishable from a one-parameter rescale of that benchmark in Final (p=0.44) and only weakly better than a trailing-250-day untimed benchmark (p=0.084); evidence of true day-to-day timing is moderate and strongest on the pooled Dev+Val sample.",
+  "direction": "NOT found. Ridge/logit location models failed every pre-registered gate on Validation+Final (OOS R2 negative, accuracy below the best constant). There is insufficient evidence for a reliable directional forecast.",
+  "gap_location": "A positive median gap (+0.3%) held 2019-2025 (post-hoc rule selected it) but disappeared after the closing-auction change of 2026-08-03; the gap median is set to zero by judgement.",
+  "intraday_path": "Not modelled. Conditional descriptions use daily-OHLC frequencies and 36 validated post-CAS 15-minute sessions; first-hour direction did not predict the rest of the day (r=-0.11)."
+ },
+ "scenarios": {
+  "bearish (R <= -1.5%, close <= 3324.8)": {
+   "model_probability": 0.272,
+   "close_p10_p50_p90": [
+    3229.8,
+    3278.1,
+    3320.3
+   ]
+  },
+  "base (-1.5% < R < +1.5%, close 3324.8-3426.0)": {
+   "model_probability": 0.476,
+   "close_p10_p50_p90": [
+    3335.6,
+    3374.3,
+    3412.4
+   ]
+  },
+  "bullish (R >= +1.5%, close >= 3426.0)": {
+   "model_probability": 0.252,
+   "close_p10_p50_p90": [
+    3433.4,
+    3464.2,
+    3534.5
+   ]
+  }
+ },
+ "invalidation_conditions_whole_forecast": [
+  "Session 2026-10-14 is not a normal full trading day (holiday notice, market-wide halt, or BSE Ltd-specific trading halt).",
+  "Official NSE close of 2026-10-13 differs from the provisional 3,375.40 by more than 0.3% (prices are then re-based from the return quantiles; the return forecast itself is unchanged).",
+  "SEBI issues its settlement/CAS circular or a regulator/exchange announces a fee, tax or expiry change before the open: the distribution then no longer applies (event overlay in results/scenarios.json is the only guide, and it is subjective).",
+  "A gap larger than 3 sigma_G (about +/-2.8%) at the open: the stock is in a different information state; condition on the observed open (close = open x exp(I), sigma_I = 2.23%)."
+ ],
+ "event_overlay_subjective": {
+  "p_event=0.00": {
+   "close_quantiles(2.5,5,25,50,75,95,97.5)": [
+    3227.2,
+    3246.9,
+    3322.3,
+    3375.6,
+    3428.9,
+    3507.8,
+    3537.9
+   ],
+   "P(|R|>=4%)": 0.08719
+  },
+  "p_event=0.05": {
+   "close_quantiles(2.5,5,25,50,75,95,97.5)": [
+    3179.8,
+    3237.2,
+    3319.2,
+    3375.6,
+    3432.0,
+    3518.5,
+    3564.9
+   ],
+   "P(|R|>=4%)": 0.11824
+  },
+  "p_event=0.10": {
+   "close_quantiles(2.5,5,25,50,75,95,97.5)": [
+    3149.2,
+    3222.1,
+    3315.9,
+    3375.2,
+    3434.9,
+    3537.9,
+    3598.6
+   ],
+   "P(|R|>=4%)": 0.149395
+  },
+  "p_event=0.15": {
+   "close_quantiles(2.5,5,25,50,75,95,97.5)": [
+    3128.0,
+    3190.2,
+    3310.5,
+    3375.2,
+    3440.0,
+    3560.7,
+    3625.3
+   ],
+   "P(|R|>=4%)": 0.18096
+  }
+ },
+ "known_limitations": [
+  "No order-book, bid-ask, short-interest, securities-lending, FII/DII daily flow or GIFT-Nifty data were available.",
+  "Intraday bars come from Yahoo through a summarising fetch and only descriptively; the gated models use daily exchange data.",
+  "Closing price definition changed on 2026-08-03 (VWAP -> closing auction): only 49 sessions of the new regime exist.",
+  "Prices are price returns (no dividend re-basing); the Rs10 dividend went ex on 2026-07-10, none is due on 2026-10-14.",
+  "Scenario thresholds (+/-1.5%) and the event-hazard overlay are my choices; the probabilities are not calibrated for the three-way partition."
+ ],
+ "reassessment": "Scheduled by the user/analyst only: pre-open indicative price (09:08 IST), 10:15 IST, close. No automatic monitoring exists in this session.",
+ "supersedes_but_does_not_replace": "results/forecast_record_2026-10-14.json",
+ "TIMESTAMP_LIMITATION": "Written and committed AFTER the 2026-10-14 open (sandbox idle overnight). The information set is restricted to <= 2026-10-13 22:00 IST by rule and by instruction to every workstream, not by the clock; v2 is therefore NOT an independently timestamped pre-session forecast. The scorable pre-session forecast of record is v1 (commit e8a0f22, 2026-10-13 21:11 IST). The lead analyst looked at no 14-Oct price, volume or headline before this file was committed.",
+ "inputs_changed_vs_v1": [
+  {
+   "input": "previous US session S&P 500 (7,797.72 at 21:47 IST vs 7,807.24)",
+   "log_move": -0.00122,
+   "shift_gap_log": -0.000482,
+   "shift_close_log": -0.000534,
+   "price_effect_rs": -1.8,
+   "evidence": "research/v2/03_market_linkages.md (walk-forward OOS R2 +7.85% for G, +1.70% for R) reproduced independently in research/v2/verify_linkages.md (WF 7.854%, split 6.785%; misaligned placebo fails; passes the frozen v1 Val+Final gate); slope unstable (0.03 in 2019, 0.68 in 2026) so the effect is bounded by -0.05..-0.10 pp"
+  }
+ ],
+ "inputs_checked_and_not_applied": {
+  "regime_stressed_sigma_x1.045": {
+   "close_quantiles(2.5,5,25,50,75,95,97.5)": [
+    3220.5,
+    3239.4,
+    3318.1,
+    3373.5,
+    3429.3,
+    3512.1,
+    3541.9
+   ]
+  },
+  "events_catalyst_lands_x1.18_to_1.37": {
+   "close_quantiles(2.5,5,25,50,75,95,97.5)": [
+    3201.1,
+    3222.2,
+    3310.8,
+    3373.3,
+    3436.4,
+    3530.1,
+    3564.0
+   ]
+  },
+  "own_lag_not_applied": "BSE R(13 Oct) = +1.35%; coefficient ~0.105 would shift the mean by +0.14 pp (= 0.06 sigma); fails the frozen Validation+Final gate (OOS R2 -0.70%) so NOT applied."
+ },
+ "inputs_unchanged": [
+  "scale models S6/S4/HAR and the sigma forecasts (v1 sigma_R 2.478%)",
+  "location L0 otherwise (no model passed)",
+  "subjective event overlay (p_event 0-15%)",
+  "reference price P0 3,375.40"
+ ],
+ "new_facts_since_v1": [
+  "Q2 FY27 board meeting Wed 4 Nov 2026 (filed 13 Oct 16:02 IST; not in window)",
+  "no SEBI CAS/settlement circular as of 22:00 IST (listing/RSS)",
+  "official 13 Oct Nifty 22,721.95, India VIX 14.12",
+  "Groww Q2 results 14 Oct (call 16:00 IST); Angel One 15 Oct; 20 Oct holiday",
+  "13 Oct 14:15 volume spike (8.9x slot median) has no identified cause (not_found)"
+ ],
+ "directional_verdict": "Range/volatility forecast only. No directional skill demonstrated by any workstream under the frozen gate; the only validated linkage (prior-US-session S&P -> gap) moves the centre by about -0.05% (Rs 1.7), 0.02 sigma."
+}

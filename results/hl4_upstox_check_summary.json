@@ -1,0 +1,76 @@
+{
+ "sessions_upstox": 1187,
+ "sessions_official": 1181,
+ "special_sessions_not_in_official": [
+  "2022-10-24",
+  "2023-11-12",
+  "2024-03-02",
+  "2024-05-18",
+  "2024-11-01",
+  "2025-10-21"
+ ],
+ "bars_per_session_counts": {
+  "25": 1181,
+  "4": 4,
+  "7": 2
+ },
+ "eras": {
+  "factor 1 (after May 2025)": {
+   "n": 347,
+   "first": "2025-05-23",
+   "last": "2026-10-15",
+   "high_abs_err_rs_median": 0.0,
+   "high_abs_err_rs_max": 0.0,
+   "low_abs_err_rs_median": 0.0,
+   "low_abs_err_rs_max": 0.0,
+   "high_abs_err_pct_median": 0.0,
+   "high_abs_err_pct_max": 0.0,
+   "low_abs_err_pct_median": 0.0,
+   "low_abs_err_pct_max": 0.0,
+   "share_high_within_0.05rs": 1.0,
+   "share_low_within_0.05rs": 1.0,
+   "share_close_within_0.05rs": 0.16138328530259366,
+   "share_open_within_0.05rs": 1.0
+  },
+  "factor 3 (mid-2022 to May 2025)": {
+   "n": 782,
+   "first": "2022-03-21",
+   "last": "2025-05-22",
+   "high_abs_err_rs_median": 0.4499999999998181,
+   "high_abs_err_rs_max": 7.2000000000000455,
+   "low_abs_err_rs_median": 0.4499999999998181,
+   "low_abs_err_rs_max": 12.5,
+   "high_abs_err_pct_median": 0.020319576128885464,
+   "high_abs_err_pct_max": 1.0173802458668946,
+   "low_abs_err_pct_median": 0.021429794664240553,
+   "low_abs_err_pct_max": 1.8825301204819178,
+   "share_high_within_0.05rs": 0.20460358056265984,
+   "share_low_within_0.05rs": 0.24808184143222506,
+   "share_close_within_0.05rs": 0.01918158567774936,
+   "share_open_within_0.05rs": 0.24552429667519182
+  },
+  "factor 9 (to mid-2022)": {
+   "n": 52,
+   "first": "2022-01-03",
+   "last": "2022-03-17",
+   "high_abs_err_rs_median": 1.0249999999999773,
+   "high_abs_err_rs_max": 4.0,
+   "low_abs_err_rs_median": 1.5,
+   "low_abs_err_rs_max": 8.5,
+   "high_abs_err_pct_median": 0.04989582736963927,
+   "high_abs_err_pct_max": 0.18957345971564177,
+   "low_abs_err_pct_median": 0.07716343405860249,
+   "low_abs_err_pct_max": 0.41871921182266014,
+   "share_high_within_0.05rs": 0.11538461538461539,
+   "share_low_within_0.05rs": 0.07692307692307693,
+   "share_close_within_0.05rs": 0.038461538461538464,
+   "share_open_within_0.05rs": 0.11538461538461539
+  }
+ },
+ "post_closing_auction_since_2026-08-03": {
+  "n": 52,
+  "share_close_within_0.05rs": 1.0,
+  "share_high_within_0.05rs": 1.0,
+  "share_low_within_0.05rs": 1.0
+ }
+}

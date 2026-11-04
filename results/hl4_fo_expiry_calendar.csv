@@ -1,0 +1,26 @@
+expiry,weekday,calendar_rule_match,first_seen_session,last_seen_session,sessions_listed_in_cache,in_nse_live_contract_info
+2024-12-26,Thu,last Thursday,20241129,20241226,19,False
+2025-01-30,Thu,last Thursday,20241129,20250130,44,False
+2025-02-27,Thu,last Thursday,20241129,20250227,63,False
+2025-03-27,Thu,last Thursday,20241227,20250327,63,False
+2025-04-24,Thu,last Thursday,20250131,20250424,54,False
+2025-05-29,Thu,last Thursday,20250228,20250529,59,False
+2025-06-26,Thu,last Thursday,20250328,20250626,60,False
+2025-07-31,Thu,last Thursday,20250425,20250731,69,False
+2025-08-28,Thu,last Thursday,20250530,20250828,63,False
+2025-09-30,Tue,last Tuesday,20250627,20250930,66,False
+2025-10-28,Tue,last Tuesday,20250801,20251028,59,False
+2025-11-25,Tue,last Tuesday,20250829,20251125,60,False
+2025-12-30,Tue,last Tuesday,20251001,20251230,61,False
+2026-01-27,Tue,last Tuesday,20251029,20260127,61,False
+2026-02-24,Tue,last Tuesday,20251126,20260224,62,False
+2026-03-30,Mon,other (holiday shift),20251231,20260330,60,False
+2026-04-28,Tue,last Tuesday,20260128,20260428,60,False
+2026-05-26,Tue,last Tuesday,20260225,20260526,59,False
+2026-06-30,Tue,last Tuesday,20260401,20260630,60,False
+2026-07-28,Tue,last Tuesday,20260429,20260728,62,False
+2026-08-25,Tue,last Tuesday,20260527,20260825,63,False
+2026-09-29,Tue,last Tuesday,20260701,20260929,64,False
+2026-10-27,Tue,last Tuesday,20260729,20261015,55,True
+2026-11-23,Mon,other (holiday shift),20260826,20261015,35,True
+2026-12-29,Tue,last Tuesday,20260930,20261015,11,True

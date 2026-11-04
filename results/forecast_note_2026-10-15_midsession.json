@@ -1,0 +1,23 @@
+{
+ "note": "Model-based close distribution for the 15-Oct-2026 session from the 14-Oct official close; generated mid-session on 15 Oct (~14:00 IST), NOT a pre-session record; no 15-Oct price was looked at before generating it; centre unchanged (no overnight adjustment computed).",
+ "generated_ist": "2026-10-15 ~14:00",
+ "P0_14oct_close": 3338.0,
+ "sigma_R_pct": 2.351,
+ "close_quantiles": {
+  "0.025": 3200.7,
+  "0.05": 3217.4,
+  "0.1": 3237.1,
+  "0.25": 3288.7,
+  "0.5": 3338.0,
+  "0.75": 3387.7,
+  "0.9": 3432.4,
+  "0.95": 3462.9,
+  "0.975": 3488.8
+ },
+ "P(close>P0)": 0.5,
+ "P(|R|<1%)": 0.358,
+ "P(R>2%)": 0.178,
+ "P(R<-2%)": 0.192,
+ "bear<=-1.5%": 0.246,
+ "bull>=1.5%": 0.246
+}

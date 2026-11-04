@@ -1,0 +1,183 @@
+{
+ "date": "2026-10-29",
+ "p0": 3485.0,
+ "data_through": "2026-10-28",
+ "n_sessions": 2398,
+ "missing_weekdays_between_data_and_date": [],
+ "is_weekend": false,
+ "data_sha256": {
+  "data/processed/bse_daily.csv": "e7939803bac1621419c3fc9d65df7829921a561ccb8d4d9e0f6b6196135eb627",
+  "data/processed/bse_daily_extra.csv": "9e5247fff3dc3ab030b4d32fc00b206482b4d4010bc3086fa4d4533339eb79cc"
+ },
+ "model_pre": "S6 sigma (GARCH(1,1)-t x HAR on gap^2+Garman-Klass) of the close-to-close return x trailing-500 standardised (Hp, Lp) residuals; fitted with sessions through 2026-10-28 only",
+ "sigma_R_pct": 2.2884759955961482,
+ "pre_open": {
+  "high": {
+   "price_quantiles": {
+    "q5": 3478.73,
+    "q10": 3488.38,
+    "q25": 3505.72,
+    "q50": 3529.67,
+    "q75": 3565.19,
+    "q90": 3602.07,
+    "q95": 3639.42,
+    "q2.5": 3468.18,
+    "q97.5": 3658.49
+   },
+   "pct_of_reference": {
+    "q5": -0.18,
+    "q10": 0.1,
+    "q25": 0.59,
+    "q50": 1.28,
+    "q75": 2.3,
+    "q90": 3.36,
+    "q95": 4.43
+   },
+   "band_width_rs": {
+    "50%": 59.5,
+    "90%": 160.7
+   },
+   "typical_miss_rs": 43.4,
+   "half_the_time_within_rs": 34.1,
+   "miss_measured_on_sessions": 320,
+   "typical_miss_rs_cas_slice": 44.4,
+   "half_the_time_within_rs_cas_slice": 40.0,
+   "miss_measured_on_sessions_cas_slice": 52,
+   "cas_slice_tail_shares": {
+    "n": 52,
+    "below_q5": 0.1538461538461538,
+    "above_q95": 0.0
+   }
+  },
+  "low": {
+   "price_quantiles": {
+    "q5": 3332.6,
+    "q10": 3366.49,
+    "q25": 3411.59,
+    "q50": 3448.51,
+    "q75": 3475.43,
+    "q90": 3496.39,
+    "q95": 3505.87,
+    "q2.5": 3302.47,
+    "q97.5": 3521.63
+   },
+   "pct_of_reference": {
+    "q5": -4.37,
+    "q10": -3.4,
+    "q25": -2.11,
+    "q50": -1.05,
+    "q75": -0.27,
+    "q90": 0.33,
+    "q95": 0.6
+   },
+   "band_width_rs": {
+    "50%": 63.8,
+    "90%": 173.3
+   },
+   "typical_miss_rs": 48.5,
+   "half_the_time_within_rs": 32.7,
+   "miss_measured_on_sessions": 320,
+   "typical_miss_rs_cas_slice": 49.0,
+   "half_the_time_within_rs_cas_slice": 38.8,
+   "miss_measured_on_sessions_cas_slice": 52,
+   "cas_slice_tail_shares": {
+    "n": 52,
+    "below_q5": 0.0576923076923076,
+    "above_q95": 0.0576923076923076
+   }
+  },
+  "touch_prob": {
+   "high >= P0+0.5%": 0.784,
+   "high >= P0+1%": 0.586,
+   "high >= P0+2%": 0.318,
+   "high >= P0+3%": 0.136,
+   "low <= P0-0.5%": 0.662,
+   "low <= P0-1%": 0.514,
+   "low <= P0-2%": 0.26,
+   "low <= P0-3%": 0.136
+  }
+ },
+ "model_post": "S6 sigma of the open-to-close return x trailing-500 standardised (HO, LO) residuals (HO >= 0, LO <= 0 by construction); the open sets the reference level only; fitted with sessions through 2026-10-28 only",
+ "sigma_I_pct": 2.150279937521813,
+ "gap_pct": 0.1433692001848616,
+ "open": 3490.0,
+ "post_open": {
+  "open": 3490.0,
+  "gap_pct": 0.1433692001848616,
+  "high": {
+   "price_quantiles": {
+    "q5": 3490.94,
+    "q10": 3494.19,
+    "q25": 3507.38,
+    "q50": 3527.66,
+    "q75": 3564.08,
+    "q90": 3600.41,
+    "q95": 3628.18,
+    "q2.5": 3490.0,
+    "q97.5": 3653.19
+   },
+   "pct_of_reference": {
+    "q5": 0.03,
+    "q10": 0.12,
+    "q25": 0.5,
+    "q50": 1.08,
+    "q75": 2.12,
+    "q90": 3.16,
+    "q95": 3.96
+   },
+   "band_width_rs": {
+    "50%": 56.7,
+    "90%": 137.2
+   },
+   "typical_miss_rs": 35.4,
+   "half_the_time_within_rs": 29.7,
+   "miss_measured_on_sessions": 320,
+   "typical_miss_rs_cas_slice": 35.8,
+   "half_the_time_within_rs_cas_slice": 34.4,
+   "miss_measured_on_sessions_cas_slice": 52
+  },
+  "low": {
+   "price_quantiles": {
+    "q5": 3337.02,
+    "q10": 3372.26,
+    "q25": 3414.22,
+    "q50": 3450.6,
+    "q75": 3469.58,
+    "q90": 3483.11,
+    "q95": 3487.17,
+    "q2.5": 3311.85,
+    "q97.5": 3489.49
+   },
+   "pct_of_reference": {
+    "q5": -4.38,
+    "q10": -3.37,
+    "q25": -2.17,
+    "q50": -1.13,
+    "q75": -0.59,
+    "q90": -0.2,
+    "q95": -0.08
+   },
+   "band_width_rs": {
+    "50%": 55.4,
+    "90%": 150.2
+   },
+   "typical_miss_rs": 38.1,
+   "half_the_time_within_rs": 27.1,
+   "miss_measured_on_sessions": 320,
+   "typical_miss_rs_cas_slice": 38.6,
+   "half_the_time_within_rs_cas_slice": 29.7,
+   "miss_measured_on_sessions_cas_slice": 52
+  },
+  "touch_prob": {
+   "high >= open+0.5%": 0.746,
+   "high >= open+1%": 0.528,
+   "high >= open+2%": 0.274,
+   "high >= open+3%": 0.13,
+   "low <= open-0.5%": 0.772,
+   "low <= open-1%": 0.556,
+   "low <= open-2%": 0.28,
+   "low <= open-3%": 0.13
+  }
+ },
+ "saved_at_ist": "2026-10-29T09:10:08+05:30"
+}

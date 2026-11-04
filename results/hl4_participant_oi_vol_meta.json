@@ -1,0 +1,408 @@
+{
+ "source": "nsearchives.nseindia.com/content/nsccl/fao_participant_{oi,vol}_DDMMYYYY.csv",
+ "files": 40,
+ "rows": 200,
+ "csv_sha256": "adb9d3d7017afa7201cae522232940870ce054b2fd174395ad8313bbe13a1f0e",
+ "requests": [
+  {
+   "date": "2026-09-17",
+   "kind": "oi",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_oi_17092026.csv",
+   "http": 200,
+   "bytes": 978,
+   "sha256": "ddeeb08a690bbf4f0d0c260dae79e23282878eb4634db2b01db82afe443132cc",
+   "last_modified": "Thu, 17 Sep 2026 13:28:02 GMT",
+   "retrieved_utc": "2026-10-17T08:26:28+00:00"
+  },
+  {
+   "date": "2026-09-17",
+   "kind": "vol",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_vol_17092026.csv",
+   "http": 200,
+   "bytes": 973,
+   "sha256": "94c4f436df78d09a90fca53ecf28f16324163ddd75a0ad26cb8a0dcd9f6d9edf",
+   "last_modified": "Thu, 17 Sep 2026 13:28:04 GMT",
+   "retrieved_utc": "2026-10-17T08:26:30+00:00"
+  },
+  {
+   "date": "2026-09-18",
+   "kind": "oi",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_oi_18092026.csv",
+   "http": 200,
+   "bytes": 981,
+   "sha256": "5e4f89bd5853783f26ac63f281ca2dc7eb7f5fa02b94526cdc32b672d85c4918",
+   "last_modified": "Fri, 18 Sep 2026 13:22:02 GMT",
+   "retrieved_utc": "2026-10-17T08:26:32+00:00"
+  },
+  {
+   "date": "2026-09-18",
+   "kind": "vol",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_vol_18092026.csv",
+   "http": 200,
+   "bytes": 971,
+   "sha256": "2351641f71dfbc46219795072434eca0b876f095b9246d4e71e74a32e80065d4",
+   "last_modified": "Fri, 18 Sep 2026 13:22:04 GMT",
+   "retrieved_utc": "2026-10-17T08:26:34+00:00"
+  },
+  {
+   "date": "2026-09-21",
+   "kind": "oi",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_oi_21092026.csv",
+   "http": 200,
+   "bytes": 980,
+   "sha256": "76ebec346fb4409c9c59dc49a22436d59c966a57050feb0bfdac70783ff0a4a4",
+   "last_modified": "Mon, 21 Sep 2026 13:17:02 GMT",
+   "retrieved_utc": "2026-10-17T08:26:36+00:00"
+  },
+  {
+   "date": "2026-09-21",
+   "kind": "vol",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_vol_21092026.csv",
+   "http": 200,
+   "bytes": 979,
+   "sha256": "ecfd0281d5ac137d29a9de8c6a4f7af520a396a83a75dea7f03497c7c2401748",
+   "last_modified": "Mon, 21 Sep 2026 13:17:03 GMT",
+   "retrieved_utc": "2026-10-17T08:26:38+00:00"
+  },
+  {
+   "date": "2026-09-22",
+   "kind": "oi",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_oi_22092026.csv",
+   "http": 200,
+   "bytes": 976,
+   "sha256": "b46de12fdc8236c253c63da941dd3cba59c88fac2b2c43c05503655fa2cf58f5",
+   "last_modified": "Tue, 22 Sep 2026 13:29:02 GMT",
+   "retrieved_utc": "2026-10-17T08:26:39+00:00"
+  },
+  {
+   "date": "2026-09-22",
+   "kind": "vol",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_vol_22092026.csv",
+   "http": 200,
+   "bytes": 991,
+   "sha256": "6f1c071b1cfd542bc925e0bfbb816ba5f2e493078851cbffa4d5514c2baa15c2",
+   "last_modified": "Tue, 22 Sep 2026 13:29:03 GMT",
+   "retrieved_utc": "2026-10-17T08:26:41+00:00"
+  },
+  {
+   "date": "2026-09-23",
+   "kind": "oi",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_oi_23092026.csv",
+   "http": 200,
+   "bytes": 976,
+   "sha256": "27d5987b9309837eb7fd37696e66f8024eb119ef25f0f2e442ea459c0d2a16b6",
+   "last_modified": "Wed, 23 Sep 2026 13:09:02 GMT",
+   "retrieved_utc": "2026-10-17T08:26:43+00:00"
+  },
+  {
+   "date": "2026-09-23",
+   "kind": "vol",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_vol_23092026.csv",
+   "http": 200,
+   "bytes": 982,
+   "sha256": "d91ca57332c4601fe930aeee1b37592cee03070fa92d2b412ac4ce37b8cc9105",
+   "last_modified": "Wed, 23 Sep 2026 13:09:03 GMT",
+   "retrieved_utc": "2026-10-17T08:26:45+00:00"
+  },
+  {
+   "date": "2026-09-24",
+   "kind": "oi",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_oi_24092026.csv",
+   "http": 200,
+   "bytes": 981,
+   "sha256": "6f299995d228a6fbf2d605d54291c64c4e3c73bcb98eb1b9363ee04ab3cec941",
+   "last_modified": "Thu, 24 Sep 2026 13:33:02 GMT",
+   "retrieved_utc": "2026-10-17T08:26:47+00:00"
+  },
+  {
+   "date": "2026-09-24",
+   "kind": "vol",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_vol_24092026.csv",
+   "http": 200,
+   "bytes": 993,
+   "sha256": "27559a3c90677f67cdf5796282d9d423e3f1cbfe52d8ed6e756d74737b0fd457",
+   "last_modified": "Thu, 24 Sep 2026 13:33:04 GMT",
+   "retrieved_utc": "2026-10-17T08:26:49+00:00"
+  },
+  {
+   "date": "2026-09-25",
+   "kind": "oi",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_oi_25092026.csv",
+   "http": 200,
+   "bytes": 982,
+   "sha256": "3c2f5854b31766e3fbf9f0131333aa8bcd79b9402d16601e27b5f000db24f3fb",
+   "last_modified": "Fri, 25 Sep 2026 13:26:03 GMT",
+   "retrieved_utc": "2026-10-17T08:26:51+00:00"
+  },
+  {
+   "date": "2026-09-25",
+   "kind": "vol",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_vol_25092026.csv",
+   "http": 200,
+   "bytes": 999,
+   "sha256": "2f32f5aba1380bbddc37d4c968c1e3c5c1d8ebef04d9e323c6531346f20ee8f0",
+   "last_modified": "Fri, 25 Sep 2026 13:26:04 GMT",
+   "retrieved_utc": "2026-10-17T08:26:52+00:00"
+  },
+  {
+   "date": "2026-09-28",
+   "kind": "oi",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_oi_28092026.csv",
+   "http": 200,
+   "bytes": 985,
+   "sha256": "44393d145973686737c93af30437f2dc133c55e5920b2702962f837aaae9491f",
+   "last_modified": "Mon, 28 Sep 2026 14:59:02 GMT",
+   "retrieved_utc": "2026-10-17T08:26:54+00:00"
+  },
+  {
+   "date": "2026-09-28",
+   "kind": "vol",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_vol_28092026.csv",
+   "http": 200,
+   "bytes": 1005,
+   "sha256": "df0cffb181207f23fc5f4d2169bede7038b8099db032116ce70a31e517070ead",
+   "last_modified": "Mon, 28 Sep 2026 14:59:04 GMT",
+   "retrieved_utc": "2026-10-17T08:26:56+00:00"
+  },
+  {
+   "date": "2026-09-29",
+   "kind": "oi",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_oi_29092026.csv",
+   "http": 200,
+   "bytes": 964,
+   "sha256": "9d329087cf2b2806565eb4d1582f2ec5ecc85457780ba2433808e51e8d385879",
+   "last_modified": "Tue, 29 Sep 2026 13:47:02 GMT",
+   "retrieved_utc": "2026-10-17T08:26:58+00:00"
+  },
+  {
+   "date": "2026-09-29",
+   "kind": "vol",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_vol_29092026.csv",
+   "http": 200,
+   "bytes": 1015,
+   "sha256": "251455eb91f040c1e0f3be04ed9b7e85f188d1fafdc74112b77b1412e66328d4",
+   "last_modified": "Tue, 29 Sep 2026 13:47:04 GMT",
+   "retrieved_utc": "2026-10-17T08:27:00+00:00"
+  },
+  {
+   "date": "2026-09-30",
+   "kind": "oi",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_oi_30092026.csv",
+   "http": 200,
+   "bytes": 971,
+   "sha256": "d3d91780e28cbf7beed57ff4a432f835968f655b98a6dfcfc23b8b3a969b6686",
+   "last_modified": "Wed, 30 Sep 2026 13:12:03 GMT",
+   "retrieved_utc": "2026-10-17T08:27:02+00:00"
+  },
+  {
+   "date": "2026-09-30",
+   "kind": "vol",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_vol_30092026.csv",
+   "http": 200,
+   "bytes": 979,
+   "sha256": "3989ba3c88bc9ee33b3a81ba80e1b9cb86065a46cf674149b1be8312bae349a9",
+   "last_modified": "Wed, 30 Sep 2026 13:12:05 GMT",
+   "retrieved_utc": "2026-10-17T08:27:04+00:00"
+  },
+  {
+   "date": "2026-10-01",
+   "kind": "oi",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_oi_01102026.csv",
+   "http": 200,
+   "bytes": 974,
+   "sha256": "695faa9b16a606588e6404e362da1982b063e64195268bb074b270a662209404",
+   "last_modified": "Thu, 01 Oct 2026 14:00:32 GMT",
+   "retrieved_utc": "2026-10-17T08:27:05+00:00"
+  },
+  {
+   "date": "2026-10-01",
+   "kind": "vol",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_vol_01102026.csv",
+   "http": 200,
+   "bytes": 985,
+   "sha256": "7caa1a9ce3911ca99afb7ef1fac8eea0aebd1b31b0711a21d65549ba48918aea",
+   "last_modified": "Thu, 01 Oct 2026 14:00:34 GMT",
+   "retrieved_utc": "2026-10-17T08:27:07+00:00"
+  },
+  {
+   "date": "2026-10-05",
+   "kind": "oi",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_oi_05102026.csv",
+   "http": 200,
+   "bytes": 977,
+   "sha256": "1dc3ce026e612ea0169874d6ba0e1cd4b1783387f0ac9ca9ba7d7ec30b81e80c",
+   "last_modified": "Mon, 05 Oct 2026 13:18:03 GMT",
+   "retrieved_utc": "2026-10-17T08:27:38+00:00"
+  },
+  {
+   "date": "2026-10-05",
+   "kind": "vol",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_vol_05102026.csv",
+   "http": 200,
+   "bytes": 986,
+   "sha256": "b8e4085413caad006927cc106b14097d84e35cbf9890548beca38cdfc6f60acc",
+   "last_modified": "Mon, 05 Oct 2026 13:18:04 GMT",
+   "retrieved_utc": "2026-10-17T08:27:40+00:00"
+  },
+  {
+   "date": "2026-10-06",
+   "kind": "oi",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_oi_06102026.csv",
+   "http": 200,
+   "bytes": 973,
+   "sha256": "ec29aa9daee090dfac19647c4fa2de7cf19ccd00c18df2f46619b7babd95e5b6",
+   "last_modified": "Tue, 06 Oct 2026 13:14:02 GMT",
+   "retrieved_utc": "2026-10-17T08:27:42+00:00"
+  },
+  {
+   "date": "2026-10-06",
+   "kind": "vol",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_vol_06102026.csv",
+   "http": 200,
+   "bytes": 988,
+   "sha256": "b9020b344fb138e4c96aa8822455a6c6bd5d67dcf071e0edd51583fcd9e55a9f",
+   "last_modified": "Tue, 06 Oct 2026 13:14:04 GMT",
+   "retrieved_utc": "2026-10-17T08:27:44+00:00"
+  },
+  {
+   "date": "2026-10-07",
+   "kind": "oi",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_oi_07102026.csv",
+   "http": 200,
+   "bytes": 977,
+   "sha256": "8b5d2fb70531c2188f9c2ba6562e0dec2cade75cae29f74edcc0bb087976c3cd",
+   "last_modified": "Wed, 07 Oct 2026 13:05:03 GMT",
+   "retrieved_utc": "2026-10-17T08:27:46+00:00"
+  },
+  {
+   "date": "2026-10-07",
+   "kind": "vol",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_vol_07102026.csv",
+   "http": 200,
+   "bytes": 977,
+   "sha256": "5f425b592562cf7dfe7aec76874d3b23f53d48b8508fae36e674db47b94adc33",
+   "last_modified": "Wed, 07 Oct 2026 13:05:05 GMT",
+   "retrieved_utc": "2026-10-17T08:27:48+00:00"
+  },
+  {
+   "date": "2026-10-08",
+   "kind": "oi",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_oi_08102026.csv",
+   "http": 200,
+   "bytes": 980,
+   "sha256": "277ff398753f3acfc453c90c5fbff106c52afa1ab43ca40657e24132ce15afad",
+   "last_modified": "Thu, 08 Oct 2026 13:32:03 GMT",
+   "retrieved_utc": "2026-10-17T08:27:50+00:00"
+  },
+  {
+   "date": "2026-10-08",
+   "kind": "vol",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_vol_08102026.csv",
+   "http": 200,
+   "bytes": 987,
+   "sha256": "26ae847f0d9559b8cf1bdccce646f5a47a52b01ff05e93feaffa645048dace9f",
+   "last_modified": "Thu, 08 Oct 2026 13:32:04 GMT",
+   "retrieved_utc": "2026-10-17T08:27:52+00:00"
+  },
+  {
+   "date": "2026-10-09",
+   "kind": "oi",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_oi_09102026.csv",
+   "http": 200,
+   "bytes": 982,
+   "sha256": "d95f403185bbfbe70a487fa427aaa5a05d564d44539c0363e369efc7abbe2e0a",
+   "last_modified": "Fri, 09 Oct 2026 13:46:03 GMT",
+   "retrieved_utc": "2026-10-17T08:27:54+00:00"
+  },
+  {
+   "date": "2026-10-09",
+   "kind": "vol",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_vol_09102026.csv",
+   "http": 200,
+   "bytes": 980,
+   "sha256": "e9bfb3ece75a920497bafe8b1a57125fc90da107b9c566566737de10059b0f4e",
+   "last_modified": "Fri, 09 Oct 2026 13:46:04 GMT",
+   "retrieved_utc": "2026-10-17T08:27:56+00:00"
+  },
+  {
+   "date": "2026-10-12",
+   "kind": "oi",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_oi_12102026.csv",
+   "http": 200,
+   "bytes": 984,
+   "sha256": "8ceb5e8a293785580ff181a2bc1e96f720c4597711c45326f2297cecde483897",
+   "last_modified": "Mon, 12 Oct 2026 13:18:03 GMT",
+   "retrieved_utc": "2026-10-17T08:27:58+00:00"
+  },
+  {
+   "date": "2026-10-12",
+   "kind": "vol",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_vol_12102026.csv",
+   "http": 200,
+   "bytes": 978,
+   "sha256": "4dd7465634e7b3fb0ba8f65e2ea5311a26768475971683f3989dffdd78022b23",
+   "last_modified": "Mon, 12 Oct 2026 13:18:04 GMT",
+   "retrieved_utc": "2026-10-17T08:27:59+00:00"
+  },
+  {
+   "date": "2026-10-13",
+   "kind": "oi",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_oi_13102026.csv",
+   "http": 200,
+   "bytes": 976,
+   "sha256": "de403e686af87a4a841704616476ea26715fd1f5e2f576643eec65ecfeb6b88c",
+   "last_modified": "Tue, 13 Oct 2026 13:49:02 GMT",
+   "retrieved_utc": "2026-10-17T08:28:01+00:00"
+  },
+  {
+   "date": "2026-10-13",
+   "kind": "vol",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_vol_13102026.csv",
+   "http": 200,
+   "bytes": 999,
+   "sha256": "4f0326b96f46c9c12343bb72708d02684dfd9284c24311f50e4aa41778e9682d",
+   "last_modified": "Tue, 13 Oct 2026 13:49:03 GMT",
+   "retrieved_utc": "2026-10-17T08:28:03+00:00"
+  },
+  {
+   "date": "2026-10-14",
+   "kind": "oi",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_oi_14102026.csv",
+   "http": 200,
+   "bytes": 980,
+   "sha256": "0284d19f9caa51ee18bc6ed0312f213b6efb71039097db02d11f4de6bfd01c69",
+   "last_modified": "Wed, 14 Oct 2026 13:22:02 GMT",
+   "retrieved_utc": "2026-10-17T08:28:05+00:00"
+  },
+  {
+   "date": "2026-10-14",
+   "kind": "vol",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_vol_14102026.csv",
+   "http": 200,
+   "bytes": 980,
+   "sha256": "2a176cfd448e9a50dd1d4352f22f50c50d98b90f863d0f9293010d951025115e",
+   "last_modified": "Wed, 14 Oct 2026 13:22:04 GMT",
+   "retrieved_utc": "2026-10-17T08:28:07+00:00"
+  },
+  {
+   "date": "2026-10-15",
+   "kind": "oi",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_oi_15102026.csv",
+   "http": 200,
+   "bytes": 979,
+   "sha256": "598caa8e3282a92212322ab8d3b77639f8a33ae0cc767a1104ffc60b90978e90",
+   "last_modified": "Thu, 15 Oct 2026 14:08:02 GMT",
+   "retrieved_utc": "2026-10-17T08:28:08+00:00"
+  },
+  {
+   "date": "2026-10-15",
+   "kind": "vol",
+   "url": "https://nsearchives.nseindia.com/content/nsccl/fao_participant_vol_15102026.csv",
+   "http": 200,
+   "bytes": 984,
+   "sha256": "bd0f400f391c0741cd9ecb520a70f61f9766d56b0268c9d3e30b111328bafd36",
+   "last_modified": "Thu, 15 Oct 2026 14:08:03 GMT",
+   "retrieved_utc": "2026-10-17T08:28:10+00:00"
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "event_calendar": {
+  "url": "https://www.nseindia.com/api/event-calendar?symbol=BSE",
+  "http": 200,
+  "bytes": 10668,
+  "sha256": "32a4bb59f13f42be2624ddf4acbb96c0f9a12749860a49850a4eead2ead3b55e",
+  "retrieved_utc": "2026-10-17T08:23:16+00:00"
+ },
+ "board_meetings": {
+  "url": "https://www.nseindia.com/api/corporate-board-meetings?index=equities&symbol=BSE",
+  "http": 200,
+  "bytes": 13856,
+  "sha256": "20dba5c0a221c062e54b483f2a300cc8fb514a5d281ec40459a38c9795312354",
+  "retrieved_utc": "2026-10-17T08:23:19+00:00"
+ },
+ "announcements": {
+  "url": "https://www.nseindia.com/api/corporate-announcements?index=equities&symbol=BSE",
+  "http": 200,
+  "bytes": 832923,
+  "sha256": "3d05686b9adeb4b734f9d15ea55afc75d1d1376e08ab661b87f16f81ccafff99",
+  "retrieved_utc": "2026-10-17T08:23:22+00:00"
+ },
+ "note": "announcement rows stamped after 2026-10-15 22:00 IST dropped; raw announcements JSON (830 KB) not stored, sha256 only; csv sha256 below",
+ "csv_sha256": "2b23fae019ac6a5e3cd6ad8cfc33ba947b8530dd7db467699467bace2416ff40",
+ "rows": 47
+}

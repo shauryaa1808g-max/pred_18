@@ -1,0 +1,37 @@
+check,value,n
+P_S6 H q5: max |mine - stored| (Rs),9.094947017729282e-13,1640
+P_S6 H q10: max |mine - stored| (Rs),9.094947017729282e-13,1640
+P_S6 H q25: max |mine - stored| (Rs),9.094947017729282e-13,1640
+P_S6 H q50: max |mine - stored| (Rs),9.094947017729282e-13,1640
+P_S6 H q75: max |mine - stored| (Rs),9.094947017729282e-13,1640
+P_S6 H q90: max |mine - stored| (Rs),9.094947017729282e-13,1640
+P_S6 H q95: max |mine - stored| (Rs),9.094947017729282e-13,1640
+P_S6 L q5: max |mine - stored| (Rs),9.094947017729282e-13,1640
+P_S6 L q10: max |mine - stored| (Rs),9.094947017729282e-13,1640
+P_S6 L q25: max |mine - stored| (Rs),9.094947017729282e-13,1640
+P_S6 L q50: max |mine - stored| (Rs),9.094947017729282e-13,1640
+P_S6 L q75: max |mine - stored| (Rs),9.094947017729282e-13,1640
+P_S6 L q90: max |mine - stored| (Rs),9.094947017729282e-13,1640
+P_S6 L q95: max |mine - stored| (Rs),9.094947017729282e-13,1640
+W_I6 H q5: max |mine - stored| (Rs),9.094947017729282e-13,1640
+W_I6 H q10: max |mine - stored| (Rs),9.094947017729282e-13,1640
+W_I6 H q25: max |mine - stored| (Rs),9.094947017729282e-13,1640
+W_I6 H q50: max |mine - stored| (Rs),9.094947017729282e-13,1640
+W_I6 H q75: max |mine - stored| (Rs),9.094947017729282e-13,1640
+W_I6 H q90: max |mine - stored| (Rs),9.094947017729282e-13,1640
+W_I6 H q95: max |mine - stored| (Rs),9.094947017729282e-13,1640
+W_I6 L q5: max |mine - stored| (Rs),9.094947017729282e-13,1640
+W_I6 L q10: max |mine - stored| (Rs),9.094947017729282e-13,1640
+W_I6 L q25: max |mine - stored| (Rs),9.094947017729282e-13,1640
+W_I6 L q50: max |mine - stored| (Rs),9.094947017729282e-13,1640
+W_I6 L q75: max |mine - stored| (Rs),9.094947017729282e-13,1640
+W_I6 L q90: max |mine - stored| (Rs),9.094947017729282e-13,1640
+W_I6 L q95: max |mine - stored| (Rs),9.094947017729282e-13,1640
+P_S6 H Final n=320: pinball x1e4 mine 31.1516 vs project 31.1516,0.0,320
+P_S6 H Final n=320: typical miss Rs mine 42.69 vs project 42.69,0.0,320
+P_S6 L Final n=320: pinball x1e4 mine 36.5788 vs project 36.5788,0.0,320
+P_S6 L Final n=320: typical miss Rs mine 47.67 vs project 47.67,0.0,320
+W_I6 HO Final n=320: pinball x1e4 mine 23.8531 vs project 23.8531,-3.552713678800501e-15,320
+W_I6 HO Final n=320: typical miss Rs mine 34.81 vs project 34.81,0.0,320
+W_I6 LO Final n=320: pinball x1e4 mine 28.0298 vs project 28.0298,3.552713678800501e-15,320
+W_I6 LO Final n=320: typical miss Rs mine 37.42 vs project 37.42,0.0,320

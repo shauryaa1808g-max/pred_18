@@ -1,0 +1,17 @@
+{
+ "sources": [
+  "data/raw/fo_bse/*.csv (NSE F&O UDiFF bhavcopy, BSE rows)",
+  "results/hl2_fill_fo_2026*.csv",
+  "https://www.nseindia.com/api/option-chain-contract-info?symbol=BSE"
+ ],
+ "nse_live_http": 200,
+ "nse_live_sha256": "ba8075b1caea9f1ea183be057033401ba3be9797f88604285c1728dda90355f2",
+ "retrieved_utc": "2026-10-17T08:23:26+00:00",
+ "nse_live_expiries": [
+  "2026-10-27",
+  "2026-11-23",
+  "2026-12-29"
+ ],
+ "rows": 25,
+ "csv_sha256": "e766c60874ab9aed4242ef8bc1f166704eb973ffd2fc6098d19ced3f2b595864"
+}

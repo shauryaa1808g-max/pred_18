@@ -1,0 +1,110 @@
+{
+ "study_asof_exclusive": "2026-10-16",
+ "n_sessions_used": 2390,
+ "first_session": "2017-02-06",
+ "last_session_used": "2026-10-15",
+ "n_evaluation_sessions": 1640,
+ "first_evaluation_session": "2020-02-25",
+ "n_blocks": 82,
+ "windows_n": {
+  "dev": 1072,
+  "val": 248,
+  "valfinal": 568,
+  "final": 320,
+  "cas": 52
+ },
+ "features_by_group": {
+  "pre": {
+   "BRD": 5,
+   "CAL": 7,
+   "FLOW": 4,
+   "IDX": 10,
+   "IV": 7,
+   "OWN": 21,
+   "PEER": 6,
+   "SIG": 1,
+   "US": 8,
+   "US1": 8
+  },
+  "post": {
+   "BRD": 5,
+   "CAL": 7,
+   "FLOW": 4,
+   "GAP": 5,
+   "IDX": 10,
+   "IV": 7,
+   "OWN": 21,
+   "PEER": 6,
+   "SIG": 1,
+   "US": 8,
+   "US1": 8
+  }
+ },
+ "features_pre_open_menu": 62,
+ "features_post_open_menu": 67,
+ "features_distinct_columns_searched": 82,
+ "variants": 18,
+ "targets": 4,
+ "family_size_pairs": 72,
+ "config_counts": {
+  "qr_variants": 9,
+  "qr_configs_each": 4,
+  "gbm_variants": 3,
+  "gbm_configs_each": 7,
+  "forest_configs": 1,
+  "stack_variants": 3,
+  "stack_weights_each": 11,
+  "stack_candidates_v16": 5
+ },
+ "effective_configurations_per_target_per_refit": 96,
+ "nested_cv": {
+  "folds": [
+   0.55,
+   0.7,
+   0.85
+  ],
+  "embargo_sessions": 5,
+  "lambda_grid": [
+   0.003,
+   0.01,
+   0.03
+  ],
+  "gbm_depth": [
+   2,
+   3
+  ],
+  "gbm_trees": [
+   30,
+   60,
+   120
+  ],
+  "gbm_lr": 0.05,
+  "gbm_min_leaf": 80,
+  "gbm_search_every_blocks": 4
+ },
+ "code_sha256": "a7e20ddeb917c77c2ceb6ba00837c1dcaa05df5e9e3539a7c06fa7abad472368",
+ "prefixed_text_sha256": "aa026b73e5473d3b56e449b7da09743a8b695d44db790c0b01b8b0a242ed0bdc",
+ "prefixed_text_commit": "2072844b709c34bfa5f51f055c235a31a54dddb0",
+ "input_file_sha256": {
+  "data/processed/bse_daily.csv": "e7939803bac1621419c3fc9d65df7829921a561ccb8d4d9e0f6b6196135eb627",
+  "data/processed/bse_daily_extra.csv": "c6a5cb439b27a02ae81f4533542856534c5150329527f208a547b09914285b2a",
+  "data/processed/index_daily.csv": "8d85dd7b805d1bd8fc1ab95462d1da1090ebbf91f8c59b1b0ad3d77d43ce00cd",
+  "data/processed/breadth_daily.csv": "f8edd064e0b055949ff5134b14cc99df95455a0003a85a7a243053871373a999",
+  "data/processed/peers_daily.csv": "71be551bae2ee59ec3ee4166ed189b4ca26f6f524ed4e6fc404533d0c53640d3",
+  "data/processed/bse_iv_daily.csv": "033d1e057702837abab58e8d3bf4bce8533d914417b04bae3fa087db3b7f3bcf",
+  "data/raw/macro/SP500.csv": "59990d549a3fc4f67993a9d8600585cf4e611081ed032a1ea095ab4fa14abeed",
+  "data/raw/macro/VIXCLS.csv": "7f5c66eae2a2c3149c8e9762c3e8872c0fc856d487716d30ec655476b8e0b94c",
+  "data/raw/macro/DEXINUS.csv": "0980a29b146a0243db93517c697d0f6f20af13816d63bedfda82b30b659a3115",
+  "data/raw/macro/DCOILBRENTEU.csv": "ed1eaa6fd4a95178f922ac8673890d4b39029681be8ad498087545a8accdaaba",
+  "data/raw/macro/DTWEXBGS.csv": "75edd28ba1eceade938fa6621edfebc4d4e9cbcc846c6f07be27f8aef0ead321",
+  "data/raw/macro/DGS10.csv": "624f2a18b0c5642c72dbf8c58cf54b9dcee50d7d8cb3b7809b9416dabd09dd55"
+ },
+ "note_inputs": "the repository bar files now also hold the 16 Oct 2026 row; load_inputs() cuts every series to dates before 2026-10-16 so no study number uses it",
+ "versions": {
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "pandas": "3.0.5",
+  "scipy": "1.18.1",
+  "sklearn": "1.9.1"
+ }
+}

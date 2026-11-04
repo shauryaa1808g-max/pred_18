@@ -1,0 +1,146 @@
+check,independent,stored,abs_diff,passed
+daily sessions in file (to cut-off),2390,2390,0,True
+R1_k1.0 all: number of trades,530,530,0,True
+R1_k1.0 all: mean gross return % per trade,-0.01826079608,-0.01826079608,1.387778781e-16,True
+R1_k1.0 all: mean net return % per trade (0.10% cost),-0.1182607961,-0.1182607961,4.163336342e-17,True
+R1_k1.0 dev: number of trades,377,377,0,True
+R1_k1.0 dev: mean gross return % per trade,0.1247245709,0.1247245709,1.804112415e-16,True
+R1_k1.0 dev: mean net return % per trade (0.10% cost),0.02472457091,0.02472457091,2.775557562e-16,True
+R1_k1.0 val: number of trades,67,67,0,True
+R1_k1.0 val: mean gross return % per trade,-0.4550280641,-0.4550280641,1.054711873e-15,True
+R1_k1.0 val: mean net return % per trade (0.10% cost),-0.5550280641,-0.5550280641,9.992007222e-16,True
+R1_k1.0 final: number of trades,86,86,0,True
+R1_k1.0 final: mean gross return % per trade,-0.3047965681,-0.3047965681,5.551115123e-17,True
+R1_k1.0 final: mean net return % per trade (0.10% cost),-0.4047965681,-0.4047965681,5.551115123e-17,True
+R1_k1.0 cas: number of trades,16,16,0,True
+R1_k1.0 cas: mean gross return % per trade,0.1932226856,0.1932226856,5.551115123e-17,True
+R1_k1.0 cas: mean net return % per trade (0.10% cost),0.0932226856,0.0932226856,5.551115123e-17,True
+R2_k1.0 all: number of trades,466,466,0,True
+R2_k1.0 all: mean gross return % per trade,-0.3629183726,-0.3629183726,5.551115123e-16,True
+R2_k1.0 all: mean net return % per trade (0.10% cost),-0.4629183726,-0.4629183726,6.106226635e-16,True
+R2_k1.0 dev: number of trades,314,314,0,True
+R2_k1.0 dev: mean gross return % per trade,-0.2543783815,-0.2543783815,4.996003611e-16,True
+R2_k1.0 dev: mean net return % per trade (0.10% cost),-0.3543783815,-0.3543783815,5.551115123e-16,True
+R2_k1.0 val: number of trades,57,57,0,True
+R2_k1.0 val: mean gross return % per trade,-1.197352023,-1.197352023,4.440892099e-16,True
+R2_k1.0 val: mean net return % per trade (0.10% cost),-1.297352023,-1.297352023,4.440892099e-16,True
+R2_k1.0 final: number of trades,95,95,0,True
+R2_k1.0 final: mean gross return % per trade,-0.2210114161,-0.2210114161,7.21644966e-16,True
+R2_k1.0 final: mean net return % per trade (0.10% cost),-0.3210114161,-0.3210114161,7.771561172e-16,True
+R2_k1.0 cas: number of trades,18,18,0,True
+R2_k1.0 cas: mean gross return % per trade,-0.28171875,-0.28171875,4.996003611e-16,True
+R2_k1.0 cas: mean net return % per trade (0.10% cost),-0.38171875,-0.38171875,6.106226635e-16,True
+R5_z1.0 all: number of trades,411,411,0,True
+R5_z1.0 all: mean gross return % per trade,0.065774698,0.065774698,0,True
+R5_z1.0 all: mean net return % per trade (0.10% cost),-0.034225302,-0.034225302,0,True
+R5_z1.0 dev: number of trades,301,301,0,True
+R5_z1.0 dev: mean gross return % per trade,0.02121270614,0.02121270614,6.938893904e-17,True
+R5_z1.0 dev: mean net return % per trade (0.10% cost),-0.07878729386,-0.07878729386,5.551115123e-17,True
+R5_z1.0 val: number of trades,54,54,0,True
+R5_z1.0 val: mean gross return % per trade,0.2956405468,0.2956405468,0,True
+R5_z1.0 val: mean net return % per trade (0.10% cost),0.1956405468,0.1956405468,1.110223025e-16,True
+R5_z1.0 final: number of trades,56,56,0,True
+R5_z1.0 final: mean gross return % per trade,0.08363905004,0.08363905004,8.326672685e-17,True
+R5_z1.0 final: mean net return % per trade (0.10% cost),-0.01636094996,-0.01636094996,8.326672685e-17,True
+R5_z1.0 cas: number of trades,13,13,0,True
+R5_z1.0 cas: mean gross return % per trade,-0.1769987106,-0.1769987106,2.775557562e-17,True
+R5_z1.0 cas: mean net return % per trade (0.10% cost),-0.2769987106,-0.2769987106,1.110223025e-16,True
+R6_long_s1_t2 all: number of trades,1923,1923,0,True
+R6_long_s1_t2 all: mean gross return % per trade,-0.1406810023,-0.1406810023,5.551115123e-17,True
+R6_long_s1_t2 all: mean net return % per trade (0.10% cost),-0.2406810023,-0.2406810023,2.775557562e-17,True
+R6_long_s1_t2 dev: number of trades,1355,1355,0,True
+R6_long_s1_t2 dev: mean gross return % per trade,-0.1613115577,-0.1613115577,5.551115123e-17,True
+R6_long_s1_t2 dev: mean net return % per trade (0.10% cost),-0.2613115577,-0.2613115577,5.551115123e-17,True
+R6_long_s1_t2 val: number of trades,248,248,0,True
+R6_long_s1_t2 val: mean gross return % per trade,-0.1336775234,-0.1336775234,2.775557562e-17,True
+R6_long_s1_t2 val: mean net return % per trade (0.10% cost),-0.2336775234,-0.2336775234,2.498001805e-16,True
+R6_long_s1_t2 final: number of trades,320,320,0,True
+R6_long_s1_t2 final: mean gross return % per trade,-0.05875119054,-0.05875119054,8.326672685e-17,True
+R6_long_s1_t2 final: mean net return % per trade (0.10% cost),-0.1587511905,-0.1587511905,8.326672685e-17,True
+R6_long_s1_t2 cas: number of trades,51,51,0,True
+R6_long_s1_t2 cas: mean gross return % per trade,0.06168120701,0.06168120701,6.938893904e-17,True
+R6_long_s1_t2 cas: mean net return % per trade (0.10% cost),-0.03831879299,-0.03831879299,1.318389842e-16,True
+R7_emp_q25 all: number of trades,510,510,0,True
+R7_emp_q25 all: mean gross return % per trade,-0.001104368998,-0.001104368998,5.564125549e-16,True
+R7_emp_q25 all: mean net return % per trade (0.10% cost),-0.101104369,-0.101104369,4.440892099e-16,True
+R7_emp_q25 dev: number of trades,372,372,0,True
+R7_emp_q25 dev: mean gross return % per trade,0.06771334248,0.06771334248,6.106226635e-16,True
+R7_emp_q25 dev: mean net return % per trade (0.10% cost),-0.03228665752,-0.03228665752,6.245004514e-16,True
+R7_emp_q25 val: number of trades,64,64,0,True
+R7_emp_q25 val: mean gross return % per trade,-0.3407199522,-0.3407199522,5.551115123e-17,True
+R7_emp_q25 val: mean net return % per trade (0.10% cost),-0.4407199522,-0.4407199522,5.551115123e-17,True
+R7_emp_q25 final: number of trades,74,74,0,True
+R7_emp_q25 final: mean gross return % per trade,-0.05333127907,-0.05333127907,2.428612866e-16,True
+R7_emp_q25 final: mean net return % per trade (0.10% cost),-0.1533312791,-0.1533312791,1.387778781e-16,True
+R7_emp_q25 cas: number of trades,15,15,0,True
+R7_emp_q25 cas: mean gross return % per trade,0.3804789777,0.3804789777,5.551115123e-17,True
+R7_emp_q25 cas: mean net return % per trade (0.10% cost),0.2804789777,0.2804789777,1.665334537e-16,True
+R7_post_q25 all: number of trades,404,404,0,True
+R7_post_q25 all: mean gross return % per trade,-0.06721418251,-0.06721418251,1.387778781e-17,True
+R7_post_q25 all: mean net return % per trade (0.10% cost),-0.1672141825,-0.1672141825,0,True
+R7_post_q25 dev: number of trades,259,259,0,True
+R7_post_q25 dev: mean gross return % per trade,0.1238597661,0.1238597661,0,True
+R7_post_q25 dev: mean net return % per trade (0.10% cost),0.02385976611,0.02385976611,9.714451465e-17,True
+R7_post_q25 val: number of trades,60,60,0,True
+R7_post_q25 val: mean gross return % per trade,-0.5505425403,-0.5505425403,0,True
+R7_post_q25 val: mean net return % per trade (0.10% cost),-0.6505425403,-0.6505425403,1.110223025e-16,True
+R7_post_q25 final: number of trades,85,85,0,True
+R7_post_q25 final: mean gross return % per trade,-0.3082547852,-0.3082547852,0,True
+R7_post_q25 final: mean net return % per trade (0.10% cost),-0.4082547852,-0.4082547852,1.110223025e-16,True
+R7_post_q25 cas: number of trades,16,16,0,True
+R7_post_q25 cas: mean gross return % per trade,0.1710536862,0.1710536862,5.551115123e-17,True
+R7_post_q25 cas: mean net return % per trade (0.10% cost),0.07105368616,0.07105368616,1.387778781e-16,True
+R8_post_q75 all: number of trades,408,408,0,True
+R8_post_q75 all: mean gross return % per trade,-0.4131834865,-0.4131834865,5.551115123e-17,True
+R8_post_q75 all: mean net return % per trade (0.10% cost),-0.5131834865,-0.5131834865,1.110223025e-16,True
+R8_post_q75 dev: number of trades,267,267,0,True
+R8_post_q75 dev: mean gross return % per trade,-0.3706004511,-0.3706004511,0,True
+R8_post_q75 dev: mean net return % per trade (0.10% cost),-0.4706004511,-0.4706004511,1.110223025e-16,True
+R8_post_q75 val: number of trades,63,63,0,True
+R8_post_q75 val: mean gross return % per trade,-0.8732335902,-0.8732335902,0,True
+R8_post_q75 val: mean net return % per trade (0.10% cost),-0.9732335902,-0.9732335902,1.110223025e-16,True
+R8_post_q75 final: number of trades,78,78,0,True
+R8_post_q75 final: mean gross return % per trade,-0.1873695623,-0.1873695623,2.775557562e-17,True
+R8_post_q75 final: mean net return % per trade (0.10% cost),-0.2873695623,-0.2873695623,5.551115123e-17,True
+R8_post_q75 cas: number of trades,16,16,0,True
+R8_post_q75 cas: mean gross return % per trade,-0.05556017835,-0.05556017835,1.387778781e-17,True
+R8_post_q75 cas: mean net return % per trade (0.10% cost),-0.1555601784,-0.1555601784,8.326672685e-17,True
+R3_z1.5 all: number of trades,60,60,0,True
+R3_z1.5 all: mean gross return % per trade,-0.498226343,-0.498226343,5.551115123e-17,True
+R3_z1.5 all: mean net return % per trade (0.10% cost),-0.598226343,-0.598226343,1.110223025e-16,True
+R3_z1.5 val: number of trades,15,15,0,True
+R3_z1.5 val: mean gross return % per trade,-1.437000532,-1.437000532,2.220446049e-16,True
+R3_z1.5 val: mean net return % per trade (0.10% cost),-1.537000532,-1.537000532,0,True
+R3_z1.5 final: number of trades,45,45,0,True
+R3_z1.5 final: mean gross return % per trade,-0.1853016131,-0.1853016131,5.551115123e-17,True
+R3_z1.5 final: mean net return % per trade (0.10% cost),-0.2853016131,-0.2853016131,5.551115123e-17,True
+R3_z1.5 cas: number of trades,5,5,0,True
+R3_z1.5 cas: mean gross return % per trade,0.4087920958,0.4087920958,5.551115123e-17,True
+R3_z1.5 cas: mean net return % per trade (0.10% cost),0.3087920958,0.3087920958,5.551115123e-17,True
+R4a all: number of trades,351,351,0,True
+R4a all: mean gross return % per trade,0.267262495,0.267262495,5.551115123e-17,True
+R4a all: mean net return % per trade (0.10% cost),0.167262495,0.167262495,1.665334537e-16,True
+R4a val: number of trades,105,105,0,True
+R4a val: mean gross return % per trade,0.5673602458,0.5673602458,0,True
+R4a val: mean net return % per trade (0.10% cost),0.4673602458,0.4673602458,5.551115123e-17,True
+R4a final: number of trades,246,246,0,True
+R4a final: mean gross return % per trade,0.1391719916,0.1391719916,5.551115123e-17,True
+R4a final: mean net return % per trade (0.10% cost),0.03917199155,0.03917199155,1.526556659e-16,True
+R4a cas: number of trades,35,35,0,True
+R4a cas: mean gross return % per trade,-0.04144650376,-0.04144650376,7.632783294e-17,True
+R4a cas: mean net return % per trade (0.10% cost),-0.1414465038,-0.1414465038,2.775557562e-17,True
+R4a final: HAC t of net mean,0.4182903081,0.4182903081,5.551115123e-16,True
+R4a final: HAC one-sided p of net mean,0.3380506422,0.3380506422,5.551115123e-17,True
+R1_k1.0 final: HAC t of net mean,-2.234447897,-2.234447897,8.881784197e-16,True
+R1_k1.0 final: HAC one-sided p of net mean,0.9859612773,0.9859612773,1.110223025e-16,True
+R7_post_q25 final: HAC t of net mean,-2.281713542,-2.281713542,0,True
+R7_post_q25 final: HAC one-sided p of net mean,0.9874822139,0.9874822139,0,True
+"open equals day high, sessions from 2019-01-01",119,119,0,True
+"open equals day low, sessions from 2019-01-01",85,85,0,True
+Final median high above open (%),1.195262839,1.195262839,2.220446049e-16,True
+Final median low below open (%),1.311251955,1.311251955,0,True
+Final 90th pct low below open (%),3.368976856,3.368976856,0,True
+"10:15 entry, Final median room above (%)",0.8139300324,0.8139300324,0,True
+"10:15 entry, Final median room below (%)",0.8813962808,0.8813962808,0,True
+R7_post_q25 Final: fill frequency,0.265625,0.265625,0,True
+R7_post_q25 Final: Kupiec p of the fill frequency,0.5214201331,0.5214201331,1.110223025e-16,True

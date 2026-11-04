@@ -1,0 +1,254 @@
+{
+ "file": "data/raw/tradingview/BSE_intraday_30d_1.xlsx",
+ "notes_sheet": [
+  "BSE Ltd (NSE: BSE) intraday OHLC, last 30 calendar days",
+  "Source: Yahoo Finance chart API (NSE prices, INR). Times are bar start times in IST.",
+  "15-minute bars: 09:15 to 15:15 (25 per session; the last bar covers 15:15-15:30). Five sessions are missing one bar in the source feed (17 Sep, 22 Sep, 29 Sep, 8 Oct, 9 Oct).",
+  "30-minute bars: 09:15, 09:45 ... 15:15 (13 per session; Yahoo omits one bar on those same five sessions).",
+  "1-hour bars: 09:15, 10:15 ... 14:15 (60 minutes each) and a final 15:15-15:30 bar (7 per session).",
+  "Today's last bar may be partial if pulled before the close. Prices are not adjusted for splits or bonuses."
+ ],
+ "15 min": {
+  "rows": 495,
+  "first": "2026-09-15 09:15:00",
+  "last": "2026-10-13 15:15:00",
+  "sessions": 20,
+  "sorted": true,
+  "duplicate_timestamps": 0,
+  "nulls": 0,
+  "zero_volume_bars": 6,
+  "weekend_sessions": [],
+  "bars_per_session": {
+   "24": 5,
+   "25": 15
+  },
+  "ohlc_inconsistent_rows": 0,
+  "prices_not_multiple_of_0.05": 0,
+  "bar_open_vs_prev_close_abs_max_pct": 0.18935210023037774,
+  "bar_open_vs_prev_close_gt0.4pct": 0,
+  "missing_bars_vs_expected_grid": {
+   "2026-09-17": [
+    "15:15"
+   ],
+   "2026-09-22": [
+    "15:15"
+   ],
+   "2026-09-29": [
+    "15:15"
+   ],
+   "2026-10-08": [
+    "15:15"
+   ],
+   "2026-10-09": [
+    "15:15"
+   ]
+  }
+ },
+ "30 min": {
+  "rows": 255,
+  "first": "2026-09-15 09:15:00",
+  "last": "2026-10-13 15:15:00",
+  "sessions": 20,
+  "sorted": true,
+  "duplicate_timestamps": 0,
+  "nulls": 0,
+  "zero_volume_bars": 6,
+  "weekend_sessions": [],
+  "bars_per_session": {
+   "12": 5,
+   "13": 15
+  },
+  "ohlc_inconsistent_rows": 0,
+  "prices_not_multiple_of_0.05": 0,
+  "bar_open_vs_prev_close_abs_max_pct": 0.18935210023037774,
+  "bar_open_vs_prev_close_gt0.4pct": 0,
+  "missing_bars_vs_expected_grid": {
+   "2026-09-17": [
+    "15:15"
+   ],
+   "2026-09-22": [
+    "15:15"
+   ],
+   "2026-09-29": [
+    "15:15"
+   ],
+   "2026-10-08": [
+    "15:15"
+   ],
+   "2026-10-09": [
+    "15:15"
+   ]
+  }
+ },
+ "1 hour": {
+  "rows": 135,
+  "first": "2026-09-15 09:15:00",
+  "last": "2026-10-13 15:15:00",
+  "sessions": 20,
+  "sorted": true,
+  "duplicate_timestamps": 0,
+  "nulls": 0,
+  "zero_volume_bars": 22,
+  "weekend_sessions": [],
+  "bars_per_session": {
+   "6": 5,
+   "7": 15
+  },
+  "ohlc_inconsistent_rows": 0,
+  "prices_not_multiple_of_0.05": 0,
+  "bar_open_vs_prev_close_abs_max_pct": 0.1853073274914463,
+  "bar_open_vs_prev_close_gt0.4pct": 0,
+  "missing_bars_vs_expected_grid": {
+   "2026-09-17": [
+    "15:15"
+   ],
+   "2026-09-22": [
+    "15:15"
+   ],
+   "2026-09-29": [
+    "15:15"
+   ],
+   "2026-10-08": [
+    "15:15"
+   ],
+   "2026-10-09": [
+    "15:15"
+   ]
+  }
+ },
+ "first_bar_times": [
+  "09:15"
+ ],
+ "last_bar_times": [
+  "15:00",
+  "15:15"
+ ],
+ "sessions_list": [
+  "2026-09-15",
+  "2026-09-16",
+  "2026-09-17",
+  "2026-09-18",
+  "2026-09-21",
+  "2026-09-22",
+  "2026-09-23",
+  "2026-09-24",
+  "2026-09-25",
+  "2026-09-28",
+  "2026-09-29",
+  "2026-09-30",
+  "2026-10-01",
+  "2026-10-05",
+  "2026-10-06",
+  "2026-10-07",
+  "2026-10-08",
+  "2026-10-09",
+  "2026-10-12",
+  "2026-10-13"
+ ],
+ "nse_daily_match": {
+  "1 hour": {
+   "sessions": 20,
+   "close_diff_max_abs": 0.0,
+   "open_diff_max_abs": 11.699999999999818,
+   "high_diff_min": -4.0,
+   "high_diff_max": 0.0,
+   "low_diff_min": 0.0,
+   "low_diff_max": 4.199999999999818,
+   "vol_ratio_min": 0.6115763562547949,
+   "vol_ratio_max": 0.9998754588388435,
+   "vol_ratio_mean": 0.7867329362072549
+  },
+  "15 min": {
+   "sessions": 20,
+   "close_diff_max_abs": 0.0,
+   "open_diff_max_abs": 11.699999999999818,
+   "high_diff_min": -4.0,
+   "high_diff_max": 0.0,
+   "low_diff_min": 0.0,
+   "low_diff_max": 4.199999999999818,
+   "vol_ratio_min": 0.8666201555831626,
+   "vol_ratio_max": 0.9998754588388435,
+   "vol_ratio_mean": 0.9495787933826387
+  },
+  "30 min": {
+   "sessions": 20,
+   "close_diff_max_abs": 0.0,
+   "open_diff_max_abs": 11.699999999999818,
+   "high_diff_min": -4.0,
+   "high_diff_max": 0.0,
+   "low_diff_min": 0.0,
+   "low_diff_max": 4.199999999999818,
+   "vol_ratio_min": 0.8666201555831626,
+   "vol_ratio_max": 0.9998754588388435,
+   "vol_ratio_mean": 0.9495787933826387
+  }
+ },
+ "nse_daily_unmatched": [],
+ "consistency_30 min_vs_15m": {
+  "bars_compared": 255,
+  "bars_with_complete_15m_set": 240,
+  "close_mismatch": 0,
+  "open_mismatch": 0,
+  "high_mismatch": 0,
+  "low_mismatch": 0,
+  "volume_mismatch_gt1pct": 0,
+  "volume_zero_in_sheet_but_not_in_15m": 0
+ },
+ "consistency_1 hour_vs_15m": {
+  "bars_compared": 135,
+  "bars_with_complete_15m_set": 120,
+  "close_mismatch": 0,
+  "open_mismatch": 0,
+  "high_mismatch": 0,
+  "low_mismatch": 0,
+  "volume_mismatch_gt1pct": 16,
+  "volume_zero_in_sheet_but_not_in_15m": 16
+ },
+ "vs_earlier_fetched_yahoo_bars": {
+  "bars_compared": 495,
+  "first": "2026-09-15 09:15:00",
+  "last": "2026-10-13 15:15:00",
+  "open_mismatch_gt0.051": 0,
+  "high_mismatch_gt0.051": 0,
+  "low_mismatch_gt0.051": 0,
+  "close_mismatch_gt0.051": 0,
+  "volume_mismatch_gt1pct": 2,
+  "mismatching_bars_sample": [
+   {
+    "ts": "2026-09-16 09:15:00",
+    "xlsx": [
+     3301.5,
+     3317.0,
+     3277.0,
+     3286.1,
+     290601
+    ],
+    "earlier": [
+     3301.5,
+     3317.0,
+     3277.0,
+     3286.10009765625,
+     142512
+    ]
+   },
+   {
+    "ts": "2026-10-07 09:15:00",
+    "xlsx": [
+     3266.1,
+     3282.7,
+     3259.1,
+     3261.7,
+     473178
+    ],
+    "earlier": [
+     3266.10009765625,
+     3282.699951171875,
+     3259.10009765625,
+     3261.699951171875,
+     225402
+    ]
+   }
+  ]
+ },
+ "earlier_fetched_sessions_not_in_xlsx_window": 20
+}

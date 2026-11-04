@@ -1,0 +1,114 @@
+[
+{
+"pattern": "Follows the market",
+"result": "Same-day beta to Nifty 50 = 0.89 (CI 0.77-1.01), corr 0.35; yearly beta 0.28 to 1.82, break near 2021-03",
+"sample": "2,388 sessions, 2017-2026",
+"status": "descriptive",
+"caveat": "Beta as a scenario mapping given the same-day index move is validated (OOS R2 12.6%); it does not forecast the index"
+},
+{
+"pattern": "Mostly idiosyncratic",
+"result": "87.5% of daily variance is not explained by Nifty (75.9% in the last 250 sessions)",
+"sample": "2,388",
+"status": "descriptive",
+"caveat": ""
+},
+{
+"pattern": "Sector co-movement",
+"result": "Beta to Nifty Capital Markets 1.47, corr 0.81",
+"sample": "513, 2024-09 on",
+"status": "descriptive",
+"caveat": "BSE is a constituent: about 44% of the covariance is mechanical"
+},
+{
+"pattern": "Lead or lag",
+"result": "No index or VIX lag survives Holm; CDSL and Angel One lags do, but BSE adds only +0.05% OOS R2 once the peer's own lag is controlled",
+"sample": "130 cells",
+"status": "not_found",
+"caveat": "Leadership not established; persistence explains about half"
+},
+{
+"pattern": "Overnight cue to gap",
+"result": "Previous US session S&P 500 predicts BSE's opening gap: slope 0.276 pp per 1%, OOS R2 +7.85% (walk-forward), +6.79% (split)",
+"sample": "2,313",
+"status": "validated_out_of_sample",
+"caveat": "Independently reproduced; slope unstable (0.03 in 2019, 0.68 in 2026); effect on the 14 Oct centre about -0.05 pp"
+},
+{
+"pattern": "Declines and VIX",
+"result": "Down-market beta 1.00 vs up 0.76 (Holm p 0.61); beta by VIX tercile 1.07 / 1.04 / 0.85",
+"sample": "2,388",
+"status": "not_found",
+"caveat": "Stress correlation rise is a variance artefact"
+},
+{
+"pattern": "Rates, FX, commodities",
+"result": "US 10-year and Brent: no association; USD/INR predicts the gap but is not incremental to the S&P",
+"sample": "2,300+",
+"status": "not_found",
+"caveat": "Brent series is Dated spot, not futures"
+},
+{
+"pattern": "Momentum vs mean reversion",
+"result": "Lag-1 autocorrelation +0.105; yesterday's return OOS R2 +0.95%",
+"sample": "2,388",
+"status": "descriptive",
+"caveat": "Fails the fixed gate in Validation (-0.71%) and Final (-0.68%); VWAP-close explanation refuted; not applied"
+},
+{
+"pattern": "Gap continuation vs reversal",
+"result": "After gap-ups of 0.5 sigma or more the intraday move continued 33% (n 234) before 2024-07, 70% (n 37) to 2026-08-02, 50% (n 4) since",
+"sample": "275 gap-ups",
+"status": "descriptive",
+"caveat": "Period difference is real but gradual; not a stable rule"
+},
+{
+"pattern": "Gaps since the closing auction",
+"result": "Open equals previous close on 8 of 50 sessions (125 of 2,388 overall); the 14 Oct open was exactly the previous close",
+"sample": "50 sessions",
+"status": "not_found",
+"caveat": "Cause date not identified"
+},
+{
+"pattern": "Volume vs breakouts",
+"result": "Closes beyond the prior 20-day high or low, with or without volume or delivery confirmation: no persistence or reversal",
+"sample": "158 up, 165 down",
+"status": "not_found",
+"caveat": "Volume and absolute return correlate (Spearman 0.42) in every liquidity state"
+},
+{
+"pattern": "Event reactions",
+"result": "Event sessions move more (|z| 1.78 vs 0.75), but 15 of 27 events were dated from the dossier's reaction day",
+"sample": "27 events, 7-10 earnings",
+"status": "descriptive",
+"caveat": "Selection-light premium about 1.1-1.3; sign rule not usable (12/14 vs 2/6 by timing evidence)"
+},
+{
+"pattern": "Regimes",
+"result": "13 Oct is 'stressed' only through the Nifty-drawdown prong; S6 90% interval needs about +4-5% at most",
+"sample": "2,388",
+"status": "descriptive",
+"caveat": "50% body narrow (kappa 1.10; whole-registry Holm 0.34); sigma unchanged"
+},
+{
+"pattern": "Opening, midday, closing",
+"result": "First hour: 26.5% of volume, 46.7% of variance; highs or lows set in the first hour 83.8% vs 84.9% for a random walk with the same variance clock",
+"sample": "37 sessions",
+"status": "descriptive",
+"caveat": "Not a distinct pattern; first-hour direction does not predict the rest of the day"
+},
+{
+"pattern": "Prior-day levels",
+"result": "Previous-day high touched 71% vs 73% random walk; the specialist's 'persistence at prior lows' label was refuted by the verifier",
+"sample": "2,368",
+"status": "descriptive",
+"caveat": "Drift artefact, downgraded"
+},
+{
+"pattern": "Structural change",
+"result": "0 of 54 pre-specified break cells survive family correction; largest: turnover x5.6 near 2024-10-01 (Holm 0.12)",
+"sample": "54 tests",
+"status": "not_found",
+"caveat": "Association only; no cause is inferred"
+}
+]

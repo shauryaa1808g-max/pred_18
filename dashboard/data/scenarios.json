@@ -1,0 +1,62 @@
+[
+{
+"record": "v1",
+"scenario": "bearish",
+"definition": "R <= -1.5%, close <= 3324.8",
+"probability": 0.266,
+"close_p10": 3230.9,
+"close_p50": 3278.8,
+"close_p90": 3319.5,
+"favoured_by": "SEBI keeps or blends the closing-auction price for expiry settlement; weak open with peers; global sell-off; weak Groww Q2 read-through."
+},
+{
+"record": "v1",
+"scenario": "base",
+"definition": "-1.5% < R < +1.5%, close 3324.8-3426.0",
+"probability": 0.476,
+"close_p10": 3336.1,
+"close_p50": 3375.7,
+"close_p90": 3413.3,
+"favoured_by": "No circular; ordinary market; open near the reference price."
+},
+{
+"record": "v1",
+"scenario": "bullish",
+"definition": "R >= +1.5%, close >= 3426.0",
+"probability": 0.258,
+"close_p10": 3433.4,
+"close_p50": 3465.3,
+"close_p90": 3535.5,
+"favoured_by": "SEBI adopts last-30-minute VWAP for derivative settlement (largely priced after +10.8% since 1 Oct); pre-open above +0.5% with peers firm."
+},
+{
+"record": "v2",
+"scenario": "bearish",
+"definition": "R <= -1.5%, close <= 3324.8",
+"probability": 0.272,
+"close_p10": 3229.8,
+"close_p50": 3278.1,
+"close_p90": 3320.3,
+"favoured_by": "SEBI keeps or blends the closing-auction price for expiry settlement; weak open with peers; global sell-off; weak Groww Q2 read-through."
+},
+{
+"record": "v2",
+"scenario": "base",
+"definition": "-1.5% < R < +1.5%, close 3324.8-3426.0",
+"probability": 0.476,
+"close_p10": 3335.6,
+"close_p50": 3374.3,
+"close_p90": 3412.4,
+"favoured_by": "No circular; ordinary market; open near the reference price."
+},
+{
+"record": "v2",
+"scenario": "bullish",
+"definition": "R >= +1.5%, close >= 3426.0",
+"probability": 0.252,
+"close_p10": 3433.4,
+"close_p50": 3464.2,
+"close_p90": 3534.5,
+"favoured_by": "SEBI adopts last-30-minute VWAP for derivative settlement (largely priced after +10.8% since 1 Oct); pre-open above +0.5% with peers firm."
+}
+]

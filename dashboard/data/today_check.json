@@ -1,0 +1,50 @@
+[
+{
+"measure": "Open",
+"best_guess": 3502.0,
+"lo50": 3495.5,
+"hi50": 3512.0,
+"lo90": 3464.0,
+"hi90": 3537.4,
+"actual": 3490.0,
+"status": "final (official)",
+"as_of": "NSE bhavcopy",
+"landed": "inside the 9-in-10 range, outside the half-the-time range"
+},
+{
+"measure": "High",
+"best_guess": 3544.3,
+"lo50": 3521.6,
+"hi50": 3577.9,
+"lo90": 3496.1,
+"hi90": 3648.1,
+"actual": 3525.0,
+"status": "final (official)",
+"as_of": "NSE bhavcopy",
+"landed": "inside the half-the-time range"
+},
+{
+"measure": "Low",
+"best_guess": 3467.6,
+"lo50": 3432.4,
+"hi50": 3493.2,
+"lo90": 3357.4,
+"hi90": 3521.8,
+"actual": 3465.6,
+"status": "final (official)",
+"as_of": "NSE bhavcopy",
+"landed": "inside the half-the-time range"
+},
+{
+"measure": "Close",
+"best_guess": 3502.0,
+"lo50": 3454.4,
+"hi50": 3549.2,
+"lo90": 3385.2,
+"hi90": 3621.9,
+"actual": 3510.4,
+"status": "final (official)",
+"as_of": "NSE bhavcopy",
+"landed": "inside the half-the-time range"
+}
+]

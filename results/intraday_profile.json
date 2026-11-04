@@ -1,0 +1,24 @@
+{
+ "n_sessions": 36,
+ "first": "2026-08-18",
+ "last": "2026-10-12",
+ "volume_share_first_bar_pct": 8.410202632826424,
+ "volume_share_first_hour_pct": 26.72837598104108,
+ "volume_share_last_hour_pct": 20.455228839987765,
+ "volume_share_last_bar_1515_pct": 4.3950093881815935,
+ "high_in_first_hour_share": 0.6111111111111112,
+ "low_in_first_hour_share": 0.3333333333333333,
+ "high_in_last_hour_share": 0.1111111111111111,
+ "low_in_last_hour_share": 0.25,
+ "high_or_low_in_first_hour_share": 0.8611111111111112,
+ "median_range_share_formed_by_10:15": 0.7731851166486663,
+ "corr_firsthour_vs_restofday": {
+  "r": -0.10765450303550288,
+  "p": 0.5320028513425203,
+  "n": 36
+ },
+ "P(rest-of-day continues first-hour direction)": 0.5,
+ "P(close above bar-VWAP)": 0.4444444444444444,
+ "last_bar_1515_abs_move_mean_pct": 0.19654718860195544,
+ "last_bar_1515_move_mean_pct": 0.1121302313509614
+}

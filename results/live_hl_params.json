@@ -1,0 +1,436 @@
+{
+ "c_live": 1.025,
+ "n_sessions": 39,
+ "dates": [
+  "2026-08-18",
+  "2026-08-19",
+  "2026-08-20",
+  "2026-08-21",
+  "2026-08-24",
+  "2026-08-25",
+  "2026-08-26",
+  "2026-08-27",
+  "2026-08-28",
+  "2026-08-31",
+  "2026-09-01",
+  "2026-09-03",
+  "2026-09-04",
+  "2026-09-07",
+  "2026-09-08",
+  "2026-09-09",
+  "2026-09-11",
+  "2026-09-15",
+  "2026-09-16",
+  "2026-09-17",
+  "2026-09-18",
+  "2026-09-21",
+  "2026-09-22",
+  "2026-09-23",
+  "2026-09-24",
+  "2026-09-25",
+  "2026-09-28",
+  "2026-09-29",
+  "2026-09-30",
+  "2026-10-01",
+  "2026-10-05",
+  "2026-10-06",
+  "2026-10-07",
+  "2026-10-08",
+  "2026-10-09",
+  "2026-10-12",
+  "2026-10-13",
+  "2026-10-14",
+  "2026-10-15"
+ ],
+ "delta_high": [
+  1.400000000000091,
+  0.0,
+  0.40000000000009095,
+  0.3000000000001819,
+  0.3000000000001819,
+  0.0,
+  2.099999999999909,
+  0.7999999999997272,
+  0.0,
+  3.099999999999909,
+  4.0,
+  0.0,
+  0.6999999999998181,
+  2.5,
+  0.1999999999998181,
+  5.300000000000182,
+  0.09999999999990905,
+  0.3999999999996362,
+  0.0,
+  0.0,
+  0.09999999999990905,
+  4.0,
+  0.0,
+  0.0,
+  1.5,
+  0.29999999999972715,
+  2.300000000000182,
+  0.0,
+  0.09999999999990905,
+  0.09999999999990905,
+  0.0,
+  0.0,
+  0.09999999999990905,
+  0.0,
+  0.8000000000001819,
+  1.400000000000091,
+  2.299999999999727,
+  0.0,
+  0.0
+ ],
+ "delta_low": [
+  0.0,
+  0.40000000000009095,
+  0.09999999999990905,
+  0.8000000000001819,
+  3.900000000000091,
+  0.1999999999998181,
+  0.3000000000001819,
+  0.09999999999990905,
+  0.6999999999998181,
+  1.5,
+  0.0,
+  4.5,
+  1.300000000000182,
+  1.5,
+  2.699999999999818,
+  1.400000000000091,
+  1.800000000000182,
+  2.699999999999818,
+  0.09999999999990905,
+  0.8000000000001819,
+  0.8000000000001819,
+  0.900000000000091,
+  4.199999999999818,
+  0.0,
+  1.099999999999909,
+  0.6999999999998181,
+  0.7000000000002728,
+  2.0,
+  0.0,
+  0.0,
+  0.6999999999998181,
+  2.5,
+  0.599999999999909,
+  0.0,
+  0.1999999999998181,
+  0.3000000000001819,
+  1.5,
+  0.0,
+  0.0
+ ],
+ "miss_by_slot": {
+  "high": {
+   "1": {
+    "model_median_miss_pct": 0.6240468645333669,
+    "naive_miss_mean_pct": 0.6712828291248738,
+    "naive_miss_median_pct": 0.1413105334269676
+   },
+   "2": {
+    "model_median_miss_pct": 0.5729103165694196,
+    "naive_miss_mean_pct": 0.6390186250109665,
+    "naive_miss_median_pct": 0.12646769098555272
+   },
+   "3": {
+    "model_median_miss_pct": 0.4920356139145779,
+    "naive_miss_mean_pct": 0.5660279398121421,
+    "naive_miss_median_pct": 0.10354532721723313
+   },
+   "4": {
+    "model_median_miss_pct": 0.46685200261413035,
+    "naive_miss_mean_pct": 0.5259771028962955,
+    "naive_miss_median_pct": 0.08671301866712644
+   },
+   "5": {
+    "model_median_miss_pct": 0.45901903514545933,
+    "naive_miss_mean_pct": 0.4928208483682675,
+    "naive_miss_median_pct": 0.07844524910426327
+   },
+   "6": {
+    "model_median_miss_pct": 0.44398173059009965,
+    "naive_miss_mean_pct": 0.4726966812558935,
+    "naive_miss_median_pct": 0.0687532111819431
+   },
+   "7": {
+    "model_median_miss_pct": 0.4143960568727534,
+    "naive_miss_mean_pct": 0.45209146315164356,
+    "naive_miss_median_pct": 0.059753774593968446
+   },
+   "8": {
+    "model_median_miss_pct": 0.3819970850075121,
+    "naive_miss_mean_pct": 0.4301777175936767,
+    "naive_miss_median_pct": 0.049634487056350825
+   },
+   "9": {
+    "model_median_miss_pct": 0.3509145255337715,
+    "naive_miss_mean_pct": 0.3947475157726686,
+    "naive_miss_median_pct": 0.04286552416300874
+   },
+   "10": {
+    "model_median_miss_pct": 0.3228248612036975,
+    "naive_miss_mean_pct": 0.3615614183815825,
+    "naive_miss_median_pct": 0.04162083480127413
+   },
+   "11": {
+    "model_median_miss_pct": 0.30670282892031797,
+    "naive_miss_mean_pct": 0.3329786021168999,
+    "naive_miss_median_pct": 0.04162083480127258
+   },
+   "12": {
+    "model_median_miss_pct": 0.2835820220540281,
+    "naive_miss_mean_pct": 0.3126524043509206,
+    "naive_miss_median_pct": 0.04162083480127038
+   },
+   "13": {
+    "model_median_miss_pct": 0.27763022615516925,
+    "naive_miss_mean_pct": 0.297964582487616,
+    "naive_miss_median_pct": 0.035711225946491454
+   },
+   "14": {
+    "model_median_miss_pct": 0.26329304747558163,
+    "naive_miss_mean_pct": 0.28361421256288466,
+    "naive_miss_median_pct": 0.02980161709171039
+   },
+   "15": {
+    "model_median_miss_pct": 0.2629989990639357,
+    "naive_miss_mean_pct": 0.27592735524006284,
+    "naive_miss_median_pct": 0.023892008236930707
+   },
+   "16": {
+    "model_median_miss_pct": 0.2633408197326102,
+    "naive_miss_mean_pct": 0.270610471420436,
+    "naive_miss_median_pct": 0.023892008236931633
+   },
+   "17": {
+    "model_median_miss_pct": 0.25867212143705337,
+    "naive_miss_mean_pct": 0.2480560267823196,
+    "naive_miss_median_pct": 0.022645243385799898
+   },
+   "18": {
+    "model_median_miss_pct": 0.23549500256162145,
+    "naive_miss_mean_pct": 0.22802529180715814,
+    "naive_miss_median_pct": 0.021398478534679494
+   },
+   "19": {
+    "model_median_miss_pct": 0.21143449435108086,
+    "naive_miss_mean_pct": 0.199596430775832,
+    "naive_miss_median_pct": 0.017342481342879728
+   },
+   "20": {
+    "model_median_miss_pct": 0.18439263762064104,
+    "naive_miss_mean_pct": 0.17138023455644466,
+    "naive_miss_median_pct": 0.01448717924799591
+   },
+   "21": {
+    "model_median_miss_pct": 0.16595435162650665,
+    "naive_miss_mean_pct": 0.1417828634177359,
+    "naive_miss_median_pct": 0.010885642933839272
+   },
+   "22": {
+    "model_median_miss_pct": 0.13233591094735916,
+    "naive_miss_mean_pct": 0.10916610139573367,
+    "naive_miss_median_pct": 0.010093338960364111
+   },
+   "23": {
+    "model_median_miss_pct": 0.1167878140845903,
+    "naive_miss_mean_pct": 0.09966478440139342,
+    "naive_miss_median_pct": 0.009347104741103162
+   }
+  },
+  "low": {
+   "1": {
+    "model_median_miss_pct": 0.6045656312918692,
+    "naive_miss_mean_pct": 0.7433262477564755,
+    "naive_miss_median_pct": 0.28573889549357545
+   },
+   "2": {
+    "model_median_miss_pct": 0.5891459420502517,
+    "naive_miss_mean_pct": 0.7039679545803684,
+    "naive_miss_median_pct": 0.24464912122910856
+   },
+   "3": {
+    "model_median_miss_pct": 0.569356814404975,
+    "naive_miss_mean_pct": 0.6360260708686304,
+    "naive_miss_median_pct": 0.1821569603933749
+   },
+   "4": {
+    "model_median_miss_pct": 0.5612231005853109,
+    "naive_miss_mean_pct": 0.6001415289314259,
+    "naive_miss_median_pct": 0.16246957270017945
+   },
+   "5": {
+    "model_median_miss_pct": 0.5531161804305722,
+    "naive_miss_mean_pct": 0.5744336220098081,
+    "naive_miss_median_pct": 0.1613415772089333
+   },
+   "6": {
+    "model_median_miss_pct": 0.5241342106350556,
+    "naive_miss_mean_pct": 0.5542970469087235,
+    "naive_miss_median_pct": 0.16021358171769046
+   },
+   "7": {
+    "model_median_miss_pct": 0.528641594122436,
+    "naive_miss_mean_pct": 0.5441446589207184,
+    "naive_miss_median_pct": 0.15291522554936024
+   },
+   "8": {
+    "model_median_miss_pct": 0.5258130723230318,
+    "naive_miss_mean_pct": 0.5354686817577687,
+    "naive_miss_median_pct": 0.14401037560025845
+   },
+   "9": {
+    "model_median_miss_pct": 0.5326730014595481,
+    "naive_miss_mean_pct": 0.522590926790068,
+    "naive_miss_median_pct": 0.1351055256511427
+   },
+   "10": {
+    "model_median_miss_pct": 0.5100703406518406,
+    "naive_miss_mean_pct": 0.5077625423153429,
+    "naive_miss_median_pct": 0.13038876301294774
+   },
+   "11": {
+    "model_median_miss_pct": 0.4772867082753724,
+    "naive_miss_mean_pct": 0.4925698103001858,
+    "naive_miss_median_pct": 0.1284064896467763
+   },
+   "12": {
+    "model_median_miss_pct": 0.43998375865598477,
+    "naive_miss_mean_pct": 0.4767182942769488,
+    "naive_miss_median_pct": 0.1264242162806136
+   },
+   "13": {
+    "model_median_miss_pct": 0.41372307266853525,
+    "naive_miss_mean_pct": 0.4587563740601314,
+    "naive_miss_median_pct": 0.12435124021878681
+   },
+   "14": {
+    "model_median_miss_pct": 0.38739164732993175,
+    "naive_miss_mean_pct": 0.43051868173218555,
+    "naive_miss_median_pct": 0.10896887111977137
+   },
+   "15": {
+    "model_median_miss_pct": 0.3606342371601123,
+    "naive_miss_mean_pct": 0.40255376527137204,
+    "naive_miss_median_pct": 0.09280621639087931
+   },
+   "16": {
+    "model_median_miss_pct": 0.3130562511136538,
+    "naive_miss_mean_pct": 0.3613524338217255,
+    "naive_miss_median_pct": 0.07871653772380631
+   },
+   "17": {
+    "model_median_miss_pct": 0.27351082348283245,
+    "naive_miss_mean_pct": 0.3171085332069513,
+    "naive_miss_median_pct": 0.0746394846764037
+   },
+   "18": {
+    "model_median_miss_pct": 0.21389384550857235,
+    "naive_miss_mean_pct": 0.24631911008293114,
+    "naive_miss_median_pct": 0.06744536864481161
+   },
+   "19": {
+    "model_median_miss_pct": 0.1678493278773943,
+    "naive_miss_mean_pct": 0.18866182198740666,
+    "naive_miss_median_pct": 0.05665979951010886
+   },
+   "20": {
+    "model_median_miss_pct": 0.12904426354007975,
+    "naive_miss_mean_pct": 0.14651672952954817,
+    "naive_miss_median_pct": 0.04859449409303912
+   },
+   "21": {
+    "model_median_miss_pct": 0.11062016192679085,
+    "naive_miss_mean_pct": 0.12383717836905084,
+    "naive_miss_median_pct": 0.03808269767308494
+   },
+   "22": {
+    "model_median_miss_pct": 0.09105737234371507,
+    "naive_miss_mean_pct": 0.0999707754385248,
+    "naive_miss_median_pct": 0.031162354356247087
+   },
+   "23": {
+    "model_median_miss_pct": 0.08003426418809044,
+    "naive_miss_mean_pct": 0.08363543129416494,
+    "naive_miss_median_pct": 0.024818514739294036
+   }
+  }
+ },
+ "miss_max_slot": 23,
+ "offset_15min": {
+  "n": 39,
+  "high": {
+   "n": 39,
+   "mean": 0.887178235176261,
+   "median": 0.1999999999998181,
+   "p75": 1.400000000000091,
+   "p90": 2.6199999999999837,
+   "p95": 4.0,
+   "max": 5.300000000000182,
+   "min": -4.882812481810106e-05,
+   "share_over_0.05": 0.6410256410256411,
+   "share_negative_over_0.05": 0.0
+  },
+  "low": {
+   "n": 39,
+   "mean": 1.0512807992788509,
+   "median": 0.6999999999998181,
+   "p75": 1.5,
+   "p90": 2.699999999999818,
+   "p95": 3.930000000000064,
+   "max": 4.5,
+   "min": -4.882812481810106e-05,
+   "share_over_0.05": 0.7948717948717948,
+   "share_negative_over_0.05": 0.0
+  }
+ },
+ "calibration_note": "checked leave-one-session-out on 39 sessions (8 checkpoints each, strongly dependent): 'half the time at or below/above' held 54% (high) / 57% (low) of the time and 'nine times in ten' held 88% / 88% (effective sample about 39 sessions, so +-8 points on the first and +-5 on the second from sampling alone; per-checkpoint table in research/hl/B_liveintraday.md)",
+ "p_in_note": "Reliability of 'the high/low is probably in' when the model said 30-90% (pooled over checkpoints; states are dependent): HIGH: stated 62% -> in 81% of 167 states (15-minute, 39 sessions), stated 61% -> 72% of 918 states (hourly Final, 306 sessions); LOW: stated 61% -> in 64% of 138 states (15-minute, 39 sessions), stated 61% -> 66% of 830 states (hourly Final, 306 sessions). So a stated 'is in' probability was somewhat conservative (the extreme was in more often than stated), clearly so for the HIGH.",
+ "c_loo_by_date": {
+  "2026-08-18": 1.025,
+  "2026-08-19": 1.025,
+  "2026-08-20": 1.0,
+  "2026-08-21": 1.025,
+  "2026-08-24": 1.025,
+  "2026-08-25": 1.025,
+  "2026-08-26": 1.025,
+  "2026-08-27": 1.025,
+  "2026-08-28": 1.025,
+  "2026-08-31": 1.05,
+  "2026-09-01": 1.025,
+  "2026-09-03": 1.025,
+  "2026-09-04": 1.025,
+  "2026-09-07": 1.025,
+  "2026-09-08": 1.025,
+  "2026-09-09": 1.025,
+  "2026-09-11": 1.075,
+  "2026-09-15": 1.0,
+  "2026-09-16": 1.025,
+  "2026-09-17": 1.025,
+  "2026-09-18": 1.025,
+  "2026-09-21": 1.0,
+  "2026-09-22": 1.025,
+  "2026-09-23": 1.025,
+  "2026-09-24": 1.0,
+  "2026-09-25": 1.025,
+  "2026-09-28": 1.0,
+  "2026-09-29": 1.025,
+  "2026-09-30": 1.025,
+  "2026-10-01": 1.0,
+  "2026-10-05": 1.025,
+  "2026-10-06": 1.025,
+  "2026-10-07": 1.025,
+  "2026-10-08": 1.025,
+  "2026-10-09": 1.025,
+  "2026-10-12": 1.025,
+  "2026-10-13": 1.025,
+  "2026-10-14": 1.025,
+  "2026-10-15": 1.0
+ },
+ "generated_utc": "2026-10-15T17:08:08+00:00",
+ "data_last_session": "2026-10-15"
+}

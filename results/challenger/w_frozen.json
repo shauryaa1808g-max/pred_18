@@ -1,0 +1,15 @@
+{
+ "w": 0.0,
+ "w3": 0.0,
+ "grid": [
+  0.0,
+  0.25,
+  0.5,
+  0.75,
+  1.0
+ ],
+ "rule": "research/hl/I_challenger.md 0.3 and 2: pooled pinball, >=1% better than weight 0",
+ "fitted_on_sessions_through": "2026-10-28",
+ "n_sessions": 47,
+ "doc_sha256_when_frozen": "3feb3599bf533ee60cd81fa5670b12be7b1869eed9765c21580daea919f091d9"
+}
